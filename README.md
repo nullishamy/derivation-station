@@ -9,8 +9,8 @@ These files must be symlinked:
 ```sh
 #!/usr/bin/env bash
 
-sudo ln -s $(pwd)/os/desktop/configuration.nix /etc/nixos/configuration.nix
-sudo ln -s $(pwd)/os/desktop/hardware-configuration.nix /etc/nixos/hardware-configuration.nix
+sudo ln -s $(pwd)/os/configuration.nix /etc/nixos/configuration.nix
+sudo ln -s $(pwd)/os/hardware-configuration.nix /etc/nixos/hardware-configuration.nix
 ```
 
 When installing home manager, the following must be run as root / with sudo:
