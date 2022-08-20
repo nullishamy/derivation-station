@@ -62,7 +62,7 @@
      enable = true;
 
      # Time, in minutes, before the screen automatically locks
-     time = 5;
+     time = 60;
 
      # The command to run when locking
      locker = "${pkgs.i3lock}/bin/i3lock -c 282828";
@@ -118,10 +118,13 @@
   environment.systemPackages = with pkgs; [
      wget alacritty
      i3-gaps polybar chromium git
-     neovim xclip redshift home-manager
+     xclip redshift home-manager
      pipewire wireplumber pulseaudio
      clang zsh dconf fontconfig unzip
-     gnupg pinentry-gtk2
+     gnupg pinentry-gtk2 
+
+     # My wrappers
+     (callPackage ../wrappers/nvim.nix {})
   ];
 
   # Home manager
