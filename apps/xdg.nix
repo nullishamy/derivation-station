@@ -1,0 +1,24 @@
+# XDG settings
+
+{ config, lib, pkgs, ...}:
+
+{
+  xdg = {
+    userDirs = {
+      enable = true;
+      createDirectories = true;
+
+      # Improve the XDG dir locations so they dont clutter up $HOME
+      download    = ~/downloads;
+      desktop     = ~/desktop;
+      documents   = ~/documents;
+
+      publicShare = ~/etc/public;
+      templates   = ~/etc/templates;
+
+      music       = ~/media/music;
+      pictures    = ~/media/pictures;
+      videos      = ~/media/videos;
+    };
+  };
+}
