@@ -28,13 +28,14 @@ in {
     # ENV vars
     sessionVariables = {
       EDITOR = "nvim";
+      VISUAL = "neovide";
       TERMINAL = "alacritty";
     };
 
     packages = with pkgs; [ 
       bottom neofetch gh rofi discord spotifywm flameshot
       lazygit keybase go nodejs luarocks gcc neovide
-      bitwarden cargo gparted gimp
+      bitwarden cargo gparted gimp ripgrep steam
     ];
 
     # This value determines the Home Manager release that your
