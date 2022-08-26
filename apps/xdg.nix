@@ -20,5 +20,12 @@
       pictures    = ~/media/pictures;
       videos      = ~/media/videos;
     };
+
+    mimeApps = {
+      enable = true;
+      defaultApplications = {
+        "text/html" = ["chromium.desktop"];
+      };
+    };
   };
 }
