@@ -35,7 +35,8 @@ in {
     packages = with pkgs; [ 
       bottom neofetch gh rofi discord spotifywm flameshot
       lazygit keybase go nodejs luarocks gcc neovide
-      bitwarden cargo gparted gimp ripgrep steam
+      bitwarden cargo gparted gimp ripgrep 
+      steam protonvpn-gui lunar-client jdk 
     ];
 
     # This value determines the Home Manager release that your

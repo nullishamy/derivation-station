@@ -9,6 +9,9 @@
     [ 
       ./hardware-configuration.nix
       <home-manager/nixos>
+
+      # Apps
+      ../apps/steam.nix
     ];
 
   boot.loader = {
@@ -97,6 +100,14 @@
      pinentryFlavor = "gtk2";
      enableSSHSupport = true;
   };
+
+  # Increase open file limits
+  security.pam.loginLimits = [{
+    domain = "*";
+    type = "soft";
+    item = "nofile";
+    value = "8192";
+  }];
 
   environment.pathsToLink = [ "/share/zsh" ];
 
