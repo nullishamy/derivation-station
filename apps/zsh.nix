@@ -44,5 +44,11 @@
           "git"
         ];
       };
+
+      initExtra = ''
+        function shell () {
+          nix-shell ~/shells/$1.nix
+        }
+      '';
     };
 }

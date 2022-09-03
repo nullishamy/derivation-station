@@ -10,7 +10,7 @@
       ./hardware-configuration.nix
       <home-manager/nixos>
 
-      # Apps
+      # Apps not supported by home-manager
       ../apps/steam.nix
     ];
 
@@ -129,19 +129,14 @@
   environment.systemPackages = with pkgs; [
      wget alacritty
      i3-gaps polybar chromium git
-     xclip redshift home-manager
+     redshift home-manager
      pipewire wireplumber pulseaudio
-     clang zsh dconf fontconfig unzip
+     zsh dconf fontconfig unzip
      gnupg pinentry-gtk2 
 
      # My wrappers
      (callPackage ../wrappers/nvim.nix {})
   ];
-
-  # Home manager
-  home-manager = {
-    useGlobalPkgs = true;
-  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
