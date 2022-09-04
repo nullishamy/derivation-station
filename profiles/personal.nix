@@ -34,6 +34,7 @@ in {
 
     file = { 
       "shells/cpp.nix" = { source = ../shells/cpp.nix; };
+      "shells/py.nix" = { source = ../shells/py.nix; };
     };
 
     packages = with pkgs; [ 
