@@ -23,6 +23,7 @@ in {
         uiColor= "#282828";
         contrastUiColor="#458588";
         userColors = "picker,${builtins.concatStringsSep "," colors}";
+        drawColor="#689D6A";
       };
     };
   };

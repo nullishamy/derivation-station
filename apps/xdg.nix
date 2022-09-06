@@ -25,6 +25,7 @@
       enable = true;
       defaultApplications = {
         "text/html" = ["chromium.desktop"];
+        "image/png" = ["photoqt.desktop"];
       };
     };
   };

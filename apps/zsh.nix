@@ -48,8 +48,9 @@
       initExtra = ''
         function shell () {
           first=$1;
-          shift; // remove the first arg
-          nix-shell ~/shells/"$first".nix -p "$a"
+          shift;
+
+          nix-shell ~/shells/"$first".nix -p "$@";
         }
       '';
     };

@@ -42,7 +42,7 @@ in {
       lazygit keybase neovide discord discord-canary 
       bitwarden gparted gimp ripgrep 
       steam lunar-client
-      deluge realvnc-vnc-viewer notion-app-enhanced
+      deluge realvnc-vnc-viewer notion-app-enhanced photoqt
     ];
 
     # This value determines the Home Manager release that your
