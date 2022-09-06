@@ -46,12 +46,9 @@
       };
 
       initExtra = ''
-        function shell () {
-          first=$1;
-          shift;
-
-          nix-shell ~/shells/"$first".nix -p "$@";
-        }
+        # Little helper because doing the spawning in ZSH causes many issues
+        # also we use "bash-isms" in the script
+        function shell { bash ~/shells/spawn-shell.sh $@; }
       '';
     };
 }

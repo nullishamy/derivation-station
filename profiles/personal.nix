@@ -33,6 +33,7 @@ in {
     };
 
     file = { 
+      "shells/spawn-shell.sh" = { source = ../shells/spawn-shell.sh; };
       "shells/cpp.nix" = { source = ../shells/cpp.nix; };
       "shells/py.nix" = { source = ../shells/py.nix; };
     };
