@@ -1,2 +1,7 @@
 #!/usr/bin/env bash
-nix-shell ~/shells/"$1".nix --arg extras "with import<nixpkgs> { }; ${@:2}";
+
+if [[ $# -gt 1 ]]; then
+    nix-shell ~/shells/"$1".nix --arg extras "with import<nixpkgs> { }; ${@:2}";
+else
+    nix-shell ~/shells/"$1".nix
+fi
