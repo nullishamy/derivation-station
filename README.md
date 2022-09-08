@@ -1,7 +1,6 @@
 # NixOS Config
 
 This is my NixOS config, including my home-manager config.
-To activate the wallpaper, move `wallpaper.png` to `~/.background-image`
 
 The files in `os/` are symlinked to `/etc/nixos/` as this config is intended to be stored in the user's home dir.
 

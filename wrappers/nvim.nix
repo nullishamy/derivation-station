@@ -1,4 +1,4 @@
-{ pkgs, lib, makeWrapper, runCommandNoCC, neovim, sumneko-lua-language-server, stylua, selene, ...}:
+{ pkgs, lib, makeWrapper, runCommandNoCC, neovim, sumneko-lua-language-server, stylua, selene, clang, clang-tools, go, xclip, nodejs, cargo, luarocks, gcc, ...}:
 
 runCommandNoCC "nvim" { nativeBuildInputs = [makeWrapper]; } ''
   mkdir -p $out/bin
@@ -8,6 +8,7 @@ runCommandNoCC "nvim" { nativeBuildInputs = [makeWrapper]; } ''
       stylua 
       selene 
       clang
+      clang-tools
       gcc
       luarocks
       cargo

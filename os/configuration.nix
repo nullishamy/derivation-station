@@ -73,6 +73,18 @@
    };
   };
 
+  # Hardware configuration
+  hardware = {
+    bluetooth = {
+      enable = true;
+    };
+  };
+
+  # Blueman
+  services.blueman = {
+    enable = true;
+  };
+
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;

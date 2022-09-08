@@ -16,6 +16,7 @@ let
     ../apps/keybase.nix
     ../apps/xdg.nix
     ../apps/lazygit.nix
+    ../apps/mpris.nix
   ];
 in {
   inherit imports;
@@ -36,6 +37,9 @@ in {
       "shells/spawn-shell.sh" = { source = ../shells/spawn-shell.sh; };
       "shells/cpp.nix" = { source = ../shells/cpp.nix; };
       "shells/py.nix" = { source = ../shells/py.nix; };
+      "shells/js.nix" = { source = ../shells/js.nix; };
+      "shells/ts.nix" = { source = ../shells/js.nix; };
+      "~/.background-image" = { source = ../wallpaper.png; };
     };
 
     packages = with pkgs; [ 
