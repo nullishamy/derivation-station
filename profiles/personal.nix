@@ -39,7 +39,7 @@ in {
       "shells/py.nix" = { source = ../shells/py.nix; };
       "shells/js.nix" = { source = ../shells/js.nix; };
       "shells/ts.nix" = { source = ../shells/js.nix; };
-      "~/.background-image" = { source = ../wallpaper.png; };
+      ".background-image" = { source = ../wallpaper.png; };
     };
 
     packages = with pkgs; [ 

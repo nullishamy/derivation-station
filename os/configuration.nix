@@ -128,7 +128,7 @@
 
   # Fonts
   fonts.fonts = with pkgs; [
-    (nerdfonts.override { fonts = [ "Hack" "Iosevka" ]; })
+    (nerdfonts.override { fonts = [ "Hack" "Iosevka" "FantasqueSansMono" ]; })
   ];
 
   # Shell config
