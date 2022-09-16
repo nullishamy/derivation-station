@@ -25,6 +25,30 @@
     };
   };
 
+  # Configure nix itself
+  nix = {
+    # Automatically run the garbage collector
+    gc.automatic = false;
+    gc.dates = "12:45";
+
+    # Automatically run the nix store optimiser
+    optimise.automatic = false;
+    optimise.dates = [ "12:55" ];
+
+    # Nix automatically detects files in the store that have identical contents, and replaces them with hard links to a single copy.
+    autoOptimiseStore = true;
+
+    # Maximum number of concurrent tasks during one build
+    buildCores = 4;
+
+    # Maximum number of jobs that Nix will try to build in parallel
+    # "auto" is broken: https://github.com/NixOS/nixpkgs/issues/50623
+    maxJobs = 4;
+
+    # Perform builds in a sandboxed environment
+    useSandbox = true;
+  };
+
   networking = {
     hostName = "nixon";
 
@@ -44,7 +68,7 @@
   # Select internationalisation properties.
   i18n.defaultLocale = "en_GB.utf8";
 
-  # Configure keymap in X11
+  # Configure X11
   services.xserver = {
     enable = true;
 
@@ -58,7 +82,6 @@
      extraPackages = with pkgs; [
        i3lock # Screen locker
      ];
-
    };
 
    xautolock = {
@@ -85,6 +108,7 @@
     enable = true;
   };
 
+  # Audio
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -96,13 +120,23 @@
   # Configure console keymap
   console.keyMap = "us";
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
+  # Define my user account.
   users.users.amy = {
     isNormalUser = true;
     description = "Amy Erskine";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [
+      "networkmanager" # Use networks
+      "wheel"          # Sudoer
+      "docker" "lxd"   # Use docker without root
+    ];
     packages = with pkgs; [];
     shell = pkgs.zsh;
+  };
+
+  # Enable CUPS to print documents.
+  services.printing = {
+    enable = true;
+    drivers = [ pkgs.gutenprint pkgs.hplip ];
   };
 
   # Pinentry / GPG
@@ -121,47 +155,37 @@
     value = "8192";
   }];
 
-  environment.pathsToLink = [ "/share/zsh" ];
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
   # Fonts
   fonts.fonts = with pkgs; [
+    # Only use the given nerdfonts, saves cloning *everything*
     (nerdfonts.override { fonts = [ "Hack" "Iosevka" "FantasqueSansMono" ]; })
   ];
 
-  # Shell config
-  environment.shells = [
-    pkgs.zsh
-  ];
+  environment = {
+    # Add zsh to /etc/shells
+    shells = [
+      pkgs.zsh
+    ];
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  environment.systemPackages = with pkgs; [
-     wget alacritty
-     i3-gaps polybar chromium git
-     redshift home-manager
-     pipewire wireplumber pulseaudio
-     zsh dconf fontconfig unzip
-     gnupg pinentry-gtk2 
+    # List packages installed in system profile (globally).
+    systemPackages = with pkgs; [
+       wget alacritty
+       i3-gaps polybar chromium git
+       redshift home-manager
+       pipewire wireplumber pulseaudio
+       zsh dconf fontconfig unzip
+       gnupg pinentry-gtk2 
 
-     # My wrappers
-     (callPackage ../wrappers/nvim.nix {})
-  ];
+       # My wrappers
+       (callPackage ../wrappers/nvim.nix {})
+    ];
 
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
-
-  # List services that you want to enable:
-
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
+    pathsToLink = [ "/share/zsh" ];
+  };
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];

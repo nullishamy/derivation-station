@@ -40,13 +40,18 @@ in {
       "shells/js.nix" = { source = ../shells/js.nix; };
       "shells/ts.nix" = { source = ../shells/js.nix; };
       ".background-image" = { source = ../wallpaper.png; };
+
+      # Create a config.nix for doing some specific config, namely allowing unfree, which
+      # doesnt work when declared anywhere else? 
+      # NOTE: look into this
+      ".config/nixpkgs/config.nix" = { source = ../apps/nixpkgs.nix; };
     };
 
     packages = with pkgs; [ 
       bottom neofetch gh rofi spotifywm flameshot
       lazygit keybase neovide discord discord-canary 
       bitwarden gparted gimp ripgrep 
-      steam lunar-client
+      steam lunar-client pavucontrol
       deluge realvnc-vnc-viewer notion-app-enhanced photoqt
     ];
 

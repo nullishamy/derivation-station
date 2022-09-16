@@ -64,6 +64,8 @@
           blinking = "Off";
         };
       };
+
+      dynamic_padding = true;
     };
   };
 }

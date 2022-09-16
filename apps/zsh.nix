@@ -31,9 +31,13 @@
   
       # Aliases
       shellAliases = {
-        py = "python";
-        nv = "neovide";
-        lg = "lazygit";
+        py          = "python";
+        nv          = "neovide";
+        lg          = "lazygit";
+        nix-clean   = "sudo nix-collect-garbage -d && sudo nix-store --optimise";
+        nix-update  = "sudo nixos-rebuild switch --upgrade";
+        nix-switch  = "sudo nixos-rebuild switch";
+        home-switch = "home-manager switch -f $HOME/nixos/profiles/personal.nix -b backup";
       };
 
       # OMZ Config
