@@ -125,6 +125,8 @@
         # Right click
         mouse_right_click = "close_current";
 
+        # History length
+        history_length = 20;
       };
 
       # Appearance / theme

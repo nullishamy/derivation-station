@@ -1,6 +1,6 @@
 # Credit: https://github.com/dbwest/nixos-files/blob/master/utils/gtk2Theme.nix
 
-# Paramaters
+# Parameters
 # theme = {
 #   package = the package name of the theme
 #   name = The location of the theme in .../share/themes/
@@ -8,7 +8,7 @@
 #
 # icons = {
 #  package = the package name of the icon theme
-#  name = The locaion of the icon pack in  .../share/icons/
+#  name = The location of the icon pack in  .../share/icons/
 # }
 #
 # returns a nix configuration function, so it 

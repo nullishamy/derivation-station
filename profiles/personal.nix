@@ -32,6 +32,7 @@ in
     sessionVariables = {
       EDITOR = "nvim";
       VISUAL = "neovide";
+      GIT_EDITOR = "nvim";
       TERMINAL = "alacritty";
     };
 

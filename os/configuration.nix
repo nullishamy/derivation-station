@@ -134,6 +134,9 @@
     shell = pkgs.zsh;
   };
 
+  # Add myself to the vbox group
+  users.extraGroups.vboxusers.members = [ "amy" ];
+
   # Enable CUPS to print documents.
   services.printing = {
     enable = true;
@@ -197,6 +200,19 @@
     ];
 
     pathsToLink = [ "/share/zsh" ];
+  };
+
+  # Virtualisation with VirtualBox
+  virtualisation.virtualbox = {
+    host = {
+      enable = true;
+      enableExtensionPack = true;
+    };
+
+    guest = {
+      enable = true;
+      x11 = true;
+    };
   };
 
   # Open ports in the firewall.
