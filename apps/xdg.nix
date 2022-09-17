@@ -26,6 +26,7 @@
       defaultApplications = {
         "text/html" = ["chromium.desktop"];
         "image/png" = ["photoqt.desktop"];
+        "text/plain" = ["neovide.desktop"];
       };
     };
   };

@@ -15,14 +15,14 @@ let
 
   imports = [ 
     ./gtk2.nix {
-      theme = theme;
+      inherit theme;
       icons = iconTheme;
     }
   ];
 in {
   config.gtk = {
     enable = true;
-    theme = theme;
-    iconTheme = iconTheme;
+    inherit theme;
+    inherit iconTheme;
   };
 }

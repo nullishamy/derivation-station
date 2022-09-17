@@ -1,4 +1,21 @@
-{ pkgs, lib, makeWrapper, runCommandNoCC, neovim, sumneko-lua-language-server, stylua, selene, clang, clang-tools, go, xclip, nodejs, cargo, rustc, luarocks, gcc, rust-analyzer, ...}:
+{ pkgs, lib, makeWrapper, runCommandNoCC, 
+  neovim,
+  sumneko-lua-language-server,
+  stylua,
+  selene,
+  clang,
+  clang-tools,
+  go,
+  xclip,
+  nodejs,
+  cargo,
+  rustc,
+  luarocks,
+  gcc,
+  rust-analyzer,
+  statix,
+  nixpkgs-fmt,
+...}:
 
 runCommandNoCC "nvim" { nativeBuildInputs = [makeWrapper]; } ''
   mkdir -p $out/bin
@@ -17,5 +34,7 @@ runCommandNoCC "nvim" { nativeBuildInputs = [makeWrapper]; } ''
       nodejs
       go
       xclip
+      statix
+      nixpkgs-fmt
     ]}
 ''

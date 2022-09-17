@@ -3,7 +3,7 @@
 # Gruvbox resources: https://www.reddit.com/r/gruvbox/comments/np5ylp/official_resources/
 
 let
-  imports = [ 
+  imports = [
     ../apps/rofi.nix
     ../apps/polybar.nix
     ../apps/flameshot.nix
@@ -17,8 +17,10 @@ let
     ../apps/xdg.nix
     ../apps/lazygit.nix
     ../apps/mpris.nix
+    ../apps/dunst.nix
   ];
-in {
+in
+{
   inherit imports;
   nixpkgs.config.allowUnfree = true;
 
@@ -33,7 +35,7 @@ in {
       TERMINAL = "alacritty";
     };
 
-    file = { 
+    file = {
       "shells/spawn-shell.sh" = { source = ../shells/spawn-shell.sh; };
       "shells/cpp.nix" = { source = ../shells/cpp.nix; };
       "shells/py.nix" = { source = ../shells/py.nix; };
@@ -42,17 +44,35 @@ in {
       ".background-image" = { source = ../wallpaper.png; };
 
       # Create a config.nix for doing some specific config, namely allowing unfree, which
-      # doesnt work when declared anywhere else? 
+      # doesn't work when declared anywhere else? 
       # NOTE: look into this
       ".config/nixpkgs/config.nix" = { source = ../apps/nixpkgs.nix; };
     };
 
-    packages = with pkgs; [ 
-      bottom neofetch gh rofi spotifywm flameshot
-      lazygit keybase neovide discord discord-canary 
-      bitwarden gparted gimp ripgrep 
-      steam lunar-client pavucontrol
-      deluge realvnc-vnc-viewer notion-app-enhanced photoqt
+    packages = with pkgs; [
+      bottom
+      neofetch
+      gh
+      rofi
+      spotifywm
+      flameshot
+      lazygit
+      keybase
+      neovide
+      discord
+      discord-canary
+      bitwarden
+      gparted
+      gimp
+      ripgrep
+      steam
+      lunar-client
+      pavucontrol
+      deluge
+      realvnc-vnc-viewer
+      notion-app-enhanced
+      photoqt
+      dunst
     ];
 
     # This value determines the Home Manager release that your

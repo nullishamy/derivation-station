@@ -6,7 +6,7 @@
 
 {
   imports =
-    [ 
+    [
       ./hardware-configuration.nix
       <home-manager/nixos>
 
@@ -58,7 +58,7 @@
 
     # proxy = {
     #   default = "";
-    # 	noProxy = "";
+    #   noProxy = "";
     # };
   };
 
@@ -76,24 +76,24 @@
     xkbVariant = "";
 
     windowManager.i3 = {
-     enable = true;
-     package = pkgs.i3-gaps;
-    
-     extraPackages = with pkgs; [
-       i3lock # Screen locker
-     ];
-   };
+      enable = true;
+      package = pkgs.i3-gaps;
 
-   xautolock = {
-     enable = true;
+      extraPackages = with pkgs; [
+        i3lock # Screen locker
+      ];
+    };
 
-     # Time, in minutes, before the screen automatically locks
-     time = 60;
+    xautolock = {
+      enable = true;
 
-     # The command to run when locking
-     locker = "${pkgs.i3lock}/bin/i3lock -c 282828";
-     nowlocker = "${pkgs.i3lock}/bin/i3lock -c 282828";
-   };
+      # Time, in minutes, before the screen automatically locks
+      time = 60;
+
+      # The command to run when locking
+      locker = "${pkgs.i3lock}/bin/i3lock -c 282828";
+      nowlocker = "${pkgs.i3lock}/bin/i3lock -c 282828";
+    };
   };
 
   # Hardware configuration
@@ -126,10 +126,11 @@
     description = "Amy Erskine";
     extraGroups = [
       "networkmanager" # Use networks
-      "wheel"          # Sudoer
-      "docker" "lxd"   # Use docker without root
+      "wheel" # Sudoer
+      "docker"
+      "lxd" # Use docker without root
     ];
-    packages = with pkgs; [];
+    packages = with pkgs; [ ];
     shell = pkgs.zsh;
   };
 
@@ -142,9 +143,9 @@
   # Pinentry / GPG
   services.pcscd.enable = true;
   programs.gnupg.agent = {
-     enable = true;
-     pinentryFlavor = "gtk2";
-     enableSSHSupport = true;
+    enable = true;
+    pinentryFlavor = "gtk2";
+    enableSSHSupport = true;
   };
 
   # Increase open file limits
@@ -173,15 +174,26 @@
 
     # List packages installed in system profile (globally).
     systemPackages = with pkgs; [
-       wget alacritty
-       i3-gaps polybar chromium git
-       redshift home-manager
-       pipewire wireplumber pulseaudio
-       zsh dconf fontconfig unzip
-       gnupg pinentry-gtk2 
+      wget
+      alacritty
+      i3-gaps
+      polybar
+      chromium
+      git
+      redshift
+      home-manager
+      pipewire
+      wireplumber
+      pulseaudio
+      zsh
+      dconf
+      fontconfig
+      unzip
+      gnupg
+      pinentry-gtk2
 
-       # My wrappers
-       (callPackage ../wrappers/nvim.nix {})
+      # My wrappers
+      (callPackage ../wrappers/nvim.nix { })
     ];
 
     pathsToLink = [ "/share/zsh" ];
