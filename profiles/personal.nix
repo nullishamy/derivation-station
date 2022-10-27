@@ -42,6 +42,7 @@ in
       "shells/py.nix" = { source = ../shells/py.nix; };
       "shells/js.nix" = { source = ../shells/js.nix; };
       "shells/ts.nix" = { source = ../shells/js.nix; };
+      "shells/docker.nix" = { source = ../shells/docker.nix; };
       ".background-image" = { source = ../wallpaper.png; };
 
       # Create a config.nix for doing some specific config, namely allowing unfree, which

@@ -2,8 +2,7 @@
 
 pkgs.mkShell {
     nativeBuildInputs = with pkgs; [ 
-        python
-        python3
-        extras
+        docker
+        docker-compose
     ];
 }

@@ -40,8 +40,8 @@
         word_wrap = "yes";
 
         # Hide duplicates and stack them instead
-        stack_duplicates = "yes";
-        hide_duplicate_count = "yes";
+        # stack_duplicates = "yes";
+        # hide_duplicate_count = "yes";
 
         # Respect newlines (\n)
         ignore_newline = "no";
