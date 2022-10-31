@@ -47,8 +47,8 @@ in
 
       # Create a config.nix for doing some specific config, namely allowing unfree, which
       # doesn't work when declared anywhere else? 
-      # NOTE: look into this
       ".config/nixpkgs/config.nix" = { source = ../apps/nixpkgs.nix; };
+      ".icons/default" = { source = "${pkgs.vanilla-dmz}/share/icons/Vanilla-DMZ-AA"; };
     };
 
     packages = with pkgs; [
