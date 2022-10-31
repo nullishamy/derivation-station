@@ -8,10 +8,22 @@
 
     userEmail = "amy.codes@null.net";
     userName = "nullishamy";
-    
+
     signing = {
-      key = "5BAB63DCC2BF4F58";
+      key = "~/.ssh/github.pub";
       signByDefault = true;
+    };
+
+    extraConfig = {
+      gpg = {
+        format = "ssh";
+      };
+
+      url = {
+        "ssh://git@github.com/" = {
+          insteadOf = "https://github.com/";
+        };
+      };
     };
   };
 }

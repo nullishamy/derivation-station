@@ -169,12 +169,12 @@ in
   };
 
   # Pinentry / GPG
-  services.pcscd.enable = true;
-  programs.gnupg.agent = {
-    enable = true;
-    pinentryFlavor = "gtk2";
-    enableSSHSupport = true;
-  };
+  # services.pcscd.enable = true;
+  # programs.gnupg.agent = {
+  #   enable = true;
+  #   pinentryFlavor = "gtk2";
+  #   enableSSHSupport = true;
+  # };
 
   # Increase open file limits
   security.pam.loginLimits = [{
@@ -233,12 +233,6 @@ in
   virtualisation.virtualbox = {
     host = {
       enable = true;
-      enableExtensionPack = true;
-    };
-
-    guest = {
-      enable = true;
-      x11 = true;
     };
   };
 

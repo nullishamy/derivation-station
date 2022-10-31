@@ -46,6 +46,7 @@
         theme = "philips";
         plugins = [
           "git"
+          "ssh-agent"
         ];
       };
 
