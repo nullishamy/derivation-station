@@ -6,7 +6,7 @@
   programs.alacritty = {
     enable = true;
     settings = {
-      # Colors (Gruvbox dark)
+      # Colors (Catppuccin Mocha)
       colors = {
         primary = {
           background = "#1E1E2E";
