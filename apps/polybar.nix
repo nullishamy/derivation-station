@@ -8,11 +8,11 @@
     script = "polybar -r top &";
     config = {
       colors = {
-        background = "#282828";
-        background-alt = "#504945";
-        foreground = "#EBDBB2";
-        alert = "#BD2C40";
-        underline = "#83A598";
+        background = "#1E1E2E";
+        background-alt = "#181825";
+        foreground = "#CDD6F4";
+        alert = "#F38BA8";
+        underline = "#A6E3A1";
       };
 
       "bar/top" = {
@@ -84,7 +84,7 @@
 
       "module/eth" = {
         type = "internal/network"; 
-        interface = "enp8s0";
+        interface = "enp42s0";
         interval = 3;
 
         format-connected-prefix-foreground = "\${colors.foreground}";

@@ -8,7 +8,7 @@
     [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" "sd_mod" ];
+  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usb_storage" "usbhid" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
@@ -29,6 +29,12 @@
       fsType = "vfat";
     };
 
+  fileSystems."/home/amy/mnt/vapour" =
+    { device = "/dev/disk/by-uuid/45aaf11e-d816-41d8-8738-cc01df62d701";
+      fsType = "ext4";
+      options = [ "defaults" "rw" ];
+    };
+
   swapDevices =
     [ { device = "/dev/disk/by-uuid/162ba73f-0a93-4287-b1e9-0945752f3d87"; }
     ];
@@ -38,7 +44,7 @@
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
-  # networking.interfaces.enp8s0.useDHCP = lib.mkDefault true;
+  # networking.interfaces.enp42s0.useDHCP = lib.mkDefault true;
 
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }

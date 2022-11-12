@@ -38,6 +38,14 @@
         nix-update  = "sudo nixos-rebuild switch --upgrade";
         nix-switch  = "sudo nixos-rebuild switch";
         home-switch = "home-manager switch -f $HOME/nixos/profiles/personal.nix -b backup";
+
+        # Modern unix
+        grep = "rg $@"; 
+        find = "fd $@";
+        df   = "duf $@";
+        ls   = "exa $@";
+        cat  = "bat $@";
+        dig  = "dog $@";
       };
 
       # OMZ Config
@@ -50,10 +58,17 @@
         ];
       };
 
+      envExtra = ''
+        export MCFLY_KEY_SCHEME=vim
+        export MCFLY_DISABLE_MENU=TRUE
+      '';
+
       initExtra = ''
         # Little helper because doing the spawning in ZSH causes many issues
         # also we use "bash-isms" in the script
         function shell { bash ~/shells/spawn-shell.sh $@; }
+
+        eval "$(mcfly init zsh)"
       '';
     };
 }

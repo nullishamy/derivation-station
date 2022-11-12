@@ -10,7 +10,7 @@
     userName = "nullishamy";
 
     signing = {
-      key = "~/.ssh/github.pub";
+      key = "/home/amy/.ssh/github.pub";
       signByDefault = true;
     };
 
@@ -23,6 +23,10 @@
         "ssh://git@github.com/" = {
           insteadOf = "https://github.com/";
         };
+      };
+
+      init = {
+        defaultBranch = "master";
       };
     };
   };

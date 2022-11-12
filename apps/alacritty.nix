@@ -1,38 +1,94 @@
 # Alacritty settings
 
-{ config, lib, pkgs, ...}:
+{ config, lib, pkgs, ... }:
 
 {
   programs.alacritty = {
-    enable = true; 
+    enable = true;
     settings = {
       # Colors (Gruvbox dark)
       colors = {
         primary = {
-          background = "0x282828";
-          foreground = "0xebdbb2";
-        };        
+          background = "#1E1E2E";
+          foreground = "#CDD6F4";
+          dim_foreground = "#CDD6F4";
+          bright_foreground = "#CDD6F4";
+
+          cursor = {
+            text = "#1E1E2E";
+            cursor = "#F5E0DC";
+          };
+
+          search = {
+            matches = {
+              foreground = "#1E1E2E";
+              background = "#A6ADC8";
+            };
+            focused_match = {
+              foreground = "#1E1E2E";
+              background = "#A6E3A1";
+            };
+            footer_bar = {
+              foreground = "#1E1E2E";
+              background = "#A6ADC8";
+            };
+          };
+        };
+
+        hints = {
+          start = {
+            foreground = "#1E1E2E";
+            background = "#F9E2AF";
+          };
+          end = {
+            foreground = "#1E1E2E";
+            background = "#A6ADC8";
+          };
+        };
+
+        selection = {
+          text = "#1E1E2E";
+          background = "#F5E0DC";
+        };
+
         normal = {
-          black =   "0x282828"; 
-          red =     "0xcc241d";
-          green =   "0x98971a";
-          yellow =  "0xd79921";
-          blue =    "0x458588";
-          magenta = "0xb16286";
-          cyan =    "0x689d6a";
-          white =   "0xa89984";
+          black = "#45475A";
+          red = "#F38BA8";
+          green = "#A6E3A1";
+          yellow = "#F9E2AF";
+          blue = "#89B4FA";
+          magenta = "#F5C2E7";
+          cyan = "#94E2D5";
+          white = "#BAC2DE";
         };
+
         bright = {
-          black =   "0x928374"; 
-          red =     "0xfb4934";
-          green =   "0xb8bb26";
-          yellow =  "0xfabd2f";
-          blue =    "0x83a598";
-          magenta = "0xd3869b";
-          cyan =    "0x8ec07c";
-          white =   "0xebdbb2";
+          black = "#585B70";
+          red = "#F38BA8";
+          green = "#A6E3A1";
+          yellow = "#F9E2AF";
+          blue = "#89B4FA";
+          magenta = "#F5C2E7";
+          cyan = "#94E2D5";
+          white = "#A6ADC8";
         };
-      }; 
+
+        dim = {
+          black = "#45475A";
+          red = "#F38BA8";
+          green = "#A6E3A1";
+          yellow = "#F9E2AF";
+          blue = "#89B4FA";
+          magenta = "#F5C2E7";
+          cyan = "#94E2D5";
+          white = "#BAC2DE";
+        };
+
+        indexed_colours = [ 
+          { index = 16; color = "#FAB387"; }
+          { index = 16; color = "#F5E0DC"; }
+        ];
+      };
 
       font = {
         normal = {

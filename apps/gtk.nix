@@ -4,8 +4,8 @@
 
 let 
   theme = {
-    name = "gruvbox-dark";
-    package = pkgs.gruvbox-dark-gtk;
+    name = "Catppuccin-Mocha-Lavender";
+    package = pkgs.catppuccin-gtk;
   };
 
   iconTheme = {

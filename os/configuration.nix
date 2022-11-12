@@ -221,6 +221,7 @@ in
       pinentry-gtk2
       unstablePkgs.protonvpn-gui
       unstablePkgs.protonvpn-cli
+      ntfsprogs
 
       # My wrappers
       (callPackage ../wrappers/nvim.nix { })
@@ -232,7 +233,7 @@ in
   # Virtualisation with VirtualBox
   virtualisation.virtualbox = {
     host = {
-      enable = true;
+      # enable = true;
     };
   };
 

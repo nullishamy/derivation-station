@@ -132,30 +132,30 @@
       # Appearance / theme
       global = {
         frame_width = 2;
-        frame_color = "#504945";
+        frame_color = "#89B4FA";
 
         # Corner radius of dunst
         corner_radius = 5;
       };
 
       urgency_low = {
-        foreground = "#928374";
-        background = "#1D2021";
-        "#background" = "#1D2021";
+        foreground = "#CDD6F4";
+        background = "#1E1E2E";
+        "#background" = "#1E1E2E";
         timeout = 4;
       };
 
       urgency_normal = {
-        foreground = "#8EC07C";
-        background = "#1D2021";
-        "#background" = "#1D2021";
+        foreground = "#CDD6F4";
+        background = "#1E1E2E";
+        "#background" = "#1E1E2E";
         timeout = 6;
       };
 
       urgency_critical = {
-        foreground = "#FB4934";
-        background = "#1D2021";
-        "#background" = "#1D2021";
+        foreground = "#F38BA8";
+        background = "#1E1E2E";
+        "#background" = "#1E1E2E";
         timeout = 8;
       };
 

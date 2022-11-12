@@ -81,7 +81,7 @@ in {
         { command = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"; }
         { command = "polybar -r top"; }
         { command = "flameshot"; }
-        { command = "xrandr --output HDMI-2 --mode 1920x1080 --rate 144 --primary"; }
+        { command = "xrandr --output HDMI-A-0 --mode 1920x1080 --rate 144 --primary"; }
         { command = "redshift -P -O 2500"; }
         { command = "discord"; }
         # Launch spotifywm instead, which has WM bug fixes (https://github.com/dasJ/spotifywm)

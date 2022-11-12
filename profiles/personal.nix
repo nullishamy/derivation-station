@@ -43,6 +43,7 @@ in
       "shells/js.nix" = { source = ../shells/js.nix; };
       "shells/ts.nix" = { source = ../shells/js.nix; };
       "shells/docker.nix" = { source = ../shells/docker.nix; };
+      "shells/rust.nix" = { source = ../shells/rust.nix; };
       ".background-image" = { source = ../wallpaper.png; };
 
       # Create a config.nix for doing some specific config, namely allowing unfree, which
@@ -66,7 +67,6 @@ in
       bitwarden
       gparted
       gimp
-      ripgrep
       steam
       lunar-client
       pavucontrol
@@ -75,6 +75,21 @@ in
       notion-app-enhanced
       photoqt
       dunst
+
+      # Modern unix
+      ripgrep
+      mcfly
+      fd
+      duf
+      exa
+      bat
+      jq
+      tldr
+      dogdns
+      httpie
+
+      # My packages
+      (callPackage ../packages/catppuccin-gtk {})
     ];
 
     # This value determines the Home Manager release that your
