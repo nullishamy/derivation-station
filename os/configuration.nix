@@ -109,6 +109,12 @@ in
       ];
     };
 
+    desktopManager = {
+      wallpaper = {
+        mode = "center";
+      };
+    };
+
     xautolock = {
       enable = true;
 
@@ -184,6 +190,15 @@ in
     value = "8192";
   }];
 
+  # Enable yubikey support for the OS
+  security.pam.yubico = {
+    enable = true;
+    mode = "challenge-response";
+    control = "sufficient";
+  };
+
+  # Enable the pcscd daemon for smartcard support
+  services.pcscd.enable = true;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -222,6 +237,9 @@ in
       unstablePkgs.protonvpn-gui
       unstablePkgs.protonvpn-cli
       ntfsprogs
+      yubico-pam
+      yubikey-manager-qt
+      yubioath-desktop
 
       # My wrappers
       (callPackage ../wrappers/nvim.nix { })

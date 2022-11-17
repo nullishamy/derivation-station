@@ -27,4 +27,4 @@ When running home manager, you must pass the config path:
 home-manager switch -f $HOME/nixos/profiles/personal.nix
 ```
 
-Credit: https://www.reddit.com/r/wallpapers/comments/wocpkm/onedark_cubes_wallpaper/
+Wallpaper credit: https://github.com/catppuccin/wallpapers/blob/main/minimalistic/darker_unicat.png

@@ -28,6 +28,14 @@
       init = {
         defaultBranch = "master";
       };
+
+      commit = {
+        gpgsign = true;
+      };
+
+      tag = {
+        gpgsign = true;
+      };
     };
   };
 }
