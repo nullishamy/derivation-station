@@ -4,5 +4,6 @@ pkgs.mkShell {
     nativeBuildInputs = with pkgs; [ 
         docker
         docker-compose
+        extras
     ];
 }
