@@ -87,6 +87,7 @@ in
       tldr
       dogdns
       httpie
+      jetbrains.idea-community
 
       # My packages
       (callPackage ../packages/catppuccin-gtk {})
