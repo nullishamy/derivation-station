@@ -98,7 +98,7 @@ in
   services.cron = {
     enable = true;
     systemCronJobs =  [
-      "25 20 * * *    amy   /home/amy/nixos/backup/run_backup.py ${builtins.readFile /home/amy/nixos/backup/args.txt} > /home/amy/nixos/backup/backup.log"
+      "25 20 * * *   amy   . /etc/profile; ${../backup/run-backup.py} ${builtins.readFile ../backup/args.txt} > /tmp/cron.log"
     ];
   };
 

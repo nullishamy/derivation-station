@@ -1,5 +1,5 @@
 #! /usr/bin/env nix-shell
-#! nix-shell -i python3 -p inetutils python3 python39Packages.xdg python39Packages.coloredlogs
+#! nix-shell -i python3 -p python3 python39Packages.xdg python39Packages.coloredlogs
 
 import sys
 import tempfile
