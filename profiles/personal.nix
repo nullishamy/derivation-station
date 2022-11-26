@@ -21,6 +21,7 @@ let
     ../apps/lazygit.nix
     ../apps/mpris.nix
     ../apps/dunst.nix
+    ../apps/bspwm.nix
     ../apps/cargo.nix
   ];
 in
@@ -57,6 +58,10 @@ in
     };
 
     packages = with pkgs; [
+      # My packages
+      (callPackage ../packages/catppuccin-gtk {})
+      (callPackage ../packages/bspwm-scratch {})
+
       bottom
       neofetch
       gh
@@ -79,6 +84,7 @@ in
       notion-app-enhanced
       photoqt
       dunst
+      xdotool
 
       # Modern unix
       ripgrep
@@ -92,9 +98,6 @@ in
       dogdns
       httpie
       jetbrains.idea-community
-
-      # My packages
-      (callPackage ../packages/catppuccin-gtk {})
     ];
 
     # This value determines the Home Manager release that your
