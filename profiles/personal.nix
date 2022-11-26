@@ -4,6 +4,9 @@
 
 let
   imports = [
+    # Custom modules
+    ../packages/cargo
+
     ../apps/rofi.nix
     ../apps/polybar.nix
     ../apps/flameshot.nix
@@ -18,6 +21,7 @@ let
     ../apps/lazygit.nix
     ../apps/mpris.nix
     ../apps/dunst.nix
+    ../apps/cargo.nix
   ];
 in
 {
