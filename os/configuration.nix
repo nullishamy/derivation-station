@@ -37,13 +37,12 @@ in
     optimise.automatic = false;
     optimise.dates = [ "12:55" ];
 
-    settings = { 
-
+    settings = {
       # Nix automatically detects files in the store that have identical contents, and replaces them with hard links to a single copy.
-    autoOptimiseStore = true;
+      autoOptimiseStore = true;
 
       # Maximum number of concurrent tasks during one build
-    buildCores = 4;
+      buildCores = 4;
 
       # Maximum number of jobs that Nix will try to build in parallel
       # "auto" is broken: https://github.com/NixOS/nixpkgs/issues/50623
@@ -100,7 +99,7 @@ in
   # CRON jobs
   services.cron = {
     enable = true;
-    systemCronJobs =  [
+    systemCronJobs = [
       "25 20 * * *   amy   . /etc/profile; ${../backup/run-backup.py} ${builtins.readFile ../backup/args.txt}"
     ];
   };
