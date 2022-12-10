@@ -106,7 +106,7 @@
         text-color = mkLiteral "@blue";
       };
     };
-    font = "FantasqueSansMono Nerd Font Mono 15";
+    font = "VictorMono Nerd Font Mono 13";
     terminal = "alacritty";
   };
 }
