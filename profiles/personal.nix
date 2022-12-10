@@ -42,13 +42,6 @@ in
     };
 
     file = {
-      "shells/spawn-shell.sh" = { source = ../shells/spawn-shell.sh; };
-      "shells/cpp.nix" = { source = ../shells/cpp.nix; };
-      "shells/py.nix" = { source = ../shells/py.nix; };
-      "shells/js.nix" = { source = ../shells/js.nix; };
-      "shells/ts.nix" = { source = ../shells/js.nix; };
-      "shells/docker.nix" = { source = ../shells/docker.nix; };
-      "shells/rust.nix" = { source = ../shells/rust.nix; };
       "shells/" = { source = ../shells; }; 
 
       ".config/nixpkgs/config.nix" = { source = ../apps/nixpkgs.nix; };
