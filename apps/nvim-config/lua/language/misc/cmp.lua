@@ -39,6 +39,8 @@ local icons = {
   TypeParameter = '',
 }
 
+local luasnip = require("luasnip")
+
 local options = {
   window = {
     completion = {
@@ -62,8 +64,25 @@ local options = {
     end,
   },
   mapping = {
-    ['<S-TAB>'] = cmp.mapping.select_prev_item(),
-    ['<TAB>'] = cmp.mapping.select_next_item(),
+    ["<Tab>"] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.select_next_item()
+      elseif luasnip.jumpable(1) then
+        luasnip.jump(1)
+      else
+        fallback()
+      end
+    end, { "i", "s" }),
+
+    ["<S-Tab>"] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.select_prev_item()
+      elseif luasnip.jumpable(-1) then
+        luasnip.jump(-1)
+      else
+        fallback()
+      end
+    end, { "i", "s" }),
     ['<ESC>'] = cmp.mapping.close(),
     ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
     ['<CR>'] = cmp.mapping.confirm({
