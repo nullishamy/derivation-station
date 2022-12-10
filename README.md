@@ -11,5 +11,6 @@ When running home manager, you must pass the config path:
 #!/usr/bin/env bash
 home-manager switch -f $HOME/nixos/profiles/personal.nix
 ```
+This is bound to the zsh alias `home-switch` by default.
 
 Wallpaper credit: https://github.com/catppuccin/wallpapers/blob/main/minimalistic/darker_unicat.png
