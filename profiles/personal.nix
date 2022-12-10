@@ -49,11 +49,11 @@ in
       "shells/ts.nix" = { source = ../shells/js.nix; };
       "shells/docker.nix" = { source = ../shells/docker.nix; };
       "shells/rust.nix" = { source = ../shells/rust.nix; };
+      "shells/" = { source = ../shells; }; 
 
-      ".background-image" = { source = ../wallpaper.png; };
       ".config/nixpkgs/config.nix" = { source = ../apps/nixpkgs.nix; };
-      ".icons/default" = { source = "${pkgs.vanilla-dmz}/share/icons/Vanilla-DMZ-AA"; };
       ".config/nvim" = { source = ../apps/nvim-config; };
+      ".icons/default" = { source = "${pkgs.vanilla-dmz}/share/icons/Vanilla-DMZ-AA"; };
     };
 
     packages = with pkgs; [
