@@ -1,5 +1,6 @@
 return {
   name = 'language-name',
+  enable = true,
 
   lsp = {
     -- nil/true signifies enabled, false signifies disabled

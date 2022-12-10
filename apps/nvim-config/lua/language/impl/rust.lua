@@ -1,5 +1,7 @@
 return {
   name = 'rust',
+  -- FIXME: Enable this once rust-analyzer stops segfaulting randomly
+  enable = false,
 
   lsp = {
     {

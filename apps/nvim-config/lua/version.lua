@@ -1,5 +1,8 @@
 local M = {}
 
+--- Allows us to lock modules to a specific version
+--- With a wrapped `use` function from packer
+--- Primarily allows for easier version management with older neovim versions
 local COMMITS = {
   ['MunifTanjim/nui.nvim'] = 'latest',
   ['nvim-lua/plenary.nvim'] = 'latest',
