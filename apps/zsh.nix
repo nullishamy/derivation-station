@@ -50,7 +50,7 @@
       home-switch = "home-manager switch -f $HOME/nixos/profiles/personal.nix -b backup";
       sxhkd-switch = "pkill -usr1 -x sxhkd";
       bspwm-switch = "bspc wm --restart";
-      wallpaper-switch = "$HOME/nixos/wallpapers/sh/random-switch.sh"
+      wallpaper-switch = "bash $HOME/nixos/wallpapers/sh/random-switch.sh";
 
       # Modern unix
       grep = "rg $@";

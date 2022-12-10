@@ -14,7 +14,6 @@ let
     ../apps/gtk.nix
     ../apps/chromium.nix
     ../apps/alacritty.nix
-    ../apps/i3.nix
     ../apps/git.nix
     ../apps/keybase.nix
     ../apps/xdg.nix
@@ -38,7 +37,7 @@ in
       EDITOR = "nvim";
       VISUAL = "neovide";
       GIT_EDITOR = "nvim";
-      TERMINAL = "alacritty";
+      TERMINAL = "wezterm";
     };
 
     file = {
@@ -46,7 +45,9 @@ in
 
       ".config/nixpkgs/config.nix" = { source = ../apps/nixpkgs.nix; };
       ".config/nvim" = { source = ../apps/nvim-config; };
+      ".config/wezterm" = { source = ../apps/wezterm-config; };
       ".icons/default" = { source = "${pkgs.vanilla-dmz}/share/icons/Vanilla-DMZ-AA"; };
+      ".background-image" = { source = ../wallpapers/assets/ctp-mocha-unicat.png; };
     };
 
     packages = with pkgs; [

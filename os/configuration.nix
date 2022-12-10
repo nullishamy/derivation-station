@@ -30,26 +30,25 @@ in
   # Configure nix itself
   nix = {
     # Automatically run the garbage collector
-    gc.automatic = false;
+    gc.automatic = true;
     gc.dates = "12:45";
 
     # Automatically run the nix store optimiser
-    optimise.automatic = false;
+    optimise.automatic = true;
     optimise.dates = [ "12:55" ];
 
     settings = {
       # Nix automatically detects files in the store that have identical contents, and replaces them with hard links to a single copy.
-      autoOptimiseStore = true;
+      auto-optimise-store = true;
 
       # Maximum number of concurrent tasks during one build
-      buildCores = 4;
+      build-cores = 16;
 
       # Maximum number of jobs that Nix will try to build in parallel
-      # "auto" is broken: https://github.com/NixOS/nixpkgs/issues/50623
-      maxJobs = 16;
+      max-jobs = "auto";
 
       # Perform builds in a sandboxed environment
-      useSandbox = true;
+      sandbox = true;
     };
   };
 
@@ -266,7 +265,7 @@ in
     # List packages installed in system profile (globally).
     systemPackages = with pkgs; [
       wget
-      alacritty
+      wezterm
       polybar
       chromium
       git

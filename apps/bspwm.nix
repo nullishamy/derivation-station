@@ -10,10 +10,6 @@ in {
     extraConfig = ''
       bspc monitor -d Web Music Discord Editor Shell 6 7 8 9 10
 
-      # Scratch term setup
-      alacritty --class scratch-term &
-      bspc rule -a Alacritty:scratch-term sticky=on state=floating hidden=on
-
       # Mice bindings
       # Set mod key
       bspc config pointer_modifier ${mod}
@@ -31,7 +27,7 @@ in {
     '';
 
     rules = {
-      "discord*" = {
+      "*discord*" = {
         desktop = "^3";
         follow = false;
       };
@@ -57,7 +53,7 @@ in {
     enable = true;
 
     keybindings = {
-      "${mod} + Return" = "alacritty";
+      "${mod} + Return" = "wezterm";
       "${mod} + shift + q" = "bspc node -c";
       "${mod} + d" = "rofi -show run -no-lazy-grab -lines 15 -width 40";
       "${mod} + r" = "bspc node @focused:/ --rotate 90";
@@ -86,6 +82,10 @@ in {
 
       ${mod} + /
           ${./bspwm-scripts/sxhkd-help.sh}
+
+      # focus the node in the given direction
+      ${mod} + {_,shift + }{h,j,k,l}
+          bspc node -{f,s} {west,south,north,east}
     '';
   };
 }

@@ -107,6 +107,6 @@
       };
     };
     font = "VictorMono Nerd Font Mono 13";
-    terminal = "alacritty";
+    terminal = "wezterm";
   };
 }
