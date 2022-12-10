@@ -28,11 +28,6 @@ vim.cmd([[
  autocmd BufWritePost preload.lua source <afile> | PackerCompile
 ]])
 
--- Tell colourizer to colourize all open buffers when the session loads
--- vim.cmd([[
---   autocmd SessionLoadPost * ColorizerReloadAllBuffers
--- ]])
-
 -- Show diagnostics on hover
 -- HACK: try integrate this into the autocommand or something
 vim.diagnostic._open_float = function()
