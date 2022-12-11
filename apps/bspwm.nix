@@ -83,6 +83,9 @@ in {
       ${mod} + /
           ${./bspwm-scripts/sxhkd-help.sh}
 
+      ${mod} + p
+          ${./bspwm-scripts/powermenu.sh}
+
       # focus the node in the given direction
       ${mod} + {_,shift + }{h,j,k,l}
           bspc node -{f,s} {west,south,north,east}
