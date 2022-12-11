@@ -18,7 +18,7 @@ return function(cfg, _, wez)
     --- FIXME: Activate once we get the update (https://wezfurlong.org/wezterm/config/lua/keyassignment/ResetTerminal.html)
     -- { key = 's', mods = 'LEADER', action = act.ResetTerminal },
 
-    { key = "Space", mods = "LEADER", action = act.ShowLauncher },
+    { key = 'Space', mods = 'LEADER', action = act.ShowLauncher },
 
     { key = 'l', mods = 'CTRL', action = act.ActivateTabRelative(1) },
     { key = 'h', mods = 'CTRL', action = act.ActivateTabRelative(-1) },
@@ -38,6 +38,10 @@ return function(cfg, _, wez)
 
     { key = 'n', mods = 'SHIFT|CTRL', action = act.SpawnWindow },
     { key = 't', mods = 'SHIFT|CTRL', action = act.SpawnTab('CurrentPaneDomain') },
+
+    { key = 'c', mods = 'SHIFT|CTRL', action = act.CopyTo('Clipboard') },
+    { key = 'v', mods = 'SHIFT|CTRL', action = act.PasteFrom('Clipboard') },
+
     { key = 'w', mods = 'SHIFT|CTRL', action = act.CloseCurrentTab({ confirm = true }) },
   }
 end
