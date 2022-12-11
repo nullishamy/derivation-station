@@ -11,7 +11,8 @@ require('catppuccin').setup({
   integrations = {
     treesitter = true,
     treesitter_context = true,
-    ts_rainbow = true,
+    --- FIXME: This is broken, awaiting update
+    -- ts_rainbow = true,
     telescope = true,
     gitsigns = true,
     cmp = true,
