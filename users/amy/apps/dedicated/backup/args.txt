@@ -1,0 +1,1 @@
+--host 192.168.0.186 --username admin --password admin --log-level INFO --archive-dir /home/amy/nixos/backup/archives --include /home/amy/nixos --exclude /home/amy/.config/discord /home/amy/.config/nvim/ /home/amy/.config/chromium/ /home/amy/nixos/backup/archives --log-file /home/amy/nixos/backup/backup.log
