@@ -5,7 +5,7 @@ return {
     {
       key = 'null-ls',
       config = {
-        external_setup = function()
+        external_setup = function(config)
           local ns = require('null-ls').builtins
 
           require('null-ls').setup({

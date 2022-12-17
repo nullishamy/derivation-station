@@ -71,7 +71,7 @@ for _, language in pairs(LANGUAGES) do
       for _, server in pairs(lsp) do
         if server.enable ~= false then
           local config = server.config or {}
-          local on_attach = require('language.misc.on_attach')
+          local on_attach = require('language.misc.on_attach')(lang_mod)
 
           config.autostart = true
           config.capabilities = capabilities
