@@ -18,6 +18,12 @@ end
 vim.g.did_load_filetypes = 1
 
 -- Init Packer
+local util = require('packer.util')
+require('packer').init({
+  -- Move packer's compile dir to a writeable one
+  compile_path = util.join_paths(vim.fn.stdpath('data'), 'site', 'packer_compiled.lua')
+})
+
 return require('packer').startup(function(o_use)
   local version = require('version')
   local use = version.wrapped_use(o_use)

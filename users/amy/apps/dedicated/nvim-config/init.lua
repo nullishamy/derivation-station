@@ -35,7 +35,6 @@ module('language/misc/cmp')
 -- Plugins
 module('treesitter')
 
-module('language/misc/lsp_colours')
 module('language/misc/lsp_signs')
 
 module('util/compile')
