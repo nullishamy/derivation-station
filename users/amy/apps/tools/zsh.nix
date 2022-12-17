@@ -44,13 +44,14 @@
       py = "python";
       nv = "neovide";
       lg = "lazygit";
+
       nix-clean = "sudo nix-collect-garbage -d && sudo nix-store --optimise";
-      nix-update = "sudo nixos-rebuild switch --upgrade";
-      nix-switch = "sudo nixos-rebuild switch";
-      home-switch = "home-manager switch -f $HOME/nixos/profiles/personal.nix -b backup";
+      nix-switch = "sudo nixos-rebuild switch --flake /home/amy/nixos#nixon $@";
+      nix-update = "nix-switch --upgrade";
+
       sxhkd-switch = "pkill -usr1 -x sxhkd";
       bspwm-switch = "bspc wm --restart";
-      wallpaper-switch = "bash $HOME/nixos/wallpapers/sh/random-switch.sh";
+      wallpaper-switch = "bash ${../../wallpapers}/sh/random-switch.sh";
 
       # Modern unix
       grep = "rg $@";
