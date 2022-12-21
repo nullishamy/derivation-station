@@ -15,9 +15,6 @@
   # Enable non-free packages
   nixpkgs.config.allowUnfree = true;
 
-  # Enable nix flakes
-  nix.package = pkgs.nixFlakes;
-
   boot.loader = {
     systemd-boot = {
       enable = true;
@@ -31,6 +28,9 @@
 
   # Configure nix itself
   nix = {
+    # Enable nix flakes
+    package = pkgs.nixFlakes;
+
     # Automatically run the garbage collector
     gc.automatic = true;
     gc.dates = "12:45";
@@ -231,5 +231,5 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "22.05"; # Did you read the comment?
+  system.stateVersion = "22.11"; # Did you read the comment?
 }

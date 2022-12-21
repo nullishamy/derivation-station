@@ -2,7 +2,7 @@
 , lib
 , makeWrapper
 , runCommandNoCC
-, neovim
+, neovim-nightly
 , sumneko-lua-language-server
 , stylua
 , selene
@@ -24,7 +24,7 @@
 
 runCommandNoCC "nvim" { nativeBuildInputs = [ makeWrapper ]; } ''
   mkdir -p $out/bin
-  makeWrapper ${neovim}/bin/nvim $out/bin/nvim \
+  makeWrapper ${neovim-nightly}/bin/nvim $out/bin/nvim \
     --set CC "clang++" \
     --prefix PATH : ${lib.makeBinPath [ 
       sumneko-lua-language-server 

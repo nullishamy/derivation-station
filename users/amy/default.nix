@@ -8,7 +8,7 @@
   users.users.amy = {
     isNormalUser = true;
     description = "Amy";
-    hashedPassword="$1$jm9vBQL9$00pQaekuVYZNNcubeKRbu0";
+    hashedPassword="$6$EuVxrglUIHa0ojiz$Oy9JF.PIAmsb.5Vz9icDwbpPp0Mw5ct3aOAniJ0n/s7.3ZGNQfiC4izz/Uc6FdgmPg9UWtoqGWo3mX6";
     extraGroups = [
       "networkmanager" # Use networks
       "wheel" # Sudoer

@@ -43,7 +43,6 @@
     jq
     tldr
     dogdns
-    httpie
     gitoxide
 
 
