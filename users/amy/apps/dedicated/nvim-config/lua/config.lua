@@ -37,7 +37,7 @@ return {
       -- 'gopls',
       'bash-language-server',
       'omnisharp',
-      -- 'rnix-lsp',
+      'rnix-lsp',
 
       -- DAP
       -- None

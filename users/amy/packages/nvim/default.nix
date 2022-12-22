@@ -25,7 +25,7 @@
 runCommandNoCC "nvim" { nativeBuildInputs = [ makeWrapper ]; } ''
   mkdir -p $out/bin
   makeWrapper ${neovim-nightly}/bin/nvim $out/bin/nvim \
-    --set CC "clang++" \
+    --set CC "gcc" \
     --prefix PATH : ${lib.makeBinPath [ 
       sumneko-lua-language-server 
       stylua 
