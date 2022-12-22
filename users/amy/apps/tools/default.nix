@@ -1,7 +1,6 @@
 { ... }: {
   imports = [
-    # FIXME: Fix this
-    # ./cargo.nix
+    ./cargo.nix
     ./git.nix
     ./lazygit.nix
     ./zsh.nix
