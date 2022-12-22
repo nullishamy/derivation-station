@@ -34,7 +34,7 @@ return {
       -- LSP
       -- 'lua-language-server',
       'typescript-language-server',
-      'gopls',
+      -- 'gopls',
       'bash-language-server',
       'omnisharp',
       -- 'rnix-lsp',
