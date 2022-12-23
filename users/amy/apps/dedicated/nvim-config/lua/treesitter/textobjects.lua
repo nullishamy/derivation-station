@@ -1,9 +1,3 @@
-function test(param, param2)
-  -- content
-  -- content
-  -- content
-end
-
 return {
   select = {
     enable = true,

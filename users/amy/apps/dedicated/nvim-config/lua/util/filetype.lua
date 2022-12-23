@@ -3,7 +3,10 @@ require('filetype').setup({
     extensions = {
       cs = 'c_sharp',
       zeppelin = 'zeppelin',
-      markdown = 'markdown'
+      markdown = 'markdown',
+      sh = 'sh',
+      c = 'c',
+      wp = 'sh',
     },
   },
 })

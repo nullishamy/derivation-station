@@ -13,4 +13,5 @@ return {
   'python',
   'rust',
   'markdown',
+  'nix'
 }
