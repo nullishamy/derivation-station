@@ -8,9 +8,9 @@ return {
   },
 
   format = {
-    filetype = 'typescript',
+    filetype = { 'typescript', 'javascript', 'typescriptreact' },
     runners = {
-      require('formatter.filetypes.typescript').prettierd,
+      require('formatter.filetypes.typescript').prettier,
     },
   },
 }

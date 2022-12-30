@@ -56,7 +56,7 @@ for _, language in pairs(LANGUAGES) do
           )
         end
 
-        local runners =  fmt.runners
+        local runners = fmt.runners
 
         -- Only set the runners if there's some set
         if runners ~= nil and #runners > 0 then
@@ -97,9 +97,10 @@ for _, language in pairs(LANGUAGES) do
 end
 
 -- Install the formatter configs
-require('formatter').setup({
-  filetype = format_config,
-})
+-- FIXME: Re-enable when formatters are proven stable
+-- require('formatter').setup({
+--   filetype = format_config,
+-- })
 
 -- Run the post-setup system
 require('language.impl._after_setup')

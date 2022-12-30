@@ -5,6 +5,7 @@ function M.map(mode, lhs, rhs, opts)
   if opts then
     options = vim.tbl_extend('force', options, opts)
   end
+
   vim.keymap.set(mode, lhs, rhs, options)
 end
 
@@ -37,7 +38,15 @@ function M.border(hl_name)
 end
 
 -- Safely load modules, handling errors that arise during the load
-function M.load_module(mod)
+function M.load_module(mod, opts)
+  opts = vim.tbl_extend('force', {
+    enable = true
+  }, opts or {})
+
+  if not opts.enable then
+    return
+  end
+
   local ok, res = pcall(require, mod)
 
   if not ok then

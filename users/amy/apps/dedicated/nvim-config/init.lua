@@ -15,7 +15,7 @@ module('core/editor')
 module('core/autocmd')
 module('core/keybinds')
 module('theming/colours')
-module('core/mason')
+module('core/mason', { enable = true })
 
 -- Core features
 module('core/statusline')
@@ -33,7 +33,7 @@ module('util/integrations/snippets')
 module('language/misc/cmp')
 
 -- Plugins
-module('treesitter')
+module('treesitter', { enable = false })
 
 module('language/misc/lsp_signs')
 
@@ -49,7 +49,7 @@ module('util/ui/cheatsheet')
 module('util/ui/numb')
 
 module('util/integrations/git')
-module('util/integrations/discord')
+module('util/integrations/discord', { enable = false })
 
 module('util/text/autopairs')
 module('util/text/surround')

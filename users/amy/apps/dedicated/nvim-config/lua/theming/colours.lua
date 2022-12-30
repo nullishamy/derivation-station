@@ -28,6 +28,7 @@ require('catppuccin').setup({
     ["@function.builtin"] = { fg = colors.blue };
     ["@const.builtin"] = { fg = colors.blue },
     ["@const"] = { fg = colors.blue },
+    ["@keyword.export"] = { link = "@keyword" }
   },
 })
 
