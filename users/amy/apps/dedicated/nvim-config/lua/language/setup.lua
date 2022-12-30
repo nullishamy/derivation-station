@@ -97,10 +97,9 @@ for _, language in pairs(LANGUAGES) do
 end
 
 -- Install the formatter configs
--- FIXME: Re-enable when formatters are proven stable
--- require('formatter').setup({
---   filetype = format_config,
--- })
+require('formatter').setup({
+  filetype = format_config,
+})
 
 -- Run the post-setup system
 require('language.impl._after_setup')

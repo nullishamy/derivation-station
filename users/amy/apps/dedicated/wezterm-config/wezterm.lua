@@ -19,6 +19,7 @@ local values = {
 util.apply(config, values, 'base')
 util.apply(config, values, 'keys')
 util.apply(config, values, 'font')
+util.apply(config, values, 'bar')
 util.apply(config, values, 'colors')
 
 return config

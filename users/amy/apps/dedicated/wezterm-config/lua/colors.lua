@@ -3,6 +3,7 @@ return function(cfg, values)
   cfg.colors = {}
 
   cfg.colors.tab_bar = {
+    background = '#1e1e2e',
     active_tab = {
       bg_color = '#36374a',
       fg_color = '#cdd6f4',
