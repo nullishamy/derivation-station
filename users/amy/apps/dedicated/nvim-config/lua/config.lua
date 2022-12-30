@@ -3,8 +3,8 @@ return {
     enabled = true,
   },
   font = {
-    name = 'VictorMono Nerd Font Mono',
-    size = '13',
+    name = 'Berkeley Mono',
+    size = '12',
   },
   startuptime = {
     enabled = true,
@@ -22,13 +22,11 @@ return {
   mason = {
     packages = {
       -- Packages to be installed automatically by mason
-      -- Some of these are disabled by my personal nixos config, feel free to re-enable
 
       -- Format
-      -- 'stylua',
+      -- None
 
       -- Lint
-      -- 'selene',
       'gitlint',
 
       -- LSP
@@ -38,6 +36,7 @@ return {
       'bash-language-server',
       'omnisharp',
       'rnix-lsp',
+      'json-lsp'
 
       -- DAP
       -- None

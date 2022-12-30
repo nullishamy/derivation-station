@@ -23,11 +23,6 @@ vim.cmd([[
  autocmd BufEnter,WinEnter,FocusGained * set nohlsearch
 ]])
 
--- Recompile packer config when it changes
-vim.cmd([[
- autocmd BufWritePost preload.lua source <afile> | PackerCompile
-]])
-
 -- Show diagnostics on hover
 -- HACK: try integrate this into the autocommand or something
 vim.diagnostic._open_float = function()
