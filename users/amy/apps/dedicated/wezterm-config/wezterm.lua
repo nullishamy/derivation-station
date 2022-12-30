@@ -1,15 +1,17 @@
 local wez = require('wezterm')
 local util = require('lua.util')
 
-local config = {}
+local config = {
+  italic_enable = false
+}
 
 local values = {
   font = wez.font({
-    family = 'VictorMono Nerd Font Mono',
+    family = 'Berkeley Mono',
     stretch = 'Normal',
     weight = 'Medium',
   }),
-  font_size = 13.0,
+  font_size = 12.0,
   scheme = 'Catppuccin Mocha',
   theme = wez.color.get_builtin_schemes()['Catppuccin Mocha']
 }
