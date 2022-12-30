@@ -39,6 +39,10 @@ map('n', '<Leader>fh', '<cmd>Telescope help_tags path_display={"truncate"}<cr>')
 map('n', '<Leader>fg', '<cmd>Telescope live_grep path_display={"truncate"}<cr>')
 map('n', '<Leader>g', '<cmd>Neotree focus reveal<cr>')
 
+-- Cheatsheet
+map('n', '<Leader>fc', '<cmd>Cheatsheet<cr>')
+
+
 -- Jump to start / end
 map('', 'H', '^')
 map('', 'L', 'g_') -- g_ jumps to the last non blank character, avoiding newlines
@@ -100,18 +104,6 @@ map('n', '<Leader>uO', function()
 end, {
   expr = true,
 })
-
--- Readline
-local readline = require('readline')
-vim.keymap.set('!', '<C-f>', readline.forward_word)
-vim.keymap.set('!', '<C-b>', readline.backward_word)
-vim.keymap.set('!', '<C-a>', readline.beginning_of_line)
-vim.keymap.set('!', '<C-e>', readline.end_of_line)
-vim.keymap.set('!', '<C-d>', readline.kill_word)
-vim.keymap.set('!', '<C-BS>', readline.backward_kill_word)
-vim.keymap.set('!', '<C-w>', readline.unix_word_rubout)
-vim.keymap.set('!', '<C-k>', readline.kill_line)
-vim.keymap.set('!', '<C-u>', readline.backward_kill_line)
 
 -- Abbreviations
 abbrev('OrganiseImports', function()

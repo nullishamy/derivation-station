@@ -86,7 +86,6 @@ require('lazy').setup({
   { 'nullishamy/autosave.nvim', branch = 'dev' },
   { 'sudormrfbin/cheatsheet.nvim' },
   { 'andrewferrier/debugprint.nvim' },
-  { 'linty-org/readline.nvim' },
   { 'nacro90/numb.nvim' },
 
   -- Formatting

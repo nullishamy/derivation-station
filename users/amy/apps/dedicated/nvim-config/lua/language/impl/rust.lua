@@ -1,7 +1,5 @@
 return {
   name = 'rust',
-  -- FIXME: Enable this once rust-analyzer stops segfaulting randomly
-  enable = false,
 
   lsp = {
     {
@@ -28,5 +26,8 @@ return {
 
   format = {
     filetype = 'rust',
+    runners = {
+      require('formatter.filetypes.rust').rustfmt,
+    }
   },
 }
