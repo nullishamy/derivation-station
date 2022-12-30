@@ -8,24 +8,24 @@ gui:
   language: 'auto' # one of 'auto' | 'en' | 'zh' | 'pl' | 'nl' | 'ja' | 'ko'
   timeFormat: '02 Jan 06 15:04 MST' # https://pkg.go.dev/time#Time.Format
   theme:
-    lightTheme: false # For terminals with a light background
+    lightTheme: false 
     activeBorderColor:
-      - green
+      - "#a6e3a1" # Green
       - bold
     inactiveBorderColor:
-      - white
+      - "#cdd6f4" # Text
     optionsTextColor:
-      - blue
+      - "#89b4fa" # Blue
     selectedLineBgColor:
-      - "#45475A" # set to `default` to have no background colour
+      - "#313244" # Surface0
     selectedRangeBgColor:
-      - blue
+      - "#313244" # Surface0
     cherryPickedCommitBgColor:
-      - cyan
+      - "#94e2d5" # Teal
     cherryPickedCommitFgColor:
-      - blue
+      - "#89b4fa" # Blue
     unstagedChangesColor:
-      - red
+      - red       # Red
   commitLength:
     show: true
   mouseEvents: true
