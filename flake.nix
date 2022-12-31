@@ -21,7 +21,9 @@
       nixosConfigurations.nixon = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
-          ({ config, pkgs, ... }: { nixpkgs.overlays = overlays; })
+          ({ config, pkgs, ... }: {
+            nixpkgs.overlays = overlays; 
+          })
           ./machines/desktop
 
           home-manager.nixosModules.home-manager
