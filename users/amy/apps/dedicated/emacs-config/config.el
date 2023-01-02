@@ -17,7 +17,7 @@ apps are not started from a shell."
   (let ((path-from-shell (replace-regexp-in-string
 			  "[ \t\n]*$" "" (shell-command-to-string
 					  "$SHELL --login -c 'echo $PATH'"
-						    ))))
+					  ))))
     (setenv "PATH" path-from-shell)
     (setq exec-path (split-string path-from-shell path-separator))))
 
@@ -43,7 +43,7 @@ apps are not started from a shell."
 ;; accept. For example:
 ;;
 (setq doom-font (font-spec :family "Berkeley Mono" :size 16 :weight 'semi-light)
-     doom-variable-pitch-font (font-spec :family "DejaVu Sans" :size 13))
+      doom-variable-pitch-font (font-spec :family "DejaVu Sans" :size 13))
 
 ;; If you or Emacs can't find your font, use 'M-x describe-font' to look them
 ;; up, `M-x eval-region' to execute elisp code, and 'M-x doom/reload-font' to
@@ -53,7 +53,8 @@ apps are not started from a shell."
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-catppuccin)
+;; FIXME: Move to a good theme (catppuccin) when it has its rewrite (hurry up nyx)
+(setq doom-theme 'doom-dark+)
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
@@ -65,6 +66,7 @@ apps are not started from a shell."
 
 ;; Autosave
 ;; When autosave runs, save the current file, rather than to a backup
+(setq auto-save-timeout 5)
 (setq autosave-save-visited-mode t)
 (defun full-auto-save ()
   (interactive)
@@ -128,6 +130,19 @@ apps are not started from a shell."
   (exec-path-from-shell-copy-env "SSH_AGENT_PID")
   (exec-path-from-shell-copy-env "SSH_ASKPASS")
   (exec-path-from-shell-copy-env "SSH_AUTH_SOCK"))
+
+(use-package format-all)
+
+(use-package parinfer-rust-mode
+  :hook emacs-lisp-mode
+  :init
+  (setq parinfer-rust-auto-download t))
+
+;; LSP
+;; Show UI doc next to cursor
+(setq lsp-ui-doc-show-with-cursor t)
+;; Disable Eldoc (it's annoying)
+(global-eldoc-mode -1)
 
 ;; Jump to start / end of lines
 (map! :nvom "H" #'evil-first-non-blank)

@@ -36,5 +36,10 @@ runCommandNoCC "emacs" { nativeBuildInputs = [ makeWrapper ]; } ''
       sumneko-lua-language-server
       nodePackages.typescript-language-server
       rust-analyzer
+
+      # Formatting
+      nodePackages.prettier
+
+      # DAP
     ]}
 ''

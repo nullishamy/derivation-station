@@ -19,15 +19,6 @@
     };
     "doom-config" = {
       source = ./emacs-config;
-      onChange = "${pkgs.writeShellScript "doom-change" ''
-          export DOOMDIR="${config.home.sessionVariables.DOOMDIR}"
-          export DOOMLOCALDIR="${config.home.sessionVariables.DOOMLOCALDIR}"
-          if [ ! -d "$DOOMLOCALDIR" ]; then
-            ${config.xdg.configHome}/emacs/bin/doom -y install
-          else
-            ${config.xdg.configHome}/emacs/bin/doom -y sync
-          fi
-        ''}";
     };
     "emacs" = {
       source = pkgs.fetchgit {
@@ -37,6 +28,7 @@
       onChange = "${pkgs.writeShellScript "doom-change" ''
           export DOOMDIR="${config.home.sessionVariables.DOOMDIR}"
           export DOOMLOCALDIR="${config.home.sessionVariables.DOOMLOCALDIR}"
+          export EMACS="${pkgs.emacs}"
           if [ ! -d "$DOOMLOCALDIR" ]; then
             ${config.xdg.configHome}/emacs/bin/doom -y install
           else
