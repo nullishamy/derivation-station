@@ -5,7 +5,7 @@ local DIVIDERS = {
 
 return function(cfg, _, wez)
   cfg.use_fancy_tab_bar = false
-  cfg.hide_tab_bar_if_only_one_tab = true
+  cfg.hide_tab_bar_if_only_one_tab = false
   cfg.enable_scroll_bar = false
 
   ---@diagnostic disable-next-line: unused-local

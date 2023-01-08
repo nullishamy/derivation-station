@@ -12,7 +12,19 @@
 , lua
 , sumneko-lua-language-server
 , nodePackages
+, python39Packages
 , rust-analyzer
+, binutils
+, ripgrep
+, libvterm
+, gnutls
+, fd
+, imagemagick
+, zstd
+, sqlite
+, editorconfig-core-c
+, emacs-all-the-icons-fonts
+, nixfmt
 , ...
 }:
 
@@ -24,6 +36,19 @@ runCommandNoCC "emacs" { nativeBuildInputs = [ makeWrapper ]; } ''
     --set DOOMPROFILELOADFILE "~/.config/doom-local/profiles.el" \
     --set EMACS "${emacs}/bin/emacs" \
     --prefix _PATH : ${lib.makeBinPath [
+      # Dependencies
+      binutils
+      (ripgrep.override { withPCRE2 = true; })
+      libvterm
+      gnutls
+      fd
+      imagemagick
+      zstd
+      sqlite
+      editorconfig-core-c
+      emacs-all-the-icons-fonts
+
+      # General tools
       clang
       lua
       gcc
@@ -31,14 +56,18 @@ runCommandNoCC "emacs" { nativeBuildInputs = [ makeWrapper ]; } ''
       rustc
       nodejs
       python3
+      python39Packages.pip
+
 
       # LSP
       sumneko-lua-language-server
       nodePackages.typescript-language-server
+      nodePackages.pyright
       rust-analyzer
 
       # Formatting
       nodePackages.prettier
+      nixfmt
 
       # DAP
     ]}

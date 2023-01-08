@@ -57,9 +57,3 @@
 
 (package! exec-path-from-shell
   :recipe (:host github :repo "purcell/exec-path-from-shell"))
-
-(package! format-all
-  :recipe (:host github :repo "lassik/emacs-format-all-the-code"))
-
-(package! parinfer-rust-mode
-  :recipe (:host github :repo "justinbarclay/parinfer-rust-mode"))

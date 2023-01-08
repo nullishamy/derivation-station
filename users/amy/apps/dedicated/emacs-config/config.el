@@ -41,8 +41,18 @@ apps are not started from a shell."
 ;;
 ;; See 'C-h v doom-font' for documentation and more examples of what they
 ;; accept. For example:
-;;
-(setq doom-font (font-spec :family "Berkeley Mono" :size 16 :weight 'semi-light)
+                                        ;Mono;
+
+(defvar private-fonts
+  '(
+    (font-spec :family "Iosevka" :size 18)
+    (font-spec :family "FantasqueSansMono Nerd Font" :size 18)
+    (font-spec :family "Berkeley Mono" :size 16 :weight 'semi-light)))
+
+(setq doom-font (nth 1 private-fonts)
+      doom-variable-pitch-font (font-spec :family "DejaVu Sans" :size 13))
+
+(setq doom-font (font-spec :family "FantasqueSansMono Nerd Font" :size 18)
       doom-variable-pitch-font (font-spec :family "DejaVu Sans" :size 13))
 
 ;; If you or Emacs can't find your font, use 'M-x describe-font' to look them
@@ -54,7 +64,7 @@ apps are not started from a shell."
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
 ;; FIXME: Move to a good theme (catppuccin) when it has its rewrite (hurry up nyx)
-(setq doom-theme 'doom-dark+)
+(setq doom-theme 'doom-vibrant)
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
@@ -116,7 +126,7 @@ apps are not started from a shell."
   (require 'elcord)
   (elcord-mode)
   (setq elcord-quiet t)
-  (setq elcord-idle-message "AFK"))
+  (setq elcord-idle-message "Making a brew..."))
 
 (use-package move-text
   :config
@@ -131,19 +141,27 @@ apps are not started from a shell."
   (exec-path-from-shell-copy-env "SSH_ASKPASS")
   (exec-path-from-shell-copy-env "SSH_AUTH_SOCK"))
 
-(use-package format-all)
-
-(use-package parinfer-rust-mode
-  :hook emacs-lisp-mode
-  :init
-  (setq parinfer-rust-auto-download t))
-
 ;; LSP
+;; TODO: Find a way to symlink store LSPs to doom-local (https://docs.doomemacs.org/v21.12/#/prerequisites/language-server-protocol-servers/lsp-mode)
 ;; Show UI doc next to cursor
 (setq lsp-ui-doc-show-with-cursor t)
 ;; Disable Eldoc (it's annoying)
 (global-eldoc-mode -1)
 
+;; Override default LSP binds with lsp-ui ones
+(map! :leader "cD" nil)
+(map! :leader "cD" #'lsp-ui-peek-find-references)
+
 ;; Jump to start / end of lines
 (map! :nvom "H" #'evil-first-non-blank)
 (map! :nvom "L" #'evil-last-non-blank)
+
+;; Set default `company-backends'
+(setq company-backends
+      '((company-files          ; files & directory
+         company-keywords       ; keywords
+         company-capf
+         company-yasnippet
+         )
+        (company-abbrev company-dabbrev)
+        ))
