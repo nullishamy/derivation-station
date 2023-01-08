@@ -30,6 +30,7 @@
 
 runCommandNoCC "emacs" { nativeBuildInputs = [ makeWrapper ]; } ''
   mkdir -p $out/bin
+  cp ${emacs}/bin/emacsclient $out/bin
   makeWrapper ${emacs}/bin/emacs $out/bin/emacs \
     --set DOOMDIR "~/.config/doom-config" \
     --set DOOMLOCALDIR "~/.config/doom-local" \
@@ -57,7 +58,6 @@ runCommandNoCC "emacs" { nativeBuildInputs = [ makeWrapper ]; } ''
       nodejs
       python3
       python39Packages.pip
-
 
       # LSP
       sumneko-lua-language-server

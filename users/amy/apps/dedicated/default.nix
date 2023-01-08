@@ -10,6 +10,11 @@
     };
   };
 
+  # Start the daemon
+  config.services.emacs = {
+    enable = true;
+  };
+
   config.xdg.configFile = {
     "nvim" = {
       source = ./nvim-config;
