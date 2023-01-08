@@ -1,8 +1,3 @@
 # nvim configuration
 
-Just my nvim configuration files. Place in `~/.config/nvim` and run
-`PackerInstall` to install all of the required plugins.
-
-Move `lua/config.lua.default` to `lua/config.lua` and customise it to your liking.
-
-
+This is setup by Nix when installing this config. lazy.nvim will automatically install all missing plugins when launching.
