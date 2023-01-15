@@ -26,9 +26,11 @@
       source = ./emacs-config;
     };
     "emacs" = {
-      source = pkgs.fetchgit {
-        url = "https://github.com/doomemacs/doomemacs";
-        hash = "sha256-7AzL08qo5WLeJo10lnF2b7g6FdWnExVYS8yipNyAMMM=";
+      source = pkgs.fetchFromGitHub {
+        repo = "doomemacs";
+        owner = "doomemacs";
+        rev = "e96624926d724aff98e862221422cd7124a99c19";
+        sha256 = "sha256-C+mQGq/HBDgRkqdwYE/LB3wQd3oIbTQfzldtuhmKVeU=";
       };
       onChange = "${pkgs.writeShellScript "doom-change" ''
           export DOOMDIR="${config.home.sessionVariables.DOOMDIR}"
