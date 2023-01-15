@@ -97,10 +97,10 @@ return function(cfg, _, wez)
           { Text = DIVIDERS.RIGHT },
       }))
 
-      window:set_right_status(wez.format({
-          { Background = { Color = palette.tab_bar.background } },
-          { Foreground = { Color = palette.ansi[6] } },
-          { Text = os.date(" %H:%M ") },
-      }))
+      -- window:set_right_status(wez.format({
+      --     { Background = { Color = palette.tab_bar.background } },
+      --     { Foreground = { Color = palette.ansi[6] } },
+      --     { Text = os.date(" %H:%M ") },
+      -- }))
   end)
 end

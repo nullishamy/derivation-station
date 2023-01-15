@@ -23,8 +23,8 @@
     ntfsprogs
     yubico-pam
     yubikey-manager-qt
-    yubioath-flutter
     xclip
+    yubioath-desktop
     i3lock
     nano
     vim

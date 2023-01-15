@@ -2,7 +2,7 @@
 , lib
 , makeWrapper
 , runCommandNoCC
-, neovim-nightly
+, neovim
 , sumneko-lua-language-server
 , stylua
 , selene
@@ -24,7 +24,7 @@
 
 runCommandNoCC "nvim" { nativeBuildInputs = [ makeWrapper ]; } ''
   mkdir -p $out/bin
-  makeWrapper ${neovim-nightly}/bin/nvim $out/bin/nvim \
+  makeWrapper ${neovim}/bin/nvim $out/bin/nvim \
     --set CC "gcc" \
     --set NVIM_CONFIG_ROOT "/home/amy/nixos/users/amy/apps/dedicated/nvim-config" \
     --prefix PATH : ${lib.makeBinPath [ 

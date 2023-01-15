@@ -17,7 +17,14 @@
   ];
 
   # Enable non-free packages
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config = {
+    allowUnfree = true;
+    packageOverrides = pkgs: {
+      unstable = import <nixpkgs-unstable> {
+        inherit (config.nixpkgs) config;
+      };
+    };
+  };
 
   boot.loader = {
     systemd-boot = {

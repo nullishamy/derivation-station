@@ -57,3 +57,6 @@
 
 (package! exec-path-from-shell
   :recipe (:host github :repo "purcell/exec-path-from-shell"))
+
+(package! catppuccin-theme
+  :recipe (:host github :repo "catppuccin/emacs"))
