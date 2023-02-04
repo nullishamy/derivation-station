@@ -12,6 +12,7 @@
     bottom
     neofetch
     gh
+    thunderbird
     rofi
     spotifywm
     flameshot
@@ -32,6 +33,9 @@
     photoqt
     dunst
     xdotool
+
+    # 3D printing
+    super-slicer
 
     # Modern unix
     ripgrep
