@@ -6,7 +6,7 @@
   programs.git = {
     enable = true;
 
-    userEmail = "amy.codes@null.net";
+    userEmail = "git@amyerskine.me";
     userName = "nullishamy";
 
     signing = {

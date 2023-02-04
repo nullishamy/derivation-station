@@ -27,6 +27,11 @@
         "text/html" = ["chromium.desktop"];
         "image/png" = ["photoqt.desktop"];
         "text/plain" = ["neovide.desktop"];
+
+        # xdg-open for mail
+        "x-scheme-handler/mailto" = ["thunderbird.desktop"];
+        "x-scheme-handler/mid" = ["thunderbird.desktop"];
+        "message/rfc822" = ["thunderbird.desktop"];
       };
     };
   };
