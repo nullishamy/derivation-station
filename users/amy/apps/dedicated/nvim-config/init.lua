@@ -10,8 +10,6 @@ local module = utils.load_module
 -- Run preload
 module('preload')
 
-
-
 -- Initialise modules
 module('core/editor')
 module('core/autocmd')
