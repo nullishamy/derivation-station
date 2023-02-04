@@ -14,7 +14,7 @@ return function(cfg, values, wez)
         italic = false,
         intensity = 'Bold',
         font = wez.font({
-          family = 'Berkeley Mono',
+          family = cfg.font.family,
           stretch = 'Normal',
           weight = 'Bold',
         }),
