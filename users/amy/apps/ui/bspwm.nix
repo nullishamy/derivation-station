@@ -27,7 +27,7 @@ in {
     '';
 
     rules = {
-      "*discord*" = {
+      "discord" = {
         desktop = "^3";
         follow = false;
       };
@@ -58,8 +58,6 @@ in {
       "${mod} + d" = "rofi -show run -no-lazy-grab -lines 15 -width 40";
       "${mod} + r" = "bspc node @focused:/ --rotate 90";
       "${mod} + shift + r" = "bspc node @focused:/ --rotate 180";
-      # "-a" will launch emacs if the daemon is dead
-      "${mod} + e" = "emacsclient -c -a emacs";
       "Print" = "flameshot gui";
     };
 
