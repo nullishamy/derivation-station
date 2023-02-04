@@ -109,6 +109,7 @@ require('lazy').setup({
 
   -- Selection
   { 'nvim-telescope/telescope.nvim' },
+  { 'danielfalk/smart-open.nvim' },
   { 'stevearc/dressing.nvim' },
 
   -- Statusline

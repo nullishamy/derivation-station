@@ -22,7 +22,7 @@
 
   # CRON jobs
   services.cron = {
-    enable = true;
+    enable = false;
     systemCronJobs = [
       "25 20 * * *   amy   . /etc/profile; ${./apps/dedicated/backup/run-backup.py} ${builtins.readFile ./apps/dedicated/backup/args.txt}"
     ];

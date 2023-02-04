@@ -33,7 +33,7 @@ map('n', '<Leader>l', '<cmd>wincmd l<cr>')
 map('n', '<C-W>m', '<cmd>WinShift<cr>')
 
 -- Telescope & tree
-map('n', '<Leader>ff', '<cmd>Telescope find_files path_display={"truncate"}<cr>')
+map('n', '<Leader>ff', '<cmd>Telescope smart_open path_display={"truncate"}<cr>')
 map('n', '<Leader>fo', '<cmd>Telescope buffers path_display={"truncate"}<cr>')
 map('n', '<Leader>fh', '<cmd>Telescope help_tags path_display={"truncate"}<cr>')
 map('n', '<Leader>fg', '<cmd>Telescope live_grep path_display={"truncate"}<cr>')
