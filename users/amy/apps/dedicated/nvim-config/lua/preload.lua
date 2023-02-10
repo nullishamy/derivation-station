@@ -31,6 +31,7 @@ require('lazy').setup({
   -- Dependencies
   { 'MunifTanjim/nui.nvim' },
   { 'nvim-lua/plenary.nvim' },
+  { 'kkharji/sqlite.lua' },
 
   -- Theme
   { 'catppuccin/nvim', name = 'catppuccin' },

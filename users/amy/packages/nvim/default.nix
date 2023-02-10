@@ -12,6 +12,7 @@
 , xclip
 , nodejs
 , python3
+, sqlite
 , cargo
 , rustc
 , luarocks
@@ -27,6 +28,7 @@ runCommandNoCC "nvim" { nativeBuildInputs = [ makeWrapper ]; } ''
   makeWrapper ${neovim-unwrapped}/bin/nvim $out/bin/nvim \
     --set CC "gcc" \
     --set NVIM_CONFIG_ROOT "/home/amy/nixos/users/amy/apps/dedicated/nvim-config" \
+    --set SQLITE_LIB_PATH "${sqlite.out}/lib/libsqlite3.so" \
     --prefix PATH : ${lib.makeBinPath [ 
       sumneko-lua-language-server 
       stylua 
