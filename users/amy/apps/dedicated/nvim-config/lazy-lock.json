@@ -56,4 +56,3 @@
   "vim-wordmotion": { "branch": "master", "commit": "5dd613ed68a0ecf0fc6c11cd4098c03583786bf0" },
   "winshift.nvim": { "branch": "main", "commit": "37468ed6f385dfb50402368669766504c0e15583" },
   "zeppelin.nvim": { "branch": "master", "commit": "220ec8c4e15569750b7af21eec84af4f67edf350" }
-}

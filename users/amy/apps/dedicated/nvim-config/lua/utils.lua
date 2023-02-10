@@ -39,7 +39,7 @@ end
 
 -- Safely load modules, handling errors that arise during the load
 function M.load_module(mod, opts)
-  opts = vim.tbl_extend('force', {
+  opts = vim.tbl_extend('keep', {
     enable = true
   }, opts or {})
 
@@ -50,8 +50,11 @@ function M.load_module(mod, opts)
   local ok, res = pcall(require, mod)
 
   if not ok then
-    vim.notify_once(string.format('Failed to load module %s | %s', mod, res))
+    vim.notify_once(('failed to load module %s'):format(mod))
+    vim.notify_once(res)
   end
+
+  return res
 end
 
 return M

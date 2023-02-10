@@ -1,16 +1,13 @@
-return {
+local language, server, formatter = unpack(require('language.dsl'))
+
+return language {
   name = 'typescript',
 
-  lsp = {
-    {
-      key = 'tsserver',
-    },
+  server.configured {
+    name = 'tsserver',
   },
 
-  format = {
-    filetype = { 'typescript', 'javascript', 'typescriptreact' },
-    runners = {
-      require('formatter.filetypes.typescript').prettier,
-    },
-  },
+  formatter.null {
+    runner = formatter.runner.prettier,
+  }
 }

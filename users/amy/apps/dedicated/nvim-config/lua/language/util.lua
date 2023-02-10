@@ -22,7 +22,6 @@ function M.organize_imports()
   end)
 end
 
-
 function M.setup_lsp_borders()
   local border = require('utils').border
 
@@ -34,6 +33,28 @@ function M.setup_lsp_borders()
   vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, {
     border = border('FloatBorder'),
   })
+end
+
+function M.setup_signs()
+  -- Define LSP signs
+  local signs = {
+    Error = ' ',
+    Warn = ' ',
+    Hint = ' ',
+    Info = ' ',
+  }
+
+  for type, icon in pairs(signs) do
+    local hl = 'DiagnosticSign' .. type
+
+    vim.fn.sign_define(hl, {
+      text = icon,
+      texthl = hl,
+      numhl = hl,
+      -- Set this sign above the rest, it's the most important
+      priority = 15,
+    })
+  end
 end
 
 return M

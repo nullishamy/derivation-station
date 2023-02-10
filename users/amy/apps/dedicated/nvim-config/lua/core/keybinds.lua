@@ -1,6 +1,26 @@
-local utils = require('utils')
-local map = utils.map
-local abbrev = utils.abbrev
+local function abbrev(from, to, opts)
+  -- This API is only available from nvim 0.7 and up.
+  -- Setting abbreviations without it is tedious so we wont bother
+  if not vim.api.nvim_create_user_command then
+    return vim.api.notify_once('Abbreviations are only available in nvim 0.7 and newer, please update.')
+  end
+
+  local options = { nargs = 0 }
+  if opts then
+    options = vim.tbl_extend('force', options, opts)
+  end
+
+  vim.api.nvim_create_user_command(from, to, options)
+end
+
+local function map(mode, lhs, rhs, opts)
+  local options = { noremap = true }
+  if opts then
+    options = vim.tbl_extend('force', options, opts)
+  end
+
+  vim.keymap.set(mode, lhs, rhs, options)
+end
 
 -- Noop q: as it's an annoying typo and the feature isnt used
 map('', 'q:', '<Nop>')
@@ -9,9 +29,6 @@ map('', 'q:', '<Nop>')
 map('', '<Space>', '<Nop>', { silent = true })
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
-
--- Formatter
-map('', '<leader>y', '<cmd>Format<cr>')
 
 -- Quick exit from insert mode
 map('i', 'jk', '<Esc>')
@@ -41,7 +58,6 @@ map('n', '<Leader>g', '<cmd>Neotree focus reveal<cr>')
 
 -- Cheatsheet
 map('n', '<Leader>fc', '<cmd>Cheatsheet<cr>')
-
 
 -- Jump to start / end
 map('', 'H', '^')

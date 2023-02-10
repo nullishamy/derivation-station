@@ -1,16 +1,13 @@
-return {
+local language, server, formatter = unpack(require('language.dsl'))
+
+return language {
   name = 'json',
 
-  lsp = {
-    {
-      key = 'jsonls',
-    },
+  server.configured {
+    name = 'jsonls',
   },
 
-  format = {
-    filetype = 'json',
-    runners = {
-      require('formatter.filetypes.json').prettierd,
-    },
-  },
+  formatter.null {
+    runner = formatter.runner.prettier,
+  }
 }

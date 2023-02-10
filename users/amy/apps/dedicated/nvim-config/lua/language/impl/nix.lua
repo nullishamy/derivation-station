@@ -1,14 +1,14 @@
-return {
+local language, server, formatter = unpack(require('language.dsl'))
+
+return language {
   name = 'nix',
 
-  lsp = {
-    {
-      key = 'rnix',
-    },
+  server.configured {
+    name = 'rnix',
   },
 
-  format = {
-    filetype = 'nix',
+  -- FIXME: Implement once we have exe running
+  formatter.disabled {
     runners = {
       function()
         return {
@@ -19,5 +19,5 @@ return {
         }
       end,
     },
-  },
+  }
 }

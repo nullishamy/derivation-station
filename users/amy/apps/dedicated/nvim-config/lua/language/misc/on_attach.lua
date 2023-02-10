@@ -1,10 +1,22 @@
-return function(lang_mod)
+return function(_module)
   return function(_, buf)
     local set = function(mode, lhs, rhs, opts)
       opts = vim.tbl_extend('keep', opts or {}, { noremap = true, silent = true, buffer = buf })
 
       vim.keymap.set(mode, lhs, rhs, opts)
     end
+
+    set('n', '<leader>y', function()
+      vim.lsp.buf.format({
+        timeout_ms = 10000,
+        bufnr = buf,
+        filter = function(clnt)
+          -- NOTE: We should improve this
+          -- Need to improve selection methods
+          return clnt.name == 'null-ls'
+        end,
+      })
+    end)
 
     set('n', 'gD', function()
       vim.lsp.buf.declaration()
