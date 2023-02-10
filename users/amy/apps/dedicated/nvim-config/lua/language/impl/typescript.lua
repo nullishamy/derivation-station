@@ -1,5 +1,5 @@
 return {
-  name = 'language-name',
+  name = 'typescript',
 
   lsp = {
     {

@@ -1,3 +1,5 @@
+local home = vim.fn.expand("$HOME") .. "/code/"
+
 return {
   wakatime = {
     enabled = true,
@@ -17,7 +19,9 @@ return {
     },
   },
   discord = {
-    blacklist = {}
+    blacklist = {
+      [vim.fn.resolve(home .. "private")] = "shhh, private business!",
+    }
   },
   mason = {
     packages = {
