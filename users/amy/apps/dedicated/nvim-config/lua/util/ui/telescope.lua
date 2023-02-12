@@ -10,6 +10,13 @@ return {
           },
         },
       },
+      extensions = {
+        ignore_patterns = {
+          "*.git/*",
+          "*/tmp/*",
+          "*/node_modules/"
+        }
+      }
     })
 
     vim.g.sqlite_clib_path = vim.env.SQLITE_LIB_PATH
