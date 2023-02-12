@@ -49,6 +49,9 @@
       nix-switch = "sudo nixos-rebuild switch --flake /home/amy/nixos#nixon $@";
       nix-update = "nix-switch --upgrade";
 
+      # ;true swallows any additional args, instead of echoing them out with our echo
+      nix-env = "echo 'do not the nix-env. https://stop-using-nix-env.privatevoid.net'; true";
+
       sxhkd-switch = "pkill -usr1 -x sxhkd";
       bspwm-switch = "bspc wm --restart";
       wallpaper-switch = "bash ${../../wallpapers}/sh/random-switch.sh";
