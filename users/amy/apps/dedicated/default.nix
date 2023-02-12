@@ -1,4 +1,7 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, flakePath, ... }: 
+let
+  mkSource = path: config.lib.file.mkOutOfStoreSymlink "${flakePath}/users/amy/apps/dedicated/${path}";
+in {
   config.home.file."etc/patches/patch-discord.sh" = { source = ./patch-discord.sh; };
 
   config.home = {
@@ -17,13 +20,13 @@
 
   config.xdg.configFile = {
     "nvim" = {
-      source = ./nvim-config;
+      source = mkSource "nvim-config";
     };
     "wezterm" = {
-      source = ./wezterm-config;
+      source = mkSource "wezterm-config";
     };
     "doom-config" = {
-      source = ./emacs-config;
+      source = mkSource "emacs-config";
     };
     "emacs" = {
       source = pkgs.fetchFromGitHub {

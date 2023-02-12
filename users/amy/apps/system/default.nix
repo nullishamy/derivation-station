@@ -3,5 +3,5 @@
     ./xdg.nix
   ];
 
-  config.home.file.".config/nixpkgs/config.nix" = { source = ./nixpkgs.nix; };
+  config.xdg.configFile."nixpkgs/config.nix" = { source = ./nixpkgs.nix; };
 }
