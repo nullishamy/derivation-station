@@ -11,8 +11,9 @@ local fonts = {
       family = 'Berkeley Mono',
       stretch = 'Normal',
       weight = 'Medium',
+      cell_width = 0.8
     }),
-    size = 12.0
+    size = 11.8
   },
   fantasque = {
     font = wez.font({
@@ -33,8 +34,8 @@ local fonts = {
 }
 
 local values = {
-  font = fonts['fantasque'].font,
-  font_size = fonts['fantasque'].size,
+  font = fonts['berkeley'].font,
+  font_size = fonts['berkeley'].size,
   scheme = 'Catppuccin Mocha',
   theme = wez.color.get_builtin_schemes()['Catppuccin Mocha']
 }

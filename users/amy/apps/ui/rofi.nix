@@ -125,8 +125,8 @@
           text-color = mkLiteral "@fg-col2";
         };
       };
-    # font = "Berkeley Mono 13";
-    font = "FantasqueSansMono Nerd Font 13";
+    font = "Berkeley Mono 13";
+    # font = "FantasqueSansMono Nerd Font 13";
     terminal = "wezterm";
   };
 }
