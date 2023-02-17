@@ -4,7 +4,7 @@ return language {
   name = 'lua',
 
   server.configured {
-    name = 'sumneko_lua',
+    name = 'lua_ls',
 
     config = {
       settings = {
@@ -32,10 +32,10 @@ return language {
           },
         },
       },
-    }
+    },
   },
 
   formatter.null {
     runner = formatter.runner.stylua,
-  }
+  },
 }
