@@ -9,7 +9,7 @@ return {
     size = '12',
   },
   startuptime = {
-    enabled = true,
+    enabled = false,
   },
   tree = {
     hidden = {
