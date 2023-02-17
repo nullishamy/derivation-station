@@ -1,13 +1,14 @@
-{ config, lib, pkgs, ... }:
-
-with lib;
-
-let
-  cfg = config.programs.cargo;
-  tomlFormat = pkgs.formats.toml { };
-in
 {
-  meta.maintainers = [ ];
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; let
+  cfg = config.programs.cargo;
+  tomlFormat = pkgs.formats.toml {};
+in {
+  meta.maintainers = [];
 
   options.programs.cargo = {
     enable = mkEnableOption "cargo package manager";
@@ -21,7 +22,7 @@ in
 
     settings = mkOption {
       inherit (tomlFormat) type;
-      default = { };
+      default = {};
       example = literalExpression ''
         {
             paths = ["/path/to/override"]; # path dependency overrides
@@ -62,7 +63,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    home.file.".cargo/config.toml" = mkIf (cfg.settings != { }) {
+    home.file.".cargo/config.toml" = mkIf (cfg.settings != {}) {
       source = tomlFormat.generate "cargo-config" cfg.settings;
     };
   };

@@ -1,6 +1,7 @@
-{ config
-, pkgs
-, ...
+{
+  config,
+  pkgs,
+  ...
 }: {
   imports = [
   ];
@@ -14,14 +15,14 @@
       "wheel" # Sudoer
       "docker"
       "lxd" # Use docker without root
-      "vboxusers" # Virtualbox 
+      "vboxusers" # Virtualbox
     ];
-    packages = with pkgs; [ ];
+    packages = with pkgs; [];
     shell = pkgs.zsh;
   };
 
   # VM user
-  users.users.nixosvmtest.isSystemUser = true ;
+  users.users.nixosvmtest.isSystemUser = true;
   users.users.nixosvmtest.initialPassword = "test";
   users.users.nixosvmtest.group = "nixosvmtest";
   users.groups.nixosvmtest = {};
@@ -29,8 +30,8 @@
   # VM settings
   virtualisation.vmVariant = {
     virtualisation = {
-      memorySize =  8064;
-      cores = 8;         
+      memorySize = 8064;
+      cores = 8;
     };
   };
 

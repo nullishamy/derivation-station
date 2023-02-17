@@ -6,37 +6,39 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs =
-    { self
-    , nixpkgs
-    , home-manager
-    , ...
-    } @inputs:
-    let
-      overlays = [
-      ];
-    in
-    {
-      nixosConfigurations.nixon = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [
-          ({ config, pkgs, ... }: {
-            nixpkgs.overlays = overlays; 
-          })
-          ./machines/desktop
+  outputs = {
+    self,
+    nixpkgs,
+    home-manager,
+    ...
+  } @ inputs: let
+    overlays = [
+    ];
+  in {
+    nixosConfigurations.nixon = nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux";
+      modules = [
+        ({
+          config,
+          pkgs,
+          ...
+        }: {
+          nixpkgs.overlays = overlays;
+        })
+        ./machines/desktop
 
-          home-manager.nixosModules.home-manager
-          {
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              backupFileExtension = "backup";
-              extraSpecialArgs = {
-                flakePath = "/home/amy/nixos";
-              };
+        home-manager.nixosModules.home-manager
+        {
+          home-manager = {
+            useGlobalPkgs = true;
+            useUserPackages = true;
+            backupFileExtension = "backup";
+            extraSpecialArgs = {
+              flakePath = "/home/amy/nixos";
             };
-          }
-        ];
-      };
+          };
+        }
+      ];
     };
+  };
 }

@@ -1,12 +1,15 @@
 # Bspwm settings
-{ config, lib, pkgs, ... }:
-
-let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
   mod = "mod1";
 in {
   xsession.windowManager.bspwm = {
     enable = true;
-    settings = { };
+    settings = {};
     extraConfig = ''
       bspc monitor -d Web Music Discord Editor Shell 6 7 8 9 10
 

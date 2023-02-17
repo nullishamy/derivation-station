@@ -1,7 +1,5 @@
-{ pkgs, ... }:
-
-{
-  imports = [ ../../users/amy/apps/personal/steam.nix ];
+{pkgs, ...}: {
+  imports = [../../users/amy/apps/personal/steam.nix];
 
   environment.systemPackages = with pkgs; [
     wget

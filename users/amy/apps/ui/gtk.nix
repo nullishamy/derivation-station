@@ -1,8 +1,10 @@
 # GTK settings
-
-{ config, lib, pkgs, ...}:
-
-let 
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
   theme = {
     name = "Catppuccin-Mocha-Lavender";
     package = pkgs.catppuccin-gtk;
@@ -13,8 +15,9 @@ let
     package = pkgs.gruvbox-dark-icons-gtk;
   };
 
-  imports = [ 
-    ./gtk2.nix {
+  imports = [
+    ./gtk2.nix
+    {
       inherit theme;
       icons = iconTheme;
     }

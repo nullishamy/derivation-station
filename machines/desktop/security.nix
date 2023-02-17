@@ -7,12 +7,14 @@ _: {
   };
 
   # Increase open file limits
-  security.pam.loginLimits = [{
-    domain = "*";
-    type = "soft";
-    item = "nofile";
-    value = "8192";
-  }];
+  security.pam.loginLimits = [
+    {
+      domain = "*";
+      type = "soft";
+      item = "nofile";
+      value = "8192";
+    }
+  ];
 
   # Enable yubikey support for the OS
   security.pam.yubico = {

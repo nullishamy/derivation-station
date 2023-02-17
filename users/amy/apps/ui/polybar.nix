@@ -1,8 +1,10 @@
 # Polybar settings
-
-{ config, lib, pkgs, ...}:
-
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
   services.polybar = {
     enable = true;
     script = "polybar -r top &";
@@ -53,7 +55,7 @@
 
         label-active = "%name%";
         label-active-background = "\${colors.background-alt}";
-        label-active-underline= "\${colors.underline}";
+        label-active-underline = "\${colors.underline}";
         label-active-padding = 1;
 
         label-occupied = "%name%";
@@ -66,7 +68,6 @@
         label-empty = "%name%";
         label-empty-foreground = "\${colors.background}";
         label-empty-padding = 1;
-
       };
 
       "module/cpu" = {
@@ -84,7 +85,7 @@
       };
 
       "module/eth" = {
-        type = "internal/network"; 
+        type = "internal/network";
         interface = "enp42s0";
         interval = 3;
 

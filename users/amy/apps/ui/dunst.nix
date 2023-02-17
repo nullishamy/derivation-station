@@ -1,12 +1,13 @@
 # Dunst settings
-
-{ config, lib, pkgs, ... }:
-
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
   services.dunst = {
     enable = true;
     settings = {
-
       global = {
         font = "FantasqueSansMono Nerd Font Mono";
 
@@ -56,7 +57,7 @@
         # The height is measured in number of notifications everything else
         # in pixels. If the width is omitted but the height is given
         # ("-geometry x2"), the message window expands over the whole screen
-        # (dmenu-like).  
+        # (dmenu-like).
 
         # If width is 0, the window expands to the longest
         # message displayed. A positive x is measured from the left, a
@@ -87,7 +88,7 @@
         # This adds empty space above and under the text.
         line_height = 3;
 
-        # Height of whole notification    
+        # Height of whole notification
         notification_height = 0;
 
         # Draw a line of "separatpr_height" pixel height between two

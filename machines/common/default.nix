@@ -1,7 +1,8 @@
-{ config
-, lib
-, pkgs
-, ...
+{
+  config,
+  lib,
+  pkgs,
+  ...
 }:
 with config;
 with lib;
@@ -20,5 +21,5 @@ with pkgs; {
     };
   };
 
-  nixpkgs.overlays = [ (import ../../users/amy/overlays )];
+  nixpkgs.overlays = [(import ../../users/amy/overlays)];
 }

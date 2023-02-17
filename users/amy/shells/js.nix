@@ -1,9 +1,11 @@
-{ pkgs ? import <nixpkgs> {}, extras ? "" }:
-
+{
+  pkgs ? import <nixpkgs> {},
+  extras ? "",
+}:
 pkgs.mkShell {
-    nativeBuildInputs = with pkgs; [
-        nodejs 
-        nodePackages.typescript
-        extras
-    ];
+  nativeBuildInputs = with pkgs; [
+    nodejs
+    nodePackages.typescript
+    extras
+  ];
 }

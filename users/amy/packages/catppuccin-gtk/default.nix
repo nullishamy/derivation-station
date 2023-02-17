@@ -1,5 +1,9 @@
-{ lib, stdenv, fetchFromGitHub, unzip }:
-
+{
+  lib,
+  stdenv,
+  fetchFromGitHub,
+  unzip,
+}:
 stdenv.mkDerivation rec {
   pname = "catppuccin-gtk";
   version = "0.2.7";
@@ -35,6 +39,6 @@ stdenv.mkDerivation rec {
     homepage = "https://github.com/catppuccin/gtk";
     license = licenses.gpl3Only;
     platforms = platforms.unix;
-    maintainers = [ maintainers.nullishamy ];
+    maintainers = [maintainers.nullishamy];
   };
 }

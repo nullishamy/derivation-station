@@ -1,8 +1,10 @@
 # Cargo settings
-
-{ config, lib, pkgs, ...}:
-
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
   programs.cargo = {
     enable = true;
     settings = {
@@ -12,5 +14,3 @@
     };
   };
 }
-
-

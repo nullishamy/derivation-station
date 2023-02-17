@@ -1,7 +1,8 @@
-{ config
-, modulesPath
-, pkgs
-, ...
+{
+  config,
+  modulesPath,
+  pkgs,
+  ...
 }: {
   imports = [
     ./hardware.nix
@@ -48,7 +49,7 @@
 
     # Automatically run the nix store optimiser
     optimise.automatic = true;
-    optimise.dates = [ "12:55" ];
+    optimise.dates = ["12:55"];
 
     settings = {
       # Nix automatically detects files in the store that have identical contents, and replaces them with hard links to a single copy.
@@ -64,7 +65,7 @@
       sandbox = true;
 
       # Enable flakes
-      experimental-features = [ "nix-command" "flakes" ];
+      experimental-features = ["nix-command" "flakes"];
     };
   };
 
@@ -78,18 +79,18 @@
   console.keyMap = "us";
 
   # Add myself to the vbox group
-  users.extraGroups.vboxusers.members = [ "amy" ];
+  users.extraGroups.vboxusers.members = ["amy"];
 
   # Enable CUPS to print documents.
   services.printing = {
     enable = true;
-    drivers = [ pkgs.gutenprint pkgs.hplip ];
+    drivers = [pkgs.gutenprint pkgs.hplip];
   };
 
   # Fonts
   fonts.fonts = with pkgs; [
     # Only use the given nerdfonts, saves cloning *everything*
-    (nerdfonts.override { fonts = [ "Hack" "Iosevka" "FantasqueSansMono" "VictorMono" ]; })
+    (nerdfonts.override {fonts = ["Hack" "Iosevka" "FantasqueSansMono" "VictorMono"];})
   ];
 
   environment = {
@@ -98,9 +99,8 @@
       pkgs.zsh
     ];
 
-    pathsToLink = [ "/share/zsh" ];
+    pathsToLink = ["/share/zsh"];
   };
-
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

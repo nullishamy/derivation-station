@@ -1,9 +1,11 @@
 # Keybase settings
-
-{ config, lib, pkgs, ...}:
-
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
   services.keybase = {
     enable = true;
-  }; 
+  };
 }

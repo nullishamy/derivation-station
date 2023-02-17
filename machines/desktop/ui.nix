@@ -1,6 +1,4 @@
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   services.picom = {
     enable = true;
 
@@ -11,14 +9,14 @@
       shadow-opacity = .75;
       shadow-offset-x = -2;
       shadow-offset-y = -2;
-      shadow-exclude = [ ];
+      shadow-exclude = [];
 
       # -- FADING --
       fading = false;
       fade-in-step = 0.03;
       fade-out-step = 0.03;
       fade-delta = 5;
-      fade-exclude = [ ];
+      fade-exclude = [];
       no-fading-openclose = 1;
 
       # -- TRANSPARENCY / OPACITY --
@@ -27,14 +25,14 @@
       inactive-opacity-override = false;
       active-opacity = 1;
       inactive-dim = 0;
-      focus-exclude = [ ];
+      focus-exclude = [];
       # inactive-dim-fixed = 1.0;
-      opacity-rule = [ ];
+      opacity-rule = [];
 
       # -- CORNERS --
       corner-radius = 10;
       round-borders = 1;
-      rounded-corners-exclude = [ ];
+      rounded-corners-exclude = [];
 
       # -- GENERAL --
       backend = "glx";

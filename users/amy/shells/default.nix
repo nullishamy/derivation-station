@@ -1,3 +1,3 @@
-{ ... }: {
-  home.file."shells/" = { source = ../shells; };
+{...}: {
+  home.file."shells/" = {source = ../shells;};
 }

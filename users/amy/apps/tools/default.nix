@@ -1,4 +1,4 @@
-{ ... }: {
+{...}: {
   imports = [
     ./cargo.nix
     ./git.nix

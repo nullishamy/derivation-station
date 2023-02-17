@@ -1,3 +1,3 @@
-{ ... }: {
-  home.file."etc/wallpapers" = { source = ../wallpapers; };
+{...}: {
+  home.file."etc/wallpapers" = {source = ../wallpapers;};
 }

@@ -1,10 +1,15 @@
 # Git settings
-
-{ config, lib, pkgs, ...}:
-
-let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
   shouldUseSSH = true;
-  ifSSH = c: if shouldUseSSH then c else { };
+  ifSSH = c:
+    if shouldUseSSH
+    then c
+    else {};
 in {
   programs.git = {
     enable = true;

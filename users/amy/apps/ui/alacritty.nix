@@ -1,8 +1,10 @@
 # Alacritty settings
-
-{ config, lib, pkgs, ... }:
-
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
   programs.alacritty = {
     enable = true;
     settings = {
@@ -84,9 +86,15 @@
           white = "#BAC2DE";
         };
 
-        indexed_colours = [ 
-          { index = 16; color = "#FAB387"; }
-          { index = 16; color = "#F5E0DC"; }
+        indexed_colours = [
+          {
+            index = 16;
+            color = "#FAB387";
+          }
+          {
+            index = 16;
+            color = "#F5E0DC";
+          }
         ];
       };
 

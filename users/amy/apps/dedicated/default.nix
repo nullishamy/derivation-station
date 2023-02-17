@@ -1,11 +1,15 @@
-{ config, pkgs, flakePath, ... }: 
-let
+{
+  config,
+  pkgs,
+  flakePath,
+  ...
+}: let
   mkSource = path: config.lib.file.mkOutOfStoreSymlink "${flakePath}/users/amy/apps/dedicated/${path}";
 in {
-  config.home.file."etc/patches/patch-discord.sh" = { source = ./patch-discord.sh; };
+  config.home.file."etc/patches/patch-discord.sh" = {source = ./patch-discord.sh;};
 
   config.home = {
-    sessionPath = [ "${config.xdg.configHome}/emacs/bin" ];
+    sessionPath = ["${config.xdg.configHome}/emacs/bin"];
     sessionVariables = {
       DOOMDIR = "${config.xdg.configHome}/doom-config";
       DOOMLOCALDIR = "${config.xdg.configHome}/doom-local";
@@ -36,15 +40,15 @@ in {
         sha256 = "sha256-C+mQGq/HBDgRkqdwYE/LB3wQd3oIbTQfzldtuhmKVeU=";
       };
       onChange = "${pkgs.writeShellScript "doom-change" ''
-          export DOOMDIR="${config.home.sessionVariables.DOOMDIR}"
-          export DOOMLOCALDIR="${config.home.sessionVariables.DOOMLOCALDIR}"
-          export EMACS="${pkgs.emacs}"
-          if [ ! -d "$DOOMLOCALDIR" ]; then
-            ${config.xdg.configHome}/emacs/bin/doom -y install
-          else
-            ${config.xdg.configHome}/emacs/bin/doom -y sync -u
-          fi
-        ''}";
+        export DOOMDIR="${config.home.sessionVariables.DOOMDIR}"
+        export DOOMLOCALDIR="${config.home.sessionVariables.DOOMLOCALDIR}"
+        export EMACS="${pkgs.emacs}"
+        if [ ! -d "$DOOMLOCALDIR" ]; then
+          ${config.xdg.configHome}/emacs/bin/doom -y install
+        else
+          ${config.xdg.configHome}/emacs/bin/doom -y sync -u
+        fi
+      ''}";
     };
   };
 }

@@ -1,8 +1,11 @@
 # Flameshot settings
-
-{ config, lib, pkgs, ...}:
-
-let colors = [ 
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
+  colors = [
     "#CC241D"
     "#98971A"
     "#D79921"
@@ -20,10 +23,10 @@ in {
         showStartupLaunchMessage = false;
         predefinedColorPaletteLarge = true;
         showHelp = false;
-        uiColor= "#282828";
-        contrastUiColor="#458588";
+        uiColor = "#282828";
+        contrastUiColor = "#458588";
         userColors = "picker,${builtins.concatStringsSep "," colors}";
-        drawColor="#689D6A";
+        drawColor = "#689D6A";
       };
     };
   };

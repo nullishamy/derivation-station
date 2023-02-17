@@ -1,9 +1,11 @@
-{ pkgs ? import <nixpkgs> {}, extras ? "" }:
-
+{
+  pkgs ? import <nixpkgs> {},
+  extras ? "",
+}:
 pkgs.mkShell {
-    nativeBuildInputs = with pkgs; [ 
-        python
-        python3
-        extras
-    ];
+  nativeBuildInputs = with pkgs; [
+    python
+    python3
+    extras
+  ];
 }

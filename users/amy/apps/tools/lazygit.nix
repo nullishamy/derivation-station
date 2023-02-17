@@ -1,8 +1,10 @@
 # Lazygit settings
-
-{ config, lib, pkgs, ...}:
-
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
   programs.lazygit = {
     enable = true;
     settings = {};
