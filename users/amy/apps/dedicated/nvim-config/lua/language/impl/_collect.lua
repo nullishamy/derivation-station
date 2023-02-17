@@ -6,5 +6,6 @@ return {
   f('typescript'),
   f('lua'),
   f('null'),
+  f('nix'),
   f('json')
 }
