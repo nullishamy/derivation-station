@@ -142,5 +142,9 @@ abbrev('RPEnable', function()
   require('presence'):connect()
 end)
 
+abbrev('Bclear', function ()
+  vim.cmd [[ %bd ]]
+end)
+
 vim.cmd([[ command! -nargs=? Run unsilent lua require("nvim-compile").run("<args>") ]])
 vim.cmd([[ command! ViewCommands unsilent lua require("nvim-compile").view() ]])
