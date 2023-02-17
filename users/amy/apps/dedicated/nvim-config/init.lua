@@ -103,12 +103,13 @@ require('lazy').setup({
   { 'tpope/vim-repeat' },
 }, {
   -- Configuration
-  -- Change lockfile location, default is r/o on NixOS
+  -- Change lockfile location, default is in ~/.config/, not the git repo that the config is stored in (~/nixos)
   -- Env controlled from the wrapper (../../../../packages/nvim/)
   lockfile = vim.env.NVIM_CONFIG_ROOT .. '/lazy-lock.json',
   change_detection = {
-    -- It's r/o on NixOS anyways, no point in checking
-    enabled = false,
+    -- When using an out of store symlink, lazy will be able to detect changes for us
+    -- and auto reinstall
+    enabled = true,
   },
   install = {
     colorscheme = { 'catppuccin' },

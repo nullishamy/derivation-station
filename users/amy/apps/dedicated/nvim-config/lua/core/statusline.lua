@@ -1,6 +1,6 @@
 return {
   'nvim-lualine/lualine.nvim',
-  config = function ()
+  config = function()
     local colors = {
       fg = '#93a4c3',
 
@@ -168,6 +168,12 @@ return {
     })
 
     right({
+      require('lazy.status').updates,
+      cond = require('lazy.status').has_updates,
+      color = { fg = colors.green },
+    })
+
+    right({
       time,
       color = { fg = colors.fg, gui = 'bold' },
     })
@@ -175,5 +181,5 @@ return {
     require('lualine').setup(config)
 
     set_statusline_refresh()
-  end
+  end,
 }
