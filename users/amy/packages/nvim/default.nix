@@ -51,6 +51,7 @@ runCommandNoCC "nvim" {nativeBuildInputs = [makeWrapper];} ''
       xclip
       statix
       alejandra
+      rnix-lsp
 
       nodePackages.typescript-language-server
       nodePackages.bash-language-server

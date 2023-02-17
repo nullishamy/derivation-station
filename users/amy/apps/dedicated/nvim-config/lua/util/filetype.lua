@@ -11,6 +11,9 @@ return {
           c = 'c',
           wp = 'sh',
         },
+        literal = {
+          justfile = 'make',
+        },
       },
     }
   end,
