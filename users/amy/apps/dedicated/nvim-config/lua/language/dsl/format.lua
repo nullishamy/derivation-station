@@ -8,6 +8,12 @@ local __formatter = {
       source = tbl.config and tbl.runner.with(tbl.config) or tbl.runner,
     }
   end,
+  -- For use with formatter.null
+  -- NOTE: https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/HELPERS.md#generator_factory
+  -- Examples: https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins
+  nullc = function (tbl)
+    return require('null-ls.helpers').generator_factory(tbl)
+  end,
   disabled = function()
     return {
       type = 'disabled',
