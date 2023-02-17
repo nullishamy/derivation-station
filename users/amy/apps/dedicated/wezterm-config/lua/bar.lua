@@ -8,7 +8,6 @@ return function(cfg, _, wez)
   cfg.hide_tab_bar_if_only_one_tab = false
   cfg.enable_scroll_bar = false
 
-  ---@diagnostic disable-next-line: unused-local
   wez.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
       local colours = config.resolved_palette.tab_bar
 
@@ -74,8 +73,6 @@ return function(cfg, _, wez)
       }
   end)
 
-  -- custom status
-  ---@diagnostic disable-next-line: unused-local
   wez.on("update-status", function(window, pane)
       local palette = window:effective_config().resolved_palette
       local firstTabActive = window:mux_window():tabs_with_info()[1].is_active

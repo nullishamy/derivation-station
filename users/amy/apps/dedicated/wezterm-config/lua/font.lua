@@ -1,6 +1,38 @@
-return function(cfg, values, wez)
-  cfg.font = values.font
-  cfg.font_size = values.font_size
+local wez = require('wezterm')
+
+local fonts = {
+  berkeley = {
+    font = wez.font({
+      family = 'Berkeley Mono',
+      stretch = 'Normal',
+      weight = 'Medium',
+      cell_width = 0.8,
+    }),
+    size = 11.8,
+  },
+  fantasque = {
+    font = wez.font({
+      family = 'FantasqueSansMono Nerd Font',
+      stretch = 'Normal',
+      weight = 'Medium',
+    }),
+    size = 13.0,
+  },
+  iosevka = {
+    font = wez.font({
+      family = 'Iosevka',
+      stretch = 'Normal',
+      weight = 'Medium',
+    }),
+    size = 12.0,
+  },
+}
+
+local selected_font = 'berkeley'
+
+return function(cfg)
+  cfg.font = fonts[selected_font].font
+  cfg.font_size = fonts[selected_font].size
 
   if cfg.italic_enable then
     cfg.font_rules = {
@@ -8,7 +40,7 @@ return function(cfg, values, wez)
       -- Use regular bold instead of italic bold
       {
         italic = true,
-        font = values.font,
+        font = cfg.font,
       },
       {
         italic = false,
