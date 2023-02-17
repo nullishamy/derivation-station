@@ -7,7 +7,7 @@ return function(_module)
     end
 
     set('n', '<leader>y', function()
-      vim.lsp.buf.format({
+      vim.lsp.buf.format {
         timeout_ms = 10000,
         bufnr = buf,
         filter = function(clnt)
@@ -15,7 +15,7 @@ return function(_module)
           -- Need to improve selection methods
           return clnt.name == 'null-ls'
         end,
-      })
+      }
     end)
 
     set('n', 'gD', function()

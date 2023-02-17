@@ -2,8 +2,7 @@ return {
   name = 'lua',
 
   lsp = {
-    {
-    },
+    {},
   },
 
   format = {

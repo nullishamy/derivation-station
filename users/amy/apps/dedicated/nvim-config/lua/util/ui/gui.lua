@@ -1,7 +1,7 @@
 return {
   'stevearc/dressing.nvim',
   config = function()
-    require('dressing').setup({
+    require('dressing').setup {
       input = {
         win_options = {
           winblend = 0,
@@ -18,6 +18,6 @@ return {
       builtin = {
         winblend = 0,
       },
-    })
+    }
   end,
 }

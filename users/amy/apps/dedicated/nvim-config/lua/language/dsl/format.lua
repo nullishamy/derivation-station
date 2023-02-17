@@ -1,19 +1,19 @@
 local util = require('language.dsl.util')
 
 local __formatter = {
-  null = function (tbl)
+  null = function(tbl)
     return {
       type = 'formatter',
       configure_with = 'null-ls',
-      source = tbl.config and tbl.runner.with(tbl.config) or tbl.runner
+      source = tbl.config and tbl.runner.with(tbl.config) or tbl.runner,
     }
   end,
-  disabled = function ()
+  disabled = function()
     return {
       type = 'disabled',
     }
   end,
-  lsp = function (tbl)
+  lsp = function(tbl)
     return {
       type = 'formatter',
       configure_with = 'lsp',
@@ -21,7 +21,7 @@ local __formatter = {
       overrides = tbl.config,
     }
   end,
-  runner = require('null-ls').builtins.formatting
+  runner = require('null-ls').builtins.formatting,
 }
 
 local formatter = util.callable(__formatter, __formatter.null)

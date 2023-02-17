@@ -1,7 +1,7 @@
 return {
   'uga-rosa/ccc.nvim',
   config = function()
-    require('ccc').setup({
+    require('ccc').setup {
       exclude_pattern = {
         css_name = '*',
       },
@@ -12,6 +12,6 @@ return {
         },
         auto_enable = true,
       },
-    })
+    }
   end,
 }

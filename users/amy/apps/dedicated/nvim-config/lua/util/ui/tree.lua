@@ -1,7 +1,7 @@
 return {
   'nvim-neo-tree/neo-tree.nvim',
-  config = function ()
-local config = {
+  config = function()
+    local config = {
       close_if_last_window = false, -- Close Neo-tree if it is the last window left in the tab
       -- popup_border_style is for input and confirmation dialogs.
       -- Configurtaion of floating window is done in the individual source sections.
@@ -230,7 +230,7 @@ local config = {
           ['w'] = 'open_with_window_picker',
           ['C'] = 'close_node',
           ['z'] = 'close_all_nodes',
-          ["Z"] = "expand_all_nodes",
+          ['Z'] = 'expand_all_nodes',
           ['R'] = 'refresh',
           ['a'] = {
             'add',
@@ -392,5 +392,5 @@ local config = {
   dependencies = {
     { 'MunifTanjim/nui.nvim' },
     { 'nvim-lua/plenary.nvim' },
-  }
+  },
 }

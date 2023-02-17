@@ -7,7 +7,7 @@ return language {
     setup = function(module)
       local ns = require('null-ls').builtins
 
-      require('null-ls').setup({
+      require('null-ls').setup {
         sources = {
           ns.diagnostics.gitlint,
           ns.diagnostics.selene,
@@ -19,7 +19,7 @@ return language {
         },
         update_in_insert = true,
         on_attach = require('language.misc.on_attach')(module),
-      })
-    end
-  }
+      }
+    end,
+  },
 }

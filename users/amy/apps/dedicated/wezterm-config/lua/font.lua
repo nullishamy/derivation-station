@@ -2,28 +2,28 @@ local wez = require('wezterm')
 
 local fonts = {
   berkeley = {
-    font = wez.font({
+    font = wez.font {
       family = 'Berkeley Mono',
       stretch = 'Normal',
       weight = 'Medium',
       cell_width = 0.8,
-    }),
+    },
     size = 11.8,
   },
   fantasque = {
-    font = wez.font({
+    font = wez.font {
       family = 'FantasqueSansMono Nerd Font',
       stretch = 'Normal',
       weight = 'Medium',
-    }),
+    },
     size = 13.0,
   },
   iosevka = {
-    font = wez.font({
+    font = wez.font {
       family = 'Iosevka',
       stretch = 'Normal',
       weight = 'Medium',
-    }),
+    },
     size = 12.0,
   },
 }
@@ -45,11 +45,11 @@ return function(cfg)
       {
         italic = false,
         intensity = 'Bold',
-        font = wez.font({
+        font = wez.font {
           family = cfg.font.family,
           stretch = 'Normal',
           weight = 'Bold',
-        }),
+        },
       },
     }
   end

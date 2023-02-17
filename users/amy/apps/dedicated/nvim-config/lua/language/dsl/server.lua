@@ -1,7 +1,7 @@
 local util = require('language.dsl.util')
 
 local __server = {
-  configured = function (tbl)
+  configured = function(tbl)
     return {
       type = 'server',
       configure_with = 'lspconfig',
@@ -11,18 +11,18 @@ local __server = {
       after = tbl.after or util.noop,
     }
   end,
-  disabled = function ()
+  disabled = function()
     return {
       type = 'disabled',
     }
   end,
-  external = function (tbl)
+  external = function(tbl)
     return {
       type = 'server',
       configure_with = 'external',
-      setup = tbl.setup
+      setup = tbl.setup,
     }
-  end
+  end,
 }
 
 local server = util.callable(__server, __server.configured)

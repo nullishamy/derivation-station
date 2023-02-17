@@ -9,5 +9,5 @@ return language {
 
   formatter.null {
     runner = formatter.runner.prettier,
-  }
+  },
 }

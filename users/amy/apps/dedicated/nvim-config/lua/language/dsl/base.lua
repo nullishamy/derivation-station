@@ -46,7 +46,7 @@ local function language(config)
       elseif item.type == 'disabled' then
         -- Ignore
         vim.validate {
-          type = { item.type, 'string' }
+          type = { item.type, 'string' },
         }
       else
         print(('Unknown type %s'):format(item.type))
@@ -57,7 +57,7 @@ local function language(config)
   return {
     servers = servers,
     formatters = formatters,
-    enabled = config.enabled or true
+    enabled = config.enabled or true,
   }
 end
 

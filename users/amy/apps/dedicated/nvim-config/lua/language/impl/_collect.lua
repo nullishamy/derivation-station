@@ -7,5 +7,5 @@ return {
   f('lua'),
   f('null'),
   f('nix'),
-  f('json')
+  f('json'),
 }

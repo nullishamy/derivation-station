@@ -1,6 +1,6 @@
 return {
   'nullishamy/autosave.nvim',
   config = function()
-    require('autosave').setup({})
+    require('autosave').setup {}
   end,
 }

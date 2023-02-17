@@ -1,7 +1,7 @@
 return {
   'folke/todo-comments.nvim',
   config = function()
-    require('todo-comments').setup({
+    require('todo-comments').setup {
       signs = false,
       highlight = {
         before = '', -- "fg" or "bg" or empty
@@ -12,6 +12,6 @@ return {
         max_line_len = 400, -- ignore lines longer than this
         exclude = {}, -- list of file types to exclude highlighting
       },
-    })
+    }
   end,
 }

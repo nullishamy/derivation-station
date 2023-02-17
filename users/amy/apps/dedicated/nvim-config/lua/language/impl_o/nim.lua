@@ -8,6 +8,6 @@ return {
   },
 
   format = {
-    enable = false
+    enable = false,
   },
 }

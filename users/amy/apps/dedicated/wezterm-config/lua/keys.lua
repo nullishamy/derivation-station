@@ -24,17 +24,17 @@ return function(cfg, _, wez)
     { key = 'h', mods = 'CTRL', action = act.ActivateTabRelative(-1) },
 
     -- Tab control
-    { key = '1', mods = 'CTRL', action = act({ ActivateTab = 0 }) },
-    { key = '2', mods = 'CTRL', action = act({ ActivateTab = 1 }) },
-    { key = '3', mods = 'CTRL', action = act({ ActivateTab = 2 }) },
-    { key = '4', mods = 'CTRL', action = act({ ActivateTab = 3 }) },
-    { key = '5', mods = 'CTRL', action = act({ ActivateTab = 4 }) },
-    { key = '6', mods = 'CTRL', action = act({ ActivateTab = 5 }) },
-    { key = '7', mods = 'CTRL', action = act({ ActivateTab = 6 }) },
-    { key = '8', mods = 'CTRL', action = act({ ActivateTab = 7 }) },
-    { key = '9', mods = 'CTRL', action = act({ ActivateTab = 8 }) },
-    { key = '9', mods = 'CTRL', action = act({ ActivateTab = 9 }) },
-    { key = '0', mods = 'CTRL', action = act({ ActivateTab = -1 }) },
+    { key = '1', mods = 'CTRL', action = act { ActivateTab = 0 } },
+    { key = '2', mods = 'CTRL', action = act { ActivateTab = 1 } },
+    { key = '3', mods = 'CTRL', action = act { ActivateTab = 2 } },
+    { key = '4', mods = 'CTRL', action = act { ActivateTab = 3 } },
+    { key = '5', mods = 'CTRL', action = act { ActivateTab = 4 } },
+    { key = '6', mods = 'CTRL', action = act { ActivateTab = 5 } },
+    { key = '7', mods = 'CTRL', action = act { ActivateTab = 6 } },
+    { key = '8', mods = 'CTRL', action = act { ActivateTab = 7 } },
+    { key = '9', mods = 'CTRL', action = act { ActivateTab = 8 } },
+    { key = '9', mods = 'CTRL', action = act { ActivateTab = 9 } },
+    { key = '0', mods = 'CTRL', action = act { ActivateTab = -1 } },
 
     { key = 'n', mods = 'SHIFT|CTRL', action = act.SpawnWindow },
     { key = 't', mods = 'SHIFT|CTRL', action = act.SpawnTab('CurrentPaneDomain') },
@@ -42,6 +42,6 @@ return function(cfg, _, wez)
     { key = 'c', mods = 'SHIFT|CTRL', action = act.CopyTo('Clipboard') },
     { key = 'v', mods = 'SHIFT|CTRL', action = act.PasteFrom('Clipboard') },
 
-    { key = 'w', mods = 'SHIFT|CTRL', action = act.CloseCurrentTab({ confirm = true }) },
+    { key = 'w', mods = 'SHIFT|CTRL', action = act.CloseCurrentTab { confirm = true } },
   }
 end

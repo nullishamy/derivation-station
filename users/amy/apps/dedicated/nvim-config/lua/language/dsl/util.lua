@@ -2,7 +2,7 @@ local util = {}
 
 function util.callable(tbl, on_call)
   return setmetatable(tbl, {
-    __call = on_call
+    __call = on_call,
   })
 end
 

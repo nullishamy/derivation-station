@@ -1,7 +1,7 @@
 return {
   'nvim-telescope/telescope.nvim',
   config = function()
-    require('telescope').setup({
+    require('telescope').setup {
       defaults = {
         mappings = {
           i = {
@@ -12,12 +12,12 @@ return {
       },
       extensions = {
         ignore_patterns = {
-          "*.git/*",
-          "*/tmp/*",
-          "*/node_modules/"
-        }
-      }
-    })
+          '*.git/*',
+          '*/tmp/*',
+          '*/node_modules/',
+        },
+      },
+    }
 
     vim.g.sqlite_clib_path = vim.env.SQLITE_LIB_PATH
     require('telescope').load_extension('smart_open')
@@ -27,7 +27,7 @@ return {
       'kkharji/sqlite.lua',
     },
     {
-      'danielfalk/smart-open.nvim'
-    }
+      'danielfalk/smart-open.nvim',
+    },
   },
 }

@@ -40,7 +40,7 @@ end
 -- Safely load modules, handling errors that arise during the load
 function M.load_module(mod, opts)
   opts = vim.tbl_extend('keep', {
-    enable = true
+    enable = true,
   }, opts or {})
 
   if not opts.enable then

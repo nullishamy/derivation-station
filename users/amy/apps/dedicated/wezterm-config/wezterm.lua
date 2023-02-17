@@ -2,12 +2,12 @@ local wez = require('wezterm')
 local util = require('lua.util')
 
 local config = {
-  italic_enable = false
+  italic_enable = false,
 }
 
 local values = {
   scheme = 'Catppuccin Mocha',
-  theme = wez.color.get_builtin_schemes()['Catppuccin Mocha']
+  theme = wez.color.get_builtin_schemes()['Catppuccin Mocha'],
 }
 
 util.apply(config, values, 'base')

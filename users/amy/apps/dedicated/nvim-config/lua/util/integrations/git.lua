@@ -4,7 +4,7 @@ return {
     local LAZY_GIT_CONFIG_KEY = 'LG_CONFIG_FILE'
     local LAZY_GIT_BINARY = 'lazygit'
 
-    require('gitsigns').setup({
+    require('gitsigns').setup {
       current_line_blame = true,
       current_line_blame_formatter = function(name, blame_info, opts)
         if blame_info.author == name then
@@ -28,11 +28,11 @@ return {
       current_line_blame_formatter_opts = {
         relative_time = true,
       },
-    })
+    }
 
     local fterm = require('FTerm')
 
-    local lazygit = fterm:new({
+    local lazygit = fterm:new {
       ft = 'fterm_lazygit',
       border = 'rounded',
       cmd = function()
@@ -46,7 +46,7 @@ return {
         height = 0.9,
         width = 0.9,
       },
-    })
+    }
 
     -- Use this to toggle gitui in a floating terminal
     vim.keymap.set('n', '<C-g>', function()

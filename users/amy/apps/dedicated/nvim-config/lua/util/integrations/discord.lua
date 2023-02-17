@@ -20,7 +20,7 @@ return {
       end
     end
 
-    require('presence'):setup({
+    require('presence'):setup {
       -- General options
       auto_update = true, -- Update activity based on autocmd events (if `false`, map or manually execute `:lua package.loaded.presence:update()`)
       neovim_image_text = 'The only good TUI editor', -- Text displayed when hovered over the Neovim image
@@ -49,6 +49,6 @@ return {
       git_commit_text = 'Committing changes',
       plugin_manager_text = 'Managing plugins',
       line_number_text = 'Line %s out of %s',
-    })
+    }
   end,
 }

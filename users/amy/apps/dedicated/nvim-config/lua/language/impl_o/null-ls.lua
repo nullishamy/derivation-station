@@ -7,7 +7,6 @@ return {
       config = {
         external_setup = function(config)
           local ns = require('null-ls').builtins
-
         end,
       },
     },

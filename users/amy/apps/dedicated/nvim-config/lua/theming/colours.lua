@@ -8,7 +8,7 @@ return {
     local colors = require('catppuccin.palettes').get_palette('mocha')
     colors.none = 'NONE'
 
-    require('catppuccin').setup({
+    require('catppuccin').setup {
       term_colours = true,
       flavour = 'mocha',
       no_italic = true,
@@ -33,7 +33,7 @@ return {
         ['@const'] = { fg = colors.blue },
         ['@keyword.export'] = { link = '@keyword' },
       },
-    })
+    }
 
     vim.cmd([[ colorscheme catppuccin ]])
 

@@ -1,7 +1,7 @@
 return {
   'nathom/filetype.nvim',
   config = function()
-    require('filetype').setup({
+    require('filetype').setup {
       overrides = {
         extensions = {
           cs = 'c_sharp',
@@ -12,6 +12,6 @@ return {
           wp = 'sh',
         },
       },
-    })
+    }
   end,
 }

@@ -93,27 +93,27 @@ return {
     end
 
     -- Left hand side
-    left({
+    left {
       'filename',
       fmt = function(inp)
         -- Fallback for empty buffers
         return inp or '[No name]'
       end,
       color = { fg = colors.green, gui = 'bold' },
-    })
+    }
 
-    left({
+    left {
       'filetype',
       icons_enabled = false,
       cond = conditions.ft_not_empty,
       color = { fg = colors.blue, gui = 'bold' },
-    })
+    }
 
     local LSP_BLACKLIST = {
       'null-ls',
     }
 
-    left({
+    left {
       -- Lsp server name .
       function()
         local msg = 'None'
@@ -133,30 +133,30 @@ return {
       end,
       cond = conditions.buffer_not_empty,
       color = { fg = colors.blue, gui = 'bold' },
-    })
+    }
 
-    left({
+    left {
       'location',
       fmt = function(inp)
         -- Strip spaces to make it look nicer
         return string.gsub(inp, ' ', '')
       end,
       color = { fg = colors.orange, gui = 'bold' },
-    })
+    }
 
-    left({
+    left {
       'progress',
       color = { fg = colors.orange, gui = 'bold' },
-    })
+    }
 
     -- Right hand side
-    right({
+    right {
       'branch',
       icon = '',
       color = { fg = colors.purple, gui = 'bold' },
-    })
+    }
 
-    right({
+    right {
       'diff',
       symbols = { added = ' ', modified = '柳', removed = ' ' },
       diff_color = {
@@ -165,18 +165,18 @@ return {
         removed = { fg = colors.red },
       },
       cond = conditions.hide_in_width,
-    })
+    }
 
-    right({
+    right {
       require('lazy.status').updates,
       cond = require('lazy.status').has_updates,
       color = { fg = colors.green },
-    })
+    }
 
-    right({
+    right {
       time,
       color = { fg = colors.fg, gui = 'bold' },
-    })
+    }
 
     require('lualine').setup(config)
 

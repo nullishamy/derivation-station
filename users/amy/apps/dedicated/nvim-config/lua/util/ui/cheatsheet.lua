@@ -1,7 +1,7 @@
 return {
   'sudormrfbin/cheatsheet.nvim',
   config = function()
-    require('cheatsheet').setup({
+    require('cheatsheet').setup {
       -- Whether to show bundled cheatsheets
 
       -- For generic cheatsheets like default, unicode, nerd-fonts, etc
@@ -30,6 +30,6 @@ return {
         ['<C-Y>'] = require('cheatsheet.telescope.actions').copy_cheat_value,
         ['<C-E>'] = require('cheatsheet.telescope.actions').edit_user_cheatsheet,
       },
-    })
+    }
   end,
 }

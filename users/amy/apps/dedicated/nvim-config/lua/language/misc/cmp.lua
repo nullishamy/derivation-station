@@ -84,10 +84,10 @@ return {
         end, { 'i', 's' }),
         ['<ESC>'] = cmp.mapping.close(),
         ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
-        ['<CR>'] = cmp.mapping.confirm({
+        ['<CR>'] = cmp.mapping.confirm {
           behavior = cmp.ConfirmBehavior.Insert,
           select = true,
-        }),
+        },
       },
       sources = {
         { name = 'nvim_lsp' },
@@ -107,7 +107,7 @@ return {
 
     cmp.setup(options)
 
-    vim.diagnostic.config({
+    vim.diagnostic.config {
       virtual_text = false,
       update_in_insert = true,
       severity_sort = true,
@@ -117,7 +117,7 @@ return {
         prefix = '',
         source = true,
       },
-    })
+    }
   end,
   dependencies = {
     { 'hrsh7th/cmp-nvim-lsp' },

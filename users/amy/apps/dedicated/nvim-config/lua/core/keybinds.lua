@@ -92,31 +92,31 @@ end, {
 })
 
 map('n', '<Leader>U', function()
-  return require('debugprint').debugprint({ above = true })
+  return require('debugprint').debugprint { above = true }
 end, {
   expr = true,
 })
 
 map('n', '<Leader>uq', function()
-  return require('debugprint').debugprint({ variable = true })
+  return require('debugprint').debugprint { variable = true }
 end, {
   expr = true,
 })
 
 map('n', '<Leader>uQ', function()
-  return require('debugprint').debugprint({ above = true, variable = true })
+  return require('debugprint').debugprint { above = true, variable = true }
 end, {
   expr = true,
 })
 
 map('n', '<Leader>uo', function()
-  return require('debugprint').debugprint({ motion = true })
+  return require('debugprint').debugprint { motion = true }
 end, {
   expr = true,
 })
 
 map('n', '<Leader>uO', function()
-  return require('debugprint').debugprint({ motion = true, above = true })
+  return require('debugprint').debugprint { motion = true, above = true }
 end, {
   expr = true,
 })
@@ -142,8 +142,8 @@ abbrev('RPEnable', function()
   require('presence'):connect()
 end)
 
-abbrev('Bclear', function ()
-  vim.cmd [[ %bd ]]
+abbrev('Bclear', function()
+  vim.cmd([[ %bd ]])
 end)
 
 vim.cmd([[ command! -nargs=? Run unsilent lua require("nvim-compile").run("<args>") ]])

@@ -7,7 +7,7 @@ return {
       key = 'raku_navigator',
       config = {
         cmd = { 'raku-navigator', '--stdio' },
-        filetypes = { 'raku', 'perl' }
+        filetypes = { 'raku', 'perl' },
       },
     },
   },

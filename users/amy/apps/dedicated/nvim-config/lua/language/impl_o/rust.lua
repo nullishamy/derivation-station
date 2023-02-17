@@ -7,7 +7,7 @@ return {
       config = {
         cmd = { 'rust-analyzer' },
         post_init = function(config)
-          require('rust-tools').setup({
+          require('rust-tools').setup {
             server = {
               autostart = true,
               on_attach = config.on_attach,
@@ -18,7 +18,7 @@ return {
                 auto = false,
               },
             },
-          })
+          }
         end,
       },
     },
@@ -28,6 +28,6 @@ return {
     filetype = 'rust',
     runners = {
       require('formatter.filetypes.rust').rustfmt,
-    }
+    },
   },
 }

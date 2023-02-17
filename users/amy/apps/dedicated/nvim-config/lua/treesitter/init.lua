@@ -1,7 +1,7 @@
 return {
   'nvim-treesitter/nvim-treesitter',
   config = function()
-    require('nvim-treesitter.configs').setup({
+    require('nvim-treesitter.configs').setup {
       highlight = {
         enable = true, -- false will disable the whole extension
       },
@@ -16,7 +16,7 @@ return {
       textobjects = require('treesitter.textobjects'),
       incremental_selection = require('treesitter.incremental_selection'),
       plaground = require('treesitter.playground'),
-    })
+    }
   end,
   build = ':TSUpdate',
   dependencies = {

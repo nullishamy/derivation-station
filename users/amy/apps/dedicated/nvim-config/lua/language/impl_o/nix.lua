@@ -14,8 +14,7 @@ return {
         return {
           exe = 'nixpkgs-fmt',
           stdin = true,
-          args = {
-          },
+          args = {},
         }
       end,
     },

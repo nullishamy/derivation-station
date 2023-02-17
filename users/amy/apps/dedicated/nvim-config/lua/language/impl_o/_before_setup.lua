@@ -1,2 +1,2 @@
 -- Installs the lspconfig setup before lspconfig is loaded
-require('zeppelin').setup({})
+require('zeppelin').setup {}

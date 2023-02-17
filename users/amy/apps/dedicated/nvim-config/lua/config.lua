@@ -1,4 +1,4 @@
-local home = vim.fn.expand("$HOME") .. "/code/"
+local home = vim.fn.expand('$HOME') .. '/code/'
 
 return {
   wakatime = {
@@ -20,7 +20,7 @@ return {
   },
   discord = {
     blacklist = {
-      [vim.fn.resolve(home .. "private")] = "shhh, private business!",
-    }
+      [vim.fn.resolve(home .. 'private')] = 'shhh, private business!',
+    },
   },
 }
