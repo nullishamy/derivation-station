@@ -42,7 +42,7 @@
     mcfly
     fd
     duf
-    exa
+    lsd
     bat
     jq
     tldr

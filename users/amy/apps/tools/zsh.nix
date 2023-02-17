@@ -62,7 +62,7 @@
       grep = "rg $@";
       find = "fd $@";
       df = "duf $@";
-      ls = "exa $@";
+      ls = "lsd $@";
       cat = "bat $@";
       dig = "dog $@";
     };
