@@ -1,3 +1,6 @@
 # Any result packages
 result/
 result
+
+# VM files
+*.qcow2

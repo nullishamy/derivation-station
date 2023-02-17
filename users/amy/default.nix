@@ -20,6 +20,20 @@
     shell = pkgs.zsh;
   };
 
+  # VM user
+  users.users.nixosvmtest.isSystemUser = true ;
+  users.users.nixosvmtest.initialPassword = "test";
+  users.users.nixosvmtest.group = "nixosvmtest";
+  users.groups.nixosvmtest = {};
+
+  # VM settings
+  virtualisation.vmVariant = {
+    virtualisation = {
+      memorySize =  8064;
+      cores = 8;         
+    };
+  };
+
   # CRON jobs
   services.cron = {
     enable = false;
