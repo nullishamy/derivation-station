@@ -47,7 +47,6 @@ require('lazy').setup({
 
   -- Initialise modules
   module('theming/colours'),
-  module('core/mason'),
 
   -- Core features
   module('core/statusline'),

@@ -20,7 +20,6 @@ return {
         telescope = true,
         gitsigns = true,
         cmp = true,
-        mason = true,
         leap = true,
       },
       custom_highlights = {

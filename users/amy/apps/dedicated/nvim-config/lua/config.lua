@@ -23,27 +23,4 @@ return {
       [vim.fn.resolve(home .. "private")] = "shhh, private business!",
     }
   },
-  mason = {
-    packages = {
-      -- Packages to be installed automatically by mason
-
-      -- Format
-      -- None
-
-      -- Lint
-      'gitlint',
-
-      -- LSP
-      -- 'lua-language-server',
-      'typescript-language-server',
-      -- 'gopls',
-      'bash-language-server',
-      'omnisharp',
-      'rnix-lsp',
-      'json-lsp'
-
-      -- DAP
-      -- None
-    },
-  },
 }
