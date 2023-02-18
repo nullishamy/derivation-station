@@ -121,6 +121,17 @@ end, {
   expr = true,
 })
 
+-- nvim-compile integration
+map('n', '<Leader>pr', function()
+  require('nvim-compile').run()
+end)
+
+map('n', '<Leader>pv', function()
+  require('nvim-compile').view()
+end)
+
+vim.cmd([[ command! -nargs=? Compile unsilent lua require("nvim-compile").run("<args>") ]])
+
 -- Abbreviations
 abbrev('OrganiseImports', function()
   require('language.util').organize_imports()
@@ -146,5 +157,4 @@ abbrev('Bclear', function()
   vim.cmd([[ %bd ]])
 end)
 
-vim.cmd([[ command! -nargs=? Run unsilent lua require("nvim-compile").run("<args>") ]])
 vim.cmd([[ command! ViewCommands unsilent lua require("nvim-compile").view() ]])
