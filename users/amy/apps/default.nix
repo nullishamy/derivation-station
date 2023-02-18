@@ -52,6 +52,7 @@
     tldr
     dogdns
     gitoxide
+    just
 
     jetbrains.idea-community
   ];

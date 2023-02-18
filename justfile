@@ -42,3 +42,9 @@ format:
     #! nix-shell -i bash -p alejandra stylua
     alejandra -q .
     stylua .
+
+# Secrets
+
+
+edit-secrets: 
+    sops secrets.yaml

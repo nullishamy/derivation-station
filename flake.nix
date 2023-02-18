@@ -8,6 +8,8 @@
 
     pre-commit-hooks.url = "github:cachix/pre-commit-hooks.nix";
     flake-utils.url = "github:numtide/flake-utils";
+
+    sops.url = "github:Mic92/sops-nix";
   };
 
   outputs = {
@@ -16,11 +18,13 @@
     home-manager,
     pre-commit-hooks,
     flake-utils,
+    sops,
     ...
-  } @ inputs: let
+  }: let
     overlays = [
     ];
-  in {
+  in
+    {
       nixosConfigurations.nixon = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
@@ -41,6 +45,7 @@
               backupFileExtension = "backup";
               extraSpecialArgs = {
                 flakePath = "/home/amy/nixos";
+                sops = sops.homeManagerModules.sops;
               };
             };
           }

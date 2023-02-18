@@ -1,0 +1,7 @@
+keys:
+  - &amy 0014C58BECC51E05AA299EE1210827FF59D814B4
+creation_rules:
+  - key_groups:
+      - pgp:
+          - *amy
+
