@@ -3,6 +3,7 @@
   config,
   lib,
   pkgs,
+  flakePath,
   ...
 }: {
   programs.zsh = {
@@ -47,9 +48,9 @@
       nv = "neovide";
       lg = "lazygit";
 
-      nix-clean = "sudo nix-collect-garbage -d && sudo nix-store --optimise";
-      nix-switch = "sudo nixos-rebuild switch --flake /home/amy/nixos#nixon $@";
-      nix-update = "nix-switch --upgrade";
+      nix-clean = "cd ${flakePath} && just clean";
+      nix-switch = "cd ${flakePath} && just switch";
+      nix-update = "cd ${flakePath} && just upgrade";
 
       # ;true swallows any additional args, instead of echoing them out with our echo
       nix-env = "echo 'do not the nix-env. https://stop-using-nix-env.privatevoid.net'; true";

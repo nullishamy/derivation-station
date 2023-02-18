@@ -36,6 +36,14 @@ switch: (_build-system "switch")
 # Build a VM out of the configuration
 vm: (_build-system "build-vm")
 
+# Clean up garbage from the nix store
+clean:
+    sudo nix-collect-garbage -d && sudo nix-store --optimise
+
+# Upgrade the system
+upgrade:
+    sudo nixos-rebuild switch --upgrade
+
 # Format the configuration
 format:
     #! /usr/bin/env nix-shell
@@ -43,8 +51,6 @@ format:
     alejandra -q .
     stylua .
 
-# Secrets
-
-
-edit-secrets: 
+# Edit the sops secrets stored in the config
+secrets: 
     sops secrets.yaml
