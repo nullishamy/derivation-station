@@ -6,9 +6,9 @@ local fonts = {
       family = 'Berkeley Mono',
       stretch = 'Normal',
       weight = 'Medium',
-      cell_width = 0.8,
     },
-    size = 11.8,
+    size = 12,
+    cell_width = 0.9,
   },
   fantasque = {
     font = wez.font {
@@ -24,17 +24,18 @@ local fonts = {
       stretch = 'Normal',
       weight = 'Medium',
     },
-    size = 12.0,
+    size = 13.0,
   },
 }
 
-local selected_font = 'berkeley'
+local selected_font = 'fantasque'
 
-return function(cfg)
+return function(cfg, values)
   cfg.font = fonts[selected_font].font
   cfg.font_size = fonts[selected_font].size
+  cfg.cell_width = fonts[selected_font].cell_width or 1
 
-  if cfg.italic_enable then
+  if values.italic_enable then
     cfg.font_rules = {
       -- Disable italics everywhere
       -- Use regular bold instead of italic bold
