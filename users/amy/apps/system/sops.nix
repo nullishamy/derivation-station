@@ -1,6 +1,6 @@
 {config, ...}: {
   sops = {
-    gnupg.home = "${config.home.homeDirectory}/.gnupg";
+    gnupg.home = config.programs.gpg.homedir;
     defaultSopsFile = ../../../../secrets.yaml;
     secrets = {
       "ssh-private-key" = {
