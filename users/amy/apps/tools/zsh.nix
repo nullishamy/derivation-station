@@ -10,6 +10,10 @@
     enable = true;
     enableCompletion = true;
 
+    # Intentionally doesnt use the full path
+    dotDir = ".config/zsh";
+    history.path = "${config.xdg.dataHome}/zsh/zsh_history";
+
     # OMZ Plugins
     plugins = [
       {
@@ -61,6 +65,7 @@
       wallpaper-switch = "bash ${../../wallpapers}/sh/random-switch.sh";
 
       mkcd = "mkdir \"$1\" && cd \"$1\"";
+      wget = "wget --hsts-file=\"$XDG_DATA_HOME/wget-hsts\"";
 
       # Modern unix
       grep = "rg $@";
@@ -90,6 +95,8 @@
       # Little helper because doing the spawning in ZSH causes many issues
       # also we use "bash-isms" in the script
       function shell { bash ~/shells/spawn-shell.sh $@; }
+
+      mkdir -p "$(dirname "$HISTFILE")"
 
       eval "$(mcfly init zsh)"
     '';

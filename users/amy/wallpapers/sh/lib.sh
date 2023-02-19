@@ -16,7 +16,7 @@ function switchWallpaper() {
 
     echo "Switching to $key.png with mode $mode"
 
-    nix-shell -p feh --run "feh --bg-$mode $script_dir/../assets/$key.png"
+    nix-shell -p feh --run "feh --bg-$mode $script_dir/../assets/$key.png --no-fehbg"
 
     echo "Copying $key.png to ~/.background-image"
 

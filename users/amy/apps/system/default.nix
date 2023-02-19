@@ -1,10 +1,5 @@
-{
-  config,
-  sops,
-  ...
-}: {
+{config, ...}: {
   imports = [
-    sops
     ./xdg.nix
     ./sops.nix
   ];

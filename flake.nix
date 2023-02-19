@@ -43,9 +43,11 @@
               useGlobalPkgs = true;
               useUserPackages = true;
               backupFileExtension = "backup";
+              sharedModules = [
+                sops.homeManagerModules.sops
+              ];
               extraSpecialArgs = {
                 flakePath = "/home/amy/nixos";
-                sops = sops.homeManagerModules.sops;
               };
             };
           }
