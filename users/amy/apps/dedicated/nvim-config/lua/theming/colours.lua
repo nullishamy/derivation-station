@@ -36,12 +36,5 @@ return {
     }
 
     vim.cmd([[ colorscheme catppuccin ]])
-
-    -- HACK: For some reason catppuccin doesnt set this, even though i asked it to?
-    -- HACK: This also use catppuccin internals which is not ideal, lol
-    local term_colurs = require('catppuccin.lib.mapper').apply('mocha').terminal
-    for key, value in pairs(term_colurs) do
-      vim.g[key] = value
-    end
   end,
 }
