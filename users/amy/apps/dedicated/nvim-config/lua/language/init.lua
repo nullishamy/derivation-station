@@ -7,9 +7,7 @@ return {
     local lsp_config = require('lspconfig')
     local format_config = {}
 
-    local capabilities = vim.lsp.protocol.make_client_capabilities()
-    capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
-
+    local capabilities = require('language.misc.capabilities')
     local languages = require('language.impl._collect')
 
     for _, module in pairs(languages) do
@@ -19,8 +17,8 @@ return {
         local servers, formatters = module.servers, module.formatters
 
         for _, server in pairs(servers) do
-          if server.pre then
-            server.pre()
+          if server.before then
+            server.before(module)
           end
 
           if server.configure_with == 'lspconfig' then
@@ -36,8 +34,8 @@ return {
             server.setup(module)
           end
 
-          if server.post then
-            server.post()
+          if server.after then
+            server.after(module)
           end
         end
 

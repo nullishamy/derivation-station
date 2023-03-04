@@ -5,7 +5,7 @@ local __server = {
     return {
       type = 'server',
       configure_with = 'lspconfig',
-      pre = tbl.pre or util.noop,
+      before = tbl.before or util.noop,
       overrides = tbl.config or util.etable,
       declared_config = tbl,
       after = tbl.after or util.noop,

@@ -10,7 +10,7 @@ local function language(config)
           vim.validate {
             type = { item.type, 'string' },
             configure_with = { item.configure_with, 'string' },
-            pre = { item.pre, 'function' },
+            before = { item.before, 'function' },
             overrides = { item.overrides, 'table' },
             declared_config = { item.declared_config, 'table' },
             after = { item.after, 'function' },
