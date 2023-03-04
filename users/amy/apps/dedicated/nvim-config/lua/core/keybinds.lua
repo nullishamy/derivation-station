@@ -54,7 +54,12 @@ map('n', '<Leader>ff', '<cmd>Telescope smart_open path_display={"truncate"}<cr>'
 map('n', '<Leader>fo', '<cmd>Telescope buffers path_display={"truncate"}<cr>')
 map('n', '<Leader>fh', '<cmd>Telescope help_tags path_display={"truncate"}<cr>')
 map('n', '<Leader>fg', '<cmd>Telescope live_grep path_display={"truncate"}<cr>')
-map('n', '<Leader>g', '<cmd>Neotree focus reveal<cr>')
+local use_neotree = false
+if use_neotree then
+  map('n', '<Leader>g', '<cmd>Neotree focus reveal<cr>')
+else
+  map('n', '<Leader>g', '<cmd>NvimTreeFocus<cr>')
+end
 
 -- Cheatsheet
 map('n', '<Leader>fc', '<cmd>Cheatsheet<cr>')
