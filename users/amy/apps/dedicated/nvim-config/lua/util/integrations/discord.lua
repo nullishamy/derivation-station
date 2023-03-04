@@ -5,14 +5,25 @@ return {
       return self:find('^' .. str) ~= nil
     end
 
-    local conceal = function(activity, info)
+    local in_blacklist = function(string)
       local blacklist = require('config').discord.blacklist
-      local cur_file = vim.fn.expand('%:p')
 
       for k, v in pairs(blacklist) do
-        if cur_file:starts(k) then
-          return v
+        if string:starts(k) then
+          return true, v
         end
+      end
+
+      return false, ''
+    end
+
+    local conceal = function(activity, info)
+      local cur_file = vim.fn.expand('%:p')
+
+      local blacklisted, concealed = in_blacklist(cur_file)
+
+      if blacklisted then
+        return concealed
       end
 
       if info ~= nil then
@@ -29,7 +40,20 @@ return {
       debounce_timeout = 10, -- Number of seconds to debounce events (or calls to `:lua package.loaded.presence:update(<filename>, true)`)
       enable_line_number = false, -- Displays the current line number instead of the current project
       blacklist = {}, -- A list of strings or Lua patterns that disable Rich Presence if the current file name, path, or workspace matches
-      buttons = true, -- Configure Rich Presence button(s), either a boolean to enable/disable, a static table (`{{ label = "<label>", url = "<url>" }, ...}`, or a function(buffer: string, repo_url: string|nil): table)
+      buttons = function(buffer)
+        local blacklisted, _ = in_blacklist(buffer)
+
+        if blacklisted then
+          return nil
+        end
+
+        local git_url_cmd = 'git config --get remote.origin.url'
+
+        -- Trim and coerce empty string value to null
+        local repo_url = vim.trim(vim.fn.system(git_url_cmd))
+
+        return { { label = 'View Repository', url = repo_url } }
+      end, -- Configure Rich Presence button(s), either a boolean to enable/disable, a static table (`{{ label = "<label>", url = "<url>" }, ...}`, or a function(buffer: string, repo_url: string|nil): table)
       file_assets = {}, -- Custom file asset definitions keyed by file names and extensions (see default config at `lua/presence/file_assets.lua` for reference)
 
       -- Rich Presence text options
