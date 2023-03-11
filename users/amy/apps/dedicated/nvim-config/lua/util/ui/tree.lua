@@ -1,4 +1,4 @@
-local use_neo_tree = false
+local use_neo_tree = true
 
 if use_neo_tree then
   return {

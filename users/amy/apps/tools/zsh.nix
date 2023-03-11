@@ -101,4 +101,9 @@
       eval "$(mcfly init zsh)"
     '';
   };
+
+  # Support command-not-found in zsh
+  programs.nix-index = {
+    enable = true;
+  };
 }

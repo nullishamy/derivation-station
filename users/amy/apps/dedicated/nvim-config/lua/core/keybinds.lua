@@ -56,7 +56,7 @@ map('n', '<Leader>fh', '<cmd>Telescope help_tags path_display={"truncate"}<cr>')
 map('n', '<Leader>fg', '<cmd>Telescope live_grep path_display={"truncate"}<cr>')
 map('n', '<Leader>fr', '<cmd>Telescope resume<cr>')
 
-local use_neotree = false
+local use_neotree = true
 if use_neotree then
   map('n', '<Leader>g', '<cmd>Neotree focus reveal<cr>')
 else
