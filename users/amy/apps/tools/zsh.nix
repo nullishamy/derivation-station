@@ -6,6 +6,54 @@
   flakePath,
   ...
 }: {
+  programs = {
+    bat.enable = true;
+
+    btop = {
+      enable = true;
+      settings = {
+        theme_background = false;
+        vim_keys = true;
+      };
+    };
+
+    direnv.enable = true;
+    direnv.nix-direnv.enable = true;
+
+    fzf.enable = true;
+
+    lsd = {
+      enable = true;
+      enableAliases = true;
+    };
+
+    mcfly = {
+      enable = true;
+      fuzzySearchFactor = 3;
+    };
+
+    # Support command-not-found in zsh
+    nix-index.enable = true;
+
+    starship = {
+      enable = true;
+    };
+
+    tealdeer = {
+      enable = true;
+      settings.updates.auto_update = true;
+    };
+  };
+
+  xdg.configFile = let
+    symlink = fileName: {recursive ? false}: {
+      source = config.lib.file.mkOutOfStoreSymlink "${flakePath}/${fileName}";
+      inherit recursive;
+    };
+  in {
+    "starship.toml" = symlink "users/amy/apps//tools/starship.toml" {};
+  };
+
   programs.zsh = {
     enable = true;
     enableCompletion = true;
@@ -71,7 +119,6 @@
       grep = "rg $@";
       find = "fd $@";
       df = "duf $@";
-      ls = "lsd $@";
       cat = "bat $@";
       dig = "dog $@";
     };
@@ -100,10 +147,5 @@
 
       eval "$(mcfly init zsh)"
     '';
-  };
-
-  # Support command-not-found in zsh
-  programs.nix-index = {
-    enable = true;
   };
 }

@@ -4,6 +4,5 @@
     ./git.nix
     ./lazygit.nix
     ./zsh.nix
-    ./direnv.nix
   ];
 }

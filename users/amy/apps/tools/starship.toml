@@ -1,0 +1,378 @@
+"$schema" = "https://starship.rs/config-schema.json"
+
+format = """
+[ ](bg:red)\
+$directory\
+$username\
+$hostname\
+$container\
+$sudo\
+$shlvl\
+[](fg:red bg:peach)\
+$vcsh\
+$git_branch\
+$git_commit\
+$git_state\
+$git_status\
+$git_metrics\
+[](fg:peach bg:yellow)\
+$cmd_duration\
+$status\
+[](fg:yellow bg:green)\
+$deno\
+$golang\
+$helm\
+$lua\
+$nodejs\
+$php\
+$python\
+$rust\
+[](fg:green bg:blue)\
+$package\
+$nix_shell\
+[](fg:blue bg:mauve)\
+$azure\
+$docker_context\
+$kubernetes\
+[](fg:mauve)\
+$line_break\
+$shell\
+$character"""
+
+add_newline = true
+palette = "catppuccin_mocha"
+
+[directory]
+format = "[$path]($style)[$read_only]($read_only_style)"
+style = 'bg:red fg:#000000'
+read_only = ''
+use_os_path_sep = false
+
+[username]
+format = '[ $user]($style)'
+style_root = 'bg:red fg:#000000'
+style_user = 'bg:red fg:#000000'
+
+[hostname]
+format = '[$ssh_symbol$hostname ]($style)'
+style = 'bg:red fg:#000000'
+ssh_symbol = '@'
+
+[container]
+format = '[$hostname]($style)'
+style = 'bg:red fg:#000000'
+
+[sudo]
+disabled = false
+format = '[$symbol]($style)'
+style = 'bg:red fg:#000000'
+symbol = ' '
+
+[shlvl]
+style = 'bg:red fg:#000000'
+
+### VCS
+[git_branch]
+symbol = ' '
+format = '[$symbol$branch]($style)'
+style = 'bg:peach fg:#000000'
+
+[hg_branch]
+format = '[$symbol$branch]($style)'
+style = 'bg:peach fg:#000000'
+
+[git_commit]
+format = '[\($hash$tag\)]($style)'
+tag_disabled = false
+tag_symbol = '  '
+style = 'bg:peach fg:#000000'
+
+[git_state]
+format = '[\($state( $progress_current/$progress_total)\)]($style)'
+style = 'bg:peach fg:#000000'
+
+[git_metrics]
+format = '([ +$added]($added_style)[/](bg:peach fg:#000000)[-$deleted]($deleted_style))'
+added_style = 'bg:peach fg:#000000'
+deleted_style = 'bg:peach fg:#000000'
+disabled = false
+
+[git_status]
+format = '([ $all_status$ahead_behind]($style))'
+ahead = "↑"
+behind = "↓"
+conflicted = "!"
+deleted = ""
+diverged = "↕"
+modified = "*"
+renamed = ""
+untracked = ""
+staged = ""
+stashed = "ﮅ "
+style = 'bg:peach fg:#000000'
+
+[cmd_duration]
+format = '[ﮫ $duration]($style)'
+style = 'bg:yellow fg:#000000'
+show_milliseconds = true
+min_time = 0
+
+[status]
+style = 'bg:yellow fg:#000000'
+
+### LANGUAGE VERSION INDICATORS
+[c]
+format = '[ $symbol($version(-$name)) ]($style)'
+style = 'bg:green fg:#000000'
+
+[cmake]
+format = '[ $symbol($version) ]($style)'
+style = 'bg:green fg:#000000'
+
+[cobol]
+format = '[ $symbol($version) ]($style)'
+style = 'bg:green fg:#000000'
+
+[conda]
+format = '[ $symbol$environment ]($style)'
+style = 'bg:green fg:#000000'
+
+[crystal]
+format = '[ $symbol($version) ]($style)'
+style = 'bg:green fg:#000000'
+
+[dart]
+format = '[ $symbol($version) ]($style)'
+style = 'bg:green fg:#000000'
+
+[deno]
+format = '[ $symbol($version) ]($style)'
+style = 'bg:green fg:#000000'
+
+[dotnet]
+format = '[ $symbol($version)( $tfm) ]($style)'
+style = 'bg:green fg:#000000'
+
+[elixir]
+format = '[ $symbol($version \(OTP $otp_version\)) ]($style)'
+style = 'bg:green fg:#000000'
+
+[elm]
+format = '[ $symbol($version) ]($style)'
+style = 'bg:green fg:#000000'
+
+[erlang]
+format = '[ $symbol($version) ]($style)'
+style = 'bg:green fg:#000000'
+
+[golang]
+symbol = ' '
+format = '[ $symbol($version) ]($style)'
+style = 'bg:green fg:#000000'
+
+[haskell]
+symbol = ' '
+format = '[ $symbol($version) ]($style)'
+style = 'bg:green fg:#000000'
+
+[helm]
+symbol = 'ﴱ '
+format = '[ $symbol($version) ]($style)'
+style = 'bg:green fg:#000000'
+
+[java]
+symbol = ' '
+format = '[ $symbol($version) ]($style)'
+style = 'bg:green fg:#000000'
+
+[julia]
+format = '[ $symbol($version) ]($style)'
+style = 'bg:green fg:#000000'
+
+[kotlin]
+format = '[ $symbol($version) ]($style)'
+style = 'bg:green fg:#000000'
+
+[lua]
+symbol = ' '
+format = '[ $symbol($version) ]($style)'
+style = 'bg:green fg:#000000'
+
+[nim]
+format = '[ $symbol($version) ]($style)'
+style = 'bg:green fg:#000000'
+
+[nix_shell]
+format = '[ $symbol$state( \($name\)) ]($style)'
+symbol = ' '
+style = 'bg:blue fg:#000000'
+
+[nodejs]
+format = '[ $symbol($version) ]($style)'
+style = 'bg:green fg:#000000'
+
+[ocaml]
+format = '[ $symbol($version)(\($switch_indicator$switch_name\)) ]($style)'
+style = 'bg:green fg:#000000'
+
+[perl]
+format = '[ $symbol($version) ]($style)'
+style = 'bg:green fg:#000000'
+
+[php]
+symbol = ' '
+format = '[ $symbol($version) ]($style)'
+style = 'bg:green fg:#000000'
+
+[pulumi]
+format = '[ $symbol$stack ]($style)'
+style = 'bg:green fg:#000000'
+
+[purescript]
+format = '[ $symbol($version) ]($style)'
+style = 'bg:green fg:#000000'
+
+[python]
+symbol = ' '
+format = '[ ${symbol}${pyenv_prefix}(${version})(\($virtualenv\)) ]($style)'
+style = 'bg:green fg:#000000'
+
+[red]
+format = '[ $symbol($version) ]($style)'
+style = 'bg:green fg:#000000'
+
+[ruby]
+symbol = ' '
+format = '[ $symbol($version) ]($style)'
+style = 'bg:green fg:#000000'
+
+[rust]
+symbol = ' '
+format = '[ $symbol($version) ]($style)'
+style = 'bg:green fg:#000000'
+
+[scala]
+format = '[ $symbol($version) ]($style)'
+style = 'bg:green fg:#000000'
+
+[spack]
+format = '[ $symbol$environment ]($style)'
+style = 'bg:green fg:#000000'
+
+[swift]
+symbol = ' '
+format = '[ $symbol($version) ]($style)'
+style = 'bg:green fg:#000000'
+
+[vagrant]
+format = '[ $symbol($version) ]($style)'
+style = 'bg:green fg:#000000'
+
+[vlang]
+format = '[ $symbol($version) ]($style)'
+style = 'bg:green fg:#000000'
+
+[zig]
+format = '[ $symbol($version) ]($style)'
+style = 'bg:green fg:#000000'
+
+### PACKAGE INDICATORS
+
+[package]
+symbol = ' '
+format = '[ $symbol$version ]($style)'
+style = 'bg:blue fg:#000000'
+
+### CONTEXT INDICATORS
+[aws]
+symbol = ' '
+format = '[ $symbol($profile)(\($region\))(\[$duration\]) ]($style)'
+style = 'bg:mauve fg:#000000'
+
+[docker_context]
+symbol = ' '
+format = '[ $symbol$context ]($style)'
+style = 'bg:mauve fg:#000000'
+
+[gcloud]
+symbol = ' '
+format = '[ $symbol$account(@$domain)(\($region\)) ]($style)'
+style = 'bg:mauve fg:#000000'
+
+[kubernetes]
+symbol = ' '
+format = '[ $symbol($cluster/$namespace) ]($style)'
+disabled = false
+style = 'bg:mauve fg:#000000'
+
+[openstack]
+symbol = ' '
+format = '[ $symbol$cloud(\($project\)) ]($style)'
+style = 'bg:mauve fg:#000000'
+
+[terraform]
+format = '[ $symbol$workspace ]($style)'
+style = 'bg:mauve fg:#000000'
+
+### STATUS INDICATORS
+
+[character]
+success_symbol = '[ﬦ](bold cyan)'
+error_symbol = '[ﬦ](bold red)'
+vimcmd_symbol = '[ﬦ](bold cyan)'
+
+[palettes.catppuccin_latte]
+rosewater = "#dc8a78"
+flamingo = "#dd7878"
+pink = "#ea76cb"
+mauve = "#8839ef"
+red = "#d20f39"
+maroon = "#e64553"
+peach = "#fe640b"
+yellow = "#df8e1d"
+green = "#40a02b"
+teal = "#179299"
+sky = "#04a5e5"
+sapphire = "#209fb5"
+blue = "#1e66f5"
+lavender = "#7287fd"
+text = "#4c4f69"
+subtext1 = "#5c5f77"
+subtext0 = "#6c6f85"
+overlay2 = "#7c7f93"
+overlay1 = "#8c8fa1"
+overlay0 = "#9ca0b0"
+surface2 = "#acb0be"
+surface1 = "#bcc0cc"
+surface0 = "#ccd0da"
+base = "#eff1f5"
+mantle = "#e6e9ef"
+crust = "#dce0e8"
+
+[palettes.catppuccin_mocha]
+rosewater = "#f5e0dc"
+flamingo = "#f2cdcd"
+pink = "#f5c2e7"
+mauve = "#cba6f7"
+red = "#f38ba8"
+maroon = "#eba0ac"
+peach = "#fab387"
+yellow = "#f9e2af"
+green = "#a6e3a1"
+teal = "#94e2d5"
+sky = "#89dceb"
+sapphire = "#74c7ec"
+blue = "#89b4fa"
+lavender = "#b4befe"
+text = "#cdd6f4"
+subtext1 = "#bac2de"
+subtext0 = "#a6adc8"
+overlay2 = "#9399b2"
+overlay1 = "#7f849c"
+overlay0 = "#6c7086"
+surface2 = "#585b70"
+surface1 = "#45475a"
+surface0 = "#313244"
+base = "#1e1e2e"
+mantle = "#181825"
+crust = "#11111b"
