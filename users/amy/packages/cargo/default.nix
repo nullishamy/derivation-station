@@ -20,6 +20,12 @@ in {
       description = "The package to use for cargo.";
     };
 
+    file = mkOption {
+      type = types.str;
+      default = ".cargo/config.toml";
+      description = "The file path, relative to the home directory, to use for the config file.";
+    };
+
     settings = mkOption {
       inherit (tomlFormat) type;
       default = {};
@@ -53,8 +59,7 @@ in {
         };
       '';
       description = ''
-        Configuration written to
-        <filename>$HOME/.cargo/config.toml</filename>.
+        Configuration written to the file
         </para><para>
         See <link xlink:href="https://doc.rust-lang.org/cargo/reference/config.html" />
         for the full list of options.
@@ -63,7 +68,7 @@ in {
   };
 
   config = mkIf cfg.enable {
-    home.file.".cargo/config.toml" = mkIf (cfg.settings != {}) {
+    home.file."${cfg.file}" = mkIf (cfg.settings != {}) {
       source = tomlFormat.generate "cargo-config" cfg.settings;
     };
   };
