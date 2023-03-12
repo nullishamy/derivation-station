@@ -41,7 +41,33 @@
 
     tealdeer = {
       enable = true;
-      settings.updates.auto_update = true;
+      settings = {
+        updates = {
+          auto_update = true;
+        };
+        display = {
+          compact = false;
+        };
+        style = {
+          command_name = {
+            foreground = "red";
+            bold = false;
+          };
+          example_text = {
+            foreground = "green";
+            bold = false;
+          };
+          example_code = {
+            foreground = "blue";
+            bold = false;
+          };
+          example_variable = {
+            foreground = "blue";
+            underline = false;
+            bold = false;
+          };
+        };
+      };
     };
   };
 
