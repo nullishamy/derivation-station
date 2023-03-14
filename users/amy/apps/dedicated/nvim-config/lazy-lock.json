@@ -4,6 +4,7 @@
   "LuaSnip": { "branch": "master", "commit": "58fbfc627a93281a77f7d161d4ff702e639677b1" },
   "autosave.nvim": { "branch": "dev", "commit": "bf824e7696fb15c5e853927be16abac1c4fb745a" },
   "bufdelete.nvim": { "branch": "master", "commit": "8933abc09df6c381d47dc271b1ee5d266541448e" },
+  "caskey.nvim": { "branch": "main", "commit": "86fa340f3deb8d67fe596611e717a2859c322964" },
   "catppuccin": { "branch": "main", "commit": "60f8f40df0db92b5715642b3ea7074380c4b7995" },
   "ccc.nvim": { "branch": "main", "commit": "be0a8122fd77efb7b6a0d672bab10417e68fab8b" },
   "cheatsheet.nvim": { "branch": "master", "commit": "9716f9aaa94dd1fd6ce59b5aae0e5f25e2a463ef" },

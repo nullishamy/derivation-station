@@ -13,155 +13,152 @@ local function abbrev(from, to, opts)
   vim.api.nvim_create_user_command(from, to, options)
 end
 
-local function map(mode, lhs, rhs, opts)
-  local options = { noremap = true }
-  if opts then
-    options = vim.tbl_extend('force', options, opts)
-  end
+return {
+  'Nexmean/caskey.nvim',
+  config = function()
+    local ck = require('caskey')
 
-  vim.keymap.set(mode, lhs, rhs, options)
-end
+    --Remap space as leader key
+    vim.g.mapleader = ' '
+    vim.g.maplocalleader = ' '
 
--- Noop q: as it's an annoying typo and the feature isnt used
-map('', 'q:', '<Nop>')
+    ck.setup {
+      mode = { 'n', 'v' },
 
---Remap space as leader key
-map('', '<Space>', '<Nop>', { silent = true })
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
+      -- Noop q: as it's an annoying typo and the feature isnt used
+      [':q'] = { act = '<Nop>' },
+      ['<Space>'] = { act = '<Nop>' },
 
--- Quick exit from insert mode
-map('i', 'jk', '<Esc>')
+      -- Telescope & tree
+      ['<leader>f'] = {
+        ['f'] = { act = ck.cmd('Telescope smart_open path_display={"truncate"}') },
+        ['o'] = { act = ck.cmd('Telescope buffers path_display={"truncate"}') },
+        ['h'] = { act = ck.cmd('Telescope help_tags path_display={"truncate"}') },
+        ['g'] = { act = ck.cmd('Telescope live_grep path_display={"truncate"}') },
+        ['r'] = { act = ck.cmd('Telescope resume') },
 
--- Disable arrow keys to force hjkl usage
-map('n', '<Up>', '<Nop>')
-map('n', '<Down>', '<Nop>')
-map('n', '<Left>', '<Nop>')
-map('n', '<Right>', '<Nop>')
+        -- Cheatsheet
+        ['c'] = { act = ck.cmd('Cheatsheet') },
+      },
 
--- Buffer controls
-map('', '<Leader>q', '<cmd>Bdelete<cr>')
+      -- Quick exit from insert mode
+      ['jk'] = {
+        act = '<Esc>',
+        mode = 'i',
+      },
 
--- Window controls
-map('n', '<Leader>h', '<cmd>wincmd h<cr>')
-map('n', '<Leader>j', '<cmd>wincmd j<cr>')
-map('n', '<Leader>k', '<cmd>wincmd k<cr>')
-map('n', '<Leader>l', '<cmd>wincmd l<cr>')
-map('n', '<C-W>m', '<cmd>WinShift<cr>')
+      -- Disable arrow keys to force hjkl usage
+      ['<Up>'] = { act = '<Nop>' },
+      ['<Down>'] = { act = '<Nop>' },
+      ['<Left>'] = { act = '<Nop>' },
+      ['<Right>'] = { act = '<Nop>' },
 
--- Telescope & tree
-map('n', '<Leader>ff', '<cmd>Telescope smart_open path_display={"truncate"}<cr>')
-map('n', '<Leader>fo', '<cmd>Telescope buffers path_display={"truncate"}<cr>')
-map('n', '<Leader>fh', '<cmd>Telescope help_tags path_display={"truncate"}<cr>')
-map('n', '<Leader>fg', '<cmd>Telescope live_grep path_display={"truncate"}<cr>')
-map('n', '<Leader>fr', '<cmd>Telescope resume<cr>')
+      -- Buffer controls
+      ['<Leader>q'] = { act = ck.cmd('Bdelete') },
 
-local use_neotree = true
-if use_neotree then
-  map('n', '<Leader>g', '<cmd>Neotree focus reveal<cr>')
-else
-  map('n', '<Leader>g', '<cmd>NvimTreeFocus<cr>')
-end
+      -- Window controls
+      ['<leader>h'] = { act = ck.cmd('wincmd h') },
+      ['<leader>j'] = { act = ck.cmd('wincmd j') },
+      ['<leader>k'] = { act = ck.cmd('wincmd k') },
+      ['<leader>l'] = { act = ck.cmd('wincmd l') },
+      ['<C-W>m'] = { act = ck.cmd('WinShift') },
 
--- Cheatsheet
-map('n', '<Leader>fc', '<cmd>Cheatsheet<cr>')
+      -- Jump to start / end
+      ['H'] = { act = '^' },
+      ['L'] = { act = 'g_' }, -- g_ jumps to the last non blank character, avoiding newline,
 
--- Jump to start / end
-map('', 'H', '^')
-map('', 'L', 'g_') -- g_ jumps to the last non blank character, avoiding newlines
+      -- Hard close vim with ctrl q + q
+      ['<C-q>q'] = { act = ck.cmd('qa!') },
 
--- Hard close vim with ctrl q + q
-map('n', '<C-q>q', '<cmd>qa!<cr>')
+      -- Sessions
+      ['<leader>s'] = {
+        ['l'] = { act = ck.cmd('SessionManager load_session') },
+        ['d'] = { act = ck.cmd('SessionManager delete_session') },
+        ['s'] = { act = ck.cmd('SessionManager save_current_session') },
+      },
 
--- Terminal
-map('n', '<C-t>', '<cmd>lua require("FTerm").toggle()<cr>')
-map('t', '<C-t>', '<C-\\><C-n><cmd>lua require("FTerm").toggle()<cr>')
-vim.cmd([[
-  tnoremap <expr> <C-R> '<C-\><C-N>"'.nr2char(getchar()).'pi'
-]])
-map('t', '<S-Esc>', '<C-\\><C-n>')
+      -- Moving lines
+      -- Moving up requires two lines for some reason
+      ['<C-j>'] = { act = ck.cmd('m +1') },
+      ['<C-k>'] = { act = ck.cmd('m -2') },
 
--- Sessions
-map('n', '<Leader>sl', '<cmd>SessionManager load_session<cr>')
-map('n', '<Leader>sd', '<cmd>SessionManager delete_session<cr>')
-map('n', '<Leader>ss', '<cmd>SessionManager save_current_session<cr>')
+      -- Tree
+      ['<Leader>g'] = { act = ck.cmd('Neotree focus reveal') },
 
--- Moving lines
--- Moving up requires two lines for some reason
-map('n', '<C-j>', '<cmd>m +1<cr>')
-map('n', '<C-k>', '<cmd>m -2<cr>')
+      -- Debugprint
+      ['<leader>u'] = {
+        ['u'] = {
+          act = function()
+            return require('debugprint').debugprint()
+          end,
+        },
+        ['q'] = {
+          act = function()
+            return require('debugprint').debugprint { variable = true }
+          end,
+        },
+        ['Q'] = {
+          act = function()
+            return require('debugprint').debugprint { above = true, variable = true }
+          end,
+        },
+        ['o'] = {
+          act = function()
+            return require('debugprint').debugprint { motion = true }
+          end,
+        },
+        ['O'] = {
+          act = function()
+            return require('debugprint').debugprint { above = true, motion = true }
+          end,
+        },
+      },
+      ['<leader>U'] = {
+        act = function()
+          return require('debugprint').debugprint { above = true }
+        end,
+      },
 
--- Debugprint
-map('n', '<Leader>uu', function()
-  return require('debugprint').debugprint()
-end, {
-  expr = true,
-})
+      -- nvim-compile integration
+      ['<leader>p'] = {
+        ['r'] = {
+          act = function()
+            require('nvim-compile').run()
+          end,
+        },
+        ['v'] = {
+          act = function()
+            require('nvim-compile').view()
+          end,
+        },
+      },
+    }
 
-map('n', '<Leader>U', function()
-  return require('debugprint').debugprint { above = true }
-end, {
-  expr = true,
-})
+    -- Abbreviations
+    vim.cmd([[ command! -nargs=? Compile unsilent lua require("nvim-compile").run("<args>") ]])
 
-map('n', '<Leader>uq', function()
-  return require('debugprint').debugprint { variable = true }
-end, {
-  expr = true,
-})
+    abbrev('OrganiseImports', function()
+      require('language.util').organize_imports()
+    end)
 
-map('n', '<Leader>uQ', function()
-  return require('debugprint').debugprint { above = true, variable = true }
-end, {
-  expr = true,
-})
+    abbrev('Doc', function()
+      require('neogen').generate()
+    end)
 
-map('n', '<Leader>uo', function()
-  return require('debugprint').debugprint { motion = true }
-end, {
-  expr = true,
-})
+    abbrev('DeleteDebugPrints', function()
+      require('debugprint').deleteprints()
+    end)
 
-map('n', '<Leader>uO', function()
-  return require('debugprint').debugprint { motion = true, above = true }
-end, {
-  expr = true,
-})
+    abbrev('RPDisable', function()
+      require('presence'):cancel()
+    end)
 
--- nvim-compile integration
-map('n', '<Leader>pr', function()
-  require('nvim-compile').run()
-end)
+    abbrev('RPEnable', function()
+      require('presence'):connect()
+    end)
 
-map('n', '<Leader>pv', function()
-  require('nvim-compile').view()
-end)
-
-vim.cmd([[ command! -nargs=? Compile unsilent lua require("nvim-compile").run("<args>") ]])
-
--- Abbreviations
-abbrev('OrganiseImports', function()
-  require('language.util').organize_imports()
-end)
-
-abbrev('Doc', function()
-  require('neogen').generate()
-end)
-
-abbrev('DeleteDebugPrints', function()
-  require('debugprint').deleteprints()
-end)
-
-abbrev('RPDisable', function()
-  require('presence'):cancel()
-end)
-
-abbrev('RPEnable', function()
-  require('presence'):connect()
-end)
-
-abbrev('Bclear', function()
-  vim.cmd([[ %bd ]])
-end)
-
-vim.cmd([[ command! ViewCommands unsilent lua require("nvim-compile").view() ]])
+    abbrev('Bclear', function()
+      vim.cmd([[ %bd ]])
+    end)
+  end,
+}

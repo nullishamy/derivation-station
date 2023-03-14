@@ -24,7 +24,6 @@ vim.g.did_load_filetypes = 1
 -- Core config
 module('core/editor')
 module('core/autocmd')
-module('core/keybinds')
 
 -- Neovide, if it exists
 module('core/neovide')
@@ -44,6 +43,7 @@ require('lazy').setup({
       keys.profile_sort = '<C-g>'
     end,
   },
+  module('core/keybinds'),
 
   module('theming/colours'),
 
