@@ -45,7 +45,6 @@ require('lazy').setup({
     end,
   },
 
-  -- Initialise modules
   module('theming/colours'),
 
   -- Core features
@@ -55,6 +54,7 @@ require('lazy').setup({
   -- Language features and navigation
   module('util/ui/tree'),
   module('language'),
+  module('language/packages'),
 
   -- Snippets must be loaded before cmp
   module('util/integrations/snippets'),
