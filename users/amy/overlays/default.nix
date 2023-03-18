@@ -4,8 +4,8 @@ self: super: {
     src = super.fetchFromGitHub {
       owner = "neovim";
       repo = "neovim";
-      rev = "70fb40a2290d2a555a97d4aab33c813a0413da49";
-      sha256 = "sha256-9W6laIPEeMupyuV/Rjt2bRtm86bV50USzWWLypdV6Jk=";
+      rev = "204a8b17c8ebab1619cc47a920a06dcc348d75f7";
+      sha256 = "sha256-EZ60Qr4RT2bJwOHLoJq8jYJIGo/MoNmucy2pg7Lhx0A=";
     };
   });
 }
