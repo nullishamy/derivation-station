@@ -51,7 +51,7 @@
                 sops.homeManagerModules.sops
               ];
               extraSpecialArgs = {
-                flakePath = "/home/amy/nixos";
+                flakePath = "/home/${system.currentUser}/nixos";
                 inherit system;
               };
             };

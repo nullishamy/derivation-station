@@ -20,6 +20,7 @@ setup:
     fi
 
     read -p "New username? " username
+    read -p "New password? " password
 
     echo "Copying desktop files.."
     mkdir -p "{{dir}}/machines/desktop_customised"
@@ -33,8 +34,15 @@ setup:
     echo "Done!"
 
 
-    echo "Setting username into config"
-    sed -i 's/currentUser = "\w*"/currentUser = "$username"/g' "{{dir}}/users/$username/config.nix"
+    echo "Setting values into config"
+    sed -i "s/currentUser = \"\w*\"/currentUser = \"${username}\"/g" "{{dir}}/users/$username/config.nix"
+
+    hashedPassword=$(echo "$password" | mkpasswd -m sha-512 --stdin)
+    sed -i "s&hashedPassword = \".*\"&hashedPassword = \"${hashedPassword}\"&g" "{{dir}}/users/$username/default.nix"
+
+    sed -i "s&system = import .*;&system = import ../../users/${username}/config.nix;&g" "{{dir}}/machines/desktop_customised/default.nix"
+    sed -i "s&system = import .*;&system = import ../../users/${username}/config.nix;&g" "{{dir}}/flake.nix"
+    sed -i "s&./machines/desktop&./machines/desktop_customised&g" "{{dir}}/flake.nix"
     echo "Done!"
 
 

@@ -3,15 +3,18 @@
   modulesPath,
   pkgs,
   ...
-}: {
+}: let
+  system = import ../../users/amy/config.nix;
+in {
   imports = [
     ./hardware.nix
 
-    ../../users/amy
+    ../../users/${system.currentUser}
     ../common
 
     ./security.nix
     ./packages.nix
+    {inherit system;}
     ./net.nix
     ./ui.nix
     ./audio.nix
@@ -79,7 +82,7 @@
   console.keyMap = "us";
 
   # Add myself to the vbox group
-  users.extraGroups.vboxusers.members = ["amy"];
+  users.extraGroups.vboxusers.members = ["${system.currentUser}"];
 
   # Enable CUPS to print documents.
   services.printing = {

@@ -15,8 +15,7 @@ in {
   programs.git = {
     enable = true;
 
-    userEmail = "git@amyerskine.me";
-    userName = "nullishamy";
+    inherit (system.git) userEmail userName;
 
     extraConfig = {
       gpg = {

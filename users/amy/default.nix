@@ -2,11 +2,13 @@
   config,
   pkgs,
   ...
-}: {
+}: let
+  system = import ./config.nix;
+in {
   imports = [
   ];
 
-  users.users.amy = {
+  users.users.${system.currentUser} = {
     isNormalUser = true;
     description = "Amy";
     hashedPassword = "$6$EuVxrglUIHa0ojiz$Oy9JF.PIAmsb.5Vz9icDwbpPp0Mw5ct3aOAniJ0n/s7.3ZGNQfiC4izz/Uc6FdgmPg9UWtoqGWo3mX6";
@@ -39,11 +41,11 @@
   services.cron = {
     enable = false;
     systemCronJobs = [
-      "25 20 * * *   amy   . /etc/profile; ${./apps/dedicated/backup/run-backup.py} ${builtins.readFile ./apps/dedicated/backup/args.txt}"
+      "25 20 * * *   ${system.currentUser}   . /etc/profile; ${./apps/dedicated/backup/run-backup.py} ${builtins.readFile ./apps/dedicated/backup/args.txt}"
     ];
   };
 
-  home-manager.users.amy = {
+  home-manager.users.${system.currentUser} = {
     imports = [
       ./packages
       ./environment
@@ -55,8 +57,8 @@
     home = {
       inherit (config.system) stateVersion;
 
-      username = "amy";
-      homeDirectory = "/home/amy";
+      username = system.currentUser;
+      homeDirectory = "/home/${system.currentUser}";
     };
   };
 }
