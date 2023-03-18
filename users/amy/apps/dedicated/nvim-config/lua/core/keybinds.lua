@@ -65,11 +65,11 @@ return {
 
       -- Jump to start / end
       ['H'] = {
-        mode = { 'n', 'i', 'v', 'x', 'o' },
+        mode = { 'n', 'v', 'x', 'o' },
         act = '^',
       },
       ['L'] = {
-        mode = { 'n', 'i', 'v', 'x', 'o' },
+        mode = { 'n', 'v', 'x', 'o' },
         act = 'g_',
       }, -- g_ jumps to the last non blank character, avoiding newline,
 
