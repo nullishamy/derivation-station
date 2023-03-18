@@ -2,9 +2,10 @@
   config,
   pkgs,
   flakePath,
+  system,
   ...
 }: let
-  mkSource = path: config.lib.file.mkOutOfStoreSymlink "${flakePath}/users/amy/apps/dedicated/${path}";
+  mkSource = path: config.lib.file.mkOutOfStoreSymlink "${flakePath}/users/${system.currentUser}/apps/dedicated/${path}";
 in {
   config.home.file."etc/patches/patch-discord.sh" = {source = ./patch-discord.sh;};
 

@@ -45,7 +45,11 @@
 
   home-manager.users.amy = {
     imports = [
-      ./config.nix
+      ./packages
+      ./environment
+      ./apps
+      ./shells
+      ./wallpapers
     ];
 
     home = {

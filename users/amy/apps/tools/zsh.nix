@@ -4,6 +4,7 @@
   lib,
   pkgs,
   flakePath,
+  system,
   ...
 }: {
   programs = {
@@ -77,7 +78,7 @@
       inherit recursive;
     };
   in {
-    "starship.toml" = symlink "users/amy/apps//tools/starship.toml" {};
+    "starship.toml" = symlink "users/${system.currentUser}/apps/tools/starship.toml" {};
   };
 
   programs.zsh = {

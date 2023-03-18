@@ -21,7 +21,11 @@
     sops,
     ...
   }: let
+    system = import ./users/amy/config.nix;
+
     overlays = [
+      import
+      ./users/${system.currentUser}/overlays
     ];
   in
     {
@@ -48,6 +52,7 @@
               ];
               extraSpecialArgs = {
                 flakePath = "/home/amy/nixos";
+                inherit system;
               };
             };
           }

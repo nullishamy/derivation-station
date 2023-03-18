@@ -57,6 +57,7 @@ runCommandNoCC "nvim" {nativeBuildInputs = [makeWrapper];} ''
       nodePackages.bash-language-server
       nodePackages.vscode-json-languageserver-bin
       nodePackages.prettier
+      nodePackages.pyright
     ]
   }
 ''

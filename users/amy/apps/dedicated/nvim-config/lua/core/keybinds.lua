@@ -64,8 +64,14 @@ return {
       ['<C-W>m'] = { act = ck.cmd('WinShift') },
 
       -- Jump to start / end
-      ['H'] = { act = '^' },
-      ['L'] = { act = 'g_' }, -- g_ jumps to the last non blank character, avoiding newline,
+      ['H'] = {
+        mode = { 'n', 'i', 'v', 'x', 'o' },
+        act = '^',
+      },
+      ['L'] = {
+        mode = { 'n', 'i', 'v', 'x', 'o' },
+        act = 'g_',
+      }, -- g_ jumps to the last non blank character, avoiding newline,
 
       -- Hard close vim with ctrl q + q
       ['<C-q>q'] = { act = ck.cmd('qa!') },

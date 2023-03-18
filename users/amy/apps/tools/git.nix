@@ -3,6 +3,7 @@
   config,
   lib,
   pkgs,
+  system,
   ...
 }: let
   shouldUseSSH = true;
@@ -41,7 +42,7 @@ in {
       };
 
       user = {
-        signingKey = "/home/amy/.ssh/github.pub";
+        signingKey = "/home/${system.currentUser}/.ssh/github.pub";
       };
     };
   };

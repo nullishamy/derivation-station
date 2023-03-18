@@ -19,10 +19,30 @@ setup:
         echo "ERROR: Setup has already completed (custom desktop dir exists)" && exit 1
     fi
 
-    echo {{dir}}
+    read -p "New username? " username
+
+    echo "Copying desktop files.."
     mkdir -p "{{dir}}/machines/desktop_customised"
     cp -r "{{dir}}/machines/desktop/"* "{{dir}}/machines/desktop_customised"
+    echo "Done!"
+
+
+    echo "Copying user files.."
+    mkdir -p "{{dir}}/users/$username/"
+    cp -r "{{dir}}/users/amy/"* "{{dir}}/users/$username"
+    echo "Done!"
+
+
+    echo "Setting username into config"
+    sed -i 's/currentUser = "\w*"/currentUser = "$username"/g' "{{dir}}/users/$username/config.nix"
+    echo "Done!"
+
+
+    echo "Copying hardware config.."
     echo "{{hardware_config}}" | base64 -d > {{dir}}/machines/desktop_customised/hardware.nix
+    echo "Done!"
+
+
 
 # Build the configuration and show what would be activated
 test: (_build-system "dry-activate")

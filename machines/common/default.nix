@@ -20,6 +20,4 @@ with pkgs; {
       };
     };
   };
-
-  nixpkgs.overlays = [(import ../../users/amy/overlays)];
 }

@@ -15,6 +15,7 @@
       {id = "mnjggcdmjocbbbhaepdhchncahnbgone";} # SponsorBlock
       {id = "hlepfoohegkhhmjieoechaddaejaokhf";} # Refined GitHub
       {id = "jehmdpemhgfgjblpkilmeoafmkhbckhi";} # ScrollAnywhere
+      {id = "dhdgffkkebhmkfjojejmpbldmpobfkfo";} # TamperMonkey
     ];
   };
 }
