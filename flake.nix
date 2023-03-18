@@ -22,23 +22,11 @@
     ...
   }: let
     system = import ./users/amy/config.nix;
-
-    overlays = [
-      import
-      ./users/${system.currentUser}/overlays
-    ];
   in
     {
       nixosConfigurations.nixon = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
-          ({
-            config,
-            pkgs,
-            ...
-          }: {
-            nixpkgs.overlays = overlays;
-          })
           ./machines/desktop
 
           home-manager.nixosModules.home-manager

@@ -9,16 +9,20 @@ in {
   imports = [
     ./hardware.nix
 
-    ../../users/${system.currentUser}
+    ../../users/amy
     ../common
 
     ./security.nix
-    ./packages.nix
-    {inherit system;}
+    (import ./packages.nix {
+      inherit system;
+      inherit pkgs;
+    })
     ./net.nix
     ./ui.nix
     ./audio.nix
   ];
+
+  nixpkgs.overlays = [(import ../../users/${system.currentUser}/overlays)];
 
   # Enable non-free packages
   nixpkgs.config = {
