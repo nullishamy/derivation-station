@@ -28,7 +28,7 @@ local fonts = {
   },
 }
 
-local selected_font = 'fantasque'
+local selected_font = 'berkeley'
 
 return function(cfg, values)
   cfg.font = fonts[selected_font].font
