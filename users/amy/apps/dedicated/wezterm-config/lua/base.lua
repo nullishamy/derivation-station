@@ -10,4 +10,5 @@ return function(cfg, values)
   cfg.audible_bell = 'Disabled'
   cfg.debug_key_events = true
   cfg.default_cursor_style = 'SteadyBar'
+  cfg.warn_about_missing_glyphs = false
 end
