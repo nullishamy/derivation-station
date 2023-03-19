@@ -16,6 +16,8 @@ return language {
           ns.code_actions.statix,
           ns.code_actions.gitrebase,
           ns.code_actions.proselint,
+
+          ns.hover.printenv,
         },
         update_in_insert = true,
         on_attach = require('language.misc.on_attach')(module),

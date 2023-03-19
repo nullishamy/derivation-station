@@ -24,6 +24,7 @@
   alejandra,
   rnix-lsp,
   beautysh,
+  proselint,
   nodePackages,
   ...
 }: let
@@ -56,6 +57,7 @@ in
         alejandra
         rnix-lsp
         beautysh
+        proselint
 
         nodePackages.typescript-language-server
         nodePackages.bash-language-server

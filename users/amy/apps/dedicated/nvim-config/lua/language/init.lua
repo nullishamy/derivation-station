@@ -63,5 +63,6 @@ return {
     { 'nullishamy/zeppelin.nvim' },
     { 'simrat39/rust-tools.nvim' },
     { 'alaviss/nim.nvim' },
+    { 'b0o/SchemaStore.nvim' },
   },
 }
