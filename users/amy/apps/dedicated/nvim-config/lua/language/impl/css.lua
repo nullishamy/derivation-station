@@ -6,4 +6,8 @@ return language {
   server.configured {
     name = 'cssls',
   },
+
+  server.configured {
+    name = 'tailwindcss',
+  },
 }

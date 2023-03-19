@@ -59,6 +59,7 @@ in
         beautysh
         proselint
 
+        nodePackages."@tailwindcss/language-server"
         nodePackages.typescript-language-server
         nodePackages.bash-language-server
         nodePackages.vscode-json-languageserver
