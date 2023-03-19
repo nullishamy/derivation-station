@@ -26,7 +26,7 @@ return {
       mode = { 'n', 'v' },
 
       -- Noop q: as it's an annoying typo and the feature isnt used
-      [':q'] = { act = '<Nop>' },
+      ['q:'] = { act = '<Nop>' },
       ['<Space>'] = { act = '<Nop>' },
 
       -- Telescope & tree
