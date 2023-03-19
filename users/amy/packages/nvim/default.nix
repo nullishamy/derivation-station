@@ -23,6 +23,7 @@
   gitlint,
   alejandra,
   rnix-lsp,
+  beautysh,
   nodePackages,
   ...
 }: let
@@ -54,10 +55,11 @@ in
         statix
         alejandra
         rnix-lsp
+        beautysh
 
         nodePackages.typescript-language-server
         nodePackages.bash-language-server
-        nodePackages.vscode-json-languageserver-bin
+        nodePackages.vscode-json-languageserver
         nodePackages.prettier
         nodePackages.pyright
       ]

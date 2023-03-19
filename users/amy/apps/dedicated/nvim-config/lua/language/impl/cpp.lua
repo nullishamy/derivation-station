@@ -7,7 +7,6 @@ return language {
     name = 'clangd',
   },
 
-  -- FIXME: Install clang_format
   formatter.disabled {
     runner = formatter.runner.clang_format,
   },

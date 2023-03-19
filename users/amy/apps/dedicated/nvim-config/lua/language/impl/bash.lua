@@ -7,7 +7,6 @@ return language {
     name = 'bashls',
   },
 
-  -- FIXME: Install beautysh
   formatter.disabled {
     runner = formatter.runner.beautysh,
   },
