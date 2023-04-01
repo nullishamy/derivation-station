@@ -15,6 +15,7 @@
   outputs = {
     self,
     nixpkgs,
+    nixpkgs-unstable,
     home-manager,
     pre-commit-hooks,
     flake-utils,
@@ -22,6 +23,12 @@
     ...
   }: let
     system = import ./users/amy/config.nix;
+    overlays = final: prev: {
+      unstable = import nixpkgs-unstable {
+        system = prev.system;
+        config.allowUnfree = true;
+      };
+    };
   in
     {
       nixosConfigurations.nixon = nixpkgs.lib.nixosSystem {
@@ -44,6 +51,12 @@
               };
             };
           }
+
+          ({config, ...}: {
+            config = {
+              nixpkgs.overlays = [overlays];
+            };
+          })
         ];
       };
     }

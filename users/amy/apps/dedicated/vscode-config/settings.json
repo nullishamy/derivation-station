@@ -1,0 +1,197 @@
+{
+    "catppuccin.accentColor": "pink",
+    "catppuccin.colorOverrides": {},
+    "catppuccin.customUIColors": {
+        "all": {
+            "statusBar.foreground": "accent",
+            "statusBar.noFolderForeground": "accent"
+        }
+    },
+    "editor.fontFamily": "Berkeley Mono",
+    "editor.inlineSuggest.enabled": true,
+    "editor.lineNumbers": "relative",
+    "extensions.autoUpdate": false,
+    "extensions.ignoreRecommendations": true,
+    "files.autoSave": "afterDelay",
+    "git.autofetch": false,
+    "redhat.telemetry.enabled": false,
+    "telemetry.telemetryLevel": "off",
+    "terminal.integrated.fontSize": 14,
+    "update.mode": "none",
+    "vim.camelCaseMotion.enable": true,
+    "vim.handleKeys": {
+        "<C-a>": true,
+        "<C-d>": true,
+        "<C-u>": true,
+        "<C-v>": true,
+        "<C-w>": true,
+        "<C-x>": true
+    },
+    "vim.highlightedyank.color": "rgba(127; 128, 128, 0.8)",
+    "vim.highlightedyank.enable": true,
+    "vim.hlsearch": true,
+    "vim.incsearch": true,
+    "vim.insertModeKeyBindings": [
+        {
+            "after": [
+                "<Esc>"
+            ],
+            "before": [
+                "j",
+                "k"
+            ]
+        }
+    ],
+    "vim.leader": "<space>",
+    "vim.normalModeKeyBindingsNonRecursive": [
+        {
+            "before": [
+                "<C-Space>"
+            ],
+            "commands": [
+                "editor.action.showHover"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "f",
+                "f"
+            ],
+            "commands": [
+                "workbench.action.quickOpen"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "f",
+                "t"
+            ],
+            "commands": [
+                "workbench.action.selectTheme"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "y"
+            ],
+            "commands": [
+                "editor.action.formatDocument"
+            ]
+        },
+        {
+            "after": [
+                "<C-W>",
+                "l"
+            ],
+            "before": [
+                "<C-l>"
+            ]
+        },
+        {
+            "after": [
+                "<C-W>",
+                "h"
+            ],
+            "before": [
+                "<C-h>"
+            ]
+        },
+        {
+            "after": [
+                "<C-W>",
+                "v"
+            ],
+            "before": [
+                "<C-W>",
+                "\\"
+            ]
+        },
+        {
+            "after": [
+                "<C-W>",
+                "s"
+            ],
+            "before": [
+                "<C-W>",
+                "-"
+            ]
+        },
+        {
+            "after": [
+                "editor.action.moveLinesDownAction"
+            ],
+            "before": [
+                "C-j>"
+            ]
+        },
+        {
+            "after": [
+                "editor.action.moveLinesUpAction"
+            ],
+            "before": [
+                "C-k"
+            ]
+        },
+        {
+            "after": [
+                "$"
+            ],
+            "before": [
+                "L"
+            ]
+        },
+        {
+            "after": [
+                "^"
+            ],
+            "before": [
+                "H"
+            ]
+        }
+    ],
+    "vim.operateVisualModeKeyBindings": [
+        {
+            "after": [
+                "$"
+            ],
+            "before": [
+                "L"
+            ]
+        },
+        {
+            "after": [
+                "^"
+            ],
+            "before": [
+                "H"
+            ]
+        }
+    ],
+    "vim.operatorPendingModeKeyBindings": [
+        {
+            "after": [
+                "$"
+            ],
+            "before": [
+                "L"
+            ]
+        },
+        {
+            "after": [
+                "^"
+            ],
+            "before": [
+                "H"
+            ]
+        }
+    ],
+    "vim.replaceWithRegister": true,
+    "vim.useCtrlKeys": false,
+    "vim.useSystemClipboard": false,
+    "window.titleBarStyle": "custom",
+    "workbench.colorTheme": "Catppuccin Mocha",
+    "workbench.iconTheme": "material-icon-theme"
+}

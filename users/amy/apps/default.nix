@@ -25,6 +25,7 @@
     neovide
     discord
     discord-canary
+    vscode
     bitwarden
     gparted
     gimp
