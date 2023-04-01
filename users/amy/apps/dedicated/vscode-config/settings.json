@@ -7,6 +7,7 @@
             "statusBar.noFolderForeground": "accent"
         }
     },
+    "editor.bracketPairColorization.enabled": true,
     "editor.fontFamily": "Berkeley Mono",
     "editor.inlineSuggest.enabled": true,
     "editor.lineNumbers": "relative",
@@ -18,6 +19,7 @@
     "telemetry.telemetryLevel": "off",
     "terminal.integrated.fontSize": 14,
     "update.mode": "none",
+    "vim.enableNeovim": true,
     "vim.camelCaseMotion.enable": true,
     "vim.handleKeys": {
         "<C-a>": true,
@@ -150,9 +152,17 @@
             "before": [
                 "H"
             ]
+        },
+        {
+            "before": ["J"],
+            "after": ["1", "0", "j"]
+        },
+        {
+            "before": ["K"],
+            "after": ["1", "0", "k"]
         }
     ],
-    "vim.operateVisualModeKeyBindings": [
+    "vim.visualModeKeyBindings": [
         {
             "after": [
                 "$"

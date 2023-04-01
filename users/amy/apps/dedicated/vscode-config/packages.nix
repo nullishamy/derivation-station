@@ -18,12 +18,15 @@ in [
   redhat.vscode-yaml
   tamasfe.even-better-toml
   vscodevim.vim
+  formulahendry.auto-rename-tag
+  kamikillerto.vscode-colorize
+  streetsidesoftware.code-spell-checker
   (vscPackage {
     ref = {
-      name = "vscode-todo-highlight";
-      publisher = "wayou";
-      version = "1.0.5";
-      sha256 = "sha256-CQVtMdt/fZcNIbH/KybJixnLqCsz5iF1U0k+GfL65Ok=";
+      name = "better-comments";
+      publisher = "aaron-bond";
+      version = "3.0.2";
+      sha256 = "sha256-hQmA8PWjf2Nd60v5EAuqqD8LIEu7slrNs8luc3ePgZc=";
     };
     meta = {
       license = lib.licenses.mit;
