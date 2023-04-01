@@ -73,7 +73,7 @@ apps are not started from a shell."
 
 ;; Autosave
 ;; When autosave runs, save the current file, rather than to a backup
-(setq auto-save-timeout 5)
+(setq auto-save-timeout 1)
 (setq autosave-save-visited-mode t)
 (defun full-auto-save ()
   (interactive)

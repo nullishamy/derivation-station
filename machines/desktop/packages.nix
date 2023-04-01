@@ -31,4 +31,6 @@
     nano
     vim
   ];
+
+  services.ratbagd.enable = true;
 }
