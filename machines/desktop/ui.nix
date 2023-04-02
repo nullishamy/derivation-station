@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  lib,
+  ...
+}: {
   services.picom = {
     enable = true;
 
@@ -70,6 +74,27 @@
       # The command to run when locking
       locker = "${pkgs.i3lock}/bin/i3lock -c 282828";
       nowlocker = "${pkgs.i3lock}/bin/i3lock -c 282828";
+    };
+  };
+
+  fonts = {
+    enableDefaultFonts = true;
+
+    # Mainly to set the ui font for applications that do not allow it
+    # *cough* vscode *cough*
+    fontconfig = {
+      defaultFonts = let
+        # font = [ "FantasqueSansMono Nerd Font" ];
+        font = ["Iosevka Term"];
+      in {
+        serif = font;
+        sansSerif = font;
+      };
+      localConf = ''
+        <match>
+          <edit name="pixelsize"><double>15</double></edit>
+        </match>
+      '';
     };
   };
 }

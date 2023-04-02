@@ -7,8 +7,13 @@
             "statusBar.noFolderForeground": "accent"
         }
     },
+    // This setting does actually exist, vsc just wants to think it doesn't
+    "rust-analyzer.cargo.extraEnv": {
+        "CARGO_HOME": "/home/amy/.local/share/cargo"
+    },
+    "terminal.integrated.shellIntegration.enabled": false,
     "editor.bracketPairColorization.enabled": true,
-    "editor.fontFamily": "FantasqueSansMono Nerd Font",
+    "editor.fontFamily": "Iosevka Term",
     "editor.inlineSuggest.enabled": true,
     "editor.lineNumbers": "relative",
     "extensions.autoUpdate": false,
@@ -41,6 +46,12 @@
             "before": [
                 "j",
                 "k"
+            ]
+        },
+        {
+            "before": ["<C-Space>"],
+            "commands": [
+                "editor.action.triggerSuggest"
             ]
         }
     ],
@@ -199,10 +210,9 @@
         }
     ],
     "vim.replaceWithRegister": true,
-    "vim.useCtrlKeys": false,
     "vim.useSystemClipboard": false,
     "window.titleBarStyle": "custom",
     "workbench.colorTheme": "Catppuccin Mocha",
     "workbench.iconTheme": "material-icon-theme",
-    "editor.fontSize": 17,
+    "editor.fontSize": 15,
 }

@@ -1,3 +1,9 @@
 {
-    "cSpell.enabled": true
+    "cSpell.enabled": true,
+    "cSpell.enableFiletypes": [
+        "nix"
+    ],
+    "cSpell.words": [
+        "catppuccin"
+    ]
 }
