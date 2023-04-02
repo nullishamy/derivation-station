@@ -15,7 +15,7 @@ return function(cfg, _, wez)
     { key = 'r', mods = 'LEADER', action = act.ReloadConfiguration },
     { key = 'd', mods = 'LEADER', action = act.ShowDebugOverlay },
 
-    --- FIXME: Activate once we get the update (https://wezfurlong.org/wezterm/config/lua/keyassignment/ResetTerminal.html)
+    -- FIXME: Activate once we get the update (https://wezfurlong.org/wezterm/config/lua/keyassignment/ResetTerminal.html)
     -- { key = 's', mods = 'LEADER', action = act.ResetTerminal },
 
     { key = 'Space', mods = 'LEADER', action = act.ShowLauncher },
