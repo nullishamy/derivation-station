@@ -25,16 +25,16 @@ local fonts = {
   iosevka = {
     font = wez.font_with_fallback {
       {
-        family = 'Iosevka',
+        family = 'Iosevka Nerd Font',
         stretch = 'Normal',
-        weight = 'Light',
+        weight = 'Regular',
       },
       size = 13.0,
     },
   },
 }
 
-local selected_font = 'berkeley'
+local selected_font = 'iosevka'
 
 return function(cfg, values)
   cfg.font = fonts[selected_font].font
