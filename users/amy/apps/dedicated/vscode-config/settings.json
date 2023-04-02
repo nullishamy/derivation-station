@@ -272,4 +272,5 @@
             "italic": false
         }
     ],
+    "editor.minimap.enabled": false,
 }
