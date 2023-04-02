@@ -8,7 +8,7 @@
         }
     },
     "editor.bracketPairColorization.enabled": true,
-    "editor.fontFamily": "Berkeley Mono",
+    "editor.fontFamily": "FantasqueSansMono Nerd Font",
     "editor.inlineSuggest.enabled": true,
     "editor.lineNumbers": "relative",
     "extensions.autoUpdate": false,
@@ -203,5 +203,6 @@
     "vim.useSystemClipboard": false,
     "window.titleBarStyle": "custom",
     "workbench.colorTheme": "Catppuccin Mocha",
-    "workbench.iconTheme": "material-icon-theme"
+    "workbench.iconTheme": "material-icon-theme",
+    "editor.fontSize": 17,
 }
