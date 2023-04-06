@@ -23,12 +23,14 @@
     ...
   }: let
     system = import ./users/amy/config.nix;
-    overlays = final: prev: {
-      unstable = import nixpkgs-unstable {
-        system = prev.system;
-        config.allowUnfree = true;
-      };
-    };
+    overlays = final: prev:
+      {
+        unstable = import nixpkgs-unstable {
+          inherit (prev) system;
+          config.allowUnfree = true;
+        };
+      }
+      // (import ./users/${system.currentUser}/overlays final prev);
   in
     {
       nixosConfigurations.nixon = nixpkgs.lib.nixosSystem {
