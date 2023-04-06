@@ -26,6 +26,7 @@
   beautysh,
   proselint,
   nodePackages,
+  tree-sitter,
   ...
 }: let
   system = import ../../config.nix;
@@ -58,6 +59,7 @@ in
         rnix-lsp
         beautysh
         proselint
+        tree-sitter
 
         nodePackages."@tailwindcss/language-server"
         nodePackages.typescript-language-server
