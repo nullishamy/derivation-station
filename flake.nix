@@ -9,6 +9,8 @@
     pre-commit-hooks.url = "github:cachix/pre-commit-hooks.nix";
     flake-utils.url = "github:numtide/flake-utils";
 
+    nix-index-database.url = "github:Mic92/nix-index-database";
+    nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
     sops.url = "github:Mic92/sops-nix";
   };
 
@@ -19,6 +21,7 @@
     home-manager,
     pre-commit-hooks,
     flake-utils,
+    nix-index-database,
     sops,
     ...
   }: let
@@ -45,6 +48,7 @@
               useUserPackages = true;
               backupFileExtension = "backup";
               sharedModules = [
+                nix-index-database.hmModules.nix-index
                 sops.homeManagerModules.sops
               ];
               extraSpecialArgs = {
