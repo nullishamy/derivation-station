@@ -7,6 +7,8 @@
             "statusBar.noFolderForeground": "accent"
         }
     },
+    "editor.tabCompletion": "off",
+    "editor.acceptSuggestionOnEnter": "on",
     // This setting does actually exist, vsc just wants to think it doesn't
     "rust-analyzer.cargo.extraEnv": {
         "CARGO_HOME": "~/.local/share/cargo"
@@ -34,6 +36,7 @@
         "<C-w>": true,
         "<C-x>": true
     },
+    "vim.smartRelativeLine": true,
     "vim.highlightedyank.color": "rgba(127; 128, 128, 0.8)",
     "vim.highlightedyank.enable": true,
     "vim.hlsearch": true,
@@ -61,10 +64,30 @@
     "vim.normalModeKeyBindingsNonRecursive": [
         {
             "before": [
+                "<leader>",
+                "f",
+                "r"
+            ],
+            "commands": [
+                "workbench.action.quickOpenRecent"
+            ]
+        },
+        {
+            "before": [
                 "<C-Space>"
             ],
             "commands": [
                 "editor.action.showHover"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "c",
+                "a"
+            ],
+            "commands": [
+                "editor.action.quickFix"
             ]
         },
         {
@@ -114,6 +137,16 @@
             ],
             "commands": [
                 "workbench.action.selectTheme"
+            ]
+        },
+        {
+            "before": [
+                "leader",
+                "f",
+                "g"
+            ],
+            "commands": [
+                "workbench.view.search"
             ]
         },
         {
@@ -364,6 +397,22 @@
             "after": [
                 "d"
             ]
+        },
+        {
+            "commands": [
+                "editor.action.moveLinesDownAction"
+            ],
+            "before": [
+                "<C-j>"
+            ]
+        },
+        {
+            "commands": [
+                "editor.action.moveLinesUpAction"
+            ],
+            "before": [
+                "<C-k>"
+            ]
         }
     ],
     "vim.operatorPendingModeKeyBindingsNonRecursive": [
@@ -438,6 +487,15 @@
             "italic": false
         },
         {
+            "tag": "hack",
+            "color": "#e53737",
+            "strikethrough": false,
+            "underline": false,
+            "backgroundColor": "transparent",
+            "bold": false,
+            "italic": false
+        },
+        {
             "tag": "*",
             "color": "#98C379",
             "strikethrough": false,
@@ -448,4 +506,10 @@
         }
     ],
     "editor.minimap.enabled": false,
+    "typescript.preferences.importModuleSpecifierEnding": "js",
+    "[jsonc]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "Lua.telemetry.enable": false,
+    "gitlens.statusBar.enabled": false,
 }

@@ -21,6 +21,32 @@ in [
   formulahendry.auto-rename-tag
   kamikillerto.vscode-colorize
   streetsidesoftware.code-spell-checker
+  sumneko.lua
+  esbenp.prettier-vscode
+  WakaTime.vscode-wakatime
+
+  (vscPackage {
+    ref = {
+      name = "gitlens";
+      publisher = "eamodio";
+      version = "13.5.0";
+      sha256 = "sha256-zBaWpa18ix5xd4r6Ut3pfPum/nMJduHoyCiIgjwhsa0=";
+    };
+    meta = with lib; {
+      changelog = "https://marketplace.visualstudio.com/items/eamodio.gitlens/changelog";
+      description = "GitLens supercharges the Git capabilities built into Visual Studio Code.";
+      longDescription = ''
+        Supercharge the Git capabilities built into Visual Studio Code — Visualize code authorship at a glance via Git
+        blame annotations and code lens, seamlessly navigate and explore Git repositories, gain valuable insights via
+        powerful comparison commands, and so much more
+      '';
+      downloadPage = "https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens";
+      homepage = "https://gitlens.amod.io/";
+      license = licenses.mit;
+      maintainers = with maintainers; [ratsclub];
+    };
+  })
+
   (vscPackage {
     ref = {
       name = "better-comments";
