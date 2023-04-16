@@ -49,6 +49,18 @@ in [
 
   (vscPackage {
     ref = {
+      name = "vscord";
+      publisher = "LeonardSSH";
+      version = "5.1.7";
+      sha256 = "sha256-YIuCUdAF0J/HbsQJBv3jUQBylWCnl4xDUBn5RVtb7AE=";
+    };
+    meta = {
+      license = lib.licenses.mit;
+    };
+  })
+
+  (vscPackage {
+    ref = {
       name = "better-comments";
       publisher = "aaron-bond";
       version = "3.0.2";

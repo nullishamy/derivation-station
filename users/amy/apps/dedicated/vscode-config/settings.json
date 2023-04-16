@@ -512,4 +512,12 @@
     },
     "Lua.telemetry.enable": false,
     "gitlens.statusBar.enabled": false,
+    "vscord.app.name": "Visual Studio Code",
+    "vscord.status.state.text.editing": "Working on {file_name}{file_extension}:{current_line}",
+    "vscord.status.details.text.editing": "{problems_count} problems in workspace",
+    "vscord.status.details.text.viewing": "{problems_count} problems in workspace",
+    "vscord.status.state.text.debugging": "Debugging",
+    "vscord.status.buttons.button1.git.inactive.url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    "vscord.status.buttons.button1.git.idle.url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    "vscord.status.buttons.button1.git.active.url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
 }
