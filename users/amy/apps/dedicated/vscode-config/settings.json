@@ -1,6 +1,5 @@
 {
     "catppuccin.accentColor": "pink",
-    "catppuccin.colorOverrides": {},
     "catppuccin.customUIColors": {
         "all": {
             "statusBar.foreground": "accent",
@@ -39,7 +38,7 @@
     "vim.smartRelativeLine": true,
     "vim.highlightedyank.color": "rgba(127; 128, 128, 0.8)",
     "vim.highlightedyank.enable": true,
-    "vim.hlsearch": true,
+    "vim.hlsearch": false,
     "vim.incsearch": true,
     "vim.insertModeKeyBindings": [
         {
@@ -65,11 +64,59 @@
         {
             "before": [
                 "<leader>",
+                "n"
+            ],
+            "commands": [
+                "editor.action.marker.next"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "p"
+            ],
+            "commands": [
+                "editor.action.marker.prev"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "f",
+                "a"
+            ],
+            "commands": [
+                "workbench.action.showAllSymbols"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "f",
+                "s"
+            ],
+            "commands": [
+                "workbench.action.gotoSymbol"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
                 "f",
                 "r"
             ],
             "commands": [
                 "workbench.action.quickOpenRecent"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "r",
+                "n"
+            ],
+            "commands": [
+                "editor.action.rename"
             ]
         },
         {
@@ -520,4 +567,39 @@
     "vscord.status.buttons.button1.git.inactive.url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
     "vscord.status.buttons.button1.git.idle.url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
     "vscord.status.buttons.button1.git.active.url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    "[typescript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[json]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "catppuccin.workbenchMode": "flat",
+    "js/ts.implicitProjectConfig.checkJs": true,
+    "catppuccin.boldKeywords": false,
+    "editor.tokenColorCustomizations": {
+        "[Catppuccin Mocha]": {
+            "textMateRules": [
+                {
+                    "name": "All constants",
+                    "scope": "keyword.control.export.ts",
+                    "settings": {
+                        "foreground": "#F38BA8"
+                    }
+                }
+            ]
+        }
+    },
+    "javascript.preferences.importModuleSpecifier": "relative",
+    "typescript.preferences.importModuleSpecifier": "relative",
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    "cSpell.userWords": [
+        "Iosevka"
+    ],
+    "problems.showCurrentInStatus": true,
+    "cSpell.diagnosticLevel": "Hint",
+    "cSpell.hideAddToDictionaryCodeActions": true,
+    "terminal.integrated.cursorStyle": "line",
+    "terminal.integrated.fontFamily": "Iosevka Term",
+    "terminal.integrated.customGlyphs": false,
+    "terminal.integrated.gpuAcceleration": "off"
 }

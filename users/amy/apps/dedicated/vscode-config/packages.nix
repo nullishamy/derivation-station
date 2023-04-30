@@ -24,7 +24,9 @@ in [
   sumneko.lua
   esbenp.prettier-vscode
   WakaTime.vscode-wakatime
+  dbaeumer.vscode-eslint
 
+  # Needs a custom, updated version to work properly
   (vscPackage {
     ref = {
       name = "gitlens";
@@ -47,6 +49,7 @@ in [
     };
   })
 
+  # Unavailable
   (vscPackage {
     ref = {
       name = "vscord";
