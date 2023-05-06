@@ -6,12 +6,17 @@
     home-manager.url = "github:nix-community/home-manager?ref=release-22.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-    pre-commit-hooks.url = "github:cachix/pre-commit-hooks.nix";
     flake-utils.url = "github:numtide/flake-utils";
 
     nix-index-database.url = "github:Mic92/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
+
+    # Depends on unstable by default, make them follow us
+    pre-commit-hooks.url = "github:cachix/pre-commit-hooks.nix";
+    pre-commit-hooks.inputs.nixpkgs.follows = "nixpkgs-unstable";
+
     sops.url = "github:Mic92/sops-nix";
+    sops.inputs.nixpkgs.follows = "nixpkgs-unstable";
   };
 
   outputs = {
