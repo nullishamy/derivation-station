@@ -11,7 +11,7 @@
     extensions = [
       {id = "cjpalhdlnbpafiamejdnhcphjbkeiagm";} # uBlock Origin
       {id = "eimadpbcbfnmbkopoojfekhnkhdbieeh";} # Dark Reader
-      {id = "nngceckbapebfimnlniiiahkandclblb";} # Bitwarden
+      {id = "aeblfdkhhhdcdjpifhhbdiojplfjncoa";} # 1Password
       {id = "mnjggcdmjocbbbhaepdhchncahnbgone";} # SponsorBlock
       {id = "hlepfoohegkhhmjieoechaddaejaokhf";} # Refined GitHub
       {id = "jehmdpemhgfgjblpkilmeoafmkhbckhi";} # ScrollAnywhere

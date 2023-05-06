@@ -20,7 +20,7 @@ vim.cmd([[
 
 -- Disable highlight searching for every buffer
 vim.cmd([[
- autocmd BufEnter,WinEnter,FocusGained * set Nohlsearch
+ autocmd BufEnter,WinEnter,FocusGained * set nohlsearch
 ]])
 
 -- Show diagnostics on hover

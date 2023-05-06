@@ -26,7 +26,7 @@
     discord
     discord-canary
     vscode
-    bitwarden
+    _1password-gui
     gparted
     gimp
     steam
