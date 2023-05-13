@@ -30,6 +30,7 @@
 
     mcfly = {
       enable = true;
+      keyScheme = "vim";
       fuzzySearchFactor = 3;
     };
 
@@ -161,7 +162,6 @@
     };
 
     envExtra = ''
-      export MCFLY_KEY_SCHEME=vim
       export MCFLY_DISABLE_MENU=TRUE
     '';
 

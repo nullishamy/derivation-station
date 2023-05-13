@@ -9,6 +9,13 @@ return function(cfg, values)
   cfg.max_fps = 144
   cfg.audible_bell = 'Disabled'
   cfg.debug_key_events = true
+
+  -- Disable the shell
   cfg.default_cursor_style = 'SteadyBar'
+  cfg.cursor_blink_rate = 0
+
+  -- Use nushell for wezterm
+  cfg.default_prog = { 'nu' }
+
   cfg.warn_about_missing_glyphs = false
 end

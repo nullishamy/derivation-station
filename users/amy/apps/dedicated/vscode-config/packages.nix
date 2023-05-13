@@ -3,7 +3,7 @@
   lib,
   ...
 }:
-with pkgs.unstable.vscode-extensions; let
+with pkgs.vscode-extensions; let
   vscPackage = data:
     pkgs.vscode-utils.buildVscodeMarketplaceExtension {
       mktplcRef = data.ref;

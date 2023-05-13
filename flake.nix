@@ -96,6 +96,7 @@
           packages = [
             pkgs.just
             pkgs.sops
+            pkgs.nixpkgs-fmt
           ];
         };
     });

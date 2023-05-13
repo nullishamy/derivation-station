@@ -70,7 +70,7 @@ clean:
 
 # Upgrade the system
 upgrade:
-    sudo nixos-rebuild switch --upgrade
+    nix flake update && sudo nixos-rebuild switch --flake "{{dir}}#{{system_name}}"
 
 # Format the configuration
 format:
