@@ -1,6 +1,9 @@
 mkdir ~/.cache/starship
 starship init nu | str replace "term size -c" "term size" | save -f ~/.cache/starship/init.nu
 
+mkdir ~/.cache/atuin
+atuin init nu --disable-up-arrow | save -f ~/.cache/atuin/init.nu
+
 # from https://www.nushell.sh/cookbook/misc.html#manage-ssh-passphrases
 # and https://github.com/nushell/nushell/discussions/9192
 
@@ -43,3 +46,5 @@ if ("~/.cache/ssh-agent/agent" | path exists) {
 if ("~/.ssh/github" | path exists ) {
   do { ssh-add ~/.ssh/github } out> /dev/null
 }
+
+source ~/.config/nushell/env-nix.nu

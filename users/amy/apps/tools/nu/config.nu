@@ -210,6 +210,7 @@ let-env config = {
       let direnv = if ($direnv | length) == 1 { $direnv } else { {} }
       $direnv | load-env
     }]
+    pre_execution: [{ || }]
   }
 }
 
@@ -237,3 +238,4 @@ use "~/.config/nushell/scripts/custom-completions/btm/btm-completions.nu" *
 use "~/.config/nushell/scripts/custom-completions/make/make-completions.nu" *
 
 source ~/.cache/starship/init.nu
+source ~/.cache/atuin/init.nu

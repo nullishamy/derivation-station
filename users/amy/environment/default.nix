@@ -15,7 +15,7 @@
     TERMINAL = "wezterm";
 
     CARGO_HOME = "${config.xdg.dataHome}/cargo";
-    HISTFILE = "${config.xdg.stateHome}/zsh/history";
+    HISTFILE = "${config.xdg.dataHome}/history";
     GNUPGHOME = "${config.xdg.dataHome}/gnupg";
     GRADLE_USER_HOME = "${config.xdg.dataHome}/gradle";
     GTK2_RC_FILES = "${config.xdg.configHome}/gtk-2.0/gtkrc";
