@@ -135,14 +135,14 @@ let theme = {
   cellpath: $stheme.peach
   hints: dark_gray
 
-  shape_garbage: { fg: $stheme.text bg: $stheme.red attr: b }
+  shape_garbage: { fg: $stheme.crust bg: $stheme.red attr: b }
   shape_bool: $stheme.blue
   shape_int: { fg: $stheme.mauve attr: b}
   shape_float: { fg: $stheme.mauve attr: b}
   shape_range: { fg: $stheme.yellow attr: b}
   shape_internalcall: { fg: $stheme.blue attr: b}
-  shape_external: $stheme.blue
-  shape_externalarg: $stheme.green 
+  shape_external: { fg: $stheme.blue attr: b}
+  shape_externalarg: $stheme.text 
   shape_literal: $stheme.blue
   shape_operator: $stheme.yellow
   shape_signature: { fg: $stheme.green attr: b}
