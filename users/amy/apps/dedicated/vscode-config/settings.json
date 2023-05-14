@@ -12,7 +12,6 @@
     "rust-analyzer.cargo.extraEnv": {
         "CARGO_HOME": "~/.local/share/cargo"
     },
-    "terminal.integrated.shellIntegration.enabled": false,
     "editor.bracketPairColorization.enabled": true,
     "editor.fontFamily": "Iosevka Term",
     "editor.inlineSuggest.enabled": true,
@@ -601,5 +600,11 @@
     "terminal.integrated.cursorStyle": "line",
     "terminal.integrated.fontFamily": "Iosevka Term",
     "terminal.integrated.customGlyphs": false,
-    "terminal.integrated.gpuAcceleration": "off"
+    "terminal.integrated.gpuAcceleration": "off",
+    "terminal.integrated.defaultProfile.linux": "Nushell",
+    "terminal.integrated.profiles.linux": {
+        "Nushell": {
+            "path": "nu"
+        },
+    }
 }

@@ -13,7 +13,7 @@ return function(cfg, values)
       underline = 'None',
     },
     inactive_tab = {
-      bg_color = '#181825',
+      bg_color = '#1e1e2e',
       fg_color = '#cdd6f4',
       intensity = 'Normal',
       italic = false,
@@ -23,7 +23,7 @@ return function(cfg, values)
     inactive_tab_edge = 'none',
     inactive_tab_edge_hover = '#363636',
     inactive_tab_hover = {
-      bg_color = '#181825',
+      bg_color = '#1e1e2e',
       fg_color = '#cdd6f4',
       intensity = 'Normal',
       italic = false,
