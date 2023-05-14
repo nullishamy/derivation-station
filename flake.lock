@@ -177,11 +177,11 @@
     "nu_scripts": {
       "flake": false,
       "locked": {
-        "lastModified": 1684069282,
-        "narHash": "sha256-EUW33+KSAvdN3UpmB5F/8jqr7DvzOYv9geKoqjE5l38=",
+        "lastModified": 1684082327,
+        "narHash": "sha256-Gya/iYM3Y+6i0QqUuRqdarYCPaAOCCuseNTEmLFns8s=",
         "ref": "refs/heads/main",
-        "rev": "d2f424e605ab02df9505890da2b3c0d8de20b8e1",
-        "revCount": 646,
+        "rev": "2c37b5f5832e3e4a44328e907e3e51bbf62a3f4b",
+        "revCount": 647,
         "submodules": true,
         "type": "git",
         "url": "https://github.com/nushell/nu_scripts"

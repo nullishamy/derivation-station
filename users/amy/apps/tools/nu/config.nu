@@ -147,9 +147,9 @@ let theme = {
   shape_operator: $stheme.yellow
   shape_signature: { fg: $stheme.green attr: b}
   shape_string: $stheme.green
-  shape_filepath: $stheme.blue
+  shape_filepath: $stheme.yellow
   shape_globpattern: { fg: $stheme.blue attr: b}
-  shape_variable: $stheme.mauve
+  shape_variable: $stheme.text
   shape_flag: { fg: $stheme.blue attr: b}
   shape_custom: {attr: b}
 }
@@ -235,8 +235,7 @@ alias wget = wget --hsts-file="$XDG_DATA_HOME/wget-hsts"
 use "~/.config/nushell/scripts/custom-completions/nix/nix-completions.nu" *
 use "~/.config/nushell/scripts/custom-completions/git/git-completions.nu" *
 use "~/.config/nushell/scripts/custom-completions/npm/npm-completions.nu" *
-# FIXME: Awaiting upstream fix (https://github.com/nushell/nu_scripts/pull/491)
-# use "~/.config/nushell/scripts/custom-completions/just/just-completions.nu" *
+use "~/.config/nushell/scripts/custom-completions/just/just-completions.nu" *
 use "~/.config/nushell/scripts/custom-completions/tealdeer/tldr-completions.nu" *
 use "~/.config/nushell/scripts/custom-completions/btm/btm-completions.nu" *
 use "~/.config/nushell/scripts/custom-completions/make/make-completions.nu" *
