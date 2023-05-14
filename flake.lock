@@ -174,6 +174,24 @@
         "type": "indirect"
       }
     },
+    "nu_scripts": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1684069282,
+        "narHash": "sha256-EUW33+KSAvdN3UpmB5F/8jqr7DvzOYv9geKoqjE5l38=",
+        "ref": "refs/heads/main",
+        "rev": "d2f424e605ab02df9505890da2b3c0d8de20b8e1",
+        "revCount": 646,
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/nushell/nu_scripts"
+      },
+      "original": {
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/nushell/nu_scripts"
+      }
+    },
     "pre-commit-hooks": {
       "inputs": {
         "flake-compat": "flake-compat",
@@ -205,6 +223,7 @@
         "nix-index-database": "nix-index-database",
         "nixpkgs": "nixpkgs",
         "nixpkgs-unstable": "nixpkgs-unstable",
+        "nu_scripts": "nu_scripts",
         "pre-commit-hooks": "pre-commit-hooks",
         "sops": "sops"
       }

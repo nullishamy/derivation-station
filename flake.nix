@@ -17,6 +17,13 @@
 
     sops.url = "github:Mic92/sops-nix";
     sops.inputs.nixpkgs.follows = "nixpkgs-unstable";
+
+    nu_scripts = {
+      type = "git";
+      url = "https://github.com/nushell/nu_scripts";
+      submodules = true;
+      flake = false;
+    };
   };
 
   outputs = {
@@ -27,6 +34,7 @@
     pre-commit-hooks,
     flake-utils,
     nix-index-database,
+    nu_scripts,
     sops,
     ...
   }: let
@@ -58,6 +66,7 @@
               ];
               extraSpecialArgs = {
                 flakePath = "/home/${system.currentUser}/nixos";
+                inherit nu_scripts;
                 inherit system;
               };
             };

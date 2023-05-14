@@ -3,6 +3,7 @@
   lib,
   pkgs,
   flakePath,
+  nu_scripts,
   ...
 }: {
   programs.nushell = {
@@ -50,7 +51,7 @@
       '';
     };
     "${config.xdg.configHome}/nushell/scripts" = {
-      source = config.lib.file.mkOutOfStoreSymlink "${flakePath}/users/amy/apps/tools/nu/nu_scripts";
+      source = nu_scripts;
     };
   };
 }
