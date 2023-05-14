@@ -1,0 +1,3 @@
+[submodule "users/amy/apps/tools/nu/nu_scripts"]
+	path = users/amy/apps/tools/nu/nu_scripts
+	url = https://github.com/nushell/nu_scripts

@@ -20,5 +20,8 @@
     "${config.xdg.configHome}/nushell/env.nu" = lib.mkForce {
       source = config.lib.file.mkOutOfStoreSymlink "${flakePath}/users/amy/apps/tools/nu/env.nu";
     };
+    "${config.xdg.configHome}/nushell/scripts" = lib.mkForce {
+      source = config.lib.file.mkOutOfStoreSymlink "${flakePath}/users/amy/apps/tools/nu/nu_scripts";
+    };
   };
 }

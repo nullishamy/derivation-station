@@ -216,4 +216,24 @@ let-env config = {
 let-env PROMPT_INDICATOR_VI_INSERT = "I "
 let-env PROMPT_INDICATOR_VI_NORMAL = "N "
 
+# Aliases
+alias l = ls -l
+alias lg = lazygit
+
+# Modern unix
+alias grep = rg
+alias df = duf 
+alias cat = bat 
+alias dig = dog 
+
+alias wget = wget --hsts-file="$XDG_DATA_HOME/wget-hsts"
+
+use "~/.config/nushell/scripts/custom-completions/nix/nix-completions.nu" *
+use "~/.config/nushell/scripts/custom-completions/git/git-completions.nu" *
+use "~/.config/nushell/scripts/custom-completions/npm/npm-completions.nu" *
+use "~/.config/nushell/scripts/custom-completions/just/just-completions.nu" *
+use "~/.config/nushell/scripts/custom-completions/tealdeer/tldr-completions.nu" *
+use "~/.config/nushell/scripts/custom-completions/btm/btm-completions.nu" *
+use "~/.config/nushell/scripts/custom-completions/make/make-completions.nu" *
+
 source ~/.cache/starship/init.nu
