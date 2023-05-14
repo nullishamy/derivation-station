@@ -220,6 +220,9 @@ let-env PROMPT_INDICATOR_VI_NORMAL = "N "
 # Aliases
 alias l = ls -l
 alias lg = lazygit
+def lge [] {
+  do { wezterm start --cwd (pwd) --always-new-process lazygit } out> /dev/null
+}
 
 # Modern unix
 alias grep = rg

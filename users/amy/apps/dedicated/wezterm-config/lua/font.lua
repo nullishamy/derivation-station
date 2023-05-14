@@ -29,8 +29,8 @@ local fonts = {
         stretch = 'Normal',
         weight = 'Regular',
       },
-      size = 11.0,
     },
+    size = 11.5,
   },
 }
 
