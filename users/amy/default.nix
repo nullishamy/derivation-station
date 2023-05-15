@@ -37,14 +37,6 @@ in {
     };
   };
 
-  # CRON jobs
-  services.cron = {
-    enable = false;
-    systemCronJobs = [
-      "25 20 * * *   ${system.currentUser}   . /etc/profile; ${./apps/dedicated/backup/run-backup.py} ${builtins.readFile ./apps/dedicated/backup/args.txt}"
-    ];
-  };
-
   home-manager.users.${system.currentUser} = {
     imports = [
       ./packages
