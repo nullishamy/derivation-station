@@ -99,11 +99,12 @@
       };
       devShell = let
         pkgs = nixpkgs.legacyPackages.${system};
+        unstable = nixpkgs-unstable.legacyPackages.${system};
       in
         pkgs.mkShell {
           inherit (self.checks.${system}.pre-commit-check) shellHook;
           packages = [
-            pkgs.just
+            unstable.just
             pkgs.sops
             pkgs.nixpkgs-fmt
           ];

@@ -5,9 +5,11 @@ system_name := "nixon"
 hardware_config :=  `sudo nixos-generate-config --show-hardware-config 2>/dev/null | base64 -w0`
 dir := justfile_directory()
 
+[private]
 _default:
   @just --list
 
+[private]
 _build-system type:
     sudo nixos-rebuild {{type}} --flake "{{dir}}#{{system_name}}"
 
