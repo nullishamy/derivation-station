@@ -58,7 +58,7 @@ in {
     keybindings = {
       "${mod} + Return" = "wezterm";
       "${mod} + shift + q" = "bspc node -c";
-      "${mod} + d" = "rofi -show run -no-lazy-grab -lines 15 -width 40";
+      "${mod} + d" = "rofi -show drun -no-lazy-grab -lines 15 -width 40";
       "${mod} + r" = "bspc node @focused:/ --rotate 90";
       "${mod} + shift + r" = "bspc node @focused:/ --rotate 180";
       "Print" = "flameshot gui";
