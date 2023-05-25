@@ -113,7 +113,8 @@ let catppuccin = {
   }
 }
 
-let-env LS_COLORS = (run-external --redirect-stdout "nix" "run" "nixpkgs#vivid" "--" "generate" "catppuccin-mocha" | str trim)
+# Regenerate with `run-external --redirect-stdout "nix" "run" "nixpkgs#vivid" "--" "generate" "catppuccin-mocha" | str trim | xclip -sel cl`
+let-env LS_COLORS = (cat ~/.config/nushell/ls-colors) | str trim
 
 let stheme = $catppuccin.mocha
 

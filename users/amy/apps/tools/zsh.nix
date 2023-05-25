@@ -88,7 +88,7 @@
 
     # Intentionally doesnt use the full path
     dotDir = ".config/zsh";
-    history.path = "${config.xdg.dataHome}/history";
+    history.path = "${config.xdg.dataHome}/zsh-history";
 
     # OMZ Plugins
     plugins = [

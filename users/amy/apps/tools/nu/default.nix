@@ -18,7 +18,10 @@
     "${config.xdg.configHome}/nushell/env.nu" = lib.mkForce {
       source = config.lib.file.mkOutOfStoreSymlink "${flakePath}/users/amy/apps/tools/nu/env.nu";
     };
-    "${config.xdg.configHome}/nushell/history.txt" = lib.mkForce {
+    "${config.xdg.configHome}/nushell/ls-colors" = {
+      source = config.lib.file.mkOutOfStoreSymlink "${flakePath}/users/amy/apps/tools/nu/ls-colors";
+    };
+    "${config.xdg.configHome}/nushell/history.txt" = {
       source = config.lib.file.mkOutOfStoreSymlink "${config.xdg.dataHome}/history";
     };
     "${config.xdg.configHome}/nushell/env-nix.nu" = with lib; let
