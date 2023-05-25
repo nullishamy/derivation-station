@@ -10,7 +10,7 @@ in {
 
   users.users.${system.currentUser} = {
     isNormalUser = true;
-    description = "Amy";
+    description = system.userName;
     hashedPassword = "$6$EuVxrglUIHa0ojiz$Oy9JF.PIAmsb.5Vz9icDwbpPp0Mw5ct3aOAniJ0n/s7.3ZGNQfiC4izz/Uc6FdgmPg9UWtoqGWo3mX6";
     extraGroups = [
       "networkmanager" # Use networks
