@@ -73,6 +73,9 @@ in {
 
       # Enable flakes
       experimental-features = ["nix-command" "flakes"];
+
+      # Consider downloaded tarballs as fresh for 7 days
+      tarball-ttl = 604800;
     };
   };
 
