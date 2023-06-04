@@ -10,7 +10,8 @@
     "editor.acceptSuggestionOnEnter": "on",
     // This setting does actually exist, vsc just wants to think it doesn't
     "rust-analyzer.cargo.extraEnv": {
-        "CARGO_HOME": "~/.local/share/cargo"
+        "CARGO_NET_GIT_FETCH_WITH_CLI": "true",
+        "CARGO_HOME": "/home/amy/.local/share/cargo",
     },
     "editor.bracketPairColorization.enabled": true,
     "editor.fontFamily": "Iosevka Term",
@@ -605,6 +606,7 @@
     "terminal.integrated.profiles.linux": {
         "Nushell": {
             "path": "nu"
-        },
-    }
+        }
+    },
+    "editor.inlayHints.enabled": false
 }
