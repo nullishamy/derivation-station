@@ -1,5 +1,0 @@
--- Installs the lspconfig setup before lspconfig is loaded
--- INFO: Do we need this?
--- It depends on Mason, which we intend to remove.
--- Perhaps package as a Nix package?
--- require('zeppelin').setup({})
