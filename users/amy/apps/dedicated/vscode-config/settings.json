@@ -483,7 +483,6 @@
     "vim.replaceWithRegister": true,
     "vim.useSystemClipboard": false,
     "window.titleBarStyle": "custom",
-    "workbench.colorTheme": "Catppuccin Mocha",
     "workbench.iconTheme": "material-icon-theme",
     "editor.fontSize": 15,
     "better-comments.highlightPlainText": true,
@@ -608,5 +607,23 @@
             "path": "nu"
         }
     },
-    "editor.inlayHints.enabled": false
+    "editor.inlayHints.enabled": false,
+    "[typescriptreact]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
+    "editor.linkedEditing": true,
+    "[html]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[javascript]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
+    "workbench.colorTheme": "Catppuccin Mocha",
+    "catppuccin.italicComments": false,
+    "catppuccin.italicKeywords": false,
+    "editor.cursorBlinking": "smooth",
+    "terminal.integrated.smoothScrolling": true,
+    "workbench.list.smoothScrolling": true,
+    "editor.cursorSmoothCaretAnimation": true,
+    "editor.smoothScrolling": true,
 }
