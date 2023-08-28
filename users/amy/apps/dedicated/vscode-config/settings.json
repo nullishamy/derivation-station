@@ -1,5 +1,4 @@
 {
-    "catppuccin.accentColor": "pink",
     "catppuccin.customUIColors": {
         "all": {
             "statusBar.foreground": "accent",
@@ -14,7 +13,7 @@
         "CARGO_HOME": "/home/amy/.local/share/cargo",
     },
     "editor.bracketPairColorization.enabled": true,
-    "editor.fontFamily": "Iosevka Term",
+    "editor.fontFamily": "JetBrains Mono",
     "editor.inlineSuggest.enabled": true,
     "editor.lineNumbers": "relative",
     "extensions.autoUpdate": false,
@@ -484,7 +483,7 @@
     "vim.useSystemClipboard": false,
     "window.titleBarStyle": "custom",
     "workbench.iconTheme": "catppuccin-mocha",
-    "editor.fontSize": 18,
+    "editor.fontSize": 16,
     "better-comments.highlightPlainText": true,
     "better-comments.tags": [
         {
@@ -552,7 +551,6 @@
         }
     ],
     "editor.minimap.enabled": false,
-    "typescript.preferences.importModuleSpecifierEnding": "js",
     "[jsonc]": {
         "editor.defaultFormatter": "vscode.json-language-features"
     },
@@ -601,7 +599,7 @@
     "terminal.integrated.fontFamily": "Iosevka Term",
     "terminal.integrated.customGlyphs": false,
     "terminal.integrated.gpuAcceleration": "off",
-    "terminal.integrated.defaultProfile.linux": "Nushell",
+    "terminal.integrated.defaultProfile.linux": "zsh",
     "terminal.integrated.profiles.linux": {
         "Nushell": {
             "path": "nu"
@@ -618,12 +616,10 @@
     "[javascript]": {
         "editor.defaultFormatter": "vscode.typescript-language-features"
     },
-    "workbench.colorTheme": "Catppuccin Mocha",
     "catppuccin.italicComments": false,
-    "catppuccin.italicKeywords": false,
     "editor.cursorBlinking": "smooth",
     "workbench.list.smoothScrolling": true,
-    "editor.cursorSmoothCaretAnimation": true,
+    "editor.cursorSmoothCaretAnimation": "on",
     "editor.smoothScrolling": true,
     // https://github.com/antfu/vscode-file-nesting-config @ 80aae22fbf8e3c8d3bc0bbc635fccb03304cb11d
     "explorer.fileNesting.enabled": true,
@@ -703,5 +699,12 @@
         "vite.config.*": "*.env, .babelrc*, .codecov, .cssnanorc*, .env.*, .envrc, .htmlnanorc*, .lighthouserc.*, .mocha*, .postcssrc*, .terserrc*, api-extractor.json, ava.config.*, babel.config.*, contentlayer.config.*, cssnano.config.*, cypress.*, env.d.ts, formkit.config.*, formulate.config.*, histoire.config.*, htmlnanorc.*, jasmine.*, jest.config.*, jsconfig.*, karma*, lighthouserc.*, playwright.config.*, postcss.config.*, puppeteer.config.*, rspack.config.*, svgo.config.*, tailwind.config.*, tsconfig.*, tsdoc.*, uno.config.*, unocss.config.*, vitest.config.*, webpack.config.*, windi.config.*",
         "vue.config.*": "*.env, .babelrc*, .codecov, .cssnanorc*, .env.*, .envrc, .htmlnanorc*, .lighthouserc.*, .mocha*, .postcssrc*, .terserrc*, api-extractor.json, ava.config.*, babel.config.*, contentlayer.config.*, cssnano.config.*, cypress.*, env.d.ts, formkit.config.*, formulate.config.*, histoire.config.*, htmlnanorc.*, jasmine.*, jest.config.*, jsconfig.*, karma*, lighthouserc.*, playwright.config.*, postcss.config.*, puppeteer.config.*, rspack.config.*, svgo.config.*, tailwind.config.*, tsconfig.*, tsdoc.*, uno.config.*, unocss.config.*, vitest.config.*, webpack.config.*, windi.config.*"
     },
-    "files.autoSave": "afterDelay",
+    "typescript.preferences.importModuleSpecifierEnding": "minimal",
+    "explorer.confirmDelete": false,
+    "editor.fontLigatures": true,
+    "javascript.updateImportsOnFileMove.enabled": "never",
+    "catppuccin.extraBordersEnabled": true,
+    "catppuccin.italicKeywords": false,
+    "workbench.colorTheme": "Catppuccin Mocha",
+    "catppuccin.accentColor": "pink"
 }

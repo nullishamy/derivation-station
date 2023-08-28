@@ -25,7 +25,6 @@
     neovide
     discord
     discord-canary
-    vscode
     _1password-gui
     gparted
     gimp
