@@ -7,13 +7,12 @@
     },
     "editor.tabCompletion": "off",
     "editor.acceptSuggestionOnEnter": "on",
-    // This setting does actually exist, vsc just wants to think it doesn't
     "rust-analyzer.cargo.extraEnv": {
         "CARGO_NET_GIT_FETCH_WITH_CLI": "true",
-        "CARGO_HOME": "/home/amy/.local/share/cargo",
+        "CARGO_HOME": "/home/amy/.local/share/cargo"
     },
     "editor.bracketPairColorization.enabled": true,
-    "editor.fontFamily": "JetBrains Mono",
+    "editor.fontFamily": "FantasqueSansM Nerd Font",
     "editor.inlineSuggest.enabled": true,
     "editor.lineNumbers": "relative",
     "extensions.autoUpdate": false,
@@ -22,7 +21,7 @@
     "git.autofetch": false,
     "redhat.telemetry.enabled": false,
     "telemetry.telemetryLevel": "off",
-    "terminal.integrated.fontSize": 14,
+    "terminal.integrated.fontSize": 15,
     "update.mode": "none",
     "vim.enableNeovim": true,
     "vim.camelCaseMotion.enable": true,
@@ -482,8 +481,7 @@
     "vim.replaceWithRegister": true,
     "vim.useSystemClipboard": false,
     "window.titleBarStyle": "custom",
-    "workbench.iconTheme": "catppuccin-mocha",
-    "editor.fontSize": 16,
+    "editor.fontSize": 18,
     "better-comments.highlightPlainText": true,
     "better-comments.tags": [
         {
@@ -570,22 +568,8 @@
     "[json]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
-    "catppuccin.workbenchMode": "flat",
+    "catppuccin.workbenchMode": "minimal",
     "js/ts.implicitProjectConfig.checkJs": true,
-    "catppuccin.boldKeywords": false,
-    "editor.tokenColorCustomizations": {
-        "[Catppuccin Mocha]": {
-            "textMateRules": [
-                {
-                    "name": "All constants",
-                    "scope": "keyword.control.export.ts",
-                    "settings": {
-                        "foreground": "#F38BA8"
-                    }
-                }
-            ]
-        }
-    },
     "javascript.preferences.importModuleSpecifier": "relative",
     "typescript.preferences.importModuleSpecifier": "relative",
     "typescript.updateImportsOnFileMove.enabled": "always",
@@ -596,16 +580,12 @@
     "cSpell.diagnosticLevel": "Hint",
     "cSpell.hideAddToDictionaryCodeActions": true,
     "terminal.integrated.cursorStyle": "line",
-    "terminal.integrated.fontFamily": "Iosevka Term",
-    "terminal.integrated.customGlyphs": false,
-    "terminal.integrated.gpuAcceleration": "off",
     "terminal.integrated.defaultProfile.linux": "zsh",
     "terminal.integrated.profiles.linux": {
         "Nushell": {
             "path": "nu"
         }
     },
-    "editor.inlayHints.enabled": false,
     "[typescriptreact]": {
         "editor.defaultFormatter": "vscode.typescript-language-features"
     },
@@ -704,7 +684,50 @@
     "editor.fontLigatures": true,
     "javascript.updateImportsOnFileMove.enabled": "never",
     "catppuccin.extraBordersEnabled": true,
-    "catppuccin.italicKeywords": false,
     "workbench.colorTheme": "Catppuccin Mocha",
-    "catppuccin.accentColor": "pink"
+    "catppuccin.accentColor": "pink",
+    "editor.tabSize": 2,
+    "terminal.integrated.fontWeightBold": "normal",
+    "typescript.inlayHints.enumMemberValues.enabled": true,
+    "typescript.inlayHints.parameterNames.enabled": "literals",
+    "editor.inlayHints.padding": true,
+    "colorize.include": [
+        "**/*.js",
+        "**/*.mjs",
+        "**/*.cjs",
+        "**/*.ts",
+        "**/*.json",
+        "**/*.css",
+        "**/*.scss",
+        "**/*.sass",
+        "**/*.less",
+        "**/*.styl",
+        "**/*.yaml",
+        "**/*.yml",
+    ],
+    "catppuccin.boldKeywords": false,
+    "catppuccin.italicKeywords": false,
+    "colorize.colorized_colors": [
+        "HEXA",
+        "RGB",
+        "HSL"
+    ],
+    "lldb.launch.preRunCommands": [
+        "command script import /home/amy/.vscode/extensions/vadimcn.vscode-lldb/formatters/rust.py"
+    ],
+    "files.associations": {
+        ".env*": "dotenv"
+    },
+    "editor.tokenColorCustomizations": {
+        "textMateRules": [
+            {
+                "scope": "keyword.other.dotenv",
+                "settings": {
+                    "foreground": "#FF000000"
+                }
+            }
+        ]
+    },
+    "dotenv.enableAutocloaking": true,
+    "editor.inlayHints.enabled": "off",
 }

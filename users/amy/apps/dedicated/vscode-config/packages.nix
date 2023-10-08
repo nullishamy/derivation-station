@@ -11,7 +11,8 @@ in
     aaron-bond.better-comments
     # catppuccin.catppuccin-vsc -- not managed by nix because the configurability is broken on Nix. installed by hand
     catppuccin.catppuccin-vsc-icons
-    vadimcn.vscode-lldb
+    dotenv.dotenv-vscode
+    pkgs.vscode-extensions.vadimcn.vscode-lldb
     kamikillerto.vscode-colorize
     mkhl.direnv
     leonardssh.vscord
