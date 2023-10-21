@@ -7,7 +7,7 @@ atuin init nu --disable-up-arrow | save -f ~/.cache/atuin/init.nu
 # from https://www.nushell.sh/cookbook/misc.html#manage-ssh-passphrases
 # and https://github.com/nushell/nushell/discussions/9192
 
-let-env SSH_AGENT_TIMEOUT = 300
+$env.SSH_AGENT_TIMEOUT = 300
 mkdir ~/.cache/ssh-agent/
 
 if ("~/.cache/ssh-agent/agent" | path exists) {

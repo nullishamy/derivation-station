@@ -114,7 +114,7 @@ let catppuccin = {
 }
 
 # Regenerate with `run-external --redirect-stdout "nix" "run" "nixpkgs#vivid" "--" "generate" "catppuccin-mocha" | str trim | xclip -sel cl`
-let-env LS_COLORS = (cat ~/.config/nushell/ls-colors) | str trim
+$env.LS_COLORS = ((cat ~/.config/nushell/ls-colors) | str trim)
 
 let stheme = $catppuccin.mocha
 
@@ -155,7 +155,7 @@ let theme = {
   shape_custom: {attr: b}
 }
 
-let-env config = {
+$env.config = {
   show_banner: false
   cursor_shape: {
     vi_normal: block
@@ -215,8 +215,8 @@ let-env config = {
   }
 }
 
-let-env PROMPT_INDICATOR_VI_INSERT = "I "
-let-env PROMPT_INDICATOR_VI_NORMAL = "N "
+$env.PROMPT_INDICATOR_VI_INSERT = "I "
+$env.PROMPT_INDICATOR_VI_NORMAL = "N "
 
 # Aliases
 alias l = ls -l
