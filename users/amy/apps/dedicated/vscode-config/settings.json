@@ -12,7 +12,7 @@
         "CARGO_HOME": "/home/amy/.local/share/cargo"
     },
     "editor.bracketPairColorization.enabled": true,
-    "editor.fontFamily": "FantasqueSansM Nerd Font",
+    "editor.fontFamily": "Iosevka Term",
     "editor.inlineSuggest.enabled": true,
     "editor.lineNumbers": "relative",
     "extensions.autoUpdate": false,
