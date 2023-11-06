@@ -49,7 +49,7 @@
     in {
       text = ''
         ${concatStringsSep "\n"
-          (mapAttrsToList (k: v: "let-env ${k} = ${v}")
+          (mapAttrsToList (k: v: "$env.${k} = ${v}")
             environmentVariables)}
       '';
     };
