@@ -25,7 +25,7 @@ local fonts = {
   iosevka = {
     font = wez.font_with_fallback {
       {
-        family = 'Iosevka Nerd Font',
+        family = 'Iosevka Term',
         stretch = 'Normal',
         weight = 'Regular',
       },
