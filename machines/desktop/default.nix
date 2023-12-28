@@ -1,7 +1,7 @@
 {
   config,
-  modulesPath,
   pkgs,
+  inputs,
   ...
 }: let
   system = import ../../users/amy/config.nix;
@@ -77,6 +77,10 @@ in {
       # Consider downloaded tarballs as fresh for 7 days
       tarball-ttl = 604800;
     };
+
+    nixPath = [
+      "nixpkgs=${inputs.nixpkgs.outPath}"
+    ];
   };
 
   # Set your time zone.
@@ -88,13 +92,18 @@ in {
   # Configure console keymap
   console.keyMap = "us";
 
-  # Add myself to the vbox group
-  users.extraGroups.vboxusers.members = ["${system.currentUser}"];
-
   # Enable CUPS to print documents.
   services.printing = {
     enable = true;
     drivers = [pkgs.gutenprint pkgs.hplip];
+  };
+
+  # Add myself to additional groups
+  users.extraGroups.docker.members = ["${system.currentUser}"];
+
+  # Enable dockerd at the system level
+  virtualisation.docker = {
+    enable = true;
   };
 
   # Fonts

@@ -25,21 +25,14 @@
 
   outputs = {
     self,
-    nixpkgs,
-    nixpkgs-unstable,
-    home-manager,
-    pre-commit-hooks,
     flake-utils,
-    nix-index-database,
-    nu_scripts,
-    nix-vscode-extensions,
-    sops,
     ...
-  }: let
+  } @ inputs: let
     system = import ./users/amy/config.nix;
+    inherit inputs;
     overlays = final: prev:
       {
-        unstable = import nixpkgs-unstable {
+        unstable = import inputs.nixpkgs-unstable {
           inherit (prev) system;
           config.allowUnfree = true;
         };
@@ -47,26 +40,31 @@
       // (import ./users/${system.currentUser}/overlays final prev);
   in
     {
-      nixosConfigurations.nixon = nixpkgs.lib.nixosSystem {
+      nixosConfigurations.nixon = inputs.nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
-          ./machines/desktop
+          ({
+            config,
+            pkgs,
+            ...
+          }: (import ./machines/desktop {
+            inherit config inputs pkgs;
+          }))
 
-          home-manager.nixosModules.home-manager
+          inputs.home-manager.nixosModules.home-manager
           {
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
               backupFileExtension = "backup";
               sharedModules = [
-                nix-index-database.hmModules.nix-index
-                sops.homeManagerModules.sops
+                inputs.nix-index-database.hmModules.nix-index
+                inputs.sops.homeManagerModules.sops
               ];
               extraSpecialArgs = {
                 flakePath = "/home/${system.currentUser}/nixos";
-                inherit nu_scripts;
+                inherit (inputs) nu_scripts nix-vscode-extensions;
                 inherit system;
-                inherit nix-vscode-extensions;
               };
             };
           }
@@ -81,7 +79,7 @@
     }
     // flake-utils.lib.eachDefaultSystem (system: {
       checks = {
-        pre-commit-check = pre-commit-hooks.lib.${system}.run {
+        pre-commit-check = inputs.pre-commit-hooks.lib.${system}.run {
           src = ./.;
           hooks = {
             alejandra.enable = true;
@@ -97,8 +95,8 @@
         };
       };
       devShell = let
-        pkgs = nixpkgs.legacyPackages.${system};
-        unstable = nixpkgs-unstable.legacyPackages.${system};
+        pkgs = inputs.nixpkgs.legacyPackages.${system};
+        unstable = inputs.nixpkgs-unstable.legacyPackages.${system};
       in
         pkgs.mkShell {
           inherit (self.checks.${system}.pre-commit-check) shellHook;

@@ -16,25 +16,11 @@ in {
       "networkmanager" # Use networks
       "wheel" # Sudoer
       "docker"
-      "lxd" # Use docker without root
+      "lxd"
       "vboxusers" # Virtualbox
     ];
     packages = with pkgs; [];
     shell = pkgs.zsh;
-  };
-
-  # VM user
-  users.users.nixosvmtest.isSystemUser = true;
-  users.users.nixosvmtest.initialPassword = "test";
-  users.users.nixosvmtest.group = "nixosvmtest";
-  users.groups.nixosvmtest = {};
-
-  # VM settings
-  virtualisation.vmVariant = {
-    virtualisation = {
-      memorySize = 8064;
-      cores = 8;
-    };
   };
 
   home-manager.users.${system.currentUser} = {
