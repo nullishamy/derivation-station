@@ -45,6 +45,8 @@ in {
     };
   };
 
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+
   # Configure nix itself
   nix = {
     # Enable nix flakes
