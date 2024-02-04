@@ -13,7 +13,7 @@
     },
     "rust-analyzer.server.path": "rust-analyzer",
     "editor.bracketPairColorization.enabled": true,
-    "editor.fontFamily": "Iosevka Term",
+    "editor.fontFamily": "FantasqueSansM Nerd Font",
     "editor.inlineSuggest.enabled": true,
     "editor.lineNumbers": "relative",
     "extensions.autoUpdate": false,

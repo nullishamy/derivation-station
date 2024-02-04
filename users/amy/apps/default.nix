@@ -17,6 +17,7 @@
     neofetch
     gh
     thunderbird
+    comma
     rofi
     spotifywm
     flameshot

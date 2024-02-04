@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  lib,
   inputs,
   ...
 }: let
@@ -115,7 +116,7 @@ in {
   # Fonts
   fonts.packages = with pkgs; [
     # Only use the given nerdfonts, saves cloning *everything*
-    (nerdfonts.override {fonts = ["Hack" "Iosevka" "FantasqueSansMono" "VictorMono"];})
+    (nerdfonts.override {fonts = ["Hack" "Iosevka" "FantasqueSansMono" "VictorMono" "NerdFontsSymbolsOnly"];})
   ];
 
   environment = {

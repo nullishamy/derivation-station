@@ -84,8 +84,8 @@
     # *cough* vscode *cough*
     fontconfig = {
       defaultFonts = let
-        # font = [ "FantasqueSansMono Nerd Font" ];
-        font = ["Iosevka Term"];
+        font = ["FantasqueSansM Nerd Font"];
+        # font = ["Iosevka Term"];
       in {
         serif = font;
         sansSerif = font;

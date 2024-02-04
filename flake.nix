@@ -46,9 +46,10 @@
           ({
             config,
             pkgs,
+            lib,
             ...
           }: (import ./machines/desktop {
-            inherit config inputs pkgs;
+            inherit config inputs pkgs lib;
           }))
 
           inputs.home-manager.nixosModules.home-manager
