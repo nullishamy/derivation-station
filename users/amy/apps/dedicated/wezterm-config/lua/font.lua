@@ -20,7 +20,7 @@ local fonts = {
         weight = 'Medium',
       },
     },
-    size = 13.0,
+    size = 12.5,
   },
   iosevka = {
     font = wez.font_with_fallback {

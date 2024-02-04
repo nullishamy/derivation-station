@@ -32,7 +32,7 @@
         modules-right = "memory cpu eth date";
 
         # font-0 = "Berkeley Mono:size=13;2";
-        font-0 = "FantasqueSansM Nerd Font:size=14;2";
+        font-0 = "FantasqueSansM Nerd Font:size=13;2";
         # font-0 = "Iosevka:size=13;2";
 
         border-size = "4pt";
