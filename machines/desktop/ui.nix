@@ -78,7 +78,7 @@
   };
 
   fonts = {
-    enableDefaultFonts = true;
+    enableDefaultPackages = true;
 
     # Mainly to set the ui font for applications that do not allow it
     # *cough* vscode *cough*

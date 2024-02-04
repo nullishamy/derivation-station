@@ -20,7 +20,7 @@ in {
       "vboxusers" # Virtualbox
     ];
     packages = with pkgs; [];
-    shell = pkgs.zsh;
+    shell = pkgs.nushell;
   };
 
   home-manager.users.${system.currentUser} = {

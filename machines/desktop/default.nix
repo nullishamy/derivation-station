@@ -48,7 +48,9 @@ in {
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
   # Configure nix itself
-  nix = {
+  nix = let
+    flakeInputs = lib.filterAttrs (name: value: (value ? outputs) && (name != "self")) inputs;
+  in {
     # Enable nix flakes
     package = pkgs.nixFlakes;
 
@@ -74,7 +76,7 @@ in {
       sandbox = true;
 
       # Enable flakes
-      experimental-features = ["nix-command" "flakes"];
+      experimental-features = ["nix-command" "flakes" "repl-flake"];
 
       # Consider downloaded tarballs as fresh for 7 days
       tarball-ttl = 604800;
@@ -83,6 +85,8 @@ in {
     nixPath = [
       "nixpkgs=${inputs.nixpkgs.outPath}"
     ];
+
+    registry = builtins.mapAttrs (name: v: {flake = v;}) flakeInputs;
   };
 
   # Set your time zone.
@@ -109,7 +113,7 @@ in {
   };
 
   # Fonts
-  fonts.fonts = with pkgs; [
+  fonts.packages = with pkgs; [
     # Only use the given nerdfonts, saves cloning *everything*
     (nerdfonts.override {fonts = ["Hack" "Iosevka" "FantasqueSansMono" "VictorMono"];})
   ];

@@ -9,8 +9,9 @@
     "editor.acceptSuggestionOnEnter": "on",
     "rust-analyzer.cargo.extraEnv": {
         "CARGO_NET_GIT_FETCH_WITH_CLI": "true",
-        "CARGO_HOME": "/home/amy/.local/share/cargo"
+        // "CARGO_HOME": "/home/amy/.local/share/cargo"
     },
+    "rust-analyzer.server.path": "rust-analyzer",
     "editor.bracketPairColorization.enabled": true,
     "editor.fontFamily": "Iosevka Term",
     "editor.inlineSuggest.enabled": true,
@@ -568,7 +569,6 @@
     "[json]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
-    "catppuccin.workbenchMode": "minimal",
     "js/ts.implicitProjectConfig.checkJs": true,
     "javascript.preferences.importModuleSpecifier": "relative",
     "typescript.preferences.importModuleSpecifier": "relative",
@@ -719,15 +719,13 @@
         ".env*": "dotenv"
     },
     "editor.tokenColorCustomizations": {
-        "textMateRules": [
-            {
-                "scope": "keyword.other.dotenv",
-                "settings": {
-                    "foreground": "#FF000000"
-                }
-            }
-        ]
+        "textMateRules": []
     },
-    "dotenv.enableAutocloaking": true,
+    "dotenv.enableAutocloaking": false,
     "editor.inlayHints.enabled": "off",
+    "catppuccin.workbenchMode": "flat",
+    "kotlin.languageServer.enabled": false,
+    "kotlin.debugAdapter.enabled": false,
+    // Does actually exist, vscode is just a dumbass
+    "rust-analyzer.checkOnSave.command": "clippy"
 }

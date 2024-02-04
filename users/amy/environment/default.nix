@@ -1,5 +1,6 @@
 {
   config,
+  lib,
   pkgs,
   ...
 }: {
@@ -18,7 +19,7 @@
     HISTFILE = "${config.xdg.dataHome}/history";
     GNUPGHOME = "${config.xdg.dataHome}/gnupg";
     GRADLE_USER_HOME = "${config.xdg.dataHome}/gradle";
-    GTK2_RC_FILES = "${config.xdg.configHome}/gtk-2.0/gtkrc";
+    GTK2_RC_FILES = lib.mkForce "${config.xdg.configHome}/gtk-2.0/gtkrc";
     XCURSOR_PATH = "/usr/share/icons:${config.xdg.dataHome}/icons";
     NODE_REPL_HISTORY = "${config.xdg.dataHome}/node_repl_history";
     _JAVA_OPTIONS = "-Djava.util.prefs.userRoot=\"${config.xdg.configHome}\"/java";

@@ -26,7 +26,7 @@
     yubico-pam
     yubikey-manager-qt
     xclip
-    yubioath-desktop
+    yubioath-flutter
     i3lock
     nano
     vim

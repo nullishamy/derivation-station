@@ -1,9 +1,9 @@
 {
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-22.11";
+    nixpkgs.url = "nixpkgs/nixos-23.11";
     nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
 
-    home-manager.url = "github:nix-community/home-manager?ref=release-22.11";
+    home-manager.url = "github:nix-community/home-manager?ref=release-23.11";
 
     flake-utils.url = "github:numtide/flake-utils";
 
