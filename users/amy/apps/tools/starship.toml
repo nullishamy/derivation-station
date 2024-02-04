@@ -108,11 +108,11 @@ modified = "*"
 renamed = ""
 untracked = ""
 staged = ""
-stashed = "ﮅ "
+stashed = ""
 style = 'bg:peach fg:#000000'
 
 [cmd_duration]
-format = '[ﮫ $duration]($style)'
+format = '[$duration]($style)'
 style = 'bg:yellow fg:#000000'
 show_milliseconds = true
 min_time = 0
@@ -317,9 +317,9 @@ style = 'bg:mauve fg:#000000'
 ### STATUS INDICATORS
 
 [character]
-success_symbol = '[ﬦ](bold cyan)'
-error_symbol = '[ﬦ](bold red)'
-vimcmd_symbol = '[ﬦ](bold cyan)'
+success_symbol = '[>](bold cyan)'
+error_symbol = '[>](bold red)'
+vimcmd_symbol = '[>](bold cyan)'
 
 [palettes.catppuccin_latte]
 rosewater = "#dc8a78"
