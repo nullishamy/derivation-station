@@ -719,9 +719,16 @@
         ".env*": "dotenv"
     },
     "editor.tokenColorCustomizations": {
-        "textMateRules": []
+        "textMateRules": [
+            {
+                "scope": "keyword.other.dotenv",
+                "settings": {
+                    "foreground": "#FF000000"
+                }
+            }
+        ]
     },
-    "dotenv.enableAutocloaking": false,
+    "dotenv.enableAutocloaking": true,
     "editor.inlayHints.enabled": "off",
     "catppuccin.workbenchMode": "flat",
     "kotlin.languageServer.enabled": false,
