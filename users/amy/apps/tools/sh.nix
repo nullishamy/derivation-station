@@ -19,4 +19,9 @@
       show_help = false;
     };
   };
+
+  programs.zoxide = {
+    enable = true;
+    enableNushellIntegration = true;
+  };
 }

@@ -4,6 +4,12 @@ starship init nu | str replace "term size -c" "term size" |  str replace --all "
 mkdir ~/.cache/atuin
 atuin init nu --disable-up-arrow | save -f ~/.cache/atuin/init.nu
 
+mkdir ~/.cache/zoxide
+zoxide init nushell
+  | str replace --all "-- $rest" "-- ...$rest" 
+  | str replace "--interactive -- $rest" "--interactive -- ...$rest" 
+  | save -f ~/.cache/zoxide/init.nu
+
 # from https://www.nushell.sh/cookbook/misc.html#manage-ssh-passphrases
 # and https://github.com/nushell/nushell/discussions/9192
 

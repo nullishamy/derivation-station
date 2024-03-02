@@ -3,6 +3,6 @@
     ./cargo.nix
     ./git.nix
     ./lazygit.nix
-    ./shell.nix
+    ./sh.nix
   ];
 }

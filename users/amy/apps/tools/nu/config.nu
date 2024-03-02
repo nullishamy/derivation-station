@@ -117,7 +117,6 @@ let catppuccin = {
 $env.LS_COLORS = ((cat ~/.config/nushell/ls-colors) | str trim)
 
 let stheme = $catppuccin.mocha
-
 let theme = {
   separator: $stheme.overlay0
   leading_trailing_space_bg: $stheme.overlay0
@@ -203,7 +202,7 @@ $env.config = {
     }
   ]
   completions: {
-    algorithm: "fuzzy"
+    algorithm: "fuzzy",
   }
   history: {
     max_size: 100_000 # Session has to be reloaded for this to take effect
@@ -250,3 +249,4 @@ use "~/.config/nushell/scripts/custom-completions/make/make-completions.nu" *
 
 source ~/.cache/starship/init.nu
 source ~/.cache/atuin/init.nu
+source ~/.cache/zoxide/init.nu
