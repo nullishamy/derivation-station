@@ -692,6 +692,7 @@
     "typescript.inlayHints.parameterNames.enabled": "literals",
     "editor.inlayHints.padding": true,
     "colorize.include": [
+        "**/*.ini",
         "**/*.js",
         "**/*.mjs",
         "**/*.cjs",
