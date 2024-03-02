@@ -14,5 +14,9 @@
   programs.atuin = {
     enable = true;
     package = pkgs.unstable.atuin;
+    settings = {
+      dialect = "uk";
+      show_help = false;
+    };
   };
 }

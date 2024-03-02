@@ -21,9 +21,6 @@
     "${config.xdg.configHome}/nushell/ls-colors" = {
       source = config.lib.file.mkOutOfStoreSymlink "${flakePath}/users/amy/apps/tools/nu/ls-colors";
     };
-    "${config.xdg.configHome}/nushell/history.txt" = {
-      source = config.lib.file.mkOutOfStoreSymlink "${config.xdg.dataHome}/history";
-    };
     "${config.xdg.configHome}/nushell/env-nix.nu" = with lib; let
       environmentVariables = {
         # "-a" will launch emacs if the dameon is dead

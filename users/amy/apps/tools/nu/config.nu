@@ -205,6 +205,12 @@ $env.config = {
   completions: {
     algorithm: "fuzzy"
   }
+  history: {
+    max_size: 100_000 # Session has to be reloaded for this to take effect
+    sync_on_enter: true # Enable to share history between multiple sessions, else you have to close the session to write history to file
+    file_format: "sqlite" # "sqlite" or "plaintext"
+    isolation: false # only available with sqlite file_format. true enables history isolation, false disables it. 
+  }
   hooks: {
     pre_prompt: [{ ||
       let direnv = (direnv export json | from json)
@@ -236,7 +242,8 @@ alias wget = wget --hsts-file="$XDG_DATA_HOME/wget-hsts"
 use "~/.config/nushell/scripts/custom-completions/nix/nix-completions.nu" *
 use "~/.config/nushell/scripts/custom-completions/git/git-completions.nu" *
 use "~/.config/nushell/scripts/custom-completions/npm/npm-completions.nu" *
-use "~/.config/nushell/scripts/custom-completions/just/just-completions.nu" *
+# FIXME: Broken
+# use "~/.config/nushell/scripts/custom-completions/just/just-completions.nu" *
 use "~/.config/nushell/scripts/custom-completions/tealdeer/tldr-completions.nu" *
 use "~/.config/nushell/scripts/custom-completions/btm/btm-completions.nu" *
 use "~/.config/nushell/scripts/custom-completions/make/make-completions.nu" *
