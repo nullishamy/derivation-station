@@ -6,12 +6,17 @@ hardware_config :=  `sudo nixos-generate-config --show-hardware-config 2>/dev/nu
 dir := justfile_directory()
 
 [private]
-_default:
+default:
   @just --list
 
 [private]
-_build-system type:
-    sudo nixos-rebuild {{type}} --flake "{{dir}}#{{system_name}}"
+build-system type:
+    sudo nixos-rebuild {{type}} --flake "{{dir}}#{{system_name}}" |&nom
+
+[confirm]
+[private]
+confirm-switch *args:
+  @just build-system switch {{args}}
 
 # Setup the OS for the first time
 setup:
@@ -52,19 +57,20 @@ setup:
     echo "{{hardware_config}}" | base64 -d > {{dir}}/machines/desktop_customised/hardware.nix
     echo "Done!"
 
-
+# Build the configuration and put its result in ./result
+build *args:
+  @just build-system build {{args}} && nvd diff /run/current-system result
 
 # Build the configuration and show what would be activated
-test: (_build-system "dry-activate")
-
-# Build the configuration and put its result in ./result
-build: (_build-system "build")
+test: (build-system "dry-activate")
 
 # Build and switch to the configuration
-switch: (_build-system "switch")
+switch *args:
+  @just build {{args}}
+  @just confirm-switch {{args}}
 
 # Build a VM out of the configuration
-vm: (_build-system "build-vm")
+vm: (build-system "build-vm")
 
 # Clean up garbage from the nix store
 clean:

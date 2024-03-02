@@ -105,6 +105,8 @@
             unstable.just
             pkgs.sops
             pkgs.nixpkgs-fmt
+            pkgs.nix-output-monitor
+            pkgs.nvd
           ];
         };
     });
