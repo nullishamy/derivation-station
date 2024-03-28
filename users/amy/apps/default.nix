@@ -21,7 +21,6 @@
     rofi
     spotifywm
     flameshot
-    lazygit
     keybase
     neovide
     discord

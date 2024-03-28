@@ -717,7 +717,8 @@
         "command script import /home/amy/.vscode/extensions/vadimcn.vscode-lldb/formatters/rust.py"
     ],
     "files.associations": {
-        ".env*": "dotenv"
+        ".env*": "dotenv",
+        "*.user.css": "less"
     },
     "editor.tokenColorCustomizations": {
         "textMateRules": [
