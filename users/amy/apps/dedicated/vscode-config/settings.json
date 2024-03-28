@@ -735,5 +735,22 @@
     "kotlin.languageServer.enabled": false,
     "kotlin.debugAdapter.enabled": false,
     // Does actually exist, vscode is just a dumbass
-    "rust-analyzer.checkOnSave.command": "clippy"
+    "rust-analyzer.checkOnSave.command": "clippy",
+    "editor.codeLensFontFamily": "FantasqueSansM Nerd Font",
+    "presentation-mode.active": {
+        "commands": [
+            "workbench.action.closeSidebar"
+        ],
+        "editor.fontSize": 24,
+        "terminal.integrated.fontSize": 20,
+        "editor.matchBrackets": "never",
+        "editor.minimap.enabled": false,
+        // "editor.scrollbar.verticalScrollbarSize": 0,
+        // "workbench.activityBar.visible": false,
+        // "workbench.statusBar.visible": false,
+        "window.zoomLevel": 1
+    },
+    "zig.path": "",
+    "zig.zls.path": "",
+    "zig.initialSetupDone": true
 }

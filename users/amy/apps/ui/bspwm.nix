@@ -27,6 +27,7 @@ in {
       bspc config pointer_action2 resize_corner
 
       bspc config focus_follows_pointer true
+      bspc config automatic_scheme alternate
     '';
 
     rules = {
@@ -66,6 +67,7 @@ in {
       "${mod} + d" = "rofi -show drun -no-lazy-grab -lines 15 -width 40";
       "${mod} + r" = "bspc node @focused:/ --rotate 90";
       "${mod} + shift + r" = "bspc node @focused:/ --rotate 180";
+      "${mod} + y" = "bspc node @parent -R 90";
       "Print" = "flameshot gui";
     };
 

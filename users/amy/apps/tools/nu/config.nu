@@ -230,6 +230,10 @@ def lge [] {
   do { wezterm start --cwd (pwd) --always-new-process lazygit } out> /dev/null
 }
 
+def sshi [] {
+  echo 'Tap the YubiKey now:'; systemctl --user restart sops-nix; ssh-add ~/.ssh/github; echo 'Added Git SSH keys.'
+}
+
 # Modern unix
 alias grep = rg
 alias df = duf 

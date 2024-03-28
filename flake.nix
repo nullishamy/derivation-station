@@ -52,6 +52,16 @@
             inherit config inputs pkgs lib;
           }))
 
+          ({config, ...}: {
+            config = {
+              nixpkgs.overlays = [overlays];
+              nixpkgs.config.permittedInsecurePackages = [
+                # FIXME: For Obsidian Notes.
+                "electron-25.9.0"
+              ];
+            };
+          })
+
           inputs.home-manager.nixosModules.home-manager
           {
             home-manager = {
@@ -69,12 +79,6 @@
               };
             };
           }
-
-          ({config, ...}: {
-            config = {
-              nixpkgs.overlays = [overlays];
-            };
-          })
         ];
       };
     }

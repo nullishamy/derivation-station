@@ -29,6 +29,7 @@
     _1password-gui
     gparted
     gimp
+    obsidian
     steam
     lunar-client
     pavucontrol
