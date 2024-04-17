@@ -112,6 +112,8 @@ in {
   virtualisation.docker = {
     enable = true;
   };
+  virtualisation.virtualbox.host.enable = true;
+  users.extraGroups.vboxusers.members = ["amy"];
 
   # Fonts
   fonts.packages = with pkgs; [

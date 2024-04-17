@@ -705,6 +705,7 @@
         "**/*.styl",
         "**/*.yaml",
         "**/*.yml",
+        "**/*.tera",
     ],
     "catppuccin.boldKeywords": false,
     "catppuccin.italicKeywords": false,
