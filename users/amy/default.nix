@@ -28,7 +28,6 @@ in {
       ./packages
       ./environment
       ./apps
-      ./shells
       ./wallpapers
     ];
 
