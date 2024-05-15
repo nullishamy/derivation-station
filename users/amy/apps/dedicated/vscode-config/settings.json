@@ -5,15 +5,16 @@
             "statusBar.noFolderForeground": "accent"
         }
     },
+    "workbench.tree.indent": 15,
     "editor.tabCompletion": "off",
     "editor.acceptSuggestionOnEnter": "on",
     "rust-analyzer.cargo.extraEnv": {
-        "CARGO_NET_GIT_FETCH_WITH_CLI": "true",
+        "CARGO_NET_GIT_FETCH_WITH_CLI": "true"
         // "CARGO_HOME": "/home/amy/.local/share/cargo"
     },
     "rust-analyzer.server.path": "rust-analyzer",
     "editor.bracketPairColorization.enabled": true,
-    "editor.fontFamily": "FantasqueSansM Nerd Font",
+    "editor.fontFamily": "Berkeley Mono",
     "editor.inlineSuggest.enabled": true,
     "editor.lineNumbers": "relative",
     "extensions.autoUpdate": false,
@@ -262,7 +263,7 @@
             "after": [
                 "$"
             ],
-            "before": [
+                "before": [
                 "L"
             ]
         },
@@ -738,7 +739,7 @@
     "kotlin.debugAdapter.enabled": false,
     // Does actually exist, vscode is just a dumbass
     "rust-analyzer.checkOnSave.command": "clippy",
-    "editor.codeLensFontFamily": "FantasqueSansM Nerd Font",
+    "editor.codeLensFontFamily": "Berkeley Mono",
     "presentation-mode.active": {
         "commands": [
             "workbench.action.closeSidebar"
@@ -754,5 +755,8 @@
     },
     "zig.path": "",
     "zig.zls.path": "",
-    "zig.initialSetupDone": true
+    "zig.initialSetupDone": true,
+    "svelte.enable-ts-plugin": true,
+    "editor.inlineSuggest.fontFamily": "Berkeley Mono",
+    "rust-analyzer.checkOnSave": true
 }
