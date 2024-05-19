@@ -1,8 +1,12 @@
 mkdir ~/.cache/starship
-starship init nu | str replace "term size -c" "term size" |  str replace --all "let-env " "$env." | save -f ~/.cache/starship/init.nu
+starship init nu 
+    | str replace "term size -c" "term size" 
+    | str replace --all "let-env " "$env." 
+    | save -f ~/.cache/starship/init.nu
 
 mkdir ~/.cache/atuin
-atuin init nu --disable-up-arrow | save -f ~/.cache/atuin/init.nu
+atuin init nu --disable-up-arrow 
+    | save -f ~/.cache/atuin/init.nu
 
 mkdir ~/.cache/zoxide
 zoxide init nushell
@@ -50,7 +54,7 @@ if ("~/.cache/ssh-agent/agent" | path exists) {
 }
 
 if ("~/.ssh/github" | path exists ) {
-  do { ssh-add ~/.ssh/github } out> /dev/null
+  do { ssh-add ~/.ssh/github } o+e> /dev/null
 }
 
 source ~/.config/nushell/env-nix.nu

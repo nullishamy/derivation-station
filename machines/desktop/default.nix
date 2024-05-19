@@ -52,9 +52,6 @@ in {
   nix = let
     flakeInputs = lib.filterAttrs (name: value: (value ? outputs) && (name != "self")) inputs;
   in {
-    # Enable nix flakes
-    package = pkgs.nixFlakes;
-
     # Automatically run the garbage collector
     gc.automatic = true;
     gc.dates = "12:45";
@@ -112,7 +109,7 @@ in {
   virtualisation.docker = {
     enable = true;
   };
-  virtualisation.virtualbox.host.enable = true;
+  # virtualisation.virtualbox.host.enable = true;
   users.extraGroups.vboxusers.members = ["amy"];
 
   # Fonts

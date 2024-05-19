@@ -694,6 +694,9 @@
     "editor.inlayHints.padding": true,
     "colorize.include": [
         "**/*.ini",
+        "**/*.py",
+        "**/*.patch",
+        "**/*.diff",
         "**/*.js",
         "**/*.mjs",
         "**/*.cjs",

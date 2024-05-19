@@ -22,7 +22,6 @@
   statix,
   gitlint,
   alejandra,
-  rnix-lsp,
   beautysh,
   proselint,
   nodePackages,
@@ -56,7 +55,6 @@ in
         xclip
         statix
         alejandra
-        rnix-lsp
         beautysh
         proselint
         tree-sitter

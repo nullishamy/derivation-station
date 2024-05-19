@@ -154,8 +154,8 @@
           createPatchOptionsMenu = "<c-p>";
           nextTab = "]";
           prevTab = "[";
-          nextScreenMode = "+";
-          prevScreenMode = "_";
+          nextScreenMode = "-";
+          prevScreenMode = "+";
           undo = "z";
           redo = "<c-z>";
           filteringMenu = "<c-s>";
@@ -167,6 +167,7 @@
           toggleWhitespaceInDiffView = "<c-w>";
           increaseContextInDiffView = "}";
           decreaseContextInDiffView = "{";
+          toggleRangeSelect = "V";
         };
         status = {
           checkForUpdate = "u";
