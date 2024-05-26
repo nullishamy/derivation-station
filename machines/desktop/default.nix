@@ -46,7 +46,7 @@ in {
     };
   };
 
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelPackages = pkgs.linuxPackages_6_8;
 
   # Configure nix itself
   nix = let
@@ -109,7 +109,7 @@ in {
   virtualisation.docker = {
     enable = true;
   };
-  # virtualisation.virtualbox.host.enable = true;
+  virtualisation.virtualbox.host.enable = true;
   users.extraGroups.vboxusers.members = ["amy"];
 
   # Fonts
