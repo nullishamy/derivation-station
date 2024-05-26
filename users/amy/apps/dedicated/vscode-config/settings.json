@@ -1,8 +1,14 @@
 {
+    "gopls": {
+        "ui.semanticTokens": true,
+    },
     "catppuccin.customUIColors": {
         "all": {
             "statusBar.foreground": "accent",
             "statusBar.noFolderForeground": "accent"
+        },
+        "mocha": {
+            "statusBar.foreground": "accent",
         }
     },
     "workbench.tree.indent": 15,
@@ -14,7 +20,7 @@
     },
     "rust-analyzer.server.path": "rust-analyzer",
     "editor.bracketPairColorization.enabled": true,
-    "editor.fontFamily": "Berkeley Mono",
+    "editor.fontFamily": "Iosevka Nerd Font",
     "editor.inlineSuggest.enabled": true,
     "editor.lineNumbers": "relative",
     "extensions.autoUpdate": false,
@@ -483,7 +489,7 @@
     "vim.replaceWithRegister": true,
     "vim.useSystemClipboard": false,
     "window.titleBarStyle": "custom",
-    "editor.fontSize": 18,
+    "editor.fontSize": 20,
     "better-comments.highlightPlainText": true,
     "better-comments.tags": [
         {
@@ -737,12 +743,13 @@
     },
     "dotenv.enableAutocloaking": true,
     "editor.inlayHints.enabled": "off",
+    "terminal.integrated.minimumContrastRatio": 1,
     "catppuccin.workbenchMode": "flat",
     "kotlin.languageServer.enabled": false,
     "kotlin.debugAdapter.enabled": false,
     // Does actually exist, vscode is just a dumbass
     "rust-analyzer.checkOnSave.command": "clippy",
-    "editor.codeLensFontFamily": "Berkeley Mono",
+    "editor.codeLensFontFamily": "Iosevka Nerd Font",
     "presentation-mode.active": {
         "commands": [
             "workbench.action.closeSidebar"
@@ -761,5 +768,5 @@
     "zig.initialSetupDone": true,
     "svelte.enable-ts-plugin": true,
     "editor.inlineSuggest.fontFamily": "Berkeley Mono",
-    "rust-analyzer.checkOnSave": true
+    "rust-analyzer.checkOnSave": true,
 }

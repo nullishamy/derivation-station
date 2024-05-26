@@ -29,12 +29,15 @@ local fonts = {
         stretch = 'Normal',
         weight = 'Regular',
       },
+      {
+        family = 'Symbols Nerd Font',
+      },
     },
-    size = 11.5,
+    size = 12.5,
   },
 }
 
-local selected_font = 'berkeley'
+local selected_font = 'iosevka'
 
 return function(cfg, values)
   cfg.font = fonts[selected_font].font
