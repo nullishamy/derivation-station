@@ -11,5 +11,6 @@
     (pkgs.callPackage ./catppuccin-gtk {})
     (pkgs.callPackage ./nvim {})
     (pkgs.callPackage ./emacs {})
+    (pkgs.callPackage ./apple-music {})
   ];
 }

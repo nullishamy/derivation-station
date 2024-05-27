@@ -39,6 +39,10 @@ in {
         desktop = "^2";
         follow = false;
       };
+      "apple-music" = {
+        desktop = "^2";
+        follow = false;
+      };
       "thunderbird" = {
         desktop = "^6";
         follow = false;
@@ -53,7 +57,8 @@ in {
       "redshift -P -O 2500"
       "discord"
       "thunderbird"
-      "spotifywm" # Launch spotifywm instead, which has WM bug fixes (https://github.com/dasJ/spotifywm)
+      # "spotifywm" # Launch spotifywm instead, which has WM bug fixes (https://github.com/dasJ/spotifywm)
+      "apple-music-via-google-chrome"
       "xrandr --output HDMI-A-0 --mode 1920x1080 --rate 144 --primary"
     ];
   };
