@@ -12,5 +12,6 @@
     (pkgs.callPackage ./nvim {})
     (pkgs.callPackage ./emacs {})
     (pkgs.callPackage ./apple-music {})
+    (pkgs.callPackage ./rescrobbled {})
   ];
 }
