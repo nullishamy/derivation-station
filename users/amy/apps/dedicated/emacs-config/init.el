@@ -1,194 +1,254 @@
-;;; init.el -*- lexical-binding: t; -*-
+(setq visible-bell 1)
+(setq x-super-keysym 'meta)
+(setq inhibit-startup-message t)
 
-;; This file controls what Doom modules are enabled and what order they load
-;; in. Remember to run 'doom sync' after modifying it!
+(require 'package)
+(add-to-list 'package-archives '("gnu"   . "https://elpa.gnu.org/packages/"))
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
+(package-initialize)
 
-;; NOTE Press 'SPC h d h' (or 'C-h d h' for non-vim users) to access Doom's
-;;      documentation. There you'll find a link to Doom's Module Index where all
-;;      of our modules are listed, including what flags they support.
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
 
-;; NOTE Move your cursor over a module's name (or its flags) and press 'K' (or
-;;      'C-c c k' for non-vim users) to view its documentation. This works on
-;;      flags as well (those symbols that start with a plus).
-;;
-;;      Alternatively, press 'gd' (or 'C-c c d') on a module to browse its
-;;      directory (for easy access to its source code).
+(eval-and-compile
+  (setq use-package-always-ensure t
+        use-package-expand-minimally t))
 
-(doom! :input
-       ;;bidi              ; (tfel ot) thgir etirw uoy gnipleh
-       ;;chinese
-       ;;japanese
-       ;;layout            ; auie,ctsrnm is the superior home row
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages '(markdown-mode typescript-mode use-package)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
 
-       :completion
-       ( company +childframe)           ; the ultimate code completion backend
-       ;;helm              ; the *other* search engine for love and life
-       ;;ido               ; the other *other* search engine...
-       ;;ivy               ; a search engine for love and life
-       vertico           ; the search engine of the future
+(use-package direnv
+ :config
+ (direnv-mode))
 
-       :ui
-       ;;deft              ; notational velocity for Emacs
-       doom              ; what makes DOOM look the way it does
-       doom-dashboard    ; a nifty splash screen for Emacs
-       ;;doom-quit         ; DOOM quit-message prompts when you quit Emacs
-       (emoji +unicode)  ; 🙂
-       hl-todo           ; highlight TODO/FIXME/NOTE/DEPRECATED/HACK/REVIEW
-       ;;hydra
-       indent-guides     ; highlighted indent columns
-       ;;ligatures         ; ligatures and symbols to make your code pretty again
-       ;;minimap           ; show a map of the code on the side
-       modeline          ; snazzy, Atom-inspired modeline, plus API
-       ;;nav-flash         ; blink cursor line after big motions
-       neotree           ; a project drawer, like NERDTree for vim
-       ophints           ; highlight the region an operation acts on
-       (popup +defaults)   ; tame sudden yet inevitable temporary windows
-       ;;tabs              ; a tab bar for Emacs
-       ;;treemacs          ; a project drawer, like neotree but cooler
-       ;;unicode           ; extended unicode support for various languages
-       (vc-gutter +pretty) ; vcs diff in the fringe
-       vi-tilde-fringe   ; fringe tildes to mark beyond EOB
-       ;;window-select     ; visually switch windows
-       workspaces        ; tab emulation, persistence & separate workspaces
-       ;;zen               ; distraction-free coding or writing
+(use-package typescript-mode
+  :mode ("\\.tsx?\\'" . typescript-mode))
 
-       :editor
-       (evil +everywhere); come to the dark side, we have cookies
-       file-templates    ; auto-snippets for empty files
-       fold              ; (nigh) universal code folding
-       format  ; automated prettiness
-       ;;god               ; run Emacs commands without modifier keys
-       ;;lispy             ; vim for lisp, for people who don't like vim
-       ;;multiple-cursors  ; editing in many places at once
-       ;; objed             ; text object editing for the innocent
-       parinfer          ; turn lisp into python, sort of
-       ;;rotate-text       ; cycle region at point between text candidates
-       snippets          ; my elves. They type so I don't have to
-       ;;word-wrap         ; soft wrapping with language-aware indent
+(use-package markdown-mode
+  :mode ("\\.md\\'" . markdown-mode))
 
-       :emacs
-       dired             ; making dired pretty [functional]
-       electric          ; smarter, keyword-based electric-indent
-       ;;ibuffer         ; interactive buffer management
-       undo              ; persistent, smarter undo for your inevitable mistakes
-       vc                ; version-control and Emacs, sitting in a tree
 
-       :term
-       eshell            ; the elisp shell that works everywhere
-       ;;shell             ; simple shell REPL for Emacs
-       ;;term              ; basic terminal emulator for Emacs
-       ;; vterm             ; the best terminal emulation in Emacs
+(setq gc-cons-threshold (* 50 1000 1000))
 
-       :checkers
-       syntax              ; tasing you for every semicolon you forget
-       (spell +flyspell) ; tasing you for misspelling mispelling
-       ;;grammar           ; tasing grammar mistake every you make
+(require 'use-package-ensure) ;; Load use-package-always-ensure
+(setq use-package-always-ensure t) ;; Always ensures that a package is installed
+(setq package-archives '(("melpa" . "https://melpa.org/packages/") ;; Sets default package repositories
+                         ("org" . "https://orgmode.org/elpa/")
+                         ("elpa" . "https://elpa.gnu.org/packages/")
+                         ("nongnu" . "https://elpa.nongnu.org/nongnu/"))) ;; For Eat Terminal
 
-       :tools
-       ;;ansible
-       ;;biblio            ; Writes a PhD for you (citation needed)
-       ;;debugger          ; FIXME stepping through code, to help you add bugs
-       ;;direnv
-       ;;docker
-       editorconfig      ; let someone else argue about tabs vs spaces
-       ;;ein               ; tame Jupyter notebooks with emacs
-       (eval +overlay)     ; run code, run (also, repls)
-       ;;gist              ; interacting with github gists
-       lookup              ; navigate your code and its documentation
-       lsp        ; M-x vscode
-       magit             ; a git porcelain for Emacs
-       ;;make              ; run make tasks from Emacs
-       ;;pass              ; password manager for nerds
-       ;;pdf               ; pdf enhancements
-       ;;prodigy           ; FIXME managing external services & code builders
-       ;; rgb               ; creating color strings
-       ;;taskrunner        ; taskrunner for all your projects
-       ;;terraform         ; infrastructure as code
-       ;;tmux              ; an API for interacting with tmux
-       tree-sitter       ; syntax and parsing, sitting in a tree...
-       ;;upload            ; map local to remote projects via ssh/ftp
+(use-package emacs
+  :custom
+  (menu-bar-mode nil)         ;; Disable the menu bar
+  (scroll-bar-mode nil)       ;; Disable the scroll bar
+  (tool-bar-mode nil)         ;; Disable the tool bar
+  ;;(inhibit-startup-screen t)  ;; Disable welcome screen
 
-       :os
-       (:if IS-MAC macos)  ; improve compatibility with macOS
-       ;;tty               ; improve the terminal Emacs experience
+  (delete-selection-mode t)   ;; Select text and delete it by typing.
+  (electric-indent-mode nil)  ;; Turn off the weird indenting that Emacs does by default.
+  (electric-pair-mode t)      ;; Turns on automatic parens pairing
 
-       :lang
-       ;;agda              ; types of types of types of types...
-       ;;beancount         ; mind the GAAP
-       ;;(cc +lsp)         ; C > C++ == 1
-       ;;clojure           ; java with a lisp
-       ;;common-lisp       ; if you've seen one lisp, you've seen them all
-       ;;coq               ; proofs-as-programs
-       ;;crystal           ; ruby at the speed of c
-       ;;csharp            ; unity, .NET, and mono shenanigans
-       ;;data              ; config/data formats
-       ;;(dart +flutter)   ; paint ui and not much else
-       ;;dhall
-       ;;elixir            ; erlang done right
-       ;;elm               ; care for a cup of TEA?
-       emacs-lisp        ; drown in parentheses
-       ;;erlang            ; an elegant language for a more civilized age
-       ;;ess               ; emacs speaks statistics
-       ;;factor
-       ;;faust             ; dsp, but you get to keep your soul
-       ;;fortran           ; in FORTRAN, GOD is REAL (unless declared INTEGER)
-       ;;fsharp            ; ML stands for Microsoft's Language
-       ;;fstar             ; (dependent) types and (monadic) effects and Z3
-       ;;gdscript          ; the language you waited for
-       ;;(go +lsp)         ; the hipster dialect
-       ;;(graphql +lsp)    ; Give queries a REST
-       ;;(haskell +lsp)    ; a language that's lazier than I am
-       ;;hy                ; readability of scheme w/ speed of python
-       ;;idris             ; a language you can depend on
-       json              ; At least it ain't XML
-       (java +lsp)       ; the poster child for carpal tunnel syndrome
-       (javascript +lsp)        ; all(hope(abandon(ye(who(enter(here))))))
-       ;;julia             ; a better, faster MATLAB
-       ;;kotlin            ; a better, slicker Java(Script)
-       ;;latex             ; writing papers in Emacs has never been so fun
-       ;;lean              ; for folks with too much to prove
-       ;;ledger            ; be audit you can be
-       (lua +lsp)               ; one-based indices? one-based indices
-       markdown          ; writing docs for people to ignore
-       ;;nim               ; python + lisp at the speed of c
-       nix               ; I hereby declare "nix geht mehr!"
-       ;;ocaml             ; an objective camel
-       org               ; organize your plain life in plain text
-       ;;php               ; perl's insecure younger brother
-       ;;plantuml          ; diagrams for confusing people more
-       ;;purescript        ; javascript, but functional
-       (python +lsp +pyright)            ; beautiful is better than ugly
-       ;;qt                ; the 'cutest' gui framework ever
-       ;;racket            ; a DSL for DSLs
-       ;;raku              ; the artist formerly known as perl6
-       ;;rest              ; Emacs as a REST client
-       ;;rst               ; ReST in peace
-       ;;(ruby +rails)     ; 1.step {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
-       (rust +lsp)       ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
-       ;;scala             ; java, but good
-       ;;(scheme +guile)   ; a fully conniving family of lisps
-       sh                ; she sells {ba,z,fi}sh shells on the C xor
-       ;;sml
-       ;;solidity          ; do you need a blockchain? No.
-       ;;swift             ; who asked for emoji variables?
-       ;;terra             ; Earth and Moon in alignment for performance.
-       web               ; the tubes
-       ;;yaml              ; JSON, but readable
-       ;;zig               ; C, but simpler
+  (blink-cursor-mode nil)     ;; Don't blink cursor
+  (global-auto-revert-mode t) ;; Automatically reload file and show changes if the file has changed
 
-       :email
-       ;;(mu4e +org +gmail)
-       ;;notmuch
-       ;;(wanderlust +gmail)
+  ;;(dired-kill-when-opening-new-dired-buffer t) ;; Dired don't create new buffer
+  ;;(recentf-mode t) ;; Enable recent file mode
 
-       :app
-       ;;calendar
-       ;;emms
-       ;;everywhere        ; *leave* Emacs!? You must be joking
-       ;;irc               ; how neckbeards socialize
-       ;;(rss +org)        ; emacs as an RSS reader
-       ;;twitter           ; twitter client https://twitter.com/vnought
+  ;;(global-visual-line-mode t)           ;; Enable truncated lines
+  ;;(display-line-numbers-type 'relative) ;; Relative line numbers
+  (global-display-line-numbers-mode t)  ;; Display line numbers
 
-       :config
-       ;;literate
-       (default +bindings +smartparens))
+  (mouse-wheel-progressive-speed nil) ;; Disable progressive speed when scrolling
+  (scroll-conservatively 10) ;; Smooth scrolling
+  ;;(scroll-margin 8)
+
+  (tab-width 4)
+
+  (make-backup-files nil) ;; Stop creating ~ backup files
+  (auto-save-default nil) ;; Stop creating # auto save files
+  :hook
+  (prog-mode . (lambda () (hs-minor-mode t))) ;; Enable folding hide/show globally
+  :config
+  ;; Move customization variables to a separate file and load it, avoid filling up init.el with unnecessary variables
+  (setq custom-file (locate-user-emacs-file "custom-vars.el"))
+  (load custom-file 'noerror 'nomessage)
+  :bind (
+         ([escape] . keyboard-escape-quit) ;; Makes Escape quit prompts (Minibuffer Escape)
+         )
+  )
+
+(use-package catppuccin-theme
+  :config
+  (load-theme 'catppuccin :no-confirm)) ;; We need to add t to trust this package
+
+(add-to-list 'default-frame-alist '(alpha-background . 90)) ;; For all new frames henceforth
+
+(set-face-attribute 'default nil
+                    :font "Iosevka Term" ;; Set your favorite type of font or download JetBrains Mono
+                    :height 150
+                    :weight 'medium)
+;; This sets the default font on all graphical frames created after restarting Emacs.
+;; Does the same thing as 'set-face-attribute default' above, but emacsclient fonts
+;; are not right unless I also add this method of setting the default font.
+
+;;(add-to-list 'default-frame-alist '(font . "JetBrains Mono")) ;; Set your favorite font
+(setq-default line-spacing 0.12)
+
+(use-package emacs
+  :bind
+  ("C-+" . text-scale-increase)
+  ("C--" . text-scale-decrease)
+  ("<C-wheel-up>" . text-scale-increase)
+  ("<C-wheel-down>" . text-scale-decrease))
+
+(use-package expand-region
+  :bind ("C-i" . er/expand-region))
+
+(use-package projectile
+  :init
+  (projectile-mode)
+  :custom
+  (projectile-run-use-comint-mode t) ;; Interactive run dialog when running projects inside emacs (like giving input)
+  (projectile-switch-project-action #'projectile-dired) ;; Open dired when switching to a project
+  (projectile-project-search-path '("~/code")) ;;
+  :config
+  (define-key projectile-mode-map (kbd "M-p") 'projectile-command-map))
+
+(use-package flycheck
+  :ensure t
+  :config
+  (add-hook 'after-init-hook #'global-flycheck-mode))
+
+(use-package lsp-mode
+  :init
+  ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
+  (setq lsp-keymap-prefix "C-c l")
+  :hook (
+         (lisp-mode . lsp)
+         (python-mode . lsp)
+         (lsp-mode . lsp-enable-which-key-integration))
+  :commands lsp)
+
+(use-package lsp-ui :commands lsp-ui-mode)
+
+;; Use Bookmarks for smaller, not standard projects
+
+;;(use-package eglot
+;;  :ensure nil ;; Don't install eglot because it's now built-in
+;;  :hook ((c-mode c++-mode ;; Autostart lsp servers for a given mode
+;;                 lua-mode) ;; Lua-mode needs to be installed
+;;         . eglot-ensure)
+;;  :custom
+;;  ;; Good default
+;;  (eglot-events-buffer-size 0) ;; No event buffers (Lsp server logs)
+;;  (eglot-autoshutdown t);; Shutdown unused servers.
+;;  (eglot-report-progress nil) ;; Disable lsp server logs (Don't show lsp messages at the bottom, java)
+;;  ;; Manual lsp servers
+;;  :config
+;;  (add-to-list 'eglot-server-programs
+;;               `(lua-mode . ("PATH_TO_THE_LSP_FOLDER/bin/lua-language-server" "-lsp"))) ;; Adds our lua lsp server to eglot's server list
+;;  )
+
+(use-package yasnippet-snippets
+  :hook (prog-mode . yas-minor-mode))
+
+(use-package org
+  :ensure nil
+  :custom
+  (org-edit-src-content-indentation 4) ;; Set src block automatic indent to 4 instead of 2.
+
+  :hook
+  (org-mode . org-indent-mode) ;; Indent text
+  ;; The following prevents <> from auto-pairing when electric-pair-mode is on.
+  ;; Otherwise, org-tempo is broken when you try to <s TAB...
+  ;;(org-mode . (lambda ()
+  ;;              (setq-local electric-pair-inhibit-predicate
+  ;;                          `(lambda (c)
+  ;;                             (if (char-equal c ?<) t (,electric-pair-inhibit-predicate c))))))
+  )
+
+(use-package toc-org
+  :commands toc-org-enable
+  :hook (org-mode . toc-org-mode))
+
+(use-package org-superstar
+  :after org
+  :hook (org-mode . org-superstar-mode))
+
+(use-package org-tempo
+  :ensure nil
+  :after org)
+
+(use-package eat
+  :hook ('eshell-load-hook #'eat-eshell-mode))
+
+(use-package nerd-icons
+  :if (display-graphic-p))
+
+(use-package nerd-icons-dired
+  :hook (dired-mode . (lambda () (nerd-icons-dired-mode t))))
+
+(use-package nerd-icons-ibuffer
+  :hook (ibuffer-mode . nerd-icons-ibuffer-mode))
+
+(use-package magit
+  :commands magit-status)
+
+(use-package diff-hl
+  :hook ((dired-mode         . diff-hl-dired-mode-unless-remote)
+         (magit-pre-refresh  . diff-hl-magit-pre-refresh)
+         (magit-post-refresh . diff-hl-magit-post-refresh))
+  :init (global-diff-hl-mode))
+
+(use-package vertico
+  :init
+  (vertico-mode))
+
+(savehist-mode) ;; Enables save history mode
+
+(use-package marginalia
+  :after vertico
+  :init
+  (marginalia-mode))
+
+(use-package nerd-icons-completion
+  :after marginalia
+  :config
+  (nerd-icons-completion-mode)
+  :hook
+  ('marginalia-mode-hook . 'nerd-icons-completion-marginalia-setup))
+
+(use-package diminish)
+
+(use-package rainbow-delimiters
+  :hook (prog-mode . rainbow-delimiters-mode))
+
+(use-package which-key
+  :init
+  (which-key-mode 1)
+  :diminish
+  :custom
+  (which-key-side-window-location 'bottom)
+  (which-key-sort-order #'which-key-key-order-alpha) ;; Same as default, except single characters are sorted alphabetically
+  (which-key-sort-uppercase-first nil)
+  (which-key-add-column-padding 1) ;; Number of spaces to add to the left of each column
+  (which-key-min-display-lines 6)  ;; Increase the minimum lines to display, because the default is only 1
+  (which-key-idle-delay 0.8)       ;; Set the time delay (in seconds) for the which-key popup to appear
+  (which-key-max-description-length 25)
+  (which-key-allow-imprecise-window-fit nil)) ;; Fixes which-key window slipping out in Emacs Daemon
+
+;; Make gc pauses faster by decreasing the threshold.
+(setq gc-cons-threshold (* 2 1000 1000))
+;; Increase the amount of data which Emacs reads from the process
+(setq read-process-output-max (* 1024 1024)) ;; 1mb

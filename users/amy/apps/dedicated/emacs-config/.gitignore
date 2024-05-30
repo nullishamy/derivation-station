@@ -1,0 +1,7 @@
+auto-save-list/
+elpa/
+eln-cache/
+transient/
+history
+projectile-bookmarks.eld
+.lsp-session*
