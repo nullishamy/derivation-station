@@ -88,7 +88,7 @@
 
 (use-package catppuccin-theme
   :config
-  (load-theme 'catppuccin :no-confirm)) ;; We need to add t to trust this package
+  (load-theme 'catppuccin :no-confirm))
 
 (add-to-list 'default-frame-alist '(alpha-background . 90)) ;; For all new frames henceforth
 
@@ -102,7 +102,6 @@
 
 ;;(add-to-list 'default-frame-alist '(font . "JetBrains Mono")) ;; Set your favorite font
 (setq-default line-spacing 0.12)
-
 (use-package emacs
   :bind
   ("C-+" . text-scale-increase)
@@ -111,6 +110,7 @@
   ("<C-wheel-down>" . text-scale-decrease))
 
 (use-package expand-region
+  :disabled ;; FIXME: Rebinds TAB for some reason, breaking indent muscle memory
   :bind ("C-i" . er/expand-region))
 
 (use-package projectile
@@ -132,13 +132,29 @@
   ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
   (setq lsp-keymap-prefix "C-c l")
   :hook (
-         (lisp-mode . lsp)
          (python-mode . lsp)
+         (rust-mode . lsp)
+         (svelte-mode . lsp)
+         (go-mode . lsp)
+         (nix-mode . lsp)
          (lsp-mode . lsp-enable-which-key-integration))
   :commands lsp)
 
+(use-package nix-mode
+  :mode "\\.nix\\'")
+
 (use-package go-mode
   :mode ("\\.go?\\" . go-mode))
+
+(use-package rust-mode
+  :mode ("\\.rs?\\" . rust-mode))
+
+(use-package svelte-mode
+  :mode ("\\.svelte?\\" . svelte-mode))
+
+(use-package lsp-tailwindcss
+  :init
+  (setq lsp-tailwindcss-add-on-mode t))
 
 (use-package elcord
   :config
@@ -178,15 +194,16 @@
   (define-globalized-minor-mode global-hl-todo-mode hl-todo-mode
     (lambda () (hl-todo-mode)))
   (global-hl-todo-mode 1)
+
   (setq hl-todo-keyword-faces
       '(("TODO"   . hl-todo-TODO)
-        ("HACK"   . hl-todo-HACK))))
+        ("HACK"   . hl-todo-HACK)
+        ("FIXME"  . hl-todo-HACK))))
 
 ;; Use Bookmarks for smaller, not standard projects
 
 ;;(use-package eglot
-;;  :ensure nil ;; Don't install eglot because it's now built-in
-;;  :hook ((c-mode c++-mode ;; Autostart lsp servers for a given mode
+;;  :ensure nil ;; Don't install eglot because it's now built-;;  :hook ((c-mode c++-mode ;; Autostart lsp servers for a given mode
 ;;                 lua-mode) ;; Lua-mode needs to be installed
 ;;         . eglot-ensure)
 ;;  :custom
@@ -251,23 +268,72 @@
          (magit-post-refresh . diff-hl-magit-post-refresh))
   :init (global-diff-hl-mode))
 
-(use-package vertico
-  :disabled
-  :init
-  (vertico-mode))
-
 ;; Configure IDO mode
 ;; https://www.masteringemacs.org/article/introduction-to-ido-mode
 (setq ido-enable-flex-matching t)
 (setq ido-everywhere t)
 (ido-mode 1)
 
+(use-package ido-completing-read+
+  :config
+  (ido-ubiquitous-mode 1))
+
 (savehist-mode) ;; Enables save history mode
 
-(use-package marginalia
-  :after vertico
+(use-package corfu
+  ;; Optional customizations
+  :custom
+  (corfu-cycle t)                ;; Enable cycling for `corfu-next/previous'
+  (corfu-auto t)                 ;; Enable auto completion
+  (corfu-auto-prefix 2)          ;; Minimum length of prefix for auto completion.
+  (corfu-popupinfo-mode t)       ;; Enable popup information
+  (corfu-popupinfo-delay 0.5)    ;; Lower popupinfo delay to 0.5 seconds from 2 seconds
+  (corfu-separator ?\s)          ;; Orderless field separator, Use M-SPC to enter separator
+  ;; (corfu-quit-at-boundary nil)   ;; Never quit at completion boundary
+  ;; (corfu-quit-no-match nil)      ;; Never quit, even if there is no match
+  (corfu-preview-current t)    ;; Disable current candidate preview
+  ;; (corfu-preselect 'prompt)      ;; Preselect the prompt
+  ;; (corfu-on-exact-match nil)     ;; Configure handling of exact matches
+  ;; (corfu-scroll-margin 5)        ;; Use scroll margin
+  (completion-ignore-case t)
+  ;; Enable indentation+completion using the TAB key.
+  ;; `completion-at-point' is often bound to M-TAB.
+  (tab-always-indent 'complete)
+  (corfu-preview-current nil) ;; Don't insert completion without confirmation
+  ;; Recommended: Enable Corfu globally.  This is recommended since Dabbrev can
+  ;; be used globally (M-/).  See also the customization variable
+  ;; `global-corfu-modes' to exclude certain modes.
   :init
-  (marginalia-mode))
+  (global-corfu-mode))
+
+(use-package nerd-icons-corfu
+  :after corfu
+  :init (add-to-list 'corfu-margin-formatters #'nerd-icons-corfu-formatter))
+
+(use-package cape
+  :after corfu
+  :init
+  ;; Add to the global default value of `completion-at-point-functions' which is
+  ;; used by `completion-at-point'.  The order of the functions matters, the
+  ;; first function returning a result wins.  Note that the list of buffer-local
+  ;; completion functions takes precedence over the global list.
+  ;; The functions that are added later will be the first in the list
+
+  (add-to-list 'completion-at-point-functions #'cape-dabbrev) ;; Complete word from current buffers
+  (add-to-list 'completion-at-point-functions #'cape-dict) ;; Dictionary completion
+  (add-to-list 'completion-at-point-functions #'cape-file) ;; Path completion
+  (add-to-list 'completion-at-point-functions #'cape-elisp-block) ;; Complete elisp in Org or Markdown mode
+  (add-to-list 'completion-at-point-functions #'cape-keyword) ;; Keyword/Snipet completion
+
+  (keymap-global-set "M-TAB" 'completion-at-point)
+  ;;(add-to-list 'completion-at-point-functions #'cape-abbrev) ;; Complete abbreviation
+  ;;(add-to-list 'completion-at-point-functions #'cape-history) ;; Complete from Eshell, Comint or minibuffer history
+  ;;(add-to-list 'completion-at-point-functions #'cape-line) ;; Complete entire line from current buffer
+  ;;(add-to-list 'completion-at-point-functions #'cape-elisp-symbol) ;; Complete Elisp symbol
+  ;;(add-to-list 'completion-at-point-functions #'cape-tex) ;; Complete Unicode char from TeX command, e.g. \hbar
+  ;;(add-to-list 'completion-at-point-functions #'cape-sgml) ;; Complete Unicode char from SGML entity, e.g., &alpha
+  ;;(add-to-list 'completion-at-point-functions #'cape-rfc1345) ;; Complete Unicode char using RFC 1345 mnemonics
+  )
 
 (use-package nerd-icons-completion
   :after marginalia
