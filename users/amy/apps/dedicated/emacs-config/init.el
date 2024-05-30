@@ -27,6 +27,10 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+(use-package flycheck-inline
+  :config
+  (with-eval-after-load 'flycheck
+  (add-hook 'flycheck-mode-hook #'flycheck-inline-mode)))
 
 (use-package direnv
  :config
@@ -140,7 +144,34 @@
          (lsp-mode . lsp-enable-which-key-integration))
   :commands lsp)
 
-(use-package lsp-ui :commands lsp-ui-mode)
+(use-package lsp-ui
+  :commands
+  lsp-ui-mode
+  :config
+  (setq lsp-ui-doc-position 'at-point)
+  (setq lsp-ui-doc-delay 1.5)
+  (keymap-global-set "C-c d s" 'lsp-ui-doc-show)
+  (keymap-global-set "C-c d f" 'lsp-ui-doc-focus-frame)
+  (keymap-global-set "C-c d h" 'lsp-ui-doc-hide)
+  (setq lsp-ui-doc-enable t))
+
+(defface hl-todo-HACK
+  '((t :background "#f38ba8" :foreground "#11111b" :inherit (hl-todo)))
+  "Face for highlighting the HACK keyword.")
+
+(defface hl-todo-TODO
+  '((t :background "#89b4fa" :foreground "#11111b" :inherit (hl-todo)))
+  "Face for highlighting the TODO keyword.")
+
+(use-package hl-todo
+  :config
+  ;; Make it a proper global mode; we want this everywhere unless we explicitly disable it (TODO: Add blocklist filtering here)
+  (define-globalized-minor-mode global-hl-todo-mode hl-todo-mode
+    (lambda () (hl-todo-mode)))
+  (global-hl-todo-mode 1)
+  (setq hl-todo-keyword-faces
+      '(("TODO"   . hl-todo-TODO)
+        ("HACK"   . hl-todo-HACK))))
 
 ;; Use Bookmarks for smaller, not standard projects
 
@@ -233,6 +264,12 @@
 
 (use-package rainbow-delimiters
   :hook (prog-mode . rainbow-delimiters-mode))
+(use-package rainbow-mode
+  :config
+  ;; Make it a proper global mode; we want this everywhere unless we explicitly disable it (TODO: Add blocklist filtering here)
+  (define-globalized-minor-mode global-rainbow-mode rainbow-mode
+    (lambda () (rainbow-mode 1)))
+  (rainbow-mode 1))
 
 (use-package which-key
   :init

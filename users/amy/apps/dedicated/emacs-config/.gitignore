@@ -5,3 +5,4 @@ transient/
 history
 projectile-bookmarks.eld
 .lsp-session*
+.cache/
