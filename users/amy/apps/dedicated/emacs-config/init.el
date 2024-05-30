@@ -1,3 +1,4 @@
+;; Taken from https://github.com/MiniApollo/kickstart.emacs !
 (setq visible-bell 1)
 (setq x-super-keysym 'meta)
 (setq inhibit-startup-message t)
@@ -35,13 +36,6 @@
 (use-package direnv
  :config
  (direnv-mode))
-
-(use-package typescript-mode
-  :mode ("\\.tsx?\\'" . typescript-mode))
-
-(use-package markdown-mode
-  :mode ("\\.md\\'" . markdown-mode))
-
 
 (setq gc-cons-threshold (* 50 1000 1000))
 
@@ -130,7 +124,6 @@
   (define-key projectile-mode-map (kbd "M-p") 'projectile-command-map))
 
 (use-package flycheck
-  :ensure t
   :config
   (add-hook 'after-init-hook #'global-flycheck-mode))
 
@@ -143,6 +136,22 @@
          (python-mode . lsp)
          (lsp-mode . lsp-enable-which-key-integration))
   :commands lsp)
+
+(use-package go-mode
+  :mode ("\\.go?\\" . go-mode))
+
+(use-package elcord
+  :config
+  (require 'elcord)
+  (elcord-mode)
+  (setq elcord-quiet t)
+  (setq elcord-idle-message "AFK.."))
+
+(use-package typescript-mode
+  :mode ("\\.tsx?\\'" . typescript-mode))
+
+(use-package markdown-mode
+  :mode ("\\.md\\'" . markdown-mode))
 
 (use-package lsp-ui
   :commands
@@ -243,8 +252,15 @@
   :init (global-diff-hl-mode))
 
 (use-package vertico
+  :disabled
   :init
   (vertico-mode))
+
+;; Configure IDO mode
+;; https://www.masteringemacs.org/article/introduction-to-ido-mode
+(setq ido-enable-flex-matching t)
+(setq ido-everywhere t)
+(ido-mode 1)
 
 (savehist-mode) ;; Enables save history mode
 
