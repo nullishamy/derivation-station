@@ -3,7 +3,6 @@
 #+PROPERTY: header-args:emacs-lisp :noweb yes :tangle yes
 
 **  Bootstrap
-
 This config uses `straight.el` for package management, on top of `use-package` for recipes.
 #+BEGIN_SRC emacs-lisp
     ;; Configure straight.el settings
@@ -208,14 +207,14 @@ This config uses `straight.el` for package management, on top of `use-package` f
 
     ;; Filetype -> mode mappings
     (setq auto-mode-alist
-      (append
-       ;; File name (within directory) starts with a dot.
-       '(("/\\.[^/]*\\'" . fundamental-mode)
-         ;; File name has no dot.
-         ("/[^\\./]*\\'" . fundamental-mode)
-         ;; File name ends in ‘.el’.
-         ("\\.el\\'" . emacs-lisp-mode))
-       auto-mode-alist))
+     	  (append
+     	   ;; File name (within directory) starts with a dot.
+     	   '(("/\\.[^/]*\\'" . fundamental-mode)
+     		 ;; File name has no dot.
+     		 ("/[^\\./]*\\'" . fundamental-mode)
+     		 ;; File name ends in ‘.el’.
+     		 ("\\.el\\'" . emacs-lisp-mode))
+     	   auto-mode-alist))
 
     ;; Additional language modes
     (use-package nix-mode
@@ -248,7 +247,7 @@ This config uses `straight.el` for package management, on top of `use-package` f
     (use-package flycheck-inline
       :config
       (with-eval-after-load 'flycheck
-      (add-hook 'flycheck-mode-hook #'flycheck-inline-mode)))
+     	(add-hook 'flycheck-mode-hook #'flycheck-inline-mode)))
 #+END_SRC
 
 **  Org-mode
