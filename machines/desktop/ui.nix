@@ -45,18 +45,22 @@
   };
 
   # Configure X11
+  services = {
+    displayManager = {
+      defaultSession = "none+bspwm";
+    };
+  };
+
   services.xserver = {
     enable = true;
 
-    layout = "us";
-    xkbVariant = "";
+    xkb = {
+      layout = "us";
+      variant = "";
+    };
 
     windowManager.bspwm = {
       enable = true;
-    };
-
-    displayManager = {
-      defaultSession = "none+bspwm";
     };
 
     desktopManager = {

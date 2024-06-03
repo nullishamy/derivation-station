@@ -36,7 +36,7 @@
     dunst
 
     # 3D printing
-    super-slicer
+    # super-slicer FIXME: Broken as of 24.05
 
     # Modern unix
     ripgrep

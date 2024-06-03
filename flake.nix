@@ -1,9 +1,9 @@
 {
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-23.11";
+    nixpkgs.url = "nixpkgs/nixos-24.05";
     nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
 
-    home-manager.url = "github:nix-community/home-manager?ref=release-23.11";
+    home-manager.url = "github:nix-community/home-manager?ref=release-24.05";
 
     flake-utils.url = "github:numtide/flake-utils";
 
@@ -111,6 +111,7 @@
             pkgs.nixpkgs-fmt
             pkgs.nix-output-monitor
             pkgs.nvd
+            pkgs.nixd
           ];
         };
     });
