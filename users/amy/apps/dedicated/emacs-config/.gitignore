@@ -7,3 +7,4 @@ projectile-bookmarks.eld
 .lsp-session*
 .cache/
 projectile.cache
+ido.last

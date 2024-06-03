@@ -3,31 +3,27 @@
 (setq x-super-keysym 'meta)
 (setq inhibit-startup-message t)
 
-(require 'package)
-(add-to-list 'package-archives '("gnu"   . "https://elpa.gnu.org/packages/"))
-(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
-(package-initialize)
+(setq straight-enable-use-package-integration t)
+(setq straight-use-package-by-default t)
 
-(unless (package-installed-p 'use-package)
-  (package-refresh-contents)
-  (package-install 'use-package))
+(defvar bootstrap-version)
+(let ((bootstrap-file
+       (expand-file-name
+        "straight/repos/straight.el/bootstrap.el"
+        (or (bound-and-true-p straight-base-dir)
+            user-emacs-directory)))
+      (bootstrap-version 7))
+  (unless (file-exists-p bootstrap-file)
+    (with-current-buffer
+        (url-retrieve-synchronously
+         "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
+         'silent 'inhibit-cookies)
+      (goto-char (point-max))
+      (eval-print-last-sexp)))
+  (load bootstrap-file nil 'nomessage))
 
-(eval-and-compile
-  (setq use-package-always-ensure t
-        use-package-expand-minimally t))
+(straight-use-package 'use-package)
 
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages '(markdown-mode typescript-mode use-package)))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
 (use-package flycheck-inline
   :config
   (with-eval-after-load 'flycheck
@@ -116,13 +112,12 @@
   (global-set-key (kbd "C-c e") 'er/expand-region))
 
 (use-package projectile
-  :init
-  (projectile-mode)
   :custom
   (projectile-run-use-comint-mode t) ;; Interactive run dialog when running projects inside emacs (like giving input)
   (projectile-switch-project-action #'projectile-dired) ;; Open dired when switching to a project
   (projectile-project-search-path '("~/code")) ;;
   :config
+  (projectile-mode)
   (define-key projectile-mode-map (kbd "M-p") 'projectile-command-map))
 
 (use-package flycheck
@@ -130,7 +125,7 @@
   (add-hook 'after-init-hook #'global-flycheck-mode))
 
 (use-package lsp-mode
-  :init
+  :config
   ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
   (setq lsp-keymap-prefix "C-c l")
 ;;  (setq lsp-completion-enable nil)
@@ -230,23 +225,6 @@
         ("HACK"   . hl-todo-HACK)
         ("FIXME"  . hl-todo-HACK))))
 
-;; Use Bookmarks for smaller, not standard projects
-
-;;(use-package eglot
-;;  :ensure nil ;; Don't install eglot because it's now built-;;  :hook ((c-mode c++-mode ;;  lsp servers for a given mode
-;;                 lua-mode) ;; Lua-mode needs to be installed
-;;         . eglot-ensure)
-;;  :custom
-;;  ;; Good default
-;;  (eglot-events-buffer-size 0) ;; No event buffers (Lsp server logs)
-;;  (eglot-autoshutdown t);; Shutdown unused servers.
-;;  (eglot-report-progress nil) ;; Disable lsp server logs (Don't show lsp messages at the bottom, java)
-;;  ;; Manual lsp servers
-;;  :config
-;;  (add-to-list 'eglot-server-programs
-;;               `(lua-mode . ("PATH_TO_THE_LSP_FOLDER/bin/lua-language-server" "-lsp"))) ;; Adds our lua lsp server to eglot's server list
-;;  )
-
 (use-package yasnippet-snippets
   :hook (prog-mode . yas-minor-mode))
 
@@ -274,11 +252,9 @@
   :hook (org-mode . org-superstar-mode))
 
 (use-package org-tempo
+  :disabled
   :ensure nil
   :after org)
-
-(use-package eat
-  :hook ('eshell-load-hook #'eat-eshell-mode))
 
 (use-package nerd-icons
   :if (display-graphic-p))
