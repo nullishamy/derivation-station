@@ -336,13 +336,6 @@ This config uses `straight.el` for package management, on top of `use-package` f
 **  External integration
 ***  Discord
 #+BEGIN_SRC emacs-lisp
-    (use-package elcord
-      :config
-      (add-hook 'elcord-mode-hook 'custom-elcord-mode-hook)
-      (elcord-mode)
-      (setq elcord-quiet t)
-      (setq elcord-idle-message "AFK.."))
-
     (defun elcord--enable-on-frame-created (f)
       (elcord-mode +1))
 
@@ -358,6 +351,13 @@ This config uses `straight.el` for package management, on top of `use-package` f
       (if elcord-mode
           (add-hook 'delete-frame-functions 'elcord--disable-elcord-if-no-frames)
         (remove-hook 'delete-frame-functions 'elcord--disable-elcord-if-no-frames)))
+
+    (use-package elcord
+      :config
+      (add-hook 'elcord-mode-hook 'custom-elcord-mode-hook)
+      (elcord-mode)
+      (setq elcord-quiet t)
+      (setq elcord-idle-message "AFK.."))
 #+END_SRC
 
 **  Icons

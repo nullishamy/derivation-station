@@ -187,14 +187,14 @@
 
 ;; Filetype -> mode mappings
 (setq auto-mode-alist
-  (append
-   ;; File name (within directory) starts with a dot.
-   '(("/\\.[^/]*\\'" . fundamental-mode)
-     ;; File name has no dot.
-     ("/[^\\./]*\\'" . fundamental-mode)
-     ;; File name ends in ‘.el’.
-     ("\\.el\\'" . emacs-lisp-mode))
-   auto-mode-alist))
+      (append
+       ;; File name (within directory) starts with a dot.
+       '(("/\\.[^/]*\\'" . fundamental-mode)
+     	 ;; File name has no dot.
+     	 ("/[^\\./]*\\'" . fundamental-mode)
+     	 ;; File name ends in ‘.el’.
+     	 ("\\.el\\'" . emacs-lisp-mode))
+       auto-mode-alist))
 
 ;; Additional language modes
 (use-package nix-mode
@@ -227,7 +227,7 @@
 (use-package flycheck-inline
   :config
   (with-eval-after-load 'flycheck
-  (add-hook 'flycheck-mode-hook #'flycheck-inline-mode)))
+    (add-hook 'flycheck-mode-hook #'flycheck-inline-mode)))
 
 (use-package org
   :custom
@@ -305,13 +305,6 @@
   ;;(add-to-list 'completion-at-point-functions #'cape-rfc1345) ;; Complete Unicode char using RFC 1345 mnemonics
   )
 
-(use-package elcord
-  :config
-  (add-hook 'elcord-mode-hook 'custom-elcord-mode-hook)
-  (elcord-mode)
-  (setq elcord-quiet t)
-  (setq elcord-idle-message "AFK.."))
-
 (defun elcord--enable-on-frame-created (f)
   (elcord-mode +1))
 
@@ -327,6 +320,13 @@
   (if elcord-mode
       (add-hook 'delete-frame-functions 'elcord--disable-elcord-if-no-frames)
     (remove-hook 'delete-frame-functions 'elcord--disable-elcord-if-no-frames)))
+
+(use-package elcord
+  :config
+  (add-hook 'elcord-mode-hook 'custom-elcord-mode-hook)
+  (elcord-mode)
+  (setq elcord-quiet t)
+  (setq elcord-idle-message "AFK.."))
 
 (use-package nerd-icons-completion
   :config
