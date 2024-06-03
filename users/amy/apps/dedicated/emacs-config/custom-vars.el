@@ -4,7 +4,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(company-mode ido-completing-read+ lsp-tailwindcss svelte-mode elcord rainbow-mode hl-todo flycheck-inline markdown-mode typescript-mode use-package)))
+   '(gnu-elpa-keyring-update which-key rainbow-mode rainbow-delimiters diminish nerd-icons-completion cape nerd-icons-corfu corfu ido-completing-read+ diff-hl magit nerd-icons-ibuffer nerd-icons-dired nerd-icons eat org-superstar toc-org yasnippet-snippets hl-todo lsp-ui elcord lsp-tailwindcss svelte-mode rust-mode go-mode nix-mode lsp-mode projectile catppuccin-theme direnv flycheck-inline markdown-mode typescript-mode use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

@@ -6,3 +6,4 @@ history
 projectile-bookmarks.eld
 .lsp-session*
 .cache/
+projectile.cache

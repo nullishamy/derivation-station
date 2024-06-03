@@ -96,6 +96,8 @@
                     :font "Iosevka Term" ;; Set your favorite type of font or download JetBrains Mono
                     :height 150
                     :weight 'medium)
+
+(set-frame-font "Iosevka Term" nil t)
 ;; This sets the default font on all graphical frames created after restarting Emacs.
 ;; Does the same thing as 'set-face-attribute default' above, but emacsclient fonts
 ;; are not right unless I also add this method of setting the default font.
@@ -110,8 +112,8 @@
   ("<C-wheel-down>" . text-scale-decrease))
 
 (use-package expand-region
-  :disabled ;; FIXME: Rebinds TAB for some reason, breaking indent muscle memory
-  :bind ("C-i" . er/expand-region))
+  :config
+  (global-set-key (kbd "C-c e") 'er/expand-region))
 
 (use-package projectile
   :init
@@ -131,6 +133,8 @@
   :init
   ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
   (setq lsp-keymap-prefix "C-c l")
+;;  (setq lsp-completion-enable nil)
+  (setq lsp-completion-provider :capf)
   :hook (
          (python-mode . lsp)
          (rust-mode . lsp)
@@ -140,25 +144,51 @@
          (lsp-mode . lsp-enable-which-key-integration))
   :commands lsp)
 
+(setq auto-mode-alist
+  (append
+   ;; File name (within directory) starts with a dot.
+   '(("/\\.[^/]*\\'" . fundamental-mode)
+     ;; File name has no dot.
+     ("/[^\\./]*\\'" . fundamental-mode)
+     ;; File name ends in ‘.el’.
+     ("\\.el\\'" . emacs-lisp-mode))
+   auto-mode-alist))
+
 (use-package nix-mode
   :mode "\\.nix\\'")
 
 (use-package go-mode
-  :mode ("\\.go?\\" . go-mode))
+  :mode ("\\.go\\'" . go-mode))
 
 (use-package rust-mode
-  :mode ("\\.rs?\\" . rust-mode))
+  :mode ("\\.rs\\'" . rust-mode))
 
 (use-package svelte-mode
-  :mode ("\\.svelte?\\" . svelte-mode))
+  :mode ("\\.svelte\\'" . svelte-mode))
 
 (use-package lsp-tailwindcss
   :init
   (setq lsp-tailwindcss-add-on-mode t))
 
+(defun elcord--enable-on-frame-created (f)
+  (elcord-mode +1))
+
+(defun elcord--disable-elcord-if-no-frames (f)
+  (when (let ((frames (delete f (visible-frame-list))))
+        (or (null frames)
+            (and (null (cdr frames))
+                 (eq (car frames) terminal-frame))))
+    (elcord-mode -1)
+    (add-hook 'after-make-frame-functions 'elcord--enable-on-frame-created)))
+
+(defun custom-elcord-mode-hook ()
+  (if elcord-mode
+      (add-hook 'delete-frame-functions 'elcord--disable-elcord-if-no-frames)
+    (remove-hook 'delete-frame-functions 'elcord--disable-elcord-if-no-frames)))
+
 (use-package elcord
   :config
-  (require 'elcord)
+  (add-hook 'elcord-mode-hook 'custom-elcord-mode-hook)
   (elcord-mode)
   (setq elcord-quiet t)
   (setq elcord-idle-message "AFK.."))
@@ -203,7 +233,7 @@
 ;; Use Bookmarks for smaller, not standard projects
 
 ;;(use-package eglot
-;;  :ensure nil ;; Don't install eglot because it's now built-;;  :hook ((c-mode c++-mode ;; Autostart lsp servers for a given mode
+;;  :ensure nil ;; Don't install eglot because it's now built-;;  :hook ((c-mode c++-mode ;;  lsp servers for a given mode
 ;;                 lua-mode) ;; Lua-mode needs to be installed
 ;;         . eglot-ensure)
 ;;  :custom
@@ -336,11 +366,8 @@
   )
 
 (use-package nerd-icons-completion
-  :after marginalia
   :config
-  (nerd-icons-completion-mode)
-  :hook
-  ('marginalia-mode-hook . 'nerd-icons-completion-marginalia-setup))
+  (nerd-icons-completion-mode))
 
 (use-package diminish)
 
