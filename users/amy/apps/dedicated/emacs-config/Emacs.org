@@ -72,7 +72,7 @@ straight is loaded in the `init.el` to avoid issues with the builtin Org-mode
   	;; Make it a proper global mode; we want this everywhere unless we explicitly disable it (TODO: Add blocklist filtering here)
   	(define-globalized-minor-mode global-rainbow-mode rainbow-mode
   	  (lambda () (rainbow-mode 1)))
-  	(rainbow-mode 1))
+  	(global-rainbow-mode 1))
 
 #+END_SRC
 
@@ -108,23 +108,48 @@ straight is loaded in the `init.el` to avoid issues with the builtin Org-mode
 #+BEGIN_SRC emacs-lisp
   (use-package hl-todo
   	:config
-  	;; Make it a proper global mode; we want this everywhere unless we explicitly disable it (TODO: Add blocklist filtering here)
-  	(define-globalized-minor-mode global-hl-todo-mode hl-todo-mode
-  	  (lambda () (hl-todo-mode)))
-  	(global-hl-todo-mode 1)
+  	
+  	;; PERF: Fully optimised
+  	;; HACK: Hmm, this looks cursed
+  	;; TODO: What else?
+  	;; NOTE: Write that down, write that down!
+  	;; FIX:  Oh no
+
+  	;; Only highlight on KEYWORD: constructs, avoids highlighting random things
+  	;; in strings and code. My personal preference
+  	(setq hl-todo-require-punctuation t)
+  	(setq hl-todo-highlight-punctuation ":")
 
   	(setq hl-todo-keyword-faces
-  		'(("TODO"   . hl-todo-TODO)
+  		'(("PERF"   . hl-todo-PERF)
   		  ("HACK"   . hl-todo-HACK)
-  		  ("FIXME"  . hl-todo-HACK))))
+            ("TODO"  . hl-todo-TODO)
+            ("NOTE"  . hl-todo-NOTE)
+  		  ("FIX"  . hl-todo-FIX)
+            ("FIXME"  . hl-todo-FIX)
+            ("BUG"  . hl-todo-FIX))))
+
+  	(global-hl-todo-mode 1)
+
+  (defface hl-todo-PERF
+  	'((t :background "#cba6f7" :foreground "#11111b" :inherit (hl-todo)))
+  	"Face for highlighting the PERF keyword.")
 
   (defface hl-todo-HACK
-  	'((t :background "#f38ba8" :foreground "#11111b" :inherit (hl-todo)))
+  	'((t :background "#f9e2af" :foreground "#11111b" :inherit (hl-todo)))
   	"Face for highlighting the HACK keyword.")
 
   (defface hl-todo-TODO
   	'((t :background "#89b4fa" :foreground "#11111b" :inherit (hl-todo)))
   	"Face for highlighting the TODO keyword.")
+
+  (defface hl-todo-NOTE
+  	'((t :background "#a6e3a1" :foreground "#11111b" :inherit (hl-todo)))
+  	"Face for highlighting the NOTE keyword.")
+
+  (defface hl-todo-FIX
+  	'((t :background "#f38ba8" :foreground "#11111b" :inherit (hl-todo)))
+  	"Face for highlighting the FIX keyword.")
 
   (use-package which-key
   	:init
