@@ -171,7 +171,7 @@ straight is loaded in the `init.el` to avoid issues with the builtin Org-mode
 
   (use-package expand-region
    :config
-   (global-set-key (kbd "C-c e") 'er/expand-region))
+   (global-set-key (kbd "C-x e") 'er/expand-region))
 
   (use-package projectile
    :custom

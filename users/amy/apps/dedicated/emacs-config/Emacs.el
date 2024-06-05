@@ -97,6 +97,8 @@
 	;; NOTE: Write that down, write that down!
 	;; FIX:  Oh no
 
+	;; Only highlight on KEYWORD: constructs, avoids highlighting random things
+	;; in strings and code. My personal preference
 	(setq hl-todo-require-punctuation t)
 	(setq hl-todo-highlight-punctuation ":")
 
@@ -151,7 +153,7 @@
 
 (use-package expand-region
  :config
- (global-set-key (kbd "C-c e") 'er/expand-region))
+ (global-set-key (kbd "C-x e") 'er/expand-region))
 
 (use-package projectile
  :custom
