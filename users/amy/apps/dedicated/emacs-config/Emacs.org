@@ -13,67 +13,78 @@ straight is loaded in the `init.el` to avoid issues with the builtin Org-mode
   (setq x-super-keysym 'meta)
   (setq inhibit-startup-message t)
   (setq gc-cons-threshold (* 50 1000 1000))
+
+  (when (fboundp 'windmove-default-keybindings)
+    (windmove-default-keybindings))
 #+END_SRC
 
 **  UI
 #+BEGIN_SRC emacs-lisp
   (use-package emacs
-  	:custom
-  	(menu-bar-mode nil)         ;; Disable the menu bar
-  	(scroll-bar-mode nil)       ;; Disable the scroll bar
-  	(tool-bar-mode nil)         ;; Disable the tool bar
-  	;;(inhibit-startup-screen t)  ;; Disable welcome screen
+    :custom
+    (menu-bar-mode nil)         ;; Disable the menu bar
+    (scroll-bar-mode nil)       ;; Disable the scroll bar
+    (tool-bar-mode nil)         ;; Disable the tool bar
+    ;;(inhibit-startup-screen t)  ;; Disable welcome screen
 
-  	(delete-selection-mode t)   ;; Select text and delete it by typing.
-  	(electric-indent-mode nil)  ;; Turn off the weird indenting that Emacs does by default.
-  	(electric-pair-mode t)      ;; Turns on automatic parens pairing
+    (delete-selection-mode t)   ;; Select text and delete it by typing.
+    (electric-indent-mode nil)  ;; Turn off the weird indenting that Emacs does by default.
+    (electric-pair-mode t)      ;; Turns on automatic parens pairing
 
-  	(blink-cursor-mode nil)     ;; Don't blink cursor
-  	(global-auto-revert-mode t) ;; Automatically reload file and show changes if the file has changed
+    (blink-cursor-mode nil)     ;; Don't blink cursor
+    (global-auto-revert-mode t) ;; Automatically reload file and show changes if the file has changed
 
-  	;;(dired-kill-when-opening-new-dired-buffer t) ;; Dired don't create new buffer
-  	;;(recentf-mode t) ;; Enable recent file mode
+    ;;(dired-kill-when-opening-new-dired-buffer t) ;; Dired don't create new buffer
+    ;;(recentf-mode t) ;; Enable recent file mode
 
-  	;;(global-visual-line-mode t)           ;; Enable truncated lines
-  	;;(display-line-numbers-type 'relative) ;; Relative line numbers
-  	(global-display-line-numbers-mode t)  ;; Display line numbers
+    ;;(global-visual-line-mode t)           ;; Enable truncated lines
+    ;;(display-line-numbers-type 'relative) ;; Relative line numbers
+    (global-display-line-numbers-mode t)  ;; Display line numbers
 
-  	(mouse-wheel-progressive-speed nil) ;; Disable progressive speed when scrolling
-  	(scroll-conservatively 10) ;; Smooth scrolling
-  	;;(scroll-margin 8)
+    (mouse-wheel-progressive-speed nil) ;; Disable progressive speed when scrolling
+    (scroll-conservatively 10) ;; Smooth scrolling
+    ;;(scroll-margin 8)
 
-  	(tab-width 4)
+    (tab-width 4)
 
-  	(make-backup-files nil) ;; Stop creating ~ backup files
-  	(auto-save-default nil) ;; Stop creating # auto save files
-  	:hook
-  	(prog-mode . (lambda () (hs-minor-mode t))) ;; Enable folding hide/show globally
-  	:config
-  	;; Move customization variables to a separate file and load it, avoid filling up init.el with unnecessary variables
-  	(setq custom-file (locate-user-emacs-file "custom-vars.el"))
-  	(load custom-file 'noerror 'nomessage)
-  	:bind (
-  		   ([escape] . keyboard-escape-quit) ;; Makes Escape quit prompts (Minibuffer Escape)
-  		   )
-  	)
+    (make-backup-files nil) ;; Stop creating ~ backup files
+    (auto-save-default nil) ;; Stop creating # auto save files
+
+    :hook
+    (prog-mode . (lambda () (hs-minor-mode t))) ;; Enable folding hide/show globally
+    :config
+    ;; Move customization variables to a separate file and load it, avoid filling up init.el with unnecessary variables
+    (setq custom-file (locate-user-emacs-file "custom-vars.el"))
+    (load custom-file 'noerror 'nomessage)
+    :bind (
+    		 ([escape] . keyboard-escape-quit) ;; Makes Escape quit prompts (Minibuffer Escape)
+    		 )
+    )
 
   (use-package diff-hl
-  	:hook ((dired-mode         . diff-hl-dired-mode-unless-remote)
-  		   (magit-pre-refresh  . diff-hl-magit-pre-refresh)
-  		   (magit-post-refresh . diff-hl-magit-post-refresh))
-  	:init (global-diff-hl-mode))
+    :hook ((dired-mode         . diff-hl-dired-mode-unless-remote)
+    		 (magit-pre-refresh  . diff-hl-magit-pre-refresh)
+    		 (magit-post-refresh . diff-hl-magit-post-refresh))
+    :init (global-diff-hl-mode))
 
   (use-package diminish)
 
   (use-package rainbow-delimiters
-  	:hook (prog-mode . rainbow-delimiters-mode))
+    :hook (prog-mode . rainbow-delimiters-mode))
   (use-package rainbow-mode
-  	:config
-  	;; Make it a proper global mode; we want this everywhere unless we explicitly disable it (TODO: Add blocklist filtering here)
-  	(define-globalized-minor-mode global-rainbow-mode rainbow-mode
-  	  (lambda () (rainbow-mode 1)))
-  	(global-rainbow-mode 1))
+    :config
+    ;; Make it a proper global mode; we want this everywhere unless we explicitly disable it (TODO: Add blocklist filtering here)
+    (define-globalized-minor-mode global-rainbow-mode rainbow-mode
+    	(lambda () (rainbow-mode 1)))
+    (global-rainbow-mode 1))
 
+  (use-package doom-modeline
+    :init (doom-modeline-mode 1)
+    :config
+    (setq doom-modeline-icon nil)
+    (setq doom-modeline-minor-modes t)
+    (setq doom-modeline-lsp t)
+    (setq doom-modeline-buffer-file-name-style 'relative-from-project))
 #+END_SRC
 
 ***  Theme
@@ -104,23 +115,23 @@ straight is loaded in the `init.el` to avoid issues with the builtin Org-mode
   	("<C-wheel-down>" . text-scale-decrease))
 #+END_SRC
 
-**  Utility
+*  Utility
 #+BEGIN_SRC emacs-lisp
   (use-package hl-todo
-  	:config
+    :config
   	
-  	;; PERF: Fully optimised
-  	;; HACK: Hmm, this looks cursed
-  	;; TODO: What else?
-  	;; NOTE: Write that down, write that down!
-  	;; FIX:  Oh no
+    ;; PERF: Fully optimised
+    ;; HACK: Hmm, this looks cursed
+    ;; TODO: What else?
+    ;; NOTE: Write that down, write that down!
+    ;; FIX:  Oh no
+    
+    ;; Only highlight on KEYWORD: constructs, avoids highlighting random things
+    ;; in strings and code. My personal preference
+    (setq hl-todo-require-punctuation t)
+    (setq hl-todo-highlight-punctuation ":")
 
-  	;; Only highlight on KEYWORD: constructs, avoids highlighting random things
-  	;; in strings and code. My personal preference
-  	(setq hl-todo-require-punctuation t)
-  	(setq hl-todo-highlight-punctuation ":")
-
-  	(setq hl-todo-keyword-faces
+    (setq hl-todo-keyword-faces
   		'(("PERF"   . hl-todo-PERF)
   		  ("HACK"   . hl-todo-HACK)
             ("TODO"  . hl-todo-TODO)
@@ -132,38 +143,38 @@ straight is loaded in the `init.el` to avoid issues with the builtin Org-mode
   	(global-hl-todo-mode 1)
 
   (defface hl-todo-PERF
-  	'((t :background "#cba6f7" :foreground "#11111b" :inherit (hl-todo)))
-  	"Face for highlighting the PERF keyword.")
+    '((t :background "#cba6f7" :foreground "#11111b" :inherit (hl-todo)))
+    "Face for highlighting the PERF keyword.")
 
   (defface hl-todo-HACK
-  	'((t :background "#f9e2af" :foreground "#11111b" :inherit (hl-todo)))
-  	"Face for highlighting the HACK keyword.")
+    '((t :background "#f9e2af" :foreground "#11111b" :inherit (hl-todo)))
+    "Face for highlighting the HACK keyword.")
 
   (defface hl-todo-TODO
-  	'((t :background "#89b4fa" :foreground "#11111b" :inherit (hl-todo)))
-  	"Face for highlighting the TODO keyword.")
+    '((t :background "#89b4fa" :foreground "#11111b" :inherit (hl-todo)))
+    "Face for highlighting the TODO keyword.")
 
   (defface hl-todo-NOTE
-  	'((t :background "#a6e3a1" :foreground "#11111b" :inherit (hl-todo)))
-  	"Face for highlighting the NOTE keyword.")
+    '((t :background "#a6e3a1" :foreground "#11111b" :inherit (hl-todo)))
+    "Face for highlighting the NOTE keyword.")
 
   (defface hl-todo-FIX
-  	'((t :background "#f38ba8" :foreground "#11111b" :inherit (hl-todo)))
-  	"Face for highlighting the FIX keyword.")
+    '((t :background "#f38ba8" :foreground "#11111b" :inherit (hl-todo)))
+    "Face for highlighting the FIX keyword.")
 
   (use-package which-key
-  	:init
-  	(which-key-mode 1)
-  	:diminish
-  	:custom
-  	(which-key-side-window-location 'bottom)
-  	(which-key-sort-order #'which-key-key-order-alpha) ;; Same as default, except single characters are sorted alphabetically
-  	(which-key-sort-uppercase-first nil)
-  	(which-key-add-column-padding 1) ;; Number of spaces to add to the left of each column
-  	(which-key-min-display-lines 6)  ;; Increase the minimum lines to display, because the default is only 1
-  	(which-key-idle-delay 0.8)       ;; Set the time delay (in seconds) for the which-key popup to appear
-  	(which-key-max-description-length 25)
-  	(which-key-allow-imprecise-window-fit nil)) ;; Fixes which-key window slipping out in Emacs Daemon
+    :init
+    (which-key-mode 1)
+    :diminish
+    :custom
+    (which-key-side-window-location 'bottom)
+    (which-key-sort-order #'which-key-key-order-alpha) ;; Same as default, except single characters are sorted alphabetically
+    (which-key-sort-uppercase-first nil)
+    (which-key-add-column-padding 1) ;; Number of spaces to add to the left of each column
+    (which-key-min-display-lines 6)  ;; Increase the minimum lines to display, because the default is only 1
+    (which-key-idle-delay 0.8)       ;; Set the time delay (in seconds) for the which-key popup to appear
+    (which-key-max-description-length 25)
+    (which-key-allow-imprecise-window-fit nil)) ;; Fixes which-key window slipping out in Emacs Daemon
 
   (use-package direnv
    :config
@@ -181,6 +192,25 @@ straight is loaded in the `init.el` to avoid issues with the builtin Org-mode
    :config
    (projectile-mode)
    (define-key projectile-mode-map (kbd "M-p") 'projectile-command-map))
+
+  (use-package multiple-cursors
+  :config
+  (global-set-key (kbd "C->") 'mc/mark-next-like-this)
+  (global-set-key (kbd "C-<") 'mc/mark-previous-like-this))
+
+  (use-package beacon
+    :config
+    (beacon-mode 1))
+
+  (use-package goto-line-preview
+  :config
+  (global-set-key [remap goto-line] 'goto-line-preview))
+
+  (use-package anzu
+  :config
+  (global-anzu-mode +1)
+  (global-set-key [remap query-replace] 'anzu-query-replace)
+  (global-set-key [remap query-replace-regexp] 'anzu-query-replace-regexp))
 #+END_SRC
 
 **  LSP
