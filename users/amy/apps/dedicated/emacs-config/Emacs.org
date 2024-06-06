@@ -2,6 +2,27 @@
 #+author: nullishamy
 #+PROPERTY: header-args:emacs-lisp :noweb yes :tangle yes
 
+**  Other cool stuff I want to look into
++ https://github.com/zk-phi/indent-guide
++ https://emacsredux.com/blog/2014/08/25/a-peek-at-emacs-24-dot-4-prettify-symbols-mode/
++ https://www.gnu.org/software/emacs/manual/html_node/emacs/Matching.html (change to be more obvious, more VSCode style)
++ https://github.com/rolandwalker/simpleclip
++ https://github.com/emacsfodder/move-text
++ https://github.com/joaotavora/yasnippet
+  + https://github.com/AndreaCrotti/yasnippet-snippets
+  + Snippets are already enabled through corfu, just need to grab yasnippet
++ https://github.com/alexluigit/dirvish
++ https://github.com/magit/forge
++ https://github.com/rmuslimov/browse-at-remote (if it doesn't exist in magit already)
++ https://github.com/emacs-tw/awesome-emacs#console (should just get a terminal generally)
++ https://github.com/mhayashi1120/yagist.el
++ https://codeberg.org/martianh/mastodon.el (lol)
++ https://github.com/emacscollective/no-littering
++ https://www.emacswiki.org/emacs/ZoneMode (lol2)
++ https://github.com/emacs-tw/awesome-emacs#screencasting
++ https://github.com/emacs-tw/awesome-emacs#starter-kit
+
+
 **  Bootstrap
 This config uses `straight.el` for package management, on top of `use-package` for recipes.
 straight is loaded in the `init.el` to avoid issues with the builtin Org-mode
@@ -118,13 +139,11 @@ straight is loaded in the `init.el` to avoid issues with the builtin Org-mode
   (setq-default line-spacing 0.12)
   (use-package emacs
   	:bind
-  	("C-+" . text-scale-increase)
-  	("C--" . text-scale-decrease)
   	("<C-wheel-up>" . text-scale-increase)
   	("<C-wheel-down>" . text-scale-decrease))
 #+END_SRC
 
-*  Utility
+**  Utility
 #+BEGIN_SRC emacs-lisp
   (use-package hl-todo
     :config
