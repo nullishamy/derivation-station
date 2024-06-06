@@ -66,6 +66,7 @@
 
 (use-package rainbow-delimiters
   :hook (prog-mode . rainbow-delimiters-mode))
+
 (use-package rainbow-mode
   :config
   ;; Make it a proper global mode; we want this everywhere unless we explicitly disable it (TODO: Add blocklist filtering here)
@@ -85,15 +86,15 @@
   :commands magit-status)
 
 (use-package catppuccin-theme
-	:config
-	(load-theme 'catppuccin :no-confirm))
+  :config
+  (load-theme 'catppuccin :no-confirm))
 
 (add-to-list 'default-frame-alist '(alpha-background . 90)) ;; For all new frames henceforth
 
 (set-face-attribute 'default nil
-					:font "Iosevka Term" ;; Set your favorite type of font or download JetBrains Mono
-					:height 150
-					:weight 'medium)
+  :font "Iosevka Term" ;; Set your favorite type of font or download JetBrains Mono
+  :height 150
+  :weight 'medium)
 
 (set-frame-font "Iosevka Term" nil t)
 ;; This sets the default font on all graphical frames created after restarting Emacs.
@@ -106,6 +107,13 @@
 	:bind
 	("<C-wheel-up>" . text-scale-increase)
 	("<C-wheel-down>" . text-scale-decrease))
+
+(use-package yasnippet
+  :config
+  (yas-global-mode 1))
+
+(use-package yasnippet-snippets
+  :after yasnippet)
 
 (use-package hl-todo
   :config
@@ -173,6 +181,19 @@
 (use-package expand-region
  :config
  (global-set-key (kbd "C-x e") 'er/expand-region))
+
+(defun indent-region-advice (&rest ignored)
+  (let ((deactivate deactivate-mark))
+	(if (region-active-p)
+		(indent-region (region-beginning) (region-end))
+      (indent-region (line-beginning-position) (line-end-position)))
+	(setq deactivate-mark deactivate)))
+
+(use-package move-text
+  :config
+  (move-text-default-bindings)
+  (advice-add 'move-text-down :after 'indent-region-advice)
+  (advice-add 'move-text-up :after 'indent-region-advice))
 
 (use-package projectile
  :custom
@@ -320,7 +341,7 @@
 
 (use-package cape
 	:after corfu
-	:init
+	:config
 	;; Add to the global default value of `completion-at-point-functions' which is
 	;; used by `completion-at-point'.  The order of the functions matters, the
 	;; first function returning a result wins.  Note that the list of buffer-local
@@ -342,6 +363,12 @@
 	;;(add-to-list 'completion-at-point-functions #'cape-sgml) ;; Complete Unicode char from SGML entity, e.g., &alpha
 	;;(add-to-list 'completion-at-point-functions #'cape-rfc1345) ;; Complete Unicode char using RFC 1345 mnemonics
 	)
+
+(use-package yasnippet-capf
+  :after cape
+  :after yasnippet
+  :config
+  (add-to-list 'completion-at-point-functions #'yasnippet-capf))
 
 (defun elcord--enable-on-frame-created (f)
 	(elcord-mode +1))
