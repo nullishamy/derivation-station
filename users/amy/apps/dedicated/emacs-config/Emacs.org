@@ -5,7 +5,6 @@
 **  Other cool stuff I want to look into
 + https://github.com/rolandwalker/simpleclip
 + https://github.com/emacsfodder/move-text
-+ https://github.com/magit/forge
 + https://github.com/rmuslimov/browse-at-remote
 + https://codeberg.org/martianh/mastodon.el (lol)
 + https://github.com/isomatter-labs/starmacs
@@ -292,6 +291,10 @@ straight is loaded in the `init.el` to avoid issues with the builtin Org-mode
   	(setq lsp-keymap-prefix "C-c l")
   	(setq lsp-completion-enable nil)
   	(setq lsp-completion-provider :capf)
+  	(setq lsp-modeline-code-actions-enable nil)
+  	(setq lsp-modeline-diagnostics-enable nil)
+  	(setq lsp-modeline-workspace-status-enable nil)
+
   	:hook (
   		   (python-mode . lsp)
   		   (rust-mode . lsp)
@@ -487,6 +490,9 @@ straight is loaded in the `init.el` to avoid issues with the builtin Org-mode
 
   (use-package nerd-icons
   	:if (display-graphic-p))
+
+  (use-package all-the-icons
+    :if (display-graphic-p))
 
   (use-package nerd-icons-dired
   	:hook (dired-mode . (lambda () (nerd-icons-dired-mode t))))

@@ -261,6 +261,10 @@
 	(setq lsp-keymap-prefix "C-c l")
 	(setq lsp-completion-enable nil)
 	(setq lsp-completion-provider :capf)
+	(setq lsp-modeline-code-actions-enable nil)
+	(setq lsp-modeline-diagnostics-enable nil)
+	(setq lsp-modeline-workspace-status-enable nil)
+
 	:hook (
 		   (python-mode . lsp)
 		   (rust-mode . lsp)
@@ -440,6 +444,9 @@
 
 (use-package nerd-icons
 	:if (display-graphic-p))
+
+(use-package all-the-icons
+  :if (display-graphic-p))
 
 (use-package nerd-icons-dired
 	:hook (dired-mode . (lambda () (nerd-icons-dired-mode t))))
