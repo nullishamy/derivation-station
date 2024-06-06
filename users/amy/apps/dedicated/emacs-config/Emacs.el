@@ -104,8 +104,6 @@
 (setq-default line-spacing 0.12)
 (use-package emacs
 	:bind
-	("C-+" . text-scale-increase)
-	("C--" . text-scale-decrease)
 	("<C-wheel-up>" . text-scale-increase)
 	("<C-wheel-down>" . text-scale-decrease))
 
@@ -237,7 +235,10 @@
 		   ;; File name has no dot.
 		   ("/[^\\./]*\\'" . fundamental-mode)
 		   ;; File name ends in ‘.el’.
-		   ("\\.el\\'" . emacs-lisp-mode))
+		   ("\\.el\\'" . emacs-lisp-mode)
+		   ;; Git modes
+		   (".*git-rebase-todo" . git-rebase-mode)
+		   (".*COMMIT_EDITMSG" . git-rebase-mode))
 		 auto-mode-alist))
 
 ;; Additional language modes

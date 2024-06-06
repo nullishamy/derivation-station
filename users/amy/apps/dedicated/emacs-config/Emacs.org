@@ -276,7 +276,10 @@ straight is loaded in the `init.el` to avoid issues with the builtin Org-mode
   		   ;; File name has no dot.
   		   ("/[^\\./]*\\'" . fundamental-mode)
   		   ;; File name ends in ‘.el’.
-  		   ("\\.el\\'" . emacs-lisp-mode))
+  		   ("\\.el\\'" . emacs-lisp-mode)
+  		   ;; Git modes
+  		   (".*git-rebase-todo" . git-rebase-mode)
+  		   (".*COMMIT_EDITMSG" . git-rebase-mode))
   		 auto-mode-alist))
 
   ;; Additional language modes
