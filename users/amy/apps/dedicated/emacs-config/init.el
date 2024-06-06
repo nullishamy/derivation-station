@@ -3,7 +3,8 @@
 (setq straight-use-package-by-default t)
 
 ;; Load up my secrets
-(load-file "secrets.el")
+(load-file (expand-file-name "secrets.el" user-emacs-directory))
+(setq auth-sources '("~/.authinfo"))
   
 ;; Bootstrap straight
 (defvar bootstrap-version)

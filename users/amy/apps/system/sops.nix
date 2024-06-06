@@ -9,6 +9,9 @@
       "ssh-public-key" = {
         path = "${config.home.homeDirectory}/.ssh/github.pub";
       };
+      "authinfo" = {
+        path = "${config.home.homeDirectory}/.authinfo";
+      };
       "emacs" = {
         path = "${config.xdg.configHome}/emacs/secrets.el";
       };

@@ -73,6 +73,7 @@
 (use-package rainbow-delimiters
   :hook (prog-mode . rainbow-delimiters-mode))
 
+
 (use-package rainbow-mode
   :config
   ;; Make it a proper global mode; we want this everywhere unless we explicitly disable it (TODO: Add blocklist filtering here)
@@ -91,7 +92,11 @@
 (use-package magit
   :commands magit-status)
 
+(use-package forge
+  :after magit)
+
 (use-package zone
+  :disabled
   :config
   (zone-when-idle 120))
 
@@ -107,15 +112,12 @@
   :weight 'medium)
 
 (set-frame-font "Iosevka Term" nil t)
-;; This sets the default font on all graphical frames created after restarting Emacs.
-;; Does the same thing as 'set-face-attribute default' above, but emacsclient fonts
-;; are not right unless I also add this method of setting the default font.
 
 ;; This assumes you've installed the package via MELPA.
 (use-package ligature
   :config
   (ligature-set-ligatures 'eww-mode '("ff" "fi" "ffi"))
-  ;; Enable all  ligatures in programming modes
+  ;; Enable all ligatures in programming modes
   (ligature-set-ligatures 'prog-mode '("|||>" "<|||" "<==>" "<!--" "####" "~~>" "***" "||=" "||>"
                                        ":::" "::=" "=:=" "===" "==>" "=!=" "=>>" "=<<" "=/=" "!=="
                                        "!!." ">=>" ">>=" ">>>" ">>-" ">->" "->>" "-->" "---" "-<<"
@@ -206,7 +208,8 @@
 
 (use-package direnv
  :config
- (direnv-mode))
+ (direnv-mode)
+ (setq direnv-always-show-summary nil))
 
 (use-package expand-region
  :config

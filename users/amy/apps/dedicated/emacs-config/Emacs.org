@@ -6,7 +6,7 @@
 + https://github.com/rolandwalker/simpleclip
 + https://github.com/emacsfodder/move-text
 + https://github.com/magit/forge
-+ https://github.com/rmuslimov/browse-at-remote (if it doesn't exist in magit already)
++ https://github.com/rmuslimov/browse-at-remote
 + https://codeberg.org/martianh/mastodon.el (lol)
 + https://github.com/isomatter-labs/starmacs
 
@@ -92,6 +92,7 @@ straight is loaded in the `init.el` to avoid issues with the builtin Org-mode
   (use-package rainbow-delimiters
     :hook (prog-mode . rainbow-delimiters-mode))
 
+
   (use-package rainbow-mode
     :config
     ;; Make it a proper global mode; we want this everywhere unless we explicitly disable it (TODO: Add blocklist filtering here)
@@ -110,7 +111,11 @@ straight is loaded in the `init.el` to avoid issues with the builtin Org-mode
   (use-package magit
     :commands magit-status)
 
+  (use-package forge
+    :after magit)
+
   (use-package zone
+    :disabled
     :config
     (zone-when-idle 120))
 #+END_SRC
@@ -231,7 +236,8 @@ straight is loaded in the `init.el` to avoid issues with the builtin Org-mode
 
   (use-package direnv
    :config
-   (direnv-mode))
+   (direnv-mode)
+   (setq direnv-always-show-summary nil))
 
   (use-package expand-region
    :config

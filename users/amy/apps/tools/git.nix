@@ -43,6 +43,10 @@ in {
       user = {
         signingKey = "/home/${system.currentUser}/.ssh/github.pub";
       };
+
+      github = {
+        user = "nullishamy";
+      };
     };
   };
 }
