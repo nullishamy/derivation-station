@@ -9,6 +9,12 @@
 (when (fboundp 'windmove-default-keybindings)
   (windmove-default-keybindings))
 
+(use-package exec-path-from-shell
+  :config
+  (dolist (var '("SSH_AUTH_SOCK" "SSH_AGENT_PID" "NIX_PATH"))
+	(add-to-list 'exec-path-from-shell-variables var))
+  (exec-path-from-shell-initialize))
+
 (use-package emacs
   :custom
   (menu-bar-mode nil)         ;; Disable the menu bar
@@ -74,6 +80,9 @@
   (setq doom-modeline-minor-modes t)
   (setq doom-modeline-lsp t)
   (setq doom-modeline-buffer-file-name-style 'relative-from-project))
+
+(use-package magit
+  :commands magit-status)
 
 (use-package catppuccin-theme
 	:config
