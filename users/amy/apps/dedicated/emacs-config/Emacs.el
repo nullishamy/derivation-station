@@ -18,10 +18,7 @@
 (use-package no-littering
   :config
   (setq no-littering-etc-directory (expand-file-name "config/" user-emacs-directory))
-  (setq no-littering-var-directory (expand-file-name "data/" user-emacs-directory))
-  (let ((dir (no-littering-expand-var-file-name "lock-files/")))
-	(make-directory dir t)
-	(setq lock-file-name-transforms `((".*" ,dir t)))))
+  (setq no-littering-var-directory (expand-file-name "data/" user-emacs-directory)))
 
 (use-package emacs
   :custom
@@ -400,6 +397,10 @@
 	(elcord-mode)
 	(setq elcord-quiet t)
 	(setq elcord-idle-message "AFK.."))
+
+(use-package yagist
+  :config
+  (setq yagist-view-gist t))
 
 (use-package nerd-icons-completion
 	:config

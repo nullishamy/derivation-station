@@ -11,10 +11,10 @@
 + https://github.com/emacs-tw/awesome-emacs#console (should just get a terminal generally)
 + https://github.com/mhayashi1120/yagist.el
 + https://codeberg.org/martianh/mastodon.el (lol)
-+ https://github.com/emacscollective/no-littering
 + https://www.emacswiki.org/emacs/ZoneMode (lol2)
 + https://github.com/emacs-tw/awesome-emacs#screencasting
 + https://github.com/emacs-tw/awesome-emacs#starter-kit
++ https://github.com/isomatter-labs/starmacs
 
 **  Bootstrap
 This config uses `straight.el` for package management, on top of `use-package` for recipes.
@@ -445,6 +445,12 @@ straight is loaded in the `init.el` to avoid issues with the builtin Org-mode
   	(elcord-mode)
   	(setq elcord-quiet t)
   	(setq elcord-idle-message "AFK.."))
+#+END_SRC
+*** GitHub Gist
+#+BEGIN_SRC emacs-lisp
+  (use-package yagist
+    :config
+    (setq yagist-view-gist t))
 #+END_SRC
 
 **  Icons

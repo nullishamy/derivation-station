@@ -1,6 +1,9 @@
 ;; Configure straight.el settings
 (setq straight-enable-use-package-integration t)
 (setq straight-use-package-by-default t)
+
+;; Load up my secrets
+(load-file "secrets.el")
   
 ;; Bootstrap straight
 (defvar bootstrap-version)
