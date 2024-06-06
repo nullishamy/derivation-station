@@ -3,12 +3,10 @@
 #+PROPERTY: header-args:emacs-lisp :noweb yes :tangle yes
 
 **  Other cool stuff I want to look into
-+ https://emacsredux.com/blog/2014/08/25/a-peek-at-emacs-24-dot-4-prettify-symbols-mode/
 + https://github.com/rolandwalker/simpleclip
 + https://github.com/emacsfodder/move-text
 + https://github.com/magit/forge
 + https://github.com/rmuslimov/browse-at-remote (if it doesn't exist in magit already)
-+ https://github.com/emacs-tw/awesome-emacs#console (should just get a terminal generally)
 + https://codeberg.org/martianh/mastodon.el (lol)
 + https://github.com/isomatter-labs/starmacs
 
