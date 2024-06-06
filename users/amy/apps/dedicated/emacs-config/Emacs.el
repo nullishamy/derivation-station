@@ -15,6 +15,14 @@
 	(add-to-list 'exec-path-from-shell-variables var))
   (exec-path-from-shell-initialize))
 
+(use-package no-littering
+  :config
+  (setq no-littering-etc-directory (expand-file-name "config/" user-emacs-directory))
+  (setq no-littering-var-directory (expand-file-name "data/" user-emacs-directory))
+  (let ((dir (no-littering-expand-var-file-name "lock-files/")))
+	(make-directory dir t)
+	(setq lock-file-name-transforms `((".*" ,dir t)))))
+
 (use-package emacs
   :custom
   (menu-bar-mode nil)         ;; Disable the menu bar
