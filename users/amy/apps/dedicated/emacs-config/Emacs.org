@@ -9,11 +9,7 @@
 + https://github.com/magit/forge
 + https://github.com/rmuslimov/browse-at-remote (if it doesn't exist in magit already)
 + https://github.com/emacs-tw/awesome-emacs#console (should just get a terminal generally)
-+ https://github.com/mhayashi1120/yagist.el
 + https://codeberg.org/martianh/mastodon.el (lol)
-+ https://www.emacswiki.org/emacs/ZoneMode (lol2)
-+ https://github.com/emacs-tw/awesome-emacs#screencasting
-+ https://github.com/emacs-tw/awesome-emacs#starter-kit
 + https://github.com/isomatter-labs/starmacs
 
 **  Bootstrap
@@ -78,6 +74,7 @@ straight is loaded in the `init.el` to avoid issues with the builtin Org-mode
     :hook
     (prog-mode . (lambda () (hs-minor-mode t))) ;; Enable folding hide/show globally
     :config
+
     ;; Move customization variables to a separate file and load it, avoid filling up init.el with unnecessary variables
     (setq custom-file (locate-user-emacs-file "custom-vars.el"))
     (load custom-file 'noerror 'nomessage)
@@ -114,6 +111,10 @@ straight is loaded in the `init.el` to avoid issues with the builtin Org-mode
 
   (use-package magit
     :commands magit-status)
+
+  (use-package zone
+    :config
+    (zone-when-idle 120))
 #+END_SRC
 
 ***  Theme
@@ -130,9 +131,26 @@ straight is loaded in the `init.el` to avoid issues with the builtin Org-mode
     :weight 'medium)
 
   (set-frame-font "Iosevka Term" nil t)
-  ;; This sets the default font on all graphical frames created after restarting Emacs.
-  ;; Does the same thing as 'set-face-attribute default' above, but emacsclient fonts
-  ;; are not right unless I also add this method of setting the default font.
+
+  ;; This assumes you've installed the package via MELPA.
+  (use-package ligature
+    :config
+    (ligature-set-ligatures 'eww-mode '("ff" "fi" "ffi"))
+    ;; Enable all ligatures in programming modes
+    (ligature-set-ligatures 'prog-mode '("|||>" "<|||" "<==>" "<!--" "####" "~~>" "***" "||=" "||>"
+                                         ":::" "::=" "=:=" "===" "==>" "=!=" "=>>" "=<<" "=/=" "!=="
+                                         "!!." ">=>" ">>=" ">>>" ">>-" ">->" "->>" "-->" "---" "-<<"
+                                         "<~~" "<~>" "<*>" "<||" "<|>" "<$>" "<==" "<=>" "<=<" "<->"
+                                         "<--" "<-<" "<<=" "<<-" "<<<" "<+>" "</>" "###" "#_(" "..<"
+                                         "..." "+++" "/==" "///" "_|_" "www" "&&" "^=" "~~" "~@" "~="
+                                         "~>" "~-" "**" "*>" "*/" "||" "|}" "|]" "|=" "|>" "|-" "{|"
+                                         "[|" "]#" "::" ":=" ":>" ":<" "$>" "==" "=>" "!=" "!!" ">:"
+                                         ">=" ">>" ">-" "-~" "-|" "->" "--" "-<" "<~" "<*" "<|" "<:"
+                                         "<$" "<=" "<>" "<-" "<<" "<+" "</" "#{" "#[" "#:" "#=" "#!"
+                                         "##" "#(" "#?" "#_" "%%" ".=" ".-" ".." ".?" "+>" "++" "?:"
+                                         "?=" "?." "??" ";;" "/*" "/=" "/>" "//" "__" "~~" "(*" "*)"
+                                         "\\\\" "://"))
+    (global-ligature-mode t))
 
   ;;(add-to-list 'default-frame-alist '(font . "JetBrains Mono")) ;; Set your favorite font
   (setq-default line-spacing 0.12)
