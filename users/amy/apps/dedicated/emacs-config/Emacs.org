@@ -7,7 +7,6 @@
 2. https://github.com/emacsfodder/move-text
 3. https://github.com/rmuslimov/browse-at-remote
 4. https://codeberg.org/martianh/mastodon.el (lol)
-6. https://github.com/isomatter-labs/starmacs
 7. Need to get a better indent solution, so that it "just works"
    - https://github.com/jscheid/dtrt-indent
 
@@ -104,7 +103,7 @@ straight is loaded in the `init.el` to avoid issues with the builtin Org-mode
     :config
     ;; Make it a proper global mode; we want this everywhere unless we explicitly disable it (TODO: Add blocklist filtering here)
     (define-globalized-minor-mode global-rainbow-mode rainbow-mode
-    	(lambda () (rainbow-mode 1)))
+      (lambda () (rainbow-mode 1)))
     (global-rainbow-mode 1))
 
   (use-package doom-modeline
@@ -125,10 +124,9 @@ straight is loaded in the `init.el` to avoid issues with the builtin Org-mode
     :config
     (global-git-gutter-mode 't))
 
-  (use-package zone
-    :disabled
-    :config
-    (zone-when-idle 120))
+  (use-package dtrt-indent
+    :custom
+    (dtrt-indent-global-mode t))
 #+END_SRC
 
 ***  Theme
@@ -169,9 +167,9 @@ straight is loaded in the `init.el` to avoid issues with the builtin Org-mode
   ;;(add-to-list 'default-frame-alist '(font . "JetBrains Mono")) ;; Set your favorite font
   (setq-default line-spacing 0.12)
   (use-package emacs
-  	:bind
-  	("<C-wheel-up>" . text-scale-increase)
-  	("<C-wheel-down>" . text-scale-decrease))
+    :bind
+    ("<C-wheel-up>" . text-scale-increase)
+    ("<C-wheel-down>" . text-scale-decrease))
 #+END_SRC
 
 **  Snippets
@@ -246,13 +244,13 @@ straight is loaded in the `init.el` to avoid issues with the builtin Org-mode
     (which-key-allow-imprecise-window-fit nil)) ;; Fixes which-key window slipping out in Emacs Daemon
 
   (use-package direnv
-   :config
-   (direnv-mode)
-   (setq direnv-always-show-summary nil))
+    :config
+    (direnv-mode)
+    (setq direnv-always-show-summary nil))
 
   (use-package expand-region
-   :config
-   (global-set-key (kbd "C-x e") 'er/expand-region))
+    :config
+    (global-set-key (kbd "C-x e") 'er/expand-region))
 
   (defun indent-region-advice (&rest ignored)
     (let ((deactivate deactivate-mark))
@@ -277,17 +275,17 @@ straight is loaded in the `init.el` to avoid issues with the builtin Org-mode
    (define-key projectile-mode-map (kbd "M-p") 'projectile-command-map))
 
   (use-package multiple-cursors
-  :config
-  (global-set-key (kbd "C->") 'mc/mark-next-like-this)
-  (global-set-key (kbd "C-<") 'mc/mark-previous-like-this))
+    :config
+    (global-set-key (kbd "C->") 'mc/mark-next-like-this)
+    (global-set-key (kbd "C-<") 'mc/mark-previous-like-this))
 
   (use-package beacon
     :config
     (beacon-mode 1))
 
   (use-package goto-line-preview
-  :config
-  (global-set-key [remap goto-line] 'goto-line-preview))
+    :config
+    (global-set-key [remap goto-line] 'goto-line-preview))
 
   (use-package anzu
   :config
@@ -299,50 +297,50 @@ straight is loaded in the `init.el` to avoid issues with the builtin Org-mode
 **  LSP
 #+BEGIN_SRC emacs-lisp
   (use-package lsp-mode
-  	:config
-  	(setq lsp-keymap-prefix "C-c l")
-  	(setq lsp-completion-enable nil)
-  	(setq lsp-completion-provider :capf)
-  	(setq lsp-modeline-code-actions-enable nil)
-  	(setq lsp-modeline-diagnostics-enable nil)
-  	(setq lsp-modeline-workspace-status-enable nil)
-
-  	:hook (
-  		   (python-mode . lsp)
-  		   (rust-mode . lsp)
-  		   (svelte-mode . lsp)
-  		   (go-mode . lsp)
-  		   (nix-mode . lsp)
-  		   (typescript-mode . lsp)
-  		   (zig-mode . lsp)
-  		   (lsp-mode . lsp-enable-which-key-integration))
-  	:commands lsp)
+    :config
+    (setq lsp-keymap-prefix "C-c l")
+    (setq lsp-completion-enable nil)
+    (setq lsp-completion-provider :capf)
+    (setq lsp-modeline-code-actions-enable nil)
+    (setq lsp-modeline-diagnostics-enable nil)
+    (setq lsp-modeline-workspace-status-enable nil)
+    
+    :hook (
+  		 (python-mode . lsp)
+  		 (rust-mode . lsp)
+  		 (svelte-mode . lsp)
+  		 (go-mode . lsp)
+  		 (nix-mode . lsp)
+  		 (typescript-mode . lsp)
+  		 (zig-mode . lsp)
+  		 (lsp-mode . lsp-enable-which-key-integration))
+    :commands lsp)
 
   (use-package lsp-ui
-  	:commands
-  	lsp-ui-mode
-  	:config
-  	(setq lsp-ui-doc-position 'at-point)
-  	(setq lsp-ui-doc-delay 1.5)
-  	(keymap-global-set "C-c d s" 'lsp-ui-doc-show)
-  	(keymap-global-set "C-c d f" 'lsp-ui-doc-focus-frame)
-  	(keymap-global-set "C-c d h" 'lsp-ui-doc-hide)
-  	(setq lsp-ui-doc-enable t))
+    :commands
+    lsp-ui-mode
+    :config
+    (setq lsp-ui-doc-position 'at-point)
+    (setq lsp-ui-doc-delay 1.5)
+    (keymap-global-set "C-c d s" 'lsp-ui-doc-show)
+    (keymap-global-set "C-c d f" 'lsp-ui-doc-focus-frame)
+    (keymap-global-set "C-c d h" 'lsp-ui-doc-hide)
+    (setq lsp-ui-doc-enable t))
 
   ;; Filetype -> mode mappings
   (setq auto-mode-alist
-  		(append
+  	  (append
   		 ;; File name (within directory) starts with a dot.
-  		 '(("/\\.[^/]*\\'" . fundamental-mode)
-  		   ;; File name has no dot.
-  		   ("/[^\\./]*\\'" . fundamental-mode)
-  		   ;; File name ends in ‘.el’.
-  		   ("\\.el\\'" . emacs-lisp-mode)
-  		   ("\\.zig\\'" . zig-mode)
-  		   ;; Git modes
-  		   (".*git-rebase-todo" . git-rebase-mode)
-  		   (".*COMMIT_EDITMSG" . git-rebase-mode))
-  		 auto-mode-alist))
+  	   '(("/\\.[^/]*\\'" . fundamental-mode)
+  		 ;; File name has no dot.
+  		 ("/[^\\./]*\\'" . fundamental-mode)
+  		 ;; File name ends in ‘.el’.
+  		 ("\\.el\\'" . emacs-lisp-mode)
+  		 ("\\.zig\\'" . zig-mode)
+  		 ;; Git modes
+  		 (".*git-rebase-todo" . git-rebase-mode)
+  		 (".*COMMIT_EDITMSG" . git-rebase-mode))
+  	   auto-mode-alist))
 
   ;; Additional language modes
   (use-package nix-mode
@@ -373,23 +371,23 @@ straight is loaded in the `init.el` to avoid issues with the builtin Org-mode
 
   ;; In-buffer checking
   (use-package flycheck
-  	:config
-  	(add-hook 'after-init-hook #'global-flycheck-mode))
+    :config
+    (add-hook 'after-init-hook #'global-flycheck-mode))
 
   (use-package flycheck-inline
-  	:config
-  	(with-eval-after-load 'flycheck
-  	  (add-hook 'flycheck-mode-hook #'flycheck-inline-mode)))
+    :config
+    (with-eval-after-load 'flycheck
+  	(add-hook 'flycheck-mode-hook #'flycheck-inline-mode)))
 #+END_SRC
 
 **  Org-mode
 #+BEGIN_SRC emacs-lisp
   (use-package toc-org
-	:commands toc-org-enable
-	:hook (org-mode . toc-org-mode))
+    :commands toc-org-enable
+    :hook (org-mode . toc-org-mode))
 
   (use-package org-superstar
-	:hook (org-mode . org-superstar-mode))
+    :hook (org-mode . org-superstar-mode))
 #+END_SRC
 
 **  Completion
@@ -401,61 +399,61 @@ straight is loaded in the `init.el` to avoid issues with the builtin Org-mode
   (ido-mode 1)
 
   (use-package ido-completing-read+
-  	:config
-  	(ido-ubiquitous-mode 1))
+    :config
+    (ido-ubiquitous-mode 1))
 
 
   (savehist-mode) ;; Enables save history mode
 
   (use-package corfu
-  	:custom
-  	(corfu-cycle t)                ;; Enable cycling for `corfu-next/previous'
-  	(corfu-auto t)                 ;; Enable auto completion
-  	(corfu-auto-prefix 2)          ;; Minimum length of prefix for auto completion.
-  	(corfu-popupinfo-mode t)       ;; Enable popup information
-  	(corfu-popupinfo-delay 0.5)    ;; Lower popupinfo delay to 0.5 seconds from 2 seconds
-  	(corfu-separator ?\s)          ;; Orderless field separator, Use M-SPC to enter separator
-  	;; (corfu-quit-at-boundary nil)   ;; Never quit at completion boundary
-  	;; (corfu-quit-no-match nil)      ;; Never quit, even if there is no match
-  	(corfu-preview-current t)    ;; Disable current candidate preview
-  	;; (corfu-preselect 'prompt)      ;; Preselect the prompt
-  	;; (corfu-on-exact-match nil)     ;; Configure handling of exact matches
-  	;; (corfu-scroll-margin 5)        ;; Use scroll margin
-  	(completion-ignore-case t)
-  	;; Enable indentation+completion using the TAB key.
-  	;; `completion-at-point' is often bound to M-TAB.
-  	(tab-always-indent 'complete)
-  	(corfu-preview-current nil) ;; Don't insert completion without confirmation
-  	;; Recommended: Enable Corfu globally.  This is recommended since Dabbrev can
-  	;; be used globally (M-/).  See also the customization variable
-  	;; `global-corfu-modes' to exclude certain modes.
-  	:init
-  	(global-corfu-mode))
+    :custom
+    (corfu-cycle t)                ;; Enable cycling for `corfu-next/previous'
+    (corfu-auto t)                 ;; Enable auto completion
+    (corfu-auto-prefix 2)          ;; Minimum length of prefix for auto completion.
+    (corfu-popupinfo-mode t)       ;; Enable popup information
+    (corfu-popupinfo-delay 0.5)    ;; Lower popupinfo delay to 0.5 seconds from 2 seconds
+    (corfu-separator ?\s)          ;; Orderless field separator, Use M-SPC to enter separator
+    ;; (corfu-quit-at-boundary nil)   ;; Never quit at completion boundary
+    ;; (corfu-quit-no-match nil)      ;; Never quit, even if there is no match
+    (corfu-preview-current t)    ;; Disable current candidate preview
+    ;; (corfu-preselect 'prompt)      ;; Preselect the prompt
+    ;; (corfu-on-exact-match nil)     ;; Configure handling of exact matches
+    ;; (corfu-scroll-margin 5)        ;; Use scroll margin
+    (completion-ignore-case t)
+    ;; Enable indentation+completion using the TAB key.
+    ;; `completion-at-point' is often bound to M-TAB.
+    (tab-always-indent 'complete)
+    (corfu-preview-current nil) ;; Don't insert completion without confirmation
+    ;; Recommended: Enable Corfu globally.  This is recommended since Dabbrev can
+    ;; be used globally (M-/).  See also the customization variable
+    ;; `global-corfu-modes' to exclude certain modes.
+    :init
+    (global-corfu-mode))
 
   (use-package cape
-  	:after corfu
-  	:config
-  	;; Add to the global default value of `completion-at-point-functions' which is
-  	;; used by `completion-at-point'.  The order of the functions matters, the
-  	;; first function returning a result wins.  Note that the list of buffer-local
-  	;; completion functions takes precedence over the global list.
-  	;; The functions that are added later will be the first in the list
+    :after corfu
+    :config
+    ;; Add to the global default value of `completion-at-point-functions' which is
+    ;; used by `completion-at-point'.  The order of the functions matters, the
+    ;; first function returning a result wins.  Note that the list of buffer-local
+    ;; completion functions takes precedence over the global list.
+    ;; The functions that are added later will be the first in the list
   	
-  	(add-to-list 'completion-at-point-functions #'cape-dabbrev) ;; Complete word from current buffers
-  	(add-to-list 'completion-at-point-functions #'cape-dict) ;; Dictionary completion
-  	(add-to-list 'completion-at-point-functions #'cape-file) ;; Path completion
-  	(add-to-list 'completion-at-point-functions #'cape-elisp-block) ;; Complete elisp in Org or Markdown mode
-  	(add-to-list 'completion-at-point-functions #'cape-keyword) ;; Keyword/Snipet completion
-
-  	(keymap-global-set "M-TAB" 'completion-at-point)
-  	;;(add-to-list 'completion-at-point-functions #'cape-abbrev) ;; Complete abbreviation
-  	;;(add-to-list 'completion-at-point-functions #'cape-history) ;; Complete from Eshell, Comint or minibuffer history
-  	;;(add-to-list 'completion-at-point-functions #'cape-line) ;; Complete entire line from current buffer
-  	;;(add-to-list 'completion-at-point-functions #'cape-elisp-symbol) ;; Complete Elisp symbol
-  	;;(add-to-list 'completion-at-point-functions #'cape-tex) ;; Complete Unicode char from TeX command, e.g. \hbar
-  	;;(add-to-list 'completion-at-point-functions #'cape-sgml) ;; Complete Unicode char from SGML entity, e.g., &alpha
-  	;;(add-to-list 'completion-at-point-functions #'cape-rfc1345) ;; Complete Unicode char using RFC 1345 mnemonics
-  	)
+    (add-to-list 'completion-at-point-functions #'cape-dabbrev) ;; Complete word from current buffers
+    (add-to-list 'completion-at-point-functions #'cape-dict) ;; Dictionary completion
+    (add-to-list 'completion-at-point-functions #'cape-file) ;; Path completion
+    (add-to-list 'completion-at-point-functions #'cape-elisp-block) ;; Complete elisp in Org or Markdown mode
+    (add-to-list 'completion-at-point-functions #'cape-keyword) ;; Keyword/Snipet completion
+    
+    (keymap-global-set "M-TAB" 'completion-at-point)
+    ;;(add-to-list 'completion-at-point-functions #'cape-abbrev) ;; Complete abbreviation
+    ;;(add-to-list 'completion-at-point-functions #'cape-history) ;; Complete from Eshell, Comint or minibuffer history
+    ;;(add-to-list 'completion-at-point-functions #'cape-line) ;; Complete entire line from current buffer
+    ;;(add-to-list 'completion-at-point-functions #'cape-elisp-symbol) ;; Complete Elisp symbol
+    ;;(add-to-list 'completion-at-point-functions #'cape-tex) ;; Complete Unicode char from TeX command, e.g. \hbar
+    ;;(add-to-list 'completion-at-point-functions #'cape-sgml) ;; Complete Unicode char from SGML entity, e.g., &alpha
+    ;;(add-to-list 'completion-at-point-functions #'cape-rfc1345) ;; Complete Unicode char using RFC 1345 mnemonics
+    )
 
   (use-package yasnippet-capf
     :after cape
@@ -468,10 +466,10 @@ straight is loaded in the `init.el` to avoid issues with the builtin Org-mode
 ***  Discord
 #+BEGIN_SRC emacs-lisp
   (defun elcord--enable-on-frame-created (f)
-  	(elcord-mode +1))
+    (elcord-mode +1))
 
   (defun elcord--disable-elcord-if-no-frames (f)
-  	(when (let ((frames (delete f (visible-frame-list))))
+    (when (let ((frames (delete f (visible-frame-list))))
   		  (or (null frames)
   			  (and (null (cdr frames))
   				   (eq (car frames) terminal-frame))))
@@ -484,10 +482,10 @@ straight is loaded in the `init.el` to avoid issues with the builtin Org-mode
   	  (remove-hook 'delete-frame-functions 'elcord--disable-elcord-if-no-frames)))
 
   (use-package elcord
-  	:config
-  	(add-hook 'elcord-mode-hook 'custom-elcord-mode-hook)
-  	(elcord-mode)
-  	(setq elcord-quiet t)
+    :config
+    (add-hook 'elcord-mode-hook 'custom-elcord-mode-hook)
+    (elcord-mode)
+    (setq elcord-quiet t)
   	(setq elcord-idle-message "AFK.."))
 #+END_SRC
 *** GitHub Gist
@@ -500,22 +498,22 @@ straight is loaded in the `init.el` to avoid issues with the builtin Org-mode
 **  Icons
 #+BEGIN_SRC emacs-lisp
   (use-package nerd-icons-completion
-  	:config
-  	(nerd-icons-completion-mode))
+    :config
+    (nerd-icons-completion-mode))
 
   (use-package nerd-icons-corfu
-  	:after corfu
-  	:init (add-to-list 'corfu-margin-formatters #'nerd-icons-corfu-formatter))
+    :after corfu
+    :init (add-to-list 'corfu-margin-formatters #'nerd-icons-corfu-formatter))
 
   (use-package nerd-icons
-  	:if (display-graphic-p))
+    :if (display-graphic-p))
 
   (use-package all-the-icons
     :if (display-graphic-p))
 
   (use-package nerd-icons-dired
-  	:hook (dired-mode . (lambda () (nerd-icons-dired-mode t))))
+    :hook (dired-mode . (lambda () (nerd-icons-dired-mode t))))
 
   (use-package nerd-icons-ibuffer
-  	:hook (ibuffer-mode . nerd-icons-ibuffer-mode))
+    :hook (ibuffer-mode . nerd-icons-ibuffer-mode))
 #+END_SRC
