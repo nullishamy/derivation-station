@@ -3,7 +3,14 @@
 (setq straight-use-package-by-default t)
 
 ;; Load up my secrets
-(load-file (expand-file-name "secrets.el" user-emacs-directory))
+(defvar secrets-path)
+(setq secrets-path (expand-file-name "secrets.el" user-emacs-directory))
+;; Only attempt loading if the path actually exists.
+;; It may not exist if sops has not yet been loaded.
+;; This allows the daemon to launch (albeit with limited features) without crashing
+(if (file-exists-p secrets-path)
+	(load-file secrets-path))
+
 (setq auth-sources '("~/.authinfo"))
   
 ;; Bootstrap straight
@@ -26,7 +33,10 @@
 (straight-use-package 'org)
 
 (defun rebuild-config ()
-  (interactive) 
+  "Rebuild and reload the Emacs.org config.
+This will **NOT** call init.el again
+it will simply compile and source Emacs.org"
+  (interactive)
   (org-babel-load-file
    (expand-file-name
 	"Emacs.org"
