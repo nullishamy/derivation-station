@@ -26,6 +26,9 @@
   (scroll-bar-mode nil)       ;; Disable the scroll bar
   (tool-bar-mode nil)         ;; Disable the tool bar
   ;;(inhibit-startup-screen t)  ;; Disable welcome screen
+  (tooltip-mode -1)           ; Disable tooltips
+  (set-fringe-mode 10)        ; Give some breathing room
+  (toggle-frame-maximized)    ; Always start maximized
 
   (delete-selection-mode t)   ;; Select text and delete it by typing.
   (electric-indent-mode nil)  ;; Turn off the weird indenting that Emacs does by default.
@@ -33,6 +36,8 @@
 
   (blink-cursor-mode nil)     ;; Don't blink cursor
   (global-auto-revert-mode t) ;; Automatically reload file and show changes if the file has changed
+
+  (pixel-scroll-precision-mode 1)
 
   ;;(dired-kill-when-opening-new-dired-buffer t) ;; Dired don't create new buffer
   ;;(recentf-mode t) ;; Enable recent file mode
@@ -71,8 +76,9 @@
 (use-package diminish)
 
 (use-package rainbow-delimiters
-  :hook (prog-mode . rainbow-delimiters-mode))
-
+  :hook
+  (prog-mode . rainbow-delimiters-mode)
+  (org-mode . rainbow-delimiters-mode))
 
 (use-package rainbow-mode
   :config
@@ -94,6 +100,10 @@
 
 (use-package forge
   :after magit)
+
+(use-package git-gutter
+  :config
+  (global-git-gutter-mode 't))
 
 (use-package zone
   :disabled
@@ -326,6 +336,7 @@
   :mode ("\\.tsx?\\'" . typescript-mode))
 
 (use-package markdown-mode
+  :mode ("README\\.md\\'" . gfm-mode)
   :mode ("\\.md\\'" . markdown-mode))
 
 ;; In-buffer checking
