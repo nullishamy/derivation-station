@@ -271,6 +271,8 @@
 		   (svelte-mode . lsp)
 		   (go-mode . lsp)
 		   (nix-mode . lsp)
+		   (typescript-mode . lsp)
+		   (zig-mode . lsp)
 		   (lsp-mode . lsp-enable-which-key-integration))
 	:commands lsp)
 
@@ -294,6 +296,7 @@
 		   ("/[^\\./]*\\'" . fundamental-mode)
 		   ;; File name ends in ‘.el’.
 		   ("\\.el\\'" . emacs-lisp-mode)
+		   ("\\.zig\\'" . zig-mode)
 		   ;; Git modes
 		   (".*git-rebase-todo" . git-rebase-mode)
 		   (".*COMMIT_EDITMSG" . git-rebase-mode))
@@ -301,26 +304,29 @@
 
 ;; Additional language modes
 (use-package nix-mode
-	:mode "\\.nix\\'")
+  :mode "\\.nix\\'")
+
+(use-package zig-mode
+  :mode "\\.zig\\'")
 
 (use-package go-mode
-	:mode ("\\.go\\'" . go-mode))
+  :mode ("\\.go\\'" . go-mode))
 
 (use-package rust-mode
-	:mode ("\\.rs\\'" . rust-mode))
+  :mode ("\\.rs\\'" . rust-mode))
 
 (use-package svelte-mode
-	:mode ("\\.svelte\\'" . svelte-mode))
+  :mode ("\\.svelte\\'" . svelte-mode))
 
 (use-package lsp-tailwindcss
-	:init
-	(setq lsp-tailwindcss-add-on-mode t))
+  :init
+  (setq lsp-tailwindcss-add-on-mode t))
 
 (use-package typescript-mode
-	:mode ("\\.tsx?\\'" . typescript-mode))
+  :mode ("\\.tsx?\\'" . typescript-mode))
 
 (use-package markdown-mode
-	:mode ("\\.md\\'" . markdown-mode))
+  :mode ("\\.md\\'" . markdown-mode))
 
 ;; In-buffer checking
 (use-package flycheck

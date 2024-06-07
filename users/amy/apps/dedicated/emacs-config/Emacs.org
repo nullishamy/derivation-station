@@ -3,11 +3,12 @@
 #+PROPERTY: header-args:emacs-lisp :noweb yes :tangle yes
 
 **  Other cool stuff I want to look into
-+ https://github.com/rolandwalker/simpleclip
-+ https://github.com/emacsfodder/move-text
-+ https://github.com/rmuslimov/browse-at-remote
-+ https://codeberg.org/martianh/mastodon.el (lol)
-+ https://github.com/isomatter-labs/starmacs
+1. https://github.com/rolandwalker/simpleclip
+2. https://github.com/emacsfodder/move-text
+3. https://github.com/rmuslimov/browse-at-remote
+4. https://codeberg.org/martianh/mastodon.el (lol)
+6. https://github.com/isomatter-labs/starmacs
+7. Need to get a better indent solution, so that it "just works"
 
 **  Bootstrap
 This config uses `straight.el` for package management, on top of `use-package` for recipes.
@@ -301,6 +302,8 @@ straight is loaded in the `init.el` to avoid issues with the builtin Org-mode
   		   (svelte-mode . lsp)
   		   (go-mode . lsp)
   		   (nix-mode . lsp)
+  		   (typescript-mode . lsp)
+  		   (zig-mode . lsp)
   		   (lsp-mode . lsp-enable-which-key-integration))
   	:commands lsp)
 
@@ -324,6 +327,7 @@ straight is loaded in the `init.el` to avoid issues with the builtin Org-mode
   		   ("/[^\\./]*\\'" . fundamental-mode)
   		   ;; File name ends in ‘.el’.
   		   ("\\.el\\'" . emacs-lisp-mode)
+  		   ("\\.zig\\'" . zig-mode)
   		   ;; Git modes
   		   (".*git-rebase-todo" . git-rebase-mode)
   		   (".*COMMIT_EDITMSG" . git-rebase-mode))
@@ -331,26 +335,29 @@ straight is loaded in the `init.el` to avoid issues with the builtin Org-mode
 
   ;; Additional language modes
   (use-package nix-mode
-  	:mode "\\.nix\\'")
+    :mode "\\.nix\\'")
+
+  (use-package zig-mode
+    :mode "\\.zig\\'")
 
   (use-package go-mode
-  	:mode ("\\.go\\'" . go-mode))
+    :mode ("\\.go\\'" . go-mode))
 
   (use-package rust-mode
-  	:mode ("\\.rs\\'" . rust-mode))
+    :mode ("\\.rs\\'" . rust-mode))
 
   (use-package svelte-mode
-  	:mode ("\\.svelte\\'" . svelte-mode))
+    :mode ("\\.svelte\\'" . svelte-mode))
 
   (use-package lsp-tailwindcss
-  	:init
-  	(setq lsp-tailwindcss-add-on-mode t))
+    :init
+    (setq lsp-tailwindcss-add-on-mode t))
 
   (use-package typescript-mode
-  	:mode ("\\.tsx?\\'" . typescript-mode))
+    :mode ("\\.tsx?\\'" . typescript-mode))
 
   (use-package markdown-mode
-  	:mode ("\\.md\\'" . markdown-mode))
+    :mode ("\\.md\\'" . markdown-mode))
 
   ;; In-buffer checking
   (use-package flycheck
