@@ -7,8 +7,6 @@
 2. https://github.com/emacsfodder/move-text
 3. https://github.com/rmuslimov/browse-at-remote
 4. https://codeberg.org/martianh/mastodon.el (lol)
-7. Need to get a better indent solution, so that it "just works"
-   - https://github.com/jscheid/dtrt-indent
 
 **  Bootstrap
 This config uses `straight.el` for package management, on top of `use-package` for recipes.
@@ -299,8 +297,8 @@ straight is loaded in the `init.el` to avoid issues with the builtin Org-mode
   (use-package lsp-mode
     :config
     (setq lsp-keymap-prefix "C-c l")
-    (setq lsp-completion-enable nil)
-    (setq lsp-completion-provider :capf)
+    (setq lsp-completion-enable t)
+    (setq lsp-completion-provider :none)
     (setq lsp-modeline-code-actions-enable nil)
     (setq lsp-modeline-diagnostics-enable nil)
     (setq lsp-modeline-workspace-status-enable nil)
@@ -378,6 +376,13 @@ straight is loaded in the `init.el` to avoid issues with the builtin Org-mode
     :config
     (with-eval-after-load 'flycheck
   	(add-hook 'flycheck-mode-hook #'flycheck-inline-mode)))
+
+  (use-package tree-sitter
+    :config
+    (global-tree-sitter-mode))
+  (use-package tree-sitter-langs)
+
+
 #+END_SRC
 
 **  Org-mode

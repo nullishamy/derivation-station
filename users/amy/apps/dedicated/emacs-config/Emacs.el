@@ -21,94 +21,93 @@
   (setq no-littering-var-directory (expand-file-name "data/" user-emacs-directory)))
 
 (use-package emacs
-    :custom
-    (menu-bar-mode nil)         ;; Disable the menu bar
-    (scroll-bar-mode nil)       ;; Disable the scroll bar
-    (tool-bar-mode nil)         ;; Disable the tool bar
-    ;;(inhibit-startup-screen t)  ;; Disable welcome screen
-    (tooltip-mode -1)           ; Disable tooltips
-    (set-fringe-mode 10)        ; Give some breathing room
-    (toggle-frame-maximized)    ; Always start maximized
+  :custom
+  (menu-bar-mode nil)         ;; Disable the menu bar
+  (scroll-bar-mode nil)       ;; Disable the scroll bar
+  (tool-bar-mode nil)         ;; Disable the tool bar
+  ;;(inhibit-startup-screen t)  ;; Disable welcome screen
+  (tooltip-mode -1)           ; Disable tooltips
+  (set-fringe-mode 10)        ; Give some breathing room
+  (toggle-frame-maximized)    ; Always start maximized
 
-    (delete-selection-mode t)   ;; Select text and delete it by typing.
-    (electric-indent-mode nil)  ;; Turn off the weird indenting that Emacs does by default.
-    (electric-pair-mode t)      ;; Turns on automatic parens pairing
+  (delete-selection-mode t)   ;; Select text and delete it by typing.
+  (electric-indent-mode nil)  ;; Turn off the weird indenting that Emacs does by default.
+  (electric-pair-mode t)      ;; Turns on automatic parens pairing
 
-    (blink-cursor-mode nil)     ;; Don't blink cursor
-    (global-auto-revert-mode t) ;; Automatically reload file and show changes if the file has changed
+  (blink-cursor-mode nil)     ;; Don't blink cursor
+  (global-auto-revert-mode t) ;; Automatically reload file and show changes if the file has changed
 
-    (pixel-scroll-precision-mode 1)
+  (pixel-scroll-precision-mode 1)
 
-    ;;(dired-kill-when-opening-new-dired-buffer t) ;; Dired don't create new buffer
-    ;;(recentf-mode t) ;; Enable recent file mode
+  ;;(dired-kill-when-opening-new-dired-buffer t) ;; Dired don't create new buffer
+  ;;(recentf-mode t) ;; Enable recent file mode
 
-    ;;(global-visual-line-mode t)           ;; Enable truncated lines
-    ;;(display-line-numbers-type 'relative) ;; Relative line numbers
-    (global-display-line-numbers-mode t)  ;; Display line numbers
+  ;;(global-visual-line-mode t)           ;; Enable truncated lines
+  ;;(display-line-numbers-type 'relative) ;; Relative line numbers
+  (global-display-line-numbers-mode t)  ;; Display line numbers
 
-    (mouse-wheel-progressive-speed nil) ;; Disable progressive speed when scrolling
-    (scroll-conservatively 10) ;; Smooth scrolling
-    ;;(scroll-margin 8)
+  (mouse-wheel-progressive-speed nil) ;; Disable progressive speed when scrolling
+  (scroll-conservatively 10) ;; Smooth scrolling
+  ;;(scroll-margin 8)
 
-    (tab-width 4)
+  (tab-width 4)
 
-    (make-backup-files nil) ;; Stop creating ~ backup files
-    (auto-save-default nil) ;; Stop creating # auto save files
+  (make-backup-files nil) ;; Stop creating ~ backup files
+  (auto-save-default nil) ;; Stop creating # auto save files
 
-    :hook
-    (prog-mode . (lambda () (hs-minor-mode t))) ;; Enable folding hide/show globally
-    :config
+  :hook
+  (prog-mode . (lambda () (hs-minor-mode t))) ;; Enable folding hide/show globally
+  :config
 
-    ;; Move customization variables to a separate file and load it, avoid filling up init.el with unnecessary variables
-    (setq custom-file (locate-user-emacs-file "custom-vars.el"))
-    (load custom-file 'noerror 'nomessage)
-    :bind (
-    	([escape] . keyboard-escape-quit) ;; Makes Escape quit prompts (Minibuffer Escape)
-    		 )
-    )
+  ;; Move customization variables to a separate file and load it, avoid filling up init.el with unnecessary variables
+  (setq custom-file (locate-user-emacs-file "custom-vars.el"))
+  (load custom-file 'noerror 'nomessage)
+  :bind (
+  		 ([escape] . keyboard-escape-quit) ;; Makes Escape quit prompts (Minibuffer Escape)
+  		 )
+  )
 
-  (use-package diff-hl
-    :hook (
-(dired-mode . diff-hl-dired-mode-unless-remote)
-    		 (magit-pre-refresh  . diff-hl-magit-pre-refresh)
-    		 (magit-post-refresh . diff-hl-magit-post-refresh))
-    :init (global-diff-hl-mode))
+(use-package diff-hl
+  :hook ((dired-mode         . diff-hl-dired-mode-unless-remote)
+  		 (magit-pre-refresh  . diff-hl-magit-pre-refresh)
+  		 (magit-post-refresh . diff-hl-magit-post-refresh))
+  :init (global-diff-hl-mode))
 
-  (use-package diminish)
+(use-package diminish)
 
-  (use-package rainbow-delimiters
-    :hook
-    (prog-mode . rainbow-delimiters-mode)
-    (org-mode . rainbow-delimiters-mode))
+(use-package rainbow-delimiters
+  :hook
+  (prog-mode . rainbow-delimiters-mode)
+  (org-mode . rainbow-delimiters-mode))
 
-  (use-package rainbow-mode
-    :config
-    ;; Make it a proper global mode; we want this everywhere unless we explicitly disable it (TODO: Add blocklist filtering here)
-    (define-globalized-minor-mode global-rainbow-mode rainbow-mode
-      (lambda () (rainbow-mode 1)))
-    (global-rainbow-mode 1))
+(use-package rainbow-mode
+  :config
+  ;; Make it a proper global mode; we want this everywhere unless we explicitly disable it (TODO: Add blocklist filtering here)
+  (define-globalized-minor-mode global-rainbow-mode rainbow-mode
+    (lambda () (rainbow-mode 1)))
+  (global-rainbow-mode 1))
 
-  (use-package doom-modeline
-    :init (doom-modeline-mode 1)
-    :config
-    (setq doom-modeline-icon nil)
-    (setq doom-modeline-minor-modes t)
-    (setq doom-modeline-lsp t)
-    (setq doom-modeline-buffer-file-name-style 'relative-from-project))
+(use-package doom-modeline
+  :init (doom-modeline-mode 1)
+  :config
+  (setq doom-modeline-icon nil)
+  (setq doom-modeline-minor-modes t)
+  (setq doom-modeline-lsp t)
+  (setq doom-modeline-buffer-file-name-style 'relative-from-project))
 
-  (use-package magit
-    :commands magit-status)
+(use-package magit
+  :commands magit-status)
 
-  (use-package forge
-    :after magit)
+(use-package forge
+  :after magit)
 
-  (use-package git-gutter
-    :config
-    (global-git-gutter-mode 't))
+(use-package git-gutter
+  :config
+  (global-git-gutter-mode 't))
 
-  (use-package dtrt-indent
-    :custom
-    (dtrt-indent-global-mode t))
+(use-package dtrt-indent
+  :custom
+  (dtrt-indent-global-mode t))
 
 (use-package catppuccin-theme
   :config
@@ -269,8 +268,8 @@
 (use-package lsp-mode
   :config
   (setq lsp-keymap-prefix "C-c l")
-  (setq lsp-completion-enable nil)
-  (setq lsp-completion-provider :capf)
+  (setq lsp-completion-enable t)
+  (setq lsp-completion-provider :none)
   (setq lsp-modeline-code-actions-enable nil)
   (setq lsp-modeline-diagnostics-enable nil)
   (setq lsp-modeline-workspace-status-enable nil)
@@ -348,6 +347,11 @@
   :config
   (with-eval-after-load 'flycheck
 	(add-hook 'flycheck-mode-hook #'flycheck-inline-mode)))
+
+(use-package tree-sitter
+  :config
+  (global-tree-sitter-mode))
+(use-package tree-sitter-langs)
 
 (use-package toc-org
   :commands toc-org-enable
