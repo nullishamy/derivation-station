@@ -78,6 +78,8 @@ in {
 
       # Consider downloaded tarballs as fresh for 7 days
       tarball-ttl = 604800;
+
+      trusted-users = ["@wheel"];
     };
 
     nixPath = [

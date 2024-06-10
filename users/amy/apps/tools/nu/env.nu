@@ -29,8 +29,6 @@ if ("~/.cache/ssh-agent/agent" | path exists) {
   if ($sock_exit == 0) {
     $ssh_env | load-env
   } else {
-    print "Starting new ssh agent"
-
     let ssh_env = (ssh-agent -c -t $env.SSH_AGENT_TIMEOUT
     | lines
     | first 2
@@ -41,8 +39,6 @@ if ("~/.cache/ssh-agent/agent" | path exists) {
     $ssh_env | load-env
   }
 } else {
-  print "Starting ssh agent"
-
   let ssh_env = (ssh-agent -c -t $env.SSH_AGENT_TIMEOUT
   | lines
   | first 2

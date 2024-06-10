@@ -11,7 +11,7 @@ in {
     enable = true;
     settings = {};
     extraConfig = ''
-      bspc monitor -d Web Music Discord Editor Shell Email 7 8 9 10
+      bspc monitor -d Web Music Discord Editor Shell Notes Email 8 9 10
 
       # Mice bindings
       # Set mod key
@@ -43,8 +43,12 @@ in {
         desktop = "^2";
         follow = false;
       };
-      "thunderbird" = {
+      "obsidian" = {
         desktop = "^6";
+        follow = false;
+      };
+      "thunderbird" = {
+        desktop = "^7";
         follow = false;
       };
     };
@@ -59,6 +63,7 @@ in {
       "thunderbird"
       # "spotifywm" # Launch spotifywm instead, which has WM bug fixes (https://github.com/dasJ/spotifywm)
       "apple-music-via-google-chrome"
+      "obsidian"
       "xrandr --output HDMI-A-0 --mode 1920x1080 --rate 144 --primary"
     ];
   };
