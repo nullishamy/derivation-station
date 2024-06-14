@@ -11,7 +11,7 @@ in {
     enable = true;
     settings = {};
     extraConfig = ''
-      bspc monitor -d Web Music Discord Editor Shell Notes Email 8 9 10
+      bspc monitor -d Web Music Discord Editor Notes Email 7 8 9 10
 
       # Mice bindings
       # Set mod key
@@ -44,11 +44,11 @@ in {
         follow = false;
       };
       "obsidian" = {
-        desktop = "^6";
+        desktop = "^5";
         follow = false;
       };
       "thunderbird" = {
-        desktop = "^7";
+        desktop = "^6";
         follow = false;
       };
     };
