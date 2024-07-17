@@ -52,10 +52,6 @@ in {
   nix = let
     flakeInputs = lib.filterAttrs (name: value: (value ? outputs) && (name != "self")) inputs;
   in {
-    # Automatically run the garbage collector
-    gc.automatic = true;
-    gc.dates = "12:45";
-
     # Automatically run the nix store optimiser
     optimise.automatic = true;
     optimise.dates = ["12:55"];

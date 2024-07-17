@@ -20,7 +20,7 @@
     },
     "rust-analyzer.server.path": "rust-analyzer",
     "editor.bracketPairColorization.enabled": true,
-    "editor.fontFamily": "Iosevka Nerd Font",
+    "editor.fontFamily": "Berkeley Mono",
     "editor.inlineSuggest.enabled": true,
     "editor.lineNumbers": "relative",
     "extensions.autoUpdate": false,
@@ -489,7 +489,7 @@
     "vim.replaceWithRegister": true,
     "vim.useSystemClipboard": false,
     "window.titleBarStyle": "custom",
-    "editor.fontSize": 20,
+    "editor.fontSize": 19,
     "better-comments.highlightPlainText": true,
     "better-comments.tags": [
         {
@@ -749,7 +749,7 @@
     "kotlin.debugAdapter.enabled": false,
     // Does actually exist, vscode is just a dumbass
     "rust-analyzer.checkOnSave.command": "clippy",
-    "editor.codeLensFontFamily": "Iosevka Nerd Font",
+    "editor.codeLensFontFamily": "Berkeley Mono",
     "presentation-mode.active": {
         "commands": [
             "workbench.action.closeSidebar"
