@@ -126,9 +126,9 @@
       };
     };
 
-    font = "Iosevka 14";
+    # font = "Iosevka 14";
     # font = "Berkeley Mono 13";
-    # font = "FantasqueSansMono Nerd Font 13";
+    font = "FantasqueSansM Nerd Font Mono 13";
     terminal = "wezterm";
   };
 }

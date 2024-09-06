@@ -61,8 +61,8 @@ in {
       "redshift -P -O 2500"
       "discord"
       "thunderbird"
-      # "spotifywm" # Launch spotifywm instead, which has WM bug fixes (https://github.com/dasJ/spotifywm)
-      "apple-music-via-google-chrome"
+      "spotify" # Launch spotifywm instead, which has WM bug fixes (https://github.com/dasJ/spotifywm). Nix sets this up https://github.com/NixOS/nixpkgs/blob/nixos-24.05/pkgs/by-name/sp/spotifywm/package.nix#L49
+      # "apple-music-via-google-chrome"
       "obsidian"
       "xrandr --output HDMI-A-0 --mode 1920x1080 --rate 144 --primary"
     ];

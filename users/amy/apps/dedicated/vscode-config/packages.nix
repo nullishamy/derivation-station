@@ -37,5 +37,9 @@ in
     thenuprojectcontributors.vscode-nushell-lang
     wakatime.vscode-wakatime
     redhat.vscode-yaml
-    streetsidesoftware.code-spell-checker
+    # streetsidesoftware.code-spell-checker
+    ms-dotnettools.csdevkit
+    ms-dotnettools.vscode-dotnet-runtime
+    pkgs.vscode-extensions.ms-dotnettools.csharp
+    pkgs.vscode-extensions.devsense.phptools-vscode
   ]

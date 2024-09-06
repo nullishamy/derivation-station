@@ -9,9 +9,9 @@
     enable = true;
     settings = {
       global = {
-        # font = "FantasqueSansMono Nerd Font Mono";
+        font = "FantasqueSansM Nerd Font Mono";
         # font = "Berkeley Mono 12";
-        font = "Iosevka Term";
+        # font = "Iosevka Term";
 
         # Allow markup in messages, bold italic etc
         markup = "full";

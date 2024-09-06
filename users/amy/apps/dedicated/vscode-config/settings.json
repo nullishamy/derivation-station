@@ -20,7 +20,7 @@
     },
     "rust-analyzer.server.path": "rust-analyzer",
     "editor.bracketPairColorization.enabled": true,
-    "editor.fontFamily": "Berkeley Mono",
+    "editor.fontFamily": "FantasqueSansM Nerd Font Mono",
     "editor.inlineSuggest.enabled": true,
     "editor.lineNumbers": "relative",
     "extensions.autoUpdate": false,
@@ -691,7 +691,6 @@
     "editor.fontLigatures": true,
     "javascript.updateImportsOnFileMove.enabled": "never",
     "catppuccin.extraBordersEnabled": true,
-    "workbench.colorTheme": "Catppuccin Mocha",
     "catppuccin.accentColor": "pink",
     "editor.tabSize": 2,
     "terminal.integrated.fontWeightBold": "normal",
@@ -728,20 +727,15 @@
         "command script import /home/amy/.vscode/extensions/vadimcn.vscode-lldb/formatters/rust.py"
     ],
     "files.associations": {
+        "*.embeddedhtml": "html",
         ".env*": "dotenv",
-        "*.user.css": "less"
+        "*.user.css": "less",
+        "*.test.ts": "typescript"
     },
     "editor.tokenColorCustomizations": {
-        "textMateRules": [
-            {
-                "scope": "keyword.other.dotenv",
-                "settings": {
-                    "foreground": "#FF000000"
-                }
-            }
-        ]
+        "textMateRules": []
     },
-    "dotenv.enableAutocloaking": true,
+    "dotenv.enableAutocloaking": false,
     "editor.inlayHints.enabled": "off",
     "terminal.integrated.minimumContrastRatio": 1,
     "catppuccin.workbenchMode": "flat",
@@ -769,4 +763,6 @@
     "svelte.enable-ts-plugin": true,
     "editor.inlineSuggest.fontFamily": "Berkeley Mono",
     "rust-analyzer.checkOnSave": true,
+    "workbench.iconTheme": "catppuccin-mocha",
+    "workbench.colorTheme": "Catppuccin Mocha",
 }

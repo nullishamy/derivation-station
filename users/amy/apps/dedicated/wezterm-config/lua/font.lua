@@ -15,7 +15,7 @@ local fonts = {
   fantasque = {
     font = wez.font_with_fallback {
       {
-        family = 'FantasqueSansMono Nerd Font',
+        family = 'FantasqueSansM Nerd Font Mono',
         stretch = 'Normal',
         weight = 'Medium',
       },
@@ -37,7 +37,7 @@ local fonts = {
   },
 }
 
-local selected_font = 'iosevka'
+local selected_font = 'fantasque'
 
 return function(cfg, values)
   cfg.font = fonts[selected_font].font

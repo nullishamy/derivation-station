@@ -121,6 +121,7 @@
   :weight 'medium)
 
 (set-frame-font "Iosevka Term" nil t)
+(add-to-list 'default-frame-alist '(font . "Iosevka Term")) ;; Set your favorite font
 
 ;; This assumes you've installed the package via MELPA.
 (use-package ligature
@@ -142,7 +143,6 @@
                                        "\\\\" "://"))
   (global-ligature-mode t))
 
-;;(add-to-list 'default-frame-alist '(font . "JetBrains Mono")) ;; Set your favorite font
 (setq-default line-spacing 0.12)
 (use-package emacs
   :bind
