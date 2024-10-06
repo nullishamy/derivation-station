@@ -31,7 +31,7 @@
   (toggle-frame-maximized)    ; Always start maximized
 
   (delete-selection-mode t)   ;; Select text and delete it by typing.
-  (electric-indent-mode nil)  ;; Turn off the weird indenting that Emacs does by default.
+  (electric-indent-mode t)    ;; Turn off the weird indenting that Emacs does by default.
   (electric-pair-mode t)      ;; Turns on automatic parens pairing
 
   (blink-cursor-mode nil)     ;; Don't blink cursor
@@ -62,10 +62,17 @@
   ;; Move customization variables to a separate file and load it, avoid filling up init.el with unnecessary variables
   (setq custom-file (locate-user-emacs-file "custom-vars.el"))
   (load custom-file 'noerror 'nomessage)
+
+  (setq compilation-scroll-output t) ;; Make compilation mode scroll automatically
+  (add-hook 'compilation-filter-hook 'ansi-color-compilation-filter)
+
   :bind (
   		 ([escape] . keyboard-escape-quit) ;; Makes Escape quit prompts (Minibuffer Escape)
   		 )
   )
+
+(use-package wakatime-mode
+  :init (global-wakatime-mode))
 
 (use-package diff-hl
   :hook ((dired-mode         . diff-hl-dired-mode-unless-remote)
@@ -92,7 +99,6 @@
   :config
   (setq doom-modeline-icon nil)
   (setq doom-modeline-minor-modes t)
-  (setq doom-modeline-lsp t)
   (setq doom-modeline-buffer-file-name-style 'relative-from-project))
 
 (use-package magit
@@ -109,19 +115,23 @@
   :custom
   (dtrt-indent-global-mode t))
 
+;; General keybindings
+(global-set-key (kbd "C-x C-b") 'ibuffer)
+
 (use-package catppuccin-theme
   :config
   (load-theme 'catppuccin :no-confirm))
 
 (add-to-list 'default-frame-alist '(alpha-background . 90)) ;; For all new frames henceforth
 
+(setq font "Fantasque Sans Mono")
 (set-face-attribute 'default nil
-  :font "Iosevka Term" ;; Set your favorite type of font or download JetBrains Mono
-  :height 150
-  :weight 'medium)
+  :font font
+  :height 165
+  :weight 'normal)
 
-(set-frame-font "Iosevka Term" nil t)
-(add-to-list 'default-frame-alist '(font . "Iosevka Term")) ;; Set your favorite font
+(set-frame-font font nil t)
+(add-to-list 'default-frame-alist '(font . font))
 
 ;; This assumes you've installed the package via MELPA.
 (use-package ligature
@@ -265,93 +275,63 @@
 (global-set-key [remap query-replace] 'anzu-query-replace)
 (global-set-key [remap query-replace-regexp] 'anzu-query-replace-regexp))
 
-(use-package lsp-mode
-  :config
-  (setq lsp-keymap-prefix "C-c l")
-  (setq lsp-completion-enable t)
-  (setq lsp-completion-provider :none)
-  (setq lsp-modeline-code-actions-enable nil)
-  (setq lsp-modeline-diagnostics-enable nil)
-  (setq lsp-modeline-workspace-status-enable nil)
-  
-  :hook (
-		 (python-mode . lsp)
-		 (rust-mode . lsp)
-		 (svelte-mode . lsp)
-		 (go-mode . lsp)
-		 (nix-mode . lsp)
-		 (typescript-mode . lsp)
-		 (zig-mode . lsp)
-		 (lsp-mode . lsp-enable-which-key-integration))
-  :commands lsp)
-
-(use-package lsp-ui
-  :commands
-  lsp-ui-mode
-  :config
-  (setq lsp-ui-doc-position 'at-point)
-  (setq lsp-ui-doc-delay 1.5)
-  (keymap-global-set "C-c d s" 'lsp-ui-doc-show)
-  (keymap-global-set "C-c d f" 'lsp-ui-doc-focus-frame)
-  (keymap-global-set "C-c d h" 'lsp-ui-doc-hide)
-  (setq lsp-ui-doc-enable t))
-
 ;; Filetype -> mode mappings
-(setq auto-mode-alist
-	  (append
-		 ;; File name (within directory) starts with a dot.
-	   '(("/\\.[^/]*\\'" . fundamental-mode)
-		 ;; File name has no dot.
-		 ("/[^\\./]*\\'" . fundamental-mode)
-		 ;; File name ends in ‘.el’.
-		 ("\\.el\\'" . emacs-lisp-mode)
-		 ("\\.zig\\'" . zig-mode)
-		 ;; Git modes
-		 (".*git-rebase-todo" . git-rebase-mode)
-		 (".*COMMIT_EDITMSG" . git-rebase-mode))
-	   auto-mode-alist))
+  (setq auto-mode-alist
+  	  (append
+  		 ;; File name (within directory) starts with a dot.
+  	   '(("/\\.[^/]*\\'" . fundamental-mode)
+  		 ;; File name has no dot.
+  		 ("/[^\\./]*\\'" . fundamental-mode)
+  		 ;; File name ends in ‘.el’.
+  		 ("\\.el\\'" . emacs-lisp-mode)
+  		 ("\\.zig\\'" . zig-mode)
+  		 ;; Git modes
+  		 (".*git-rebase-todo" . git-rebase-mode)
+  		 (".*COMMIT_EDITMSG" . git-rebase-mode))
+  	   auto-mode-alist))
 
-;; Additional language modes
-(use-package nix-mode
-  :mode "\\.nix\\'")
+  ;; Additional language modes
+  (use-package nix-mode
+    :mode "\\.nix\\'")
 
-(use-package zig-mode
-  :mode "\\.zig\\'")
+  (use-package zig-mode
+    :mode "\\.zig\\'")
 
-(use-package go-mode
-  :mode ("\\.go\\'" . go-mode))
+  (use-package go-mode
+    :mode ("\\.go\\'" . go-mode))
 
-(use-package rust-mode
-  :mode ("\\.rs\\'" . rust-mode))
+  (use-package rust-mode
+    :mode ("\\.rs\\'" . rust-mode))
 
-(use-package svelte-mode
-  :mode ("\\.svelte\\'" . svelte-mode))
+  (use-package svelte-mode
+    :mode ("\\.svelte\\'" . svelte-mode))
 
-(use-package lsp-tailwindcss
-  :init
-  (setq lsp-tailwindcss-add-on-mode t))
+  (use-package lsp-tailwindcss
+    :init
+    (setq lsp-tailwindcss-add-on-mode t))
 
-(use-package typescript-mode
-  :mode ("\\.tsx?\\'" . typescript-mode))
+  (use-package typescript-mode
+    :mode ("\\.tsx?\\'" . typescript-mode))
 
-(use-package markdown-mode
-  :mode ("README\\.md\\'" . gfm-mode)
-  :mode ("\\.md\\'" . markdown-mode))
+  (use-package markdown-mode
+    :mode ("README\\.md\\'" . gfm-mode)
+    :mode ("\\.md\\'" . markdown-mode))
 
-;; In-buffer checking
-(use-package flycheck
-  :config
-  (add-hook 'after-init-hook #'global-flycheck-mode))
+  (use-package yaml-pro
+    :mode ("\\.ya?ml\\'" . yaml-pro-mode))
 
-(use-package flycheck-inline
-  :config
-  (with-eval-after-load 'flycheck
-	(add-hook 'flycheck-mode-hook #'flycheck-inline-mode)))
+  (use-package yaml-mode
+    :mode ("\\.ya?ml\\'" . yaml-mode))
 
-(use-package tree-sitter
-  :config
-  (global-tree-sitter-mode))
-(use-package tree-sitter-langs)
+  (add-hook 'yaml-mode-hook (lambda () (tree-sitter-hl-mode)))
+
+  ;; In-buffer checking
+
+;;  (use-package tree-sitter
+;;   :config
+;;   (global-tree-sitter-mode))
+
+  ;;(use-package tree-sitter-langs)
 
 (use-package toc-org
   :commands toc-org-enable
@@ -411,6 +391,8 @@
   (add-to-list 'completion-at-point-functions #'cape-file) ;; Path completion
   (add-to-list 'completion-at-point-functions #'cape-elisp-block) ;; Complete elisp in Org or Markdown mode
   (add-to-list 'completion-at-point-functions #'cape-keyword) ;; Keyword/Snipet completion
+  (add-to-list 'completion-at-point-functions #'cape-abbrev)
+  ;;(add-to-list 'completion-at-point-functions #'cape-line)
   
   (keymap-global-set "M-TAB" 'completion-at-point)
   ;;(add-to-list 'completion-at-point-functions #'cape-abbrev) ;; Complete abbreviation

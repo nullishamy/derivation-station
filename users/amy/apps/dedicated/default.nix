@@ -20,6 +20,11 @@ in {
   # Start the daemon
   config.services.emacs = {
     enable = true;
+    package = with pkgs; (
+      (emacsPackagesFor pkgs.unstable.emacs).emacsWithPackages (
+        epkgs: [epkgs."treesit-grammars".with-all-grammars epkgs."tree-sitter"]
+      )
+    );
   };
 
   config.xdg.configFile = {

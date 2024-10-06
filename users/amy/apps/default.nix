@@ -34,9 +34,12 @@
     pavucontrol
     photoqt
     dunst
+    tailscale
+
+    element-desktop
 
     # 3D printing
-    # super-slicer FIXME: Broken as of 24.05
+    #super-slicer
 
     # Modern unix
     ripgrep

@@ -1,18 +1,16 @@
 {
   pkgs,
-  lib,
   nix-vscode-extensions,
   ...
 }: let
   marketplace = nix-vscode-extensions.extensions.${pkgs.system}.vscode-marketplace;
 in
-  with marketplace; [
+  (with marketplace; [
     formulahendry.auto-rename-tag
     aaron-bond.better-comments
     # catppuccin.catppuccin-vsc -- not managed by nix because the configurability is broken on Nix. installed by hand
     catppuccin.catppuccin-vsc-icons
     dotenv.dotenv-vscode
-    pkgs.vscode-extensions.vadimcn.vscode-lldb
     kamikillerto.vscode-colorize
     mkhl.direnv
     leonardssh.vscord
@@ -30,7 +28,6 @@ in
     ms-vscode-remote.remote-ssh
     ms-vscode-remote.remote-ssh-edit
     ms-vscode.remote-explorer
-    rust-lang.rust-analyzer
     bradlc.vscode-tailwindcss
     pdesaulniers.vscode-teal
     vscodevim.vim
@@ -40,6 +37,10 @@ in
     # streetsidesoftware.code-spell-checker
     ms-dotnettools.csdevkit
     ms-dotnettools.vscode-dotnet-runtime
-    pkgs.vscode-extensions.ms-dotnettools.csharp
-    pkgs.vscode-extensions.devsense.phptools-vscode
-  ]
+  ])
+  ++ (with pkgs.vscode-extensions; [
+    ms-dotnettools.csharp
+    devsense.phptools-vscode
+    rust-lang.rust-analyzer
+    vadimcn.vscode-lldb
+  ])

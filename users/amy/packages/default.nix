@@ -11,7 +11,11 @@
     (pkgs.callPackage ./catppuccin-gtk {})
     (pkgs.callPackage ./nvim {})
     (pkgs.callPackage ./emacs {
-      emacs = pkgs.unstable.emacs;
+      emacs = with pkgs; (
+        (emacsPackagesFor pkgs.unstable.emacs).emacsWithPackages (
+          epkgs: [epkgs."treesit-grammars".with-all-grammars]
+        )
+      );
     })
     (pkgs.callPackage ./apple-music {})
     (pkgs.callPackage ./rescrobbled {})

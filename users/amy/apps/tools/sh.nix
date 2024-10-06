@@ -13,6 +13,7 @@
 
   programs.atuin = {
     enable = true;
+    flags = ["--disable-up-arrow"];
     package = pkgs.unstable.atuin;
     settings = {
       dialect = "uk";
