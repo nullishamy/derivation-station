@@ -14,11 +14,11 @@ local module = {
             o.updatetime = 100 -- Write to swap if left idle for n milliseconds
             o.mouse = 'a' -- Enable mouse support for visual select, scrolling
 
-
             -- Window
             w.number = true -- Display numbers along the side
             g.wrap = true -- Enable line wrapping
             o.scrolloff = 12 -- Keep 12 lines of context on either side of the cursor
+            o.cindent = true
 
 
             -- Tab character setup

@@ -35,6 +35,7 @@
   (electric-pair-mode t)      ;; Turns on automatic parens pairing
 
   (blink-cursor-mode nil)     ;; Don't blink cursor
+ 
   (global-auto-revert-mode t) ;; Automatically reload file and show changes if the file has changed
 
   (pixel-scroll-precision-mode 1)
@@ -62,14 +63,13 @@
   ;; Move customization variables to a separate file and load it, avoid filling up init.el with unnecessary variables
   (setq custom-file (locate-user-emacs-file "custom-vars.el"))
   (load custom-file 'noerror 'nomessage)
-
+  
   (setq compilation-scroll-output t) ;; Make compilation mode scroll automatically
   (add-hook 'compilation-filter-hook 'ansi-color-compilation-filter)
 
-  :bind (
-  		 ([escape] . keyboard-escape-quit) ;; Makes Escape quit prompts (Minibuffer Escape)
-  		 )
-  )
+  :bind
+  (([escape] . keyboard-escape-quit)) ;; Makes Escape quit prompts (Minibuffer Escape)
+)
 
 (use-package wakatime-mode
   :init (global-wakatime-mode))
@@ -124,16 +124,15 @@
 
 (add-to-list 'default-frame-alist '(alpha-background . 90)) ;; For all new frames henceforth
 
-(setq font "Fantasque Sans Mono")
+(setq sfont "Iosevka Term")
 (set-face-attribute 'default nil
-  :font font
-  :height 165
+  :font sfont
+  :height 200
   :weight 'normal)
 
-(set-frame-font font nil t)
-(add-to-list 'default-frame-alist '(font . font))
+(set-frame-font sfont nil t)
+(add-to-list 'default-frame-alist '(font . "Iosevka Term"))
 
-;; This assumes you've installed the package via MELPA.
 (use-package ligature
   :config
   (ligature-set-ligatures 'eww-mode '("ff" "fi" "ffi"))
@@ -154,6 +153,7 @@
   (global-ligature-mode t))
 
 (setq-default line-spacing 0.12)
+
 (use-package emacs
   :bind
   ("<C-wheel-up>" . text-scale-increase)
@@ -276,62 +276,58 @@
 (global-set-key [remap query-replace-regexp] 'anzu-query-replace-regexp))
 
 ;; Filetype -> mode mappings
-  (setq auto-mode-alist
-  	  (append
-  		 ;; File name (within directory) starts with a dot.
-  	   '(("/\\.[^/]*\\'" . fundamental-mode)
-  		 ;; File name has no dot.
-  		 ("/[^\\./]*\\'" . fundamental-mode)
-  		 ;; File name ends in ‘.el’.
-  		 ("\\.el\\'" . emacs-lisp-mode)
-  		 ("\\.zig\\'" . zig-mode)
-  		 ;; Git modes
-  		 (".*git-rebase-todo" . git-rebase-mode)
-  		 (".*COMMIT_EDITMSG" . git-rebase-mode))
-  	   auto-mode-alist))
+(setq auto-mode-alist
+	  (append
+		 ;; File name (within directory) starts with a dot.
+	   '(("/\\.[^/]*\\'" . fundamental-mode)
+		 ;; File name has no dot.
+		 ("/[^\\./]*\\'" . fundamental-mode)
+		 ;; File name ends in ‘.el’.
+		 ("\\.el\\'" . emacs-lisp-mode)
+		 ("\\.zig\\'" . zig-mode)
+		 ;; Git modes
+		 (".*git-rebase-todo" . git-rebase-mode)
+		 (".*COMMIT_EDITMSG" . git-rebase-mode))
+	   auto-mode-alist))
 
-  ;; Additional language modes
-  (use-package nix-mode
-    :mode "\\.nix\\'")
+;; Additional language modes
+(use-package nix-mode
+  :mode "\\.nix\\'")
 
-  (use-package zig-mode
-    :mode "\\.zig\\'")
+(use-package zig-mode
+  :mode "\\.zig\\'")
 
-  (use-package go-mode
-    :mode ("\\.go\\'" . go-mode))
+(use-package go-mode
+  :mode ("\\.go\\'" . go-mode))
 
-  (use-package rust-mode
-    :mode ("\\.rs\\'" . rust-mode))
+(use-package rust-mode
+  :mode ("\\.rs\\'" . rust-mode))
 
-  (use-package svelte-mode
-    :mode ("\\.svelte\\'" . svelte-mode))
+(use-package svelte-mode
+  :mode ("\\.svelte\\'" . svelte-mode))
 
-  (use-package lsp-tailwindcss
-    :init
-    (setq lsp-tailwindcss-add-on-mode t))
+(use-package lsp-tailwindcss
+  :init
+  (setq lsp-tailwindcss-add-on-mode t))
 
-  (use-package typescript-mode
-    :mode ("\\.tsx?\\'" . typescript-mode))
+(use-package typescript-mode
+  :mode ("\\.tsx?\\'" . typescript-mode))
 
-  (use-package markdown-mode
-    :mode ("README\\.md\\'" . gfm-mode)
-    :mode ("\\.md\\'" . markdown-mode))
+(use-package markdown-mode
+  :mode ("README\\.md\\'" . gfm-mode)
+  :mode ("\\.md\\'" . markdown-mode))
 
-  (use-package yaml-pro
-    :mode ("\\.ya?ml\\'" . yaml-pro-mode))
+(use-package yaml-pro
+  :mode ("\\.ya?ml\\'" . yaml-pro-mode))
 
-  (use-package yaml-mode
-    :mode ("\\.ya?ml\\'" . yaml-mode))
+(use-package yaml-mode
+  :mode ("\\.ya?ml\\'" . yaml-mode))
 
-  (add-hook 'yaml-mode-hook (lambda () (tree-sitter-hl-mode)))
+(add-hook 'yaml-mode-hook (lambda () (tree-sitter-hl-mode)))
 
-  ;; In-buffer checking
-
-;;  (use-package tree-sitter
-;;   :config
-;;   (global-tree-sitter-mode))
-
-  ;;(use-package tree-sitter-langs)
+;; Treesitter is provided by Nix because of the natively compiled stuff
+;; and we are using the Emacs builtin treesitter module which has its own language modes
+;; <lang>-ts-mode
 
 (use-package toc-org
   :commands toc-org-enable
@@ -432,10 +428,6 @@
   (elcord-mode)
   (setq elcord-quiet t)
 	(setq elcord-idle-message "AFK.."))
-
-(use-package yagist
-  :config
-  (setq yagist-view-gist t))
 
 (use-package nerd-icons-completion
   :config

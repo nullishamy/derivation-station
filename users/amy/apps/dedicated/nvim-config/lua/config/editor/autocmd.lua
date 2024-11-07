@@ -19,26 +19,12 @@ local module = {
 
       -- Disable annoying autoindent rules
       vim.cmd([[
-                autocmd BufEnter,WinEnter,FocusGained * set nocin nosi inde=
+                autocmd BufEnter,WinEnter,FocusGained * set inde=
             ]])
 
       -- Disable highlight searching for every buffer
       vim.cmd([[
                 autocmd BufEnter,WinEnter,FocusGained * set nohlsearch
-            ]])
-
-      -- Show diagnostics on hover
-      -- HACK: try integrate this into the autocommand or something
-      vim.diagnostic._open_float = function()
-        if vim.fn.mode() == 'i' then
-          return
-        end
-
-        vim.diagnostic.open_float(nil, { focus = false, scope = 'line' })
-      end
-
-      vim.cmd([[
-                autocmd CursorHold,CursorHoldI * lua vim.diagnostic._open_float()
             ]])
     end,
   },

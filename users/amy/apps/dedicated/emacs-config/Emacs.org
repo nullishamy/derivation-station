@@ -4,10 +4,9 @@
 
 **  Other cool stuff I want to look into
 1. https://github.com/rolandwalker/simpleclip
-2. https://github.com/emacsfodder/move-text
-3. https://github.com/rmuslimov/browse-at-remote
-4. https://codeberg.org/martianh/mastodon.el (lol)
-5. https://github.com/haritkapadia/ts-movement
+2. https://github.com/rmuslimov/browse-at-remote4
+3. https://codeberg.org/martianh/mastodon.el (lol)
+4. https://github.com/haritkapadia/ts-movement
 
 **  Bootstrap
 This config uses `straight.el` for package management, on top of `use-package` for recipes.
@@ -53,6 +52,7 @@ straight is loaded in the `init.el` to avoid issues with the builtin Org-mode
     (electric-pair-mode t)      ;; Turns on automatic parens pairing
 
     (blink-cursor-mode nil)     ;; Don't blink cursor
+   
     (global-auto-revert-mode t) ;; Automatically reload file and show changes if the file has changed
 
     (pixel-scroll-precision-mode 1)
@@ -76,18 +76,17 @@ straight is loaded in the `init.el` to avoid issues with the builtin Org-mode
     :hook
     (prog-mode . (lambda () (hs-minor-mode t))) ;; Enable folding hide/show globally
     :config
-
+  
     ;; Move customization variables to a separate file and load it, avoid filling up init.el with unnecessary variables
     (setq custom-file (locate-user-emacs-file "custom-vars.el"))
     (load custom-file 'noerror 'nomessage)
-
+    
     (setq compilation-scroll-output t) ;; Make compilation mode scroll automatically
     (add-hook 'compilation-filter-hook 'ansi-color-compilation-filter)
 
-    :bind (
-    		 ([escape] . keyboard-escape-quit) ;; Makes Escape quit prompts (Minibuffer Escape)
-    		 )
-    )
+    :bind
+    (([escape] . keyboard-escape-quit)) ;; Makes Escape quit prompts (Minibuffer Escape)
+  )
 
   (use-package wakatime-mode
     :init (global-wakatime-mode))
@@ -145,16 +144,15 @@ straight is loaded in the `init.el` to avoid issues with the builtin Org-mode
 
   (add-to-list 'default-frame-alist '(alpha-background . 90)) ;; For all new frames henceforth
 
-  (setq font "Fantasque Sans Mono")
+  (setq sfont "Iosevka Term")
   (set-face-attribute 'default nil
-    :font font
-    :height 165
+    :font sfont
+    :height 200
     :weight 'normal)
 
-  (set-frame-font font nil t)
-  (add-to-list 'default-frame-alist '(font . font))
+  (set-frame-font sfont nil t)
+  (add-to-list 'default-frame-alist '(font . "Iosevka Term"))
 
-  ;; This assumes you've installed the package via MELPA.
   (use-package ligature
     :config
     (ligature-set-ligatures 'eww-mode '("ff" "fi" "ffi"))
@@ -175,6 +173,7 @@ straight is loaded in the `init.el` to avoid issues with the builtin Org-mode
     (global-ligature-mode t))
 
   (setq-default line-spacing 0.12)
+  
   (use-package emacs
     :bind
     ("<C-wheel-up>" . text-scale-increase)
@@ -355,13 +354,9 @@ straight is loaded in the `init.el` to avoid issues with the builtin Org-mode
 
   (add-hook 'yaml-mode-hook (lambda () (tree-sitter-hl-mode)))
 
-  ;; In-buffer checking
-
-;;  (use-package tree-sitter
-;;   :config
-;;   (global-tree-sitter-mode))
-
-  ;;(use-package tree-sitter-langs)
+  ;; Treesitter is provided by Nix because of the natively compiled stuff
+  ;; and we are using the Emacs builtin treesitter module which has its own language modes
+  ;; <lang>-ts-mode
 
 
 #+END_SRC
@@ -475,12 +470,6 @@ straight is loaded in the `init.el` to avoid issues with the builtin Org-mode
     (elcord-mode)
     (setq elcord-quiet t)
   	(setq elcord-idle-message "AFK.."))
-#+END_SRC
-*** GitHub Gist
-#+BEGIN_SRC emacs-lisp
-  (use-package yagist
-    :config
-    (setq yagist-view-gist t))
 #+END_SRC
 
 **  Icons

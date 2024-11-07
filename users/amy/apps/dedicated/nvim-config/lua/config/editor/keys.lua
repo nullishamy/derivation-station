@@ -50,6 +50,15 @@ local module = {
             mode = 'i',
           },
 
+          ['J'] = {
+            act = '10j',
+            mode = { 'n', 'v', 'o' },
+          },
+          ['K'] = {
+            act = '10k',
+            mode = { 'n', 'v', 'o' },
+          },
+
           -- Disable arrow keys to force hjkl usage
           ['<Up>'] = { act = '<Nop>' },
           ['<Down>'] = { act = '<Nop>' },
