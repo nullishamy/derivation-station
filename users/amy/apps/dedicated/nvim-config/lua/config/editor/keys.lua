@@ -54,9 +54,15 @@ local module = {
             act = '10j',
             mode = { 'n', 'v', 'o' },
           },
+
           ['K'] = {
             act = '10k',
             mode = { 'n', 'v', 'o' },
+          },
+
+          ['<leader>p'] = {
+            mode = { 'n' },
+            ['p'] = { act = ck.cmd('Telescope neovim-project discover') },
           },
 
           -- Disable arrow keys to force hjkl usage
@@ -87,13 +93,6 @@ local module = {
 
           -- Hard close vim with ctrl q + q
           ['<C-q>q'] = { act = ck.cmd('qa!') },
-
-          -- Sessions
-          ['<leader>s'] = {
-            ['l'] = { act = ck.cmd('SessionManager load_session') },
-            ['d'] = { act = ck.cmd('SessionManager delete_session') },
-            ['s'] = { act = ck.cmd('SessionManager save_current_session') },
-          },
 
           -- Moving lines
           -- Moving up requires two lines for some reason
@@ -136,29 +135,9 @@ local module = {
               return require('debugprint').debugprint { above = true }
             end,
           },
-
-          -- nvim-compile integration
-          ['<leader>p'] = {
-            ['r'] = {
-              act = function()
-                require('nvim-compile').run()
-              end,
-            },
-            ['v'] = {
-              act = function()
-                require('nvim-compile').view()
-              end,
-            },
-          },
         }
 
         -- Abbreviations
-        vim.cmd([[ command! -nargs=? Compile unsilent lua require("nvim-compile").run("<args>") ]])
-
-        abbrev('OrganiseImports', function()
-          require('language.util').organize_imports()
-        end)
-
         abbrev('Doc', function()
           require('neogen').generate()
         end)
@@ -169,10 +148,6 @@ local module = {
 
         abbrev('RPDisable', function()
           require('presence'):cancel()
-        end)
-
-        abbrev('RPEnable', function()
-          require('presence'):connect()
         end)
 
         abbrev('Bclear', function()
