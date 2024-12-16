@@ -9,6 +9,8 @@
 (when (fboundp 'windmove-default-keybindings)
   (windmove-default-keybindings))
 
+(defalias 'ssh-init 'exec-path-from-shell-initialize)
+
 (use-package exec-path-from-shell
   :config
   (dolist (var '("SSH_AUTH_SOCK" "SSH_AGENT_PID" "NIX_PATH"))
@@ -124,14 +126,14 @@
 
 (add-to-list 'default-frame-alist '(alpha-background . 90)) ;; For all new frames henceforth
 
-(setq sfont "Iosevka Term")
+(setq sfont "Victor Mono Medium")
 (set-face-attribute 'default nil
   :font sfont
   :height 200
-  :weight 'normal)
+  :weight 'medium)
 
 (set-frame-font sfont nil t)
-(add-to-list 'default-frame-alist '(font . "Iosevka Term"))
+(add-to-list 'default-frame-alist '(font . "Victor Mono Medium"))
 
 (use-package ligature
   :config
@@ -298,7 +300,7 @@
   :mode "\\.zig\\'")
 
 (use-package go-mode
-  :mode ("\\.go\\'" . go-mode))
+  :mode ("\\.go\\'"))
 
 (use-package rust-mode
   :mode ("\\.rs\\'" . rust-mode))
@@ -345,14 +347,13 @@
   :config
   (ido-ubiquitous-mode 1))
 
-
 (savehist-mode) ;; Enables save history mode
 
 (use-package corfu
   :custom
   (corfu-cycle t)                ;; Enable cycling for `corfu-next/previous'
   (corfu-auto t)                 ;; Enable auto completion
-  (corfu-auto-prefix 2)          ;; Minimum length of prefix for auto completion.
+  (corfu-auto-prefix 1)          ;; Minimum length of prefix for auto completion.
   (corfu-popupinfo-mode t)       ;; Enable popup information
   (corfu-popupinfo-delay 0.5)    ;; Lower popupinfo delay to 0.5 seconds from 2 seconds
   (corfu-separator ?\s)          ;; Orderless field separator, Use M-SPC to enter separator
@@ -360,7 +361,7 @@
   ;; (corfu-quit-no-match nil)      ;; Never quit, even if there is no match
   (corfu-preview-current t)    ;; Disable current candidate preview
   ;; (corfu-preselect 'prompt)      ;; Preselect the prompt
-  ;; (corfu-on-exact-match nil)     ;; Configure handling of exact matches
+  (corfu-on-exact-match 'show)     ;; Configure handling of exact matches
   ;; (corfu-scroll-margin 5)        ;; Use scroll margin
   (completion-ignore-case t)
   ;; Enable indentation+completion using the TAB key.
@@ -373,6 +374,26 @@
   :init
   (global-corfu-mode))
 
+(use-package prescient
+  :after corfu
+  :config
+  (setq corfu-prescient-enable-filtering t)
+  (setq corfu-prescient-override-sorting t)
+  (setq completion-preview-sort-function #'prescient-completion-sort)
+  (setq prescient-filter-method '(literal fuzzy prefix)))
+
+(use-package corfu-prescient
+  :after prescient
+  :init
+  (corfu-prescient-mode 1))
+
+(defun cape-dabbrev-dict-keyword ()
+  (cape-wrap-super
+   (cape-capf-case-fold #'cape-dabbrev)
+   (cape-capf-case-fold #'cape-dict)
+   (cape-capf-case-fold #'cape-keyword)
+   (cape-capf-case-fold #'yasnippet-capf)))
+
 (use-package cape
   :after corfu
   :config
@@ -381,30 +402,14 @@
   ;; first function returning a result wins.  Note that the list of buffer-local
   ;; completion functions takes precedence over the global list.
   ;; The functions that are added later will be the first in the list
-	
-  (add-to-list 'completion-at-point-functions #'cape-dabbrev) ;; Complete word from current buffers
-  (add-to-list 'completion-at-point-functions #'cape-dict) ;; Dictionary completion
+
+  (add-to-list 'completion-at-point-functions #'cape-dabbrev-dict-keyword) ;; Combine all of these together
   (add-to-list 'completion-at-point-functions #'cape-file) ;; Path completion
   (add-to-list 'completion-at-point-functions #'cape-elisp-block) ;; Complete elisp in Org or Markdown mode
-  (add-to-list 'completion-at-point-functions #'cape-keyword) ;; Keyword/Snipet completion
-  (add-to-list 'completion-at-point-functions #'cape-abbrev)
-  ;;(add-to-list 'completion-at-point-functions #'cape-line)
   
-  (keymap-global-set "M-TAB" 'completion-at-point)
-  ;;(add-to-list 'completion-at-point-functions #'cape-abbrev) ;; Complete abbreviation
-  ;;(add-to-list 'completion-at-point-functions #'cape-history) ;; Complete from Eshell, Comint or minibuffer history
-  ;;(add-to-list 'completion-at-point-functions #'cape-line) ;; Complete entire line from current buffer
-  ;;(add-to-list 'completion-at-point-functions #'cape-elisp-symbol) ;; Complete Elisp symbol
-  ;;(add-to-list 'completion-at-point-functions #'cape-tex) ;; Complete Unicode char from TeX command, e.g. \hbar
-  ;;(add-to-list 'completion-at-point-functions #'cape-sgml) ;; Complete Unicode char from SGML entity, e.g., &alpha
-  ;;(add-to-list 'completion-at-point-functions #'cape-rfc1345) ;; Complete Unicode char using RFC 1345 mnemonics
-  )
+  (keymap-global-set "M-TAB" 'completion-at-point))
 
-(use-package yasnippet-capf
-  :after cape
-  :after yasnippet
-  :config
-  (add-to-list 'completion-at-point-functions #'yasnippet-capf))
+(use-package yasnippet-capf)
 
 (defun elcord--enable-on-frame-created (f)
   (elcord-mode +1))
