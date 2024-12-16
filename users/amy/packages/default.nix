@@ -9,7 +9,7 @@
 
   config.home.packages = [
     (pkgs.callPackage ./catppuccin-gtk {})
-    (pkgs.callPackage ./nvim {})
+    (pkgs.unstable.callPackage ./nvim {})
     (pkgs.callPackage ./emacs {
       emacs = with pkgs; (
         (emacsPackagesFor pkgs.unstable.emacs).emacsWithPackages (

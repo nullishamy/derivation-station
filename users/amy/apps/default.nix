@@ -22,7 +22,7 @@
     spotifywm
     flameshot
     keybase
-    neovide
+    pkgs.unstable.neovide
     discord
     discord-canary
     _1password-gui

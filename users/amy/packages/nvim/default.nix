@@ -64,7 +64,7 @@ in
         nodePackages.bash-language-server
         nodePackages.vscode-json-languageserver
         nodePackages.prettier
-        nodePackages.pyright
+        #nodePackages.pyright
       ]
     }
   ''
