@@ -1,7 +1,7 @@
 (("all-the-icons.el" . "ee414384938ccf2ce93c77d717b85dc5538a257d")
  ("anzu" . "26fb50b429ee968eb944b0615dd0aed1dd66172c")
  ("beacon" . "85261a928ae0ec3b41e639f05291ffd6bf7c231c")
- ("cape" . "a71e5c96564163837810b96bd34322b42f6e4d9c")
+ ("cape" . "361d0f2b0a9f840c207d809f54dad87e52bc9c1f")
  ("closql" . "27b6d2be1a06cdcb5d5fbd77a702b9fbc5082c03")
  ("compat" . "25da9d232399203a38722aa6638b7fe8ecab3f60")
  ("corfu" . "cdc3e13ad312f5f12b3f78f842fff0b398eb4473")
