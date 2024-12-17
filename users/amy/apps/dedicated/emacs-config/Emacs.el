@@ -256,6 +256,7 @@
  (projectile-project-search-path '("~/code")) ;;
  :config
  (projectile-mode)
+ (setq projectile-use-git-grep t)
  (define-key projectile-mode-map (kbd "M-p") 'projectile-command-map))
 
 (use-package multiple-cursors
@@ -312,8 +313,11 @@
   :init
   (setq lsp-tailwindcss-add-on-mode t))
 
-(use-package typescript-mode
-  :mode ("\\.tsx?\\'" . typescript-mode))
+(use-package tide
+  :hook ((typescript-ts-mode . tide-setup)
+         (tsx-ts-mode . tide-setup)
+         (typescript-ts-mode . tide-hl-identifier-mode))
+  :mode ("\\.tsx?\\'" . typescript-ts-mode))
 
 (use-package markdown-mode
   :mode ("README\\.md\\'" . gfm-mode)
@@ -390,7 +394,6 @@
 (defun cape-dabbrev-dict-keyword ()
   (cape-wrap-super
    (cape-capf-case-fold #'cape-dabbrev)
-   (cape-capf-case-fold #'cape-dict)
    (cape-capf-case-fold #'cape-keyword)
    (cape-capf-case-fold #'yasnippet-capf)))
 
