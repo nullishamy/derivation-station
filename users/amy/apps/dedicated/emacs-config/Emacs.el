@@ -278,21 +278,6 @@
 (global-set-key [remap query-replace] 'anzu-query-replace)
 (global-set-key [remap query-replace-regexp] 'anzu-query-replace-regexp))
 
-;; Filetype -> mode mappings
-(setq auto-mode-alist
-	  (append
-		 ;; File name (within directory) starts with a dot.
-	   '(("/\\.[^/]*\\'" . fundamental-mode)
-		 ;; File name has no dot.
-		 ("/[^\\./]*\\'" . fundamental-mode)
-		 ;; File name ends in ‘.el’.
-		 ("\\.el\\'" . emacs-lisp-mode)
-		 ("\\.zig\\'" . zig-mode)
-		 ;; Git modes
-		 (".*git-rebase-todo" . git-rebase-mode)
-		 (".*COMMIT_EDITMSG" . git-rebase-mode))
-	   auto-mode-alist))
-
 ;; Additional language modes
 (use-package nix-mode
   :mode "\\.nix\\'")
@@ -330,6 +315,20 @@
   :mode ("\\.ya?ml\\'" . yaml-mode))
 
 (add-hook 'yaml-mode-hook (lambda () (tree-sitter-hl-mode)))
+
+;; Filetype -> mode mappings
+(setq auto-mode-alist
+	  (append
+		 ;; File name (within directory) starts with a dot.
+	   '(("/\\.[^/]*\\'" . fundamental-mode)
+		 (".*git-rebase-todo" . git-rebase-mode)
+		 (".*COMMIT_EDITMSG" . git-rebase-mode)
+		 ;; File name has no dot.
+		 ("/[^\\./]*\\'" . fundamental-mode)
+		 ;; File name ends in ‘.el’.
+		 ("\\.el\\'" . emacs-lisp-mode)
+		 ("\\.zig\\'" . zig-mode))
+	   auto-mode-alist))
 
 ;; Treesitter is provided by Nix because of the natively compiled stuff
 ;; and we are using the Emacs builtin treesitter module which has its own language modes
