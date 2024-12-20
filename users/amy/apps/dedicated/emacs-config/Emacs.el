@@ -261,8 +261,10 @@
 
 (use-package multiple-cursors
   :config
-  (global-set-key (kbd "C->") 'mc/mark-next-like-this)
-  (global-set-key (kbd "C-<") 'mc/mark-previous-like-this))
+  ;; TODO: Find another bind for these
+  ;; (global-set-key (kbd "C->") 'mc/mark-next-like-this)
+  ;; (global-set-key (kbd "C-<") 'mc/mark-previous-like-this))
+  )
 
 (use-package beacon
   :config
@@ -271,6 +273,16 @@
 (use-package goto-line-preview
   :config
   (global-set-key [remap goto-line] 'goto-line-preview))
+
+(use-package jumplist
+  :config
+  (require 'jumplist)
+  (global-set-key (kbd "C->") 'jumplist-next)
+  (global-set-key (kbd "C-<") 'jumplist-previous)
+  (custom-set-variables
+   '(jumplist-hook-commands
+     '(dired-jump isearch-forward end-of-buffer beginning-of-buffer find-file))
+   '(jumplist-ex-mode t)))
 
 (use-package anzu
 :config
