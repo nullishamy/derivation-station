@@ -345,8 +345,6 @@
 (setq auto-mode-alist
 	  (append
 	   '(
-		 (".*git-rebase-todo" . git-rebase-mode)
-		 (".*COMMIT_EDITMSG" . git-rebase-mode)
 		 ("/\\.[^/]*\\'" . fundamental-mode)
 		 ;; File name has no dot.
 		 ("/[^\\./]*\\'" . fundamental-mode)
