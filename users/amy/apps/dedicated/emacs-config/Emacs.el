@@ -27,42 +27,27 @@
   (menu-bar-mode nil)         ;; Disable the menu bar
   (scroll-bar-mode nil)       ;; Disable the scroll bar
   (tool-bar-mode nil)         ;; Disable the tool bar
-  ;;(inhibit-startup-screen t)  ;; Disable welcome screen
   (tooltip-mode -1)           ; Disable tooltips
   (set-fringe-mode 10)        ; Give some breathing room
   (toggle-frame-maximized)    ; Always start maximized
-
   (delete-selection-mode t)   ;; Select text and delete it by typing.
   (electric-indent-mode t)    ;; Turn off the weird indenting that Emacs does by default.
   (electric-pair-mode t)      ;; Turns on automatic parens pairing
-
   (blink-cursor-mode nil)     ;; Don't blink cursor
- 
   (global-auto-revert-mode t) ;; Automatically reload file and show changes if the file has changed
-
   (pixel-scroll-precision-mode 1)
-
-  ;;(dired-kill-when-opening-new-dired-buffer t) ;; Dired don't create new buffer
-  ;;(recentf-mode t) ;; Enable recent file mode
-
-  ;;(global-visual-line-mode t)           ;; Enable truncated lines
-  ;;(display-line-numbers-type 'relative) ;; Relative line numbers
   (global-display-line-numbers-mode t)  ;; Display line numbers
-
   (mouse-wheel-progressive-speed nil) ;; Disable progressive speed when scrolling
   (scroll-conservatively 10) ;; Smooth scrolling
-  ;;(scroll-margin 8)
-
   (tab-width 4)
-
   (make-backup-files nil) ;; Stop creating ~ backup files
   (auto-save-default nil) ;; Stop creating # auto save files
 
   :hook
   (prog-mode . (lambda () (hs-minor-mode t))) ;; Enable folding hide/show globally
   :config
-
-  ;; Move customization variables to a separate file and load it, avoid filling up init.el with unnecessary variables
+  ;; Move customization variables to a separate file and load it
+  ;; avoid filling up init.el with unnecessary variables
   (setq custom-file (locate-user-emacs-file "custom-vars.el"))
   (load custom-file 'noerror 'nomessage)
   
@@ -70,8 +55,12 @@
   (add-hook 'compilation-filter-hook 'ansi-color-compilation-filter)
 
   :bind
-  (([escape] . keyboard-escape-quit)) ;; Makes Escape quit prompts (Minibuffer Escape)
-)
+  ;; Makes Escape quit prompts (Minibuffer Escape)
+  (
+   ([escape] . keyboard-escape-quit)
+   ("C-x C-b" . ibuffer)
+   ("<C-wheel-up>" . text-scale-increase)
+   ("<C-wheel-down>" . text-scale-decrease)))
 
 (use-package spacious-padding
   :hook (after-init . spacious-padding-mode))
@@ -94,17 +83,18 @@
 
 (use-package rainbow-mode
   :config
-  ;; Make it a proper global mode; we want this everywhere unless we explicitly disable it (TODO: Add blocklist filtering here)
+  ;; Make it a proper global mode; we want this everywhere unless we explicitly disable it
+  ;; (TODO: Add blocklist filtering here)
   (define-globalized-minor-mode global-rainbow-mode rainbow-mode
     (lambda () (rainbow-mode 1)))
   (global-rainbow-mode 1))
 
 (use-package doom-modeline
-  :init (doom-modeline-mode 1)
   :config
   (setq doom-modeline-icon nil)
   (setq doom-modeline-minor-modes t)
-  (setq doom-modeline-buffer-file-name-style 'relative-from-project))
+  (setq doom-modeline-buffer-file-name-style 'relative-from-project)
+  (doom-modeline-mode 1))
 
 (use-package magit
   :commands magit-status)
@@ -121,7 +111,6 @@
   (dtrt-indent-global-mode t))
 
 ;; General keybindings
-(global-set-key (kbd "C-x C-b") 'ibuffer)
 
 (use-package doom-themes
   :ensure t
@@ -167,11 +156,6 @@
   (global-ligature-mode t))
 
 (setq-default line-spacing 0.12)
-
-(use-package emacs
-  :bind
-  ("<C-wheel-up>" . text-scale-increase)
-  ("<C-wheel-down>" . text-scale-decrease))
 
 (use-package yasnippet
   :config
@@ -245,8 +229,8 @@
   (setq direnv-always-show-summary nil))
 
 (use-package expand-region
-  :config
-  (global-set-key (kbd "C-x e") 'er/expand-region))
+  :bind
+  ("C-x e" . er/expand-region))
 
 (defun indent-region-advice (&rest ignored)
   (let ((deactivate deactivate-mark))
@@ -263,7 +247,7 @@
 
 (use-package counsel-projectile
   :after projectile
-  :init
+  :config
   (counsel-projectile-mode))
 
 (use-package projectile
@@ -289,20 +273,19 @@
   (global-set-key [remap goto-line] 'goto-line-preview))
 
 (use-package jumplist
-  :config
-  (require 'jumplist)
-  (global-set-key (kbd "C->") 'jumplist-next)
-  (global-set-key (kbd "C-<") 'jumplist-previous)
-  (custom-set-variables
-   '(jumplist-hook-commands
-     '(dired-jump isearch-forward end-of-buffer beginning-of-buffer find-file))
-   '(jumplist-ex-mode t)))
+  :custom
+  (jumplist-hook-commands '(dired-jump isearch-forward end-of-buffer beginning-of-buffer find-file))
+  (jumplist-ex-mode t)
+  :bind
+  (
+   ("C->" . jumplist-next)
+   ("C-<" . jumplist-previous)))
 
 (use-package anzu
-:config
-(global-anzu-mode +1)
-(global-set-key [remap query-replace] 'anzu-query-replace)
-(global-set-key [remap query-replace-regexp] 'anzu-query-replace-regexp))
+  :config
+  (global-anzu-mode +1)
+  (global-set-key [remap query-replace] 'anzu-query-replace)
+  (global-set-key [remap query-replace-regexp] 'anzu-query-replace-regexp))
 
 ;; Additional language modes
 (use-package nix-mode
@@ -320,10 +303,6 @@
 (use-package svelte-mode
   :mode ("\\.svelte\\'" . svelte-mode))
 
-(use-package lsp-tailwindcss
-  :init
-  (setq lsp-tailwindcss-add-on-mode t))
-
 (use-package typescript-mode
   :mode ("\\.tsx?\\'"))
 
@@ -333,7 +312,7 @@
 
 (use-package yaml-pro
   :mode ("\\.ya?ml\\'" . yaml-pro-mode))
-
+  
 (use-package yaml-mode
   :mode ("\\.ya?ml\\'" . yaml-mode))
 
@@ -363,22 +342,21 @@
   :hook (org-mode . org-superstar-mode))
 
 (use-package counsel
+  :bind
+  (
+   ("C-s" . swiper)
+   ("C-r" . swiper)
+   ("M-y" . counsel-yank-pop)
+   ("M-x" . counsel-M-x)
+   ("C-x C-x" . counsel-find-file))
   :config
-  (ivy-mode)
-
   (setq ivy-use-virtual-buffers t)
   (setq enable-recursive-minibuffers t)
   (setq ivy-count-format "(%d/%d) ")
-  ;; enable this if you want `swiper' to use it
-  ;; (setq search-default-mode #'char-fold-to-regexp)
-  (global-set-key "\C-s" 'swiper)
-  (global-set-key "\C-r" 'swiper)
-  (global-set-key (kbd "M-y") #'counsel-yank-pop)
-  
+    
   (define-key ivy-minibuffer-map (kbd "M-y") #'ivy-next-line)
-  (global-set-key (kbd "M-x") 'counsel-M-x)
-  (global-set-key (kbd "C-x C-f") 'counsel-find-file)
-  (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history))
+  (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history)
+  (ivy-mode))
 
 (use-package corfu
   :custom
@@ -425,6 +403,8 @@
    (cape-capf-case-fold #'yasnippet-capf)))
 
 (use-package cape
+  :bind
+  ("M-TAB" . completion-at-point)
   :after corfu
   :config
   ;; Add to the global default value of `completion-at-point-functions' which is
@@ -435,10 +415,8 @@
 
   (add-to-list 'completion-at-point-functions #'cape-dabbrev-dict-keyword) ;; Combine all of these together
   (add-to-list 'completion-at-point-functions #'cape-file) ;; Path completion
-  (add-to-list 'completion-at-point-functions #'cape-elisp-block) ;; Complete elisp in Org or Markdown mode
+  (add-to-list 'completion-at-point-functions #'cape-elisp-block)) ;; Complete elisp in Org or Markdown mode
   
-  (keymap-global-set "M-TAB" 'completion-at-point))
-
 (use-package yasnippet-capf)
 
 (defun elcord--enable-on-frame-created (f)
@@ -458,11 +436,12 @@
 	  (remove-hook 'delete-frame-functions 'elcord--disable-elcord-if-no-frames)))
 
 (use-package elcord
+  :hook
+  (elcord-mode . custom-elcord-mode-hook)
   :config
-  (add-hook 'elcord-mode-hook 'custom-elcord-mode-hook)
-  (elcord-mode)
   (setq elcord-quiet t)
-	(setq elcord-idle-message "AFK.."))
+  (setq elcord-idle-message "AFK..")
+  (elcord-mode))
 
 (use-package nerd-icons-completion
   :config
