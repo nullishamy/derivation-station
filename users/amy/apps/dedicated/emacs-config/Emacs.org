@@ -78,7 +78,7 @@ straight is loaded in the `init.el` to avoid issues with the builtin Org-mode
     :hook
     (prog-mode . (lambda () (hs-minor-mode t))) ;; Enable folding hide/show globally
     :config
-  
+
     ;; Move customization variables to a separate file and load it, avoid filling up init.el with unnecessary variables
     (setq custom-file (locate-user-emacs-file "custom-vars.el"))
     (load custom-file 'noerror 'nomessage)
@@ -89,6 +89,9 @@ straight is loaded in the `init.el` to avoid issues with the builtin Org-mode
     :bind
     (([escape] . keyboard-escape-quit)) ;; Makes Escape quit prompts (Minibuffer Escape)
   )
+
+  (use-package spacious-padding
+    :hook (after-init . spacious-padding-mode))
 
   (use-package wakatime-mode
     :init (global-wakatime-mode))
@@ -140,20 +143,29 @@ straight is loaded in the `init.el` to avoid issues with the builtin Org-mode
 
 ***  Theme
 #+BEGIN_SRC emacs-lisp
-  (use-package catppuccin-theme
+  (use-package doom-themes
+    :ensure t
     :config
-    (load-theme 'catppuccin :no-confirm))
+    ;; Global settings (defaults)
+    (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
+          doom-themes-enable-italic nil) ; if nil, italics is universally disabled
+    (load-theme 'doom-moonlight t)
+
+    ;; Enable flashing mode-line on errors
+    (doom-themes-visual-bell-config)
+    ;; Corrects (and improves) org-mode's native fontification.
+    (doom-themes-org-config))
 
   (add-to-list 'default-frame-alist '(alpha-background . 90)) ;; For all new frames henceforth
 
-  (setq sfont "Victor Mono Medium")
+  (setq sfont "Iosevka Term")
   (set-face-attribute 'default nil
     :font sfont
-    :height 200
+    :height 210
     :weight 'medium)
 
   (set-frame-font sfont nil t)
-  (add-to-list 'default-frame-alist '(font . "Victor Mono Medium"))
+  (add-to-list 'default-frame-alist '(font . "Iosevka Term"))
 
   (use-package ligature
     :config
@@ -175,7 +187,7 @@ straight is loaded in the `init.el` to avoid issues with the builtin Org-mode
     (global-ligature-mode t))
 
   (setq-default line-spacing 0.12)
-  
+
   (use-package emacs
     :bind
     ("<C-wheel-up>" . text-scale-increase)
@@ -275,13 +287,17 @@ straight is loaded in the `init.el` to avoid issues with the builtin Org-mode
     (advice-add 'move-text-down :after 'indent-region-advice)
     (advice-add 'move-text-up :after 'indent-region-advice))
 
+  (use-package counsel-projectile
+    :after projectile
+    :init
+    (counsel-projectile-mode))
+
   (use-package projectile
    :custom
    (projectile-run-use-comint-mode t) ;; Interactive run dialog when running projects inside emacs (like giving input)
    (projectile-switch-project-action #'projectile-dired) ;; Open dired when switching to a project
    (projectile-project-search-path '("~/code")) ;;
    :config
-   (projectile-mode)
    (setq projectile-use-git-grep t)
    (define-key projectile-mode-map (kbd "M-p") 'projectile-command-map))
 
@@ -339,11 +355,8 @@ straight is loaded in the `init.el` to avoid issues with the builtin Org-mode
     :init
     (setq lsp-tailwindcss-add-on-mode t))
 
-  (use-package tide
-    :hook ((typescript-ts-mode . tide-setup)
-           (tsx-ts-mode . tide-setup)
-           (typescript-ts-mode . tide-hl-identifier-mode))
-    :mode ("\\.tsx?\\'" . typescript-ts-mode))
+  (use-package typescript-mode
+    :mode ("\\.tsx?\\'"))
 
   (use-package markdown-mode
     :mode ("README\\.md\\'" . gfm-mode)
@@ -360,10 +373,10 @@ straight is loaded in the `init.el` to avoid issues with the builtin Org-mode
   ;; Filetype -> mode mappings
   (setq auto-mode-alist
   	  (append
-  		 ;; File name (within directory) starts with a dot.
-  	   '(("/\\.[^/]*\\'" . fundamental-mode)
+  	   '(
   		 (".*git-rebase-todo" . git-rebase-mode)
   		 (".*COMMIT_EDITMSG" . git-rebase-mode)
+  		 ("/\\.[^/]*\\'" . fundamental-mode)
   		 ;; File name has no dot.
   		 ("/[^\\./]*\\'" . fundamental-mode)
   		 ;; File name ends in ‘.el’.
@@ -391,16 +404,23 @@ straight is loaded in the `init.el` to avoid issues with the builtin Org-mode
 **  Completion
 
 #+BEGIN_SRC emacs-lisp
-  ;; https://www.masteringemacs.org/article/introduction-to-ido-mode
-  (setq ido-enable-flex-matching t)
-  (setq ido-everywhere t)
-  (ido-mode 1)
-
-  (use-package ido-completing-read+
+  (use-package counsel
     :config
-    (ido-ubiquitous-mode 1))
+    (ivy-mode)
 
-  (savehist-mode) ;; Enables save history mode
+    (setq ivy-use-virtual-buffers t)
+    (setq enable-recursive-minibuffers t)
+    (setq ivy-count-format "(%d/%d) ")
+    ;; enable this if you want `swiper' to use it
+    ;; (setq search-default-mode #'char-fold-to-regexp)
+    (global-set-key "\C-s" 'swiper)
+    (global-set-key "\C-r" 'swiper)
+    (global-set-key (kbd "M-y") #'counsel-yank-pop)
+    
+    (define-key ivy-minibuffer-map (kbd "M-y") #'ivy-next-line)
+    (global-set-key (kbd "M-x") 'counsel-M-x)
+    (global-set-key (kbd "C-x C-f") 'counsel-find-file)
+    (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history))
 
   (use-package corfu
     :custom
