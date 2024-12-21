@@ -267,13 +267,11 @@
   (counsel-projectile-mode))
 
 (use-package projectile
- :custom
- (projectile-run-use-comint-mode t) ;; Interactive run dialog when running projects inside emacs (like giving input)
- (projectile-switch-project-action #'projectile-dired) ;; Open dired when switching to a project
- (projectile-project-search-path '("~/code")) ;;
- :config
- (setq projectile-use-git-grep t)
- (define-key projectile-mode-map (kbd "M-p") 'projectile-command-map))
+  :custom
+  (counsel-projectile-project-search-path '("~/code"))
+  :config
+  (setq projectile-use-git-grep t)
+  (define-key projectile-mode-map (kbd "M-p") 'projectile-command-map))
 
 (use-package multiple-cursors
   :config
