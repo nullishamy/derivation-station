@@ -55,7 +55,6 @@
   (add-hook 'compilation-filter-hook 'ansi-color-compilation-filter)
 
   :bind
-  ;; Makes Escape quit prompts (Minibuffer Escape)
   (
    ([escape] . keyboard-escape-quit)
    ("C-x C-b" . ibuffer)
@@ -229,8 +228,14 @@
   (setq direnv-always-show-summary nil))
 
 (use-package expand-region
+  :init
+  ;; FIXME: Can use-package do this for me?
+  (global-unset-key (kbd "C-x e"))
   :bind
-  ("C-x e" . er/expand-region))
+  (
+   ("C-x e q" . er/mark-inside-quotes)
+   ("C-x e p" . er/mark-inside-pairs)
+   ("C-x e e" . er/expand-region)))
 
 (defun indent-region-advice (&rest ignored)
   (let ((deactivate deactivate-mark))
@@ -258,11 +263,11 @@
   (define-key projectile-mode-map (kbd "M-p") 'projectile-command-map))
 
 (use-package multiple-cursors
-  :config
-  ;; TODO: Find another bind for these
-  ;; (global-set-key (kbd "C->") 'mc/mark-next-like-this)
-  ;; (global-set-key (kbd "C-<") 'mc/mark-previous-like-this))
-  )
+  :bind
+  (
+   ("C-c c l" . mc/edit-lines)
+   ("C-c c p" . mc/mark-all-in-region)
+   ("C-c c n" . mc/mark-next-like-this)))
 
 (use-package beacon
   :config
@@ -344,8 +349,8 @@
 (use-package counsel
   :bind
   (
-   ("C-s" . swiper)
-   ("C-r" . swiper)
+   ("C-S-s" . swiper)
+   ("C-S-r" . swiper)
    ("M-y" . counsel-yank-pop)
    ("M-x" . counsel-M-x)
    ("C-x C-x" . counsel-find-file))
