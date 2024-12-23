@@ -11,6 +11,7 @@
 **  Bootstrap
 This config uses `straight.el` for package management, on top of `use-package` for recipes.
 straight is loaded in the `init.el` to avoid issues with the builtin Org-mode
+
 #+BEGIN_SRC emacs-lisp
   ;; Load use-package through straight
   (straight-use-package 'use-package)
@@ -31,115 +32,119 @@ straight is loaded in the `init.el` to avoid issues with the builtin Org-mode
   	(add-to-list 'exec-path-from-shell-variables var))
     (exec-path-from-shell-initialize))
 
-  (use-package no-littering
-    :config
-    (setq no-littering-etc-directory (expand-file-name "config/" user-emacs-directory))
-    (setq no-littering-var-directory (expand-file-name "data/" user-emacs-directory)))
+  (use-package no-littering)
 #+END_SRC
 
 **  UI
 #+BEGIN_SRC emacs-lisp
-    (use-package emacs
-      :custom
-      (menu-bar-mode nil)         ;; Disable the menu bar
-      (scroll-bar-mode nil)       ;; Disable the scroll bar
-      (tool-bar-mode nil)         ;; Disable the tool bar
-      (tooltip-mode -1)           ; Disable tooltips
-      (set-fringe-mode 10)        ; Give some breathing room
-      (toggle-frame-maximized)    ; Always start maximized
-      (delete-selection-mode t)   ;; Select text and delete it by typing.
-      (electric-indent-mode t)    ;; Turn off the weird indenting that Emacs does by default.
-      (electric-pair-mode t)      ;; Turns on automatic parens pairing
-      (blink-cursor-mode nil)     ;; Don't blink cursor
-      (global-auto-revert-mode t) ;; Automatically reload file and show changes if the file has changed
-      (pixel-scroll-precision-mode 1)
-      (global-display-line-numbers-mode t)  ;; Display line numbers
-      (mouse-wheel-progressive-speed nil) ;; Disable progressive speed when scrolling
-      (scroll-conservatively 10) ;; Smooth scrolling
-      (tab-width 4)
-      (make-backup-files nil) ;; Stop creating ~ backup files
-      (auto-save-default nil) ;; Stop creating # auto save files
+  (use-package emacs
+    :custom
+    (menu-bar-mode nil)         ;; Disable the menu bar
+    (scroll-bar-mode nil)       ;; Disable the scroll bar
+    (tool-bar-mode nil)         ;; Disable the tool bar
+    (tooltip-mode -1)           ; Disable tooltips
+    (set-fringe-mode 10)        ; Give some breathing room
+    (toggle-frame-maximized)    ; Always start maximized
+    (delete-selection-mode t)   ;; Select text and delete it by typing.
+    (electric-indent-mode t)    ;; Turn off the weird indenting that Emacs does by default.
+    (electric-pair-mode t)      ;; Turns on automatic parens pairing
+    (blink-cursor-mode nil)     ;; Don't blink cursor
+    (global-auto-revert-mode t) ;; Automatically reload file and show changes if the file has changed
+    (pixel-scroll-precision-mode 1)
+    (global-display-line-numbers-mode t)  ;; Display line numbers
+    (mouse-wheel-progressive-speed nil) ;; Disable progressive speed when scrolling
+    (scroll-conservatively 10) ;; Smooth scrolling
+    (tab-width 4)
+    (make-backup-files nil) ;; Stop creating ~ backup files
+    (auto-save-default nil) ;; Stop creating # auto save files
 
-      :hook
-      (prog-mode . (lambda () (hs-minor-mode t))) ;; Enable folding hide/show globally
-      :config
-      ;; Move customization variables to a separate file and load it
-      ;; avoid filling up init.el with unnecessary variables
-      (setq custom-file (locate-user-emacs-file "custom-vars.el"))
-      (load custom-file 'noerror 'nomessage)
-      
-      (setq compilation-scroll-output t) ;; Make compilation mode scroll automatically
-      (add-hook 'compilation-filter-hook 'ansi-color-compilation-filter)
+    :hook
+    (prog-mode . (lambda () (hs-minor-mode t))) ;; Enable folding hide/show globally
+    :config
+    ;; Move customization variables to a separate file and load it
+    ;; avoid filling up init.el with unnecessary variables
+    (setq custom-file (locate-user-emacs-file "custom-vars.el"))
+    (load custom-file 'noerror 'nomessage)
+    
+    (setq compilation-scroll-output t) ;; Make compilation mode scroll automatically
+    (add-hook 'compilation-filter-hook 'ansi-color-compilation-filter)
 
-      :bind
-      (
-       ([escape] . keyboard-escape-quit)
-       ("C-x C-b" . ibuffer)
-       ("<C-wheel-up>" . text-scale-increase)
-       ("<C-wheel-down>" . text-scale-decrease)))
+    :bind
+    (
+     ([escape] . keyboard-escape-quit)
+     ("C-x C-b" . ibuffer)
+     ("<C-wheel-up>" . text-scale-increase)
+     ("<C-wheel-down>" . text-scale-decrease)))
 
-    (use-package spacious-padding
-      :hook (after-init . spacious-padding-mode))
+  (use-package spacious-padding
+    :hook (after-init . spacious-padding-mode))
 
-    (use-package wakatime-mode
-      :init (global-wakatime-mode))
+  (use-package wakatime-mode
+    :diminish
+    :init (global-wakatime-mode))
 
-    (use-package diff-hl
-      :hook ((dired-mode         . diff-hl-dired-mode-unless-remote)
-      		 (magit-pre-refresh  . diff-hl-magit-pre-refresh)
-      		 (magit-post-refresh . diff-hl-magit-post-refresh))
-      :init (global-diff-hl-mode))
+  (use-package diff-hl
+    :hook ((dired-mode         . diff-hl-dired-mode-unless-remote)
+    		 (magit-pre-refresh  . diff-hl-magit-pre-refresh)
+    		 (magit-post-refresh . diff-hl-magit-post-refresh))
+    :init (global-diff-hl-mode))
 
-    (use-package diminish)
+  (use-package diminish)
 
-    (use-package rainbow-delimiters
-      :hook
-      (prog-mode . rainbow-delimiters-mode)
-      (org-mode . rainbow-delimiters-mode))
+  (use-package rainbow-delimiters
+    :diminish
+    :hook
+    (prog-mode . rainbow-delimiters-mode)
+    (org-mode . rainbow-delimiters-mode))
 
-    (use-package rainbow-mode
-      :config
-      ;; Make it a proper global mode; we want this everywhere unless we explicitly disable it
-      ;; (TODO: Add blocklist filtering here)
-      (define-globalized-minor-mode global-rainbow-mode rainbow-mode
-        (lambda () (rainbow-mode 1)))
-      (global-rainbow-mode 1))
+  ;; Colourise hex codes, CSS colours, etc
+  (use-package rainbow-mode
+    :diminish
+    :config
+    ;; Make it a proper global mode; we want this everywhere unless we explicitly disable it
+    ;; (TODO: Add blocklist filtering here)
+    (define-globalized-minor-mode global-rainbow-mode rainbow-mode
+      (lambda () (rainbow-mode 1)))
+    (global-rainbow-mode 1))
 
-    (use-package doom-modeline
-      :config
-      (setq doom-modeline-icon nil)
-      (setq doom-modeline-minor-modes t)
-      (setq doom-modeline-buffer-file-name-style 'relative-from-project)
-      (doom-modeline-mode 1))
+  (use-package doom-modeline
+    :config
+    (setq doom-modeline-icon nil)
+    (setq doom-modeline-minor-modes t)
+    (setq doom-modeline-buffer-file-name-style 'relative-from-project)
+    (doom-modeline-mode 1))
 
-    (use-package magit
-      :commands magit-status)
+  (use-package magit
+    :commands magit-status)
 
-    (use-package forge
-      :after magit)
+  (use-package forge
+    :after magit)
 
-    (use-package git-gutter
-      :config
-      (global-git-gutter-mode 't))
+  (use-package git-gutter
+    :diminish
+    :config
+    (global-git-gutter-mode 't))
 
-    (use-package dtrt-indent
-      :custom
-      (dtrt-indent-global-mode t))
+  (use-package dtrt-indent
+    :diminish
+    :custom
+    (dtrt-indent-global-mode t))
 
-    ;; General keybindings
+  ;; General keybindings
 
 #+END_SRC
 
 ***  Theme
 #+BEGIN_SRC emacs-lisp
+  (use-package catppuccin-theme)
+
   (use-package doom-themes
-    :ensure t
     :config
     ;; Global settings (defaults)
     (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
           doom-themes-enable-italic nil) ; if nil, italics is universally disabled
-    (load-theme 'doom-moonlight t)
 
+    (load-theme 'doom-moonlight)
     ;; Enable flashing mode-line on errors
     (doom-themes-visual-bell-config)
     ;; Corrects (and improves) org-mode's native fontification.
@@ -147,13 +152,12 @@ straight is loaded in the `init.el` to avoid issues with the builtin Org-mode
 
   (add-to-list 'default-frame-alist '(alpha-background . 90)) ;; For all new frames henceforth
 
-  (setq sfont "Iosevka Term")
   (set-face-attribute 'default nil
-    :font sfont
-    :height 210
-    :weight 'medium)
+                      :font "Iosevka Term"
+                      :height 210
+                      :weight 'medium)
 
-  (set-frame-font sfont nil t)
+  (set-frame-font "Iosevka Term" nil t)
   (add-to-list 'default-frame-alist '(font . "Iosevka Term"))
 
   (use-package ligature
@@ -190,9 +194,24 @@ straight is loaded in the `init.el` to avoid issues with the builtin Org-mode
 
 **  Utility
 #+BEGIN_SRC emacs-lisp
+  (use-package whitespace
+    :hook
+    ;; Only enable in "programming languages"
+    ;; since it looks silly in prose
+    (prog-mode . whitespace-mode))
+
+  (use-package key-chord
+    :after avy
+    :after swiper
+    :config
+    (key-chord-define-global "jj" 'avy-goto-char-timer)
+    (key-chord-define-global "ss" 'swiper)
+    (key-chord-mode))
+
+  (use-package avy)
+
   (use-package hl-todo
     :config
-  	
     ;; PERF: Fully optimised
     ;; HACK: Hmm, this looks cursed
     ;; TODO: What else?
@@ -314,6 +333,7 @@ straight is loaded in the `init.el` to avoid issues with the builtin Org-mode
      ("C-<" . jumplist-previous)))
 
   (use-package anzu
+    :diminish
     :config
     (global-anzu-mode +1)
     (global-set-key [remap query-replace] 'anzu-query-replace)
@@ -345,25 +365,18 @@ straight is loaded in the `init.el` to avoid issues with the builtin Org-mode
     :mode ("README\\.md\\'" . gfm-mode)
     :mode ("\\.md\\'" . markdown-mode))
 
-  (use-package yaml-pro
-    :mode ("\\.ya?ml\\'" . yaml-pro-mode))
+  (use-package yaml-pro)
     
   (use-package yaml-mode
     :mode ("\\.ya?ml\\'" . yaml-mode))
 
-  (add-hook 'yaml-mode-hook (lambda () (tree-sitter-hl-mode)))
+  (add-hook 'yaml-mode-hook #'yaml-pro-ts-mode 100)
 
   ;; Filetype -> mode mappings
-  (setq auto-mode-alist
-  	  (append
-  	   '(
-  		 ("/\\.[^/]*\\'" . fundamental-mode)
-  		 ;; File name has no dot.
-  		 ("/[^\\./]*\\'" . fundamental-mode)
-  		 ;; File name ends in ‘.el’.
-  		 ("\\.el\\'" . emacs-lisp-mode)
-  		 ("\\.zig\\'" . zig-mode))
-  	   auto-mode-alist))
+  (add-to-list 'auto-mode-alist '("/\\.[^/]*\\'" . fundamental-mode))
+  (add-to-list 'auto-mode-alist '("/[^\\./]*\\'" . fundamental-mode))
+  (add-to-list 'auto-mode-alist '("\\.el\\'" . emacs-lisp-mode))
+  (add-to-list 'auto-mode-alist '("\\.zig\\'" . zig-mode))
 
   ;; Treesitter is provided by Nix because of the natively compiled stuff
   ;; and we are using the Emacs builtin treesitter module which has its own language modes
@@ -388,8 +401,6 @@ straight is loaded in the `init.el` to avoid issues with the builtin Org-mode
   (use-package counsel
     :bind
     (
-     ("C-S-s" . swiper)
-     ("C-S-r" . swiper)
      ("M-y" . counsel-yank-pop)
      ("M-x" . counsel-M-x)
      ("C-x C-x" . counsel-find-file))
@@ -401,6 +412,18 @@ straight is loaded in the `init.el` to avoid issues with the builtin Org-mode
     (define-key ivy-minibuffer-map (kbd "M-y") #'ivy-next-line)
     (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history)
     (ivy-mode))
+
+  (use-package ivy-posframe
+    :config
+    ;; display at `ivy-posframe-style'
+    (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display)))
+
+    ;; (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-frame-center)))
+    ;; (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-window-center)))
+    ;; (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-frame-bottom-left)))
+    ;; (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-window-bottom-left)))
+    ;; (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-frame-top-center)))
+    (ivy-posframe-mode 1))
 
   (use-package corfu
     :custom
@@ -424,12 +447,12 @@ straight is loaded in the `init.el` to avoid issues with the builtin Org-mode
     ;; Recommended: Enable Corfu globally.  This is recommended since Dabbrev can
     ;; be used globally (M-/).  See also the customization variable
     ;; `global-corfu-modes' to exclude certain modes.
-    :init
+    :config
     (global-corfu-mode))
 
   (use-package prescient
     :after corfu
-    :config
+    :init
     (setq corfu-prescient-enable-filtering t)
     (setq corfu-prescient-override-sorting t)
     (setq completion-preview-sort-function #'prescient-completion-sort)
@@ -437,18 +460,16 @@ straight is loaded in the `init.el` to avoid issues with the builtin Org-mode
 
   (use-package corfu-prescient
     :after prescient
-    :init
+    :config
     (corfu-prescient-mode 1))
 
   (defun cape-dabbrev-dict-keyword ()
     (cape-wrap-super
      (cape-capf-case-fold #'cape-dabbrev)
-     (cape-capf-case-fold #'cape-keyword)
-     (cape-capf-case-fold #'yasnippet-capf)))
+     (cape-capf-case-fold #'yasnippet-capf)
+     (cape-capf-case-fold #'cape-keyword)))
 
   (use-package cape
-    :bind
-    ("M-TAB" . completion-at-point)
     :after corfu
     :config
     ;; Add to the global default value of `completion-at-point-functions' which is

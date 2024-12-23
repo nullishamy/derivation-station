@@ -17,10 +17,7 @@
 	(add-to-list 'exec-path-from-shell-variables var))
   (exec-path-from-shell-initialize))
 
-(use-package no-littering
-  :config
-  (setq no-littering-etc-directory (expand-file-name "config/" user-emacs-directory))
-  (setq no-littering-var-directory (expand-file-name "data/" user-emacs-directory)))
+(use-package no-littering)
 
 (use-package emacs
   :custom
@@ -65,6 +62,7 @@
   :hook (after-init . spacious-padding-mode))
 
 (use-package wakatime-mode
+  :diminish
   :init (global-wakatime-mode))
 
 (use-package diff-hl
@@ -76,11 +74,14 @@
 (use-package diminish)
 
 (use-package rainbow-delimiters
+  :diminish
   :hook
   (prog-mode . rainbow-delimiters-mode)
   (org-mode . rainbow-delimiters-mode))
 
+;; Colourise hex codes, CSS colours, etc
 (use-package rainbow-mode
+  :diminish
   :config
   ;; Make it a proper global mode; we want this everywhere unless we explicitly disable it
   ;; (TODO: Add blocklist filtering here)
@@ -102,23 +103,26 @@
   :after magit)
 
 (use-package git-gutter
+  :diminish
   :config
   (global-git-gutter-mode 't))
 
 (use-package dtrt-indent
+  :diminish
   :custom
   (dtrt-indent-global-mode t))
 
 ;; General keybindings
 
+(use-package catppuccin-theme)
+
 (use-package doom-themes
-  :ensure t
   :config
   ;; Global settings (defaults)
   (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
         doom-themes-enable-italic nil) ; if nil, italics is universally disabled
-  (load-theme 'doom-moonlight t)
 
+  (load-theme 'doom-moonlight)
   ;; Enable flashing mode-line on errors
   (doom-themes-visual-bell-config)
   ;; Corrects (and improves) org-mode's native fontification.
@@ -126,13 +130,12 @@
 
 (add-to-list 'default-frame-alist '(alpha-background . 90)) ;; For all new frames henceforth
 
-(setq sfont "Iosevka Term")
 (set-face-attribute 'default nil
-  :font sfont
-  :height 210
-  :weight 'medium)
+                    :font "Iosevka Term"
+                    :height 210
+                    :weight 'medium)
 
-(set-frame-font sfont nil t)
+(set-frame-font "Iosevka Term" nil t)
 (add-to-list 'default-frame-alist '(font . "Iosevka Term"))
 
 (use-package ligature
@@ -163,9 +166,24 @@
 (use-package yasnippet-snippets
   :after yasnippet)
 
+(use-package whitespace
+  :hook
+  ;; Only enable in "programming languages"
+  ;; since it looks silly in prose
+  (prog-mode . whitespace-mode))
+
+(use-package key-chord
+  :after avy
+  :after swiper
+  :config
+  (key-chord-define-global "jj" 'avy-goto-char-timer)
+  (key-chord-define-global "ss" 'swiper)
+  (key-chord-mode))
+
+(use-package avy)
+
 (use-package hl-todo
   :config
-	
   ;; PERF: Fully optimised
   ;; HACK: Hmm, this looks cursed
   ;; TODO: What else?
@@ -287,6 +305,7 @@
    ("C-<" . jumplist-previous)))
 
 (use-package anzu
+  :diminish
   :config
   (global-anzu-mode +1)
   (global-set-key [remap query-replace] 'anzu-query-replace)
@@ -315,25 +334,18 @@
   :mode ("README\\.md\\'" . gfm-mode)
   :mode ("\\.md\\'" . markdown-mode))
 
-(use-package yaml-pro
-  :mode ("\\.ya?ml\\'" . yaml-pro-mode))
+(use-package yaml-pro)
   
 (use-package yaml-mode
   :mode ("\\.ya?ml\\'" . yaml-mode))
 
-(add-hook 'yaml-mode-hook (lambda () (tree-sitter-hl-mode)))
+(add-hook 'yaml-mode-hook #'yaml-pro-ts-mode 100)
 
 ;; Filetype -> mode mappings
-(setq auto-mode-alist
-	  (append
-	   '(
-		 ("/\\.[^/]*\\'" . fundamental-mode)
-		 ;; File name has no dot.
-		 ("/[^\\./]*\\'" . fundamental-mode)
-		 ;; File name ends in ‘.el’.
-		 ("\\.el\\'" . emacs-lisp-mode)
-		 ("\\.zig\\'" . zig-mode))
-	   auto-mode-alist))
+(add-to-list 'auto-mode-alist '("/\\.[^/]*\\'" . fundamental-mode))
+(add-to-list 'auto-mode-alist '("/[^\\./]*\\'" . fundamental-mode))
+(add-to-list 'auto-mode-alist '("\\.el\\'" . emacs-lisp-mode))
+(add-to-list 'auto-mode-alist '("\\.zig\\'" . zig-mode))
 
 ;; Treesitter is provided by Nix because of the natively compiled stuff
 ;; and we are using the Emacs builtin treesitter module which has its own language modes
@@ -349,8 +361,6 @@
 (use-package counsel
   :bind
   (
-   ("C-S-s" . swiper)
-   ("C-S-r" . swiper)
    ("M-y" . counsel-yank-pop)
    ("M-x" . counsel-M-x)
    ("C-x C-x" . counsel-find-file))
@@ -362,6 +372,18 @@
   (define-key ivy-minibuffer-map (kbd "M-y") #'ivy-next-line)
   (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history)
   (ivy-mode))
+
+(use-package ivy-posframe
+  :config
+  ;; display at `ivy-posframe-style'
+  (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display)))
+
+  ;; (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-frame-center)))
+  ;; (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-window-center)))
+  ;; (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-frame-bottom-left)))
+  ;; (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-window-bottom-left)))
+  ;; (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-frame-top-center)))
+  (ivy-posframe-mode 1))
 
 (use-package corfu
   :custom
@@ -385,12 +407,12 @@
   ;; Recommended: Enable Corfu globally.  This is recommended since Dabbrev can
   ;; be used globally (M-/).  See also the customization variable
   ;; `global-corfu-modes' to exclude certain modes.
-  :init
+  :config
   (global-corfu-mode))
 
 (use-package prescient
   :after corfu
-  :config
+  :init
   (setq corfu-prescient-enable-filtering t)
   (setq corfu-prescient-override-sorting t)
   (setq completion-preview-sort-function #'prescient-completion-sort)
@@ -398,18 +420,16 @@
 
 (use-package corfu-prescient
   :after prescient
-  :init
+  :config
   (corfu-prescient-mode 1))
 
 (defun cape-dabbrev-dict-keyword ()
   (cape-wrap-super
    (cape-capf-case-fold #'cape-dabbrev)
-   (cape-capf-case-fold #'cape-keyword)
-   (cape-capf-case-fold #'yasnippet-capf)))
+   (cape-capf-case-fold #'yasnippet-capf)
+   (cape-capf-case-fold #'cape-keyword)))
 
 (use-package cape
-  :bind
-  ("M-TAB" . completion-at-point)
   :after corfu
   :config
   ;; Add to the global default value of `completion-at-point-functions' which is
