@@ -130,13 +130,19 @@
 
 (add-to-list 'default-frame-alist '(alpha-background . 90)) ;; For all new frames henceforth
 
+;; https://www.programmingfonts.org/
+(setq font-family "Monaspace Neon")
 (set-face-attribute 'default nil
-                    :font "Iosevka Term"
-                    :height 210
-                    :weight 'medium)
+                    :font font-family
+                    :height 190
+                    :weight 'light)
 
-(set-frame-font "Iosevka Term" nil t)
-(add-to-list 'default-frame-alist '(font . "Iosevka Term"))
+(set-frame-font font-family nil t)
+
+;; https://stackoverflow.com/questions/1664202/emacs-lisp-evaluate-variable-in-alist
+;; Need to force the interpreter to evaluate `font-family' for us
+;; otherwise it treats it like a literal, use `cons' for this.
+(add-to-list 'default-frame-alist (cons 'font font-family))
 
 (use-package ligature
   :config
@@ -176,8 +182,8 @@
   :after avy
   :after swiper
   :config
-  (key-chord-define-global "jj" 'avy-goto-char-timer)
-  (key-chord-define-global "ss" 'swiper)
+  (key-chord-define-global "jk" 'avy-goto-char-timer)
+  (key-chord-define-global "sd" 'swiper)
   (key-chord-mode))
 
 (use-package avy)
