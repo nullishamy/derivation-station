@@ -9,6 +9,8 @@
 
     nix-index-database.url = "github:Mic92/nix-index-database";
 
+    ghostty.url = "github:ghostty-org/ghostty";
+
     pre-commit-hooks.url = "github:cachix/pre-commit-hooks.nix";
 
     sops.url = "github:Mic92/sops-nix";
@@ -74,7 +76,7 @@
               ];
               extraSpecialArgs = {
                 flakePath = "/home/${system.currentUser}/nixos";
-                inherit (inputs) nu_scripts nix-vscode-extensions;
+                inherit (inputs) nu_scripts nix-vscode-extensions ghostty;
                 inherit system;
               };
             };

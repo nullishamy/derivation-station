@@ -2,9 +2,11 @@
 local module = {
   pkgs = {
     {
-      'echasnovski/mini.nvim',
+      'actionshrimp/direnv.nvim',
       config = function()
-        require('mini.surround').setup {}
+        require('direnv-nvim').setup {
+          type = 'dir',
+        }
       end,
     },
   },

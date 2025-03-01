@@ -1,6 +1,7 @@
 {
   pkgs,
   config,
+  ghostty,
   ...
 }: {
   imports = [
@@ -13,6 +14,7 @@
   ];
 
   home.packages = with pkgs; [
+    ghostty.packages.x86_64-linux.default
     bottom
     neofetch
     gh
@@ -23,8 +25,7 @@
     flameshot
     keybase
     pkgs.unstable.neovide
-    discord
-    discord-canary
+    vesktop
     _1password-gui
     gparted
     gimp

@@ -7,6 +7,9 @@
 with config;
 with lib;
 with pkgs; {
+  programs.ladybird = {
+    enable = true;
+  };
   users = {
     defaultUserShell = bash;
     mutableUsers = true;

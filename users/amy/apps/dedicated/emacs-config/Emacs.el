@@ -19,6 +19,41 @@
 
 (use-package no-littering)
 
+(use-package evil
+  :config
+  (define-key evil-operator-state-map "H" 'back-to-indentation)
+  (define-key evil-operator-state-map "L" 'end-of-line)
+
+  (define-key evil-visual-state-map "H" 'back-to-indentation)
+  (define-key evil-visual-state-map "L" 'end-of-line)
+
+  (define-key evil-normal-state-map "H" 'back-to-indentation)
+  (define-key evil-normal-state-map "L" 'end-of-line)
+  
+  (evil-set-leader nil (kbd "SPC"))
+
+  (define-key evil-visual-state-map (kbd "<leader>i") 'indent-region) 
+
+  (evil-mode t))
+
+(use-package avy
+  :config
+  (define-key evil-normal-state-map (kbd "SPC SPC") 'avy-goto-char-timer))
+
+(use-package evil-cutlass
+  :straight (:host github :repo "kisaragi-hiu/evil-cutlass")
+  :config
+  (evil-cutlass-mode))
+
+(use-package expand-region
+  :config
+  (define-key evil-normal-state-map (kbd"<leader>e") 'er/expand-region))
+
+(use-package key-chord
+  :config
+  (key-chord-define evil-insert-state-map "jk" 'evil-normal-state)
+  (key-chord-mode t))
+
 (use-package emacs
   :custom
   (menu-bar-mode nil)         ;; Disable the menu bar
@@ -34,8 +69,10 @@
   (global-auto-revert-mode t) ;; Automatically reload file and show changes if the file has changed
   (pixel-scroll-precision-mode 1)
   (global-display-line-numbers-mode t)  ;; Display line numbers
-  (mouse-wheel-progressive-speed nil) ;; Disable progressive speed when scrolling
-  (scroll-conservatively 10) ;; Smooth scrolling
+  (scroll-conservatively 10) ;; Smooth 'scrolling
+  (setq mouse-wheel-scroll-amount '(0.03))
+  (setq mouse-wheel-progressive-speed nil)
+  (setq ring-bell-function 'ignore)
   (tab-width 4)
   (make-backup-files nil) ;; Stop creating ~ backup files
   (auto-save-default nil) ;; Stop creating # auto save files
@@ -112,8 +149,6 @@
   :custom
   (dtrt-indent-global-mode t))
 
-;; General keybindings
-
 (use-package catppuccin-theme)
 
 (use-package doom-themes
@@ -131,11 +166,11 @@
 (add-to-list 'default-frame-alist '(alpha-background . 90)) ;; For all new frames henceforth
 
 ;; https://www.programmingfonts.org/
-(setq font-family "Monaspace Neon")
+(setq font-family "Fantasque Sans Mono")
 (set-face-attribute 'default nil
                     :font font-family
-                    :height 190
-                    :weight 'light)
+                    :height 200
+                    :weight 'regular)
 
 (set-frame-font font-family nil t)
 
@@ -177,16 +212,6 @@
   ;; Only enable in "programming languages"
   ;; since it looks silly in prose
   (prog-mode . whitespace-mode))
-
-(use-package key-chord
-  :after avy
-  :after swiper
-  :config
-  (key-chord-define-global "jk" 'avy-goto-char-timer)
-  (key-chord-define-global "sd" 'swiper)
-  (key-chord-mode))
-
-(use-package avy)
 
 (use-package hl-todo
   :config
@@ -251,16 +276,6 @@
   (direnv-mode)
   (setq direnv-always-show-summary nil))
 
-(use-package expand-region
-  :init
-  ;; FIXME: Can use-package do this for me?
-  (global-unset-key (kbd "C-x e"))
-  :bind
-  (
-   ("C-x e q" . er/mark-inside-quotes)
-   ("C-x e p" . er/mark-inside-pairs)
-   ("C-x e e" . er/expand-region)))
-
 (defun indent-region-advice (&rest ignored)
   (let ((deactivate deactivate-mark))
 	(if (region-active-p)
@@ -294,6 +309,7 @@
    ("C-c c n" . mc/mark-next-like-this)))
 
 (use-package beacon
+  :diminish
   :config
   (beacon-mode 1))
 
@@ -321,6 +337,9 @@
 (use-package nix-mode
   :mode "\\.nix\\'")
 
+(use-package nim-mode
+  :mode "\\.nim\\'")
+
 (use-package zig-mode
   :mode "\\.zig\\'")
 
@@ -334,7 +353,7 @@
   :mode ("\\.svelte\\'" . svelte-mode))
 
 (use-package typescript-mode
-  :mode ("\\.tsx?\\'"))
+  :mode ("\\.tsx?\\'" . typescript-ts-mode))
 
 (use-package markdown-mode
   :mode ("README\\.md\\'" . gfm-mode)
@@ -350,6 +369,7 @@
 ;; Filetype -> mode mappings
 (add-to-list 'auto-mode-alist '("/\\.[^/]*\\'" . fundamental-mode))
 (add-to-list 'auto-mode-alist '("/[^\\./]*\\'" . fundamental-mode))
+(add-to-list 'auto-mode-alist '("\\.cl\\'" . lisp-mode))
 (add-to-list 'auto-mode-alist '("\\.el\\'" . emacs-lisp-mode))
 (add-to-list 'auto-mode-alist '("\\.zig\\'" . zig-mode))
 
@@ -369,10 +389,11 @@
   (
    ("M-y" . counsel-yank-pop)
    ("M-x" . counsel-M-x)
-   ("C-x C-x" . counsel-find-file))
+   ("C-x C-x" . counsel-find-file)
+   ("C-x j" . swiper))
   :config
-  (setq ivy-use-virtual-buffers t)
-  (setq enable-recursive-minibuffers t)
+  (setq ivy-use-virtual-buffers nil)
+  (setq enable-recursive-minibuffers nil)
   (setq ivy-count-format "(%d/%d) ")
     
   (define-key ivy-minibuffer-map (kbd "M-y") #'ivy-next-line)
@@ -380,9 +401,10 @@
   (ivy-mode))
 
 (use-package ivy-posframe
+  :diminish
   :config
   ;; display at `ivy-posframe-style'
-  (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display)))
+  (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-frame-center)))
 
   ;; (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-frame-center)))
   ;; (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-window-center)))

@@ -4,6 +4,7 @@ require('lib').modules {
   'neovide',
 
   'editor.settings',
+  'editor.direnv',
   'editor.keys',
   'editor.project',
   'editor.autocmd',
@@ -24,6 +25,7 @@ require('lib').modules {
 
   'text.icons',
   'text.todo',
+  'text.surround',
   'text.comment',
   'text.indent',
   'text.cutlass',

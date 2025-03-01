@@ -1,0 +1,59 @@
+/* Variables */
+.visual-refresh {
+	--custom-app-top-bar-height: 30px !important;
+	--custom-channel-textarea-text-area-height: 45px !important;
+	--custom-guild-list-padding: var(--space-12) !important;
+}
+
+/* Profile pane (bottom left) */
+.visual-refresh .container__37e49 {
+    padding: var(--space-4);
+}
+
+/* Context menu */
+:where(.visual-refresh) .wrapper_f563df {
+    gap: 2px !important;
+    padding: 4px;
+	padding-top: 8px;
+	padding-bottom: 8px;
+
+	margin-bottom: 4px;
+}
+
+:where(.visual-refresh) .labelContainer_c1e9c4 {
+    padding-left: 6px !important;
+	padding-right: 6px !important;
+	padding-top: 4px;
+	padding-bottom: 4px;
+}
+
+/* Quick reacts */
+:where(.visual-refresh) .button_f563df {
+    border-radius: 6px;
+    width: 30px;
+    height: 30px;
+}
+
+:where(.visual-refresh) .scroller_c1e9c4 {
+    padding: 6px;
+	padding-bottom: 8px;
+}
+
+/* VC person count */
+.users__260e1 {
+	display: block;
+}
+
+.visual-refresh .total__260e1 {
+	padding: 0 0;
+}
+
+.visual-refresh .wrapper__260e1 {
+    background-color: transparent;
+}
+
+/* Attach button */
+.attachButton__0923f {
+    padding-left: 10px;
+	padding-right: 5px;
+}

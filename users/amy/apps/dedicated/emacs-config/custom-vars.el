@@ -29,7 +29,7 @@
      ("Oc" counsel-projectile-switch-project-action-org-capture "capture into project")
      ("Oa" counsel-projectile-switch-project-action-org-agenda "open project agenda")))
  '(custom-safe-themes
-   '("8d3ef5ff6273f2a552152c7febc40eabca26bae05bd12bc85062e2dc224cde9a" "d77d6ba33442dd3121b44e20af28f1fae8eeda413b2c3d3b9f1315fbda021992" "77fff78cc13a2ff41ad0a8ba2f09e8efd3c7e16be20725606c095f9a19c24d3d" "0c83e0b50946e39e237769ad368a08f2cd1c854ccbcd1a01d39fdce4d6f86478" "88f7ee5594021c60a4a6a1c275614103de8c1435d6d08cc58882f920e0cec65e" "dccf4a8f1aaf5f24d2ab63af1aa75fd9d535c83377f8e26380162e888be0c6a9" default))
+   '("4990532659bb6a285fee01ede3dfa1b1bdf302c5c3c8de9fad9b6bc63a9252f7" "9df4b113170b630d3c00cf3e67c59ecf4f007487f199cc46d54fb30efc8b79ce" "013728cb445c73763d13e39c0e3fd52c06eefe3fbd173a766bfd29c6d040f100" "b73a23e836b3122637563ad37ae8c7533121c2ac2c8f7c87b381dd7322714cd0" "9d5124bef86c2348d7d4774ca384ae7b6027ff7f6eb3c401378e298ce605f83a" "13096a9a6e75c7330c1bc500f30a8f4407bd618431c94aeab55c9855731a95e1" "8d3ef5ff6273f2a552152c7febc40eabca26bae05bd12bc85062e2dc224cde9a" "d77d6ba33442dd3121b44e20af28f1fae8eeda413b2c3d3b9f1315fbda021992" "77fff78cc13a2ff41ad0a8ba2f09e8efd3c7e16be20725606c095f9a19c24d3d" "0c83e0b50946e39e237769ad368a08f2cd1c854ccbcd1a01d39fdce4d6f86478" "88f7ee5594021c60a4a6a1c275614103de8c1435d6d08cc58882f920e0cec65e" "dccf4a8f1aaf5f24d2ab63af1aa75fd9d535c83377f8e26380162e888be0c6a9" default))
  '(package-selected-packages
    '(gnu-elpa-keyring-update which-key rainbow-mode rainbow-delimiters diminish nerd-icons-completion cape nerd-icons-corfu corfu ido-completing-read+ diff-hl magit nerd-icons-ibuffer nerd-icons-dired nerd-icons eat org-superstar toc-org yasnippet-snippets hl-todo lsp-ui elcord lsp-tailwindcss svelte-mode rust-mode go-mode nix-mode lsp-mode projectile catppuccin-theme direnv flycheck-inline markdown-mode typescript-mode use-package))
  '(wakatime-cli-path "~/.wakatime/wakatime-cli")
@@ -43,7 +43,8 @@
      (tab-mark 9
                [187 9]
                [92 9])))
- '(whitespace-style '(face tabs spaces indentation space-mark tab-mark)))
+ '(whitespace-style '(face tabs spaces indentation space-mark tab-mark))
+ '(zig-format-on-save nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
